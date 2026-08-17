@@ -30,7 +30,6 @@ export default function HomePage() {
   const schemas = [
     { "@context": "https://schema.org", "@type": "WebSite", name: siteConfig.brandName, url: siteConfig.domain },
     { "@context": "https://schema.org", "@type": "Organization", name: siteConfig.brandName, url: siteConfig.domain, founder: { "@type": "Person", name: siteConfig.fullName, sameAs: siteConfig.socials.map((social) => social.href) }, address: { "@type": "PostalAddress", streetAddress: "Sallaghari Shopping Complex", addressLocality: "Bhaktapur", postalCode: "44800", addressCountry: "NP" }, telephone: siteConfig.phone, email: siteConfig.email },
-    { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map((item) => ({ "@type": "Question", name: item.question, acceptedAnswer: { "@type": "Answer", text: item.answer } })) },
   ];
   return <>
     <section className="shell grid gap-12 py-12 md:py-20 lg:grid-cols-[1.35fr_.65fr] lg:items-center">

@@ -22,13 +22,6 @@ export const problems = [
   { title: "Your reporting describes activity, not decisions", copy: "A useful report explains which queries, campaigns, pages and offers create qualified action, where people drop away and what should be improved next." },
 ];
 
-export const proofPoints = [
-  { metric: "+65%", label: "lead growth", detail: "Reported across connected paid media, SEO, CRO, and landing-page improvements." },
-  { metric: "+120%", label: "organic visibility", detail: "Through technical SEO, content clusters, and search-intent optimisation." },
-  { metric: "−35%", label: "cost per acquisition", detail: "Through campaign restructuring, stronger targeting, and improved conversion paths." },
-  { metric: "+40%", label: "conversions", detail: "Using CRO, UX fixes, funnel analysis, and landing-page refinement." },
-];
-
 export const tools = ["Google Ads", "Meta Ads", "TikTok Ads", "GA4", "Google Tag Manager", "Search Console", "Looker Studio", "Ahrefs", "SEMrush", "Screaming Frog", "Microsoft Clarity", "Hotjar", "WordPress", "Marketing automation"];
 
 export const industries = [
@@ -100,7 +93,7 @@ export const siteConfig = {
     { period: "2023 — Present", title: "BSc CSIT", organization: "Tribhuvan University" },
     { period: "2021 — 2023", title: "Computer Science", organization: "Xavier International College, Kathmandu" },
   ] as Milestone[],
-  achievements: proofPoints,
+  achievements: [] as { metric: string; label: string; detail: string }[],
   values: [
     { title: "Search intent first", detail: "Research what customers search for and need before deciding which pages, content, or campaigns should be built." },
     { title: "SEO and CRO together", detail: "Rankings create opportunity; clear positioning, trust, and conversion paths turn that opportunity into business." },
