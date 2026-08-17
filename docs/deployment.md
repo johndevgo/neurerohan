@@ -2,9 +2,9 @@
 
 ## Recommended Phase 1 setup
 
-Use **Vercel for the Next.js application** and **Cloudflare for DNS**. Phase 1 is a public website and needs neither a database nor a custom backend. Vercel is the shortest operational path for this Next.js codebase; Cloudflare remains useful for authoritative DNS and future services.
+Phase 1 needs neither a database nor a custom backend. The code remains compatible with Vercel, while Cloudflare already manages the domain DNS.
 
-Because this is a commercial website, confirm current Vercel plan terms and select a plan permitted for commercial use rather than assuming a free plan is appropriate.
+Vercel's current Hobby terms limit use to personal or non-commercial projects. GrowthLabs is commercial, so Hobby is not the recommended compliant free host. For a genuinely free launch, use Cloudflare Workers with the Next.js OpenNext adapter, or convert the site to a static export for Cloudflare Pages after validating every route and image.
 
 ## Publish to Vercel
 
@@ -32,7 +32,7 @@ The publishing dashboard will need server-side capabilities but not necessarily 
 - object storage for originals plus an image delivery layer;
 - scheduled publication and tested backups.
 
-Recommended default: retain Next.js on Vercel and use Supabase for PostgreSQL, Auth, and Storage behind replaceable repository interfaces. Re-evaluate Neon + Auth.js + Cloudinary or R2 when editorial workflow and budget are confirmed. Never expose service keys in client code.
+The blog will use repository-based MDX with Git history and repository-hosted images. It therefore needs no database, Auth service, object-storage account, or service keys. See `docs/blog-phase-2.md`.
 
 ## Domain and launch checklist
 

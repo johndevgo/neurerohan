@@ -2,7 +2,7 @@
 
 ## Goal
 
-Add a durable editorial publishing system without changing the Phase 1 page shell or design system. Published content should enter through a repository interface and map into typed view models, keeping UI components independent of the eventual database or CMS.
+Add a durable, **backend-free** editorial system without changing the Phase 1 shell or design system. Articles will live as version-controlled MDX files in the repository. Publishing is a Git commit and deployment, so there is no database, authentication service, media backend, or public admin dashboard to operate.
 
 ## Public blog
 
@@ -16,11 +16,11 @@ Suggested domain model:
 - Media: storage key, URL, dimensions, MIME type, alt text, caption, attribution, and ownership metadata
 - Revision: immutable article snapshot, editor, timestamp, and change note
 
-## Publishing dashboard
+## Publishing workflow
 
-Protect `/admin` at the edge and server-action/data layers. It should support secure login, article creation and editing, preview tokens, autosaved drafts, publish/unpublish, scheduled publishing, slug editing, SEO title/description/canonical fields, category and tag management, author management, featured-image upload, revision history, and a searchable media library.
+Do not build `/admin`. Use a local article template plus validation scripts. Draft MDX files remain excluded from public queries, feeds and the sitemap. Images live under a structured `public/images/insights` directory and are committed with the article. Git history supplies revision history and rollback.
 
-The editor should use a portable structured document format. Preview must render through the same article components as production. Publication transitions should be explicit, validated, audited, and safe to retry. Scheduled publishing needs a trusted cron trigger plus an idempotent server operation.
+Preview through the normal Next.js development server so draft and production content use the same components. Frontmatter should include title, slug, excerpt, author, published date, optional updated date, status, categories, tags, featured image, SEO title, description and canonical override. Scheduled publishing is deliberately excluded because a backend-free workflow cannot guarantee time-based release without an external automation service.
 
 ## Technical options
 
@@ -30,7 +30,7 @@ The editor should use a portable structured document format. Preview must render
 - **Hosted headless CMS:** fastest editorial setup but adds vendor-specific schemas, pricing, and portability work.
 - **Git-based MDX:** highly portable and simple for developer-only publishing, but unsuitable for the requested non-technical dashboard and media workflow without substantial custom tooling.
 
-Recommendation: managed PostgreSQL with a thin repository layer. Choose Prisma for mature tooling or Drizzle for a lighter SQL-oriented approach after confirming the hosting target.
+Recommendation: no database. Use typed MDX plus a content repository module. Reconsider PostgreSQL only if multiple non-technical editors, granular permissions, scheduling or large-scale search become genuine requirements.
 
 ### Authentication
 
@@ -38,7 +38,7 @@ Recommendation: managed PostgreSQL with a thin repository layer. Choose Prisma f
 - **Clerk:** polished admin UX and fast setup; recurring cost and vendor dependency.
 - **Supabase Auth:** good fit if Supabase also hosts the database/storage.
 
-Recommendation: Auth.js with passkey or OAuth restricted to an allowlist of admin identities. Require MFA at the identity provider and enforce authorization server-side for every mutation.
+Recommendation: no application authentication because no dashboard exists. Protect the Git provider and hosting account with MFA.
 
 ### Image storage
 
@@ -46,7 +46,7 @@ Recommendation: Auth.js with passkey or OAuth restricted to an allowlist of admi
 - **S3-compatible storage (S3, R2):** portable and cost-effective; requires an image transformation/CDN plan.
 - **Supabase Storage:** convenient if the rest of the stack uses Supabase.
 
-Recommendation: Cloudinary for editor convenience or Cloudflare R2 plus an image CDN for greater portability. Store metadata and alt text in PostgreSQL, never only at the provider.
+Recommendation: repository-hosted optimised images for the initial blog. Keep filenames, dimensions, alt text and attribution in MDX frontmatter. Reconsider R2 or Cloudinary only if the repository becomes impractically large.
 
 ### Editor
 
@@ -54,7 +54,7 @@ Recommendation: Cloudinary for editor convenience or Cloudflare R2 plus an image
 - **Lexical:** performant and flexible, but needs more application-level assembly.
 - **BlockNote:** quicker block-editor UX with more opinionated output.
 
-Run an editor prototype before committing. Store structured JSON plus a schema version; render through controlled server components and sanitize any HTML import/export path.
+Recommendation: MDX edited in a code editor or GitHub's web editor. Validate frontmatter and disallow arbitrary unsafe HTML/components.
 
 ## Security and operations
 
@@ -71,12 +71,11 @@ Provide export commands for articles, taxonomies, authors, revisions, and media 
 
 ## Delivery sequence
 
-1. Confirm hosting, editorial roles, publication workflow, and provider budget.
-2. Finalize schema and repository interfaces; add database migrations.
-3. Add authentication and server-side authorization tests.
-4. Implement articles, taxonomies, media, preview, and revision APIs/actions.
-5. Build the editor/dashboard and accessible public routes.
-6. Add search, related content, RSS, article schema, and sitemap integration.
-7. Threat-model, accessibility-test, load-test, restore-test, and migrate production content.
+1. Finalise MDX frontmatter, content directories and author records.
+2. Add parsing, validation, draft filtering and reading-time utilities.
+3. Build accessible index, article, category and tag routes.
+4. Add related content, RSS, article schema and sitemap integration.
+5. Add local authoring templates and preview instructions.
+6. Test malformed frontmatter, duplicate slugs, drafts, links, accessibility and production export.
 
-No Phase 2 database, authentication, CMS, editor, or storage package is installed in Phase 1.
+No database, authentication, CMS, dashboard or storage service is planned or installed.

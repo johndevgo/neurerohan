@@ -35,10 +35,10 @@ button, input, textarea { font: inherit; }
 
 .shell { width: min(calc(100vw - 2rem), var(--max)); min-width: 0; margin-inline: auto; }
 .content { width: min(calc(100vw - 2rem), var(--content)); min-width: 0; margin-inline: auto; }
-.shell > *, .content > * { min-width: 0; }
+.shell > *, .content > * { min-width: 0; max-width: 100%; }
 .section { padding-block: clamp(4rem, 9vw, 8rem); border-top: 1px solid var(--line); }
 .eyebrow { color: var(--accent); font-size: .72rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
-.display { max-width: 13ch; font-family: Georgia, "Times New Roman", serif; font-size: clamp(3.7rem, 9.2vw, 9.5rem); font-weight: 400; letter-spacing: -.065em; line-height: .88; }
+.display { width: 100%; max-width: 13ch; overflow-wrap: break-word; font-family: Georgia, "Times New Roman", serif; font-size: clamp(3.7rem, 9.2vw, 9.5rem); font-weight: 400; letter-spacing: -.065em; line-height: .88; }
 .page-title { width: 100%; max-width: 14ch; overflow-wrap: break-word; font-family: Georgia, "Times New Roman", serif; font-size: clamp(3.2rem, 7vw, 7.2rem); font-weight: 400; letter-spacing: -.055em; line-height: .94; }
 .section-title { max-width: 16ch; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.2rem, 4.3vw, 4.7rem); font-weight: 400; letter-spacing: -.045em; line-height: 1; }
 .lede { width: 100%; max-width: 43rem; min-width: 0; overflow-wrap: break-word; color: var(--muted); font-size: clamp(1.1rem, 1.8vw, 1.45rem); line-height: 1.55; }
@@ -60,6 +60,7 @@ button, input, textarea { font: inherit; }
   body { background-size: 25vw 100%; }
   .shell, .content { width: min(calc(100vw - 1.25rem), var(--max)); }
   .section { padding-block: 4rem; }
+  .display { max-width: 100%; font-size: clamp(3rem, 14vw, 3.7rem); }
   .page-title { max-width: 100%; font-size: clamp(2.85rem, 13vw, 3.35rem); }
 }
 @media (prefers-reduced-motion: reduce) {

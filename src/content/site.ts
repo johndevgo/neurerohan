@@ -15,10 +15,11 @@ export const services: Service[] = [
 ];
 
 export const problems = [
-  { title: "Your website gets visits, not enquiries", copy: "A good-looking website means little if visitors cannot quickly understand your value, trust the business, or know what to do next. We improve messaging, structure, proof, speed, calls to action, and enquiry paths." },
-  { title: "Your SEO attracts traffic, not buyers", copy: "Random keywords and blogs can increase impressions without creating business. We connect search intent, keyword clustering, technical SEO, internal links, and conversion-focused pages to valuable searches." },
-  { title: "Your ads buy clicks, not customers", copy: "Paid campaigns struggle when audience, creative, offer, and landing page tell different stories. We connect them through one persuasive journey and reliable conversion tracking." },
-  { title: "Your marketing works in pieces", copy: "SEO brings traffic and social earns attention, but customers disappear when every channel is managed separately. GrowthLabs connects the journey from discovery to trust to enquiry." },
+  { title: "Your website gets visits, but too few enquiries", copy: "Visitors leave when the offer is difficult to understand, the proof is weak, the page feels generic or the next step creates friction. Clear positioning, purposeful structure and stronger conversion paths help more of the right visitors act." },
+  { title: "Your SEO earns impressions, but not buying intent", copy: "Traffic alone is not growth. Keyword clustering, technical SEO, commercial page planning, internal links and intent-led content should attract people who are more likely to need the service—not simply increase a graph." },
+  { title: "Your advertisements buy clicks, but the journey breaks", copy: "Audience targeting cannot rescue a weak offer or landing page. Campaign intent, creative, message, page experience, follow-up and conversion tracking need to tell one coherent story." },
+  { title: "Your channels compete for attention and budget", copy: "SEO, social, paid media and the website should have different jobs within the same journey. Without priorities, every channel looks urgent and none receives the focus it needs." },
+  { title: "Your reporting describes activity, not decisions", copy: "A useful report explains which queries, campaigns, pages and offers create qualified action, where people drop away and what should be improved next." },
 ];
 
 export const proofPoints = [
@@ -48,12 +49,13 @@ export const process = [
 ];
 
 export const faqs = [
-  { question: "What does GrowthLabs by Rohan Neure do?", answer: "GrowthLabs is a founder-led digital marketing agency in Nepal offering SEO, digital strategy, Google Ads, Meta Ads, social media marketing, website and landing-page strategy, local SEO, content marketing, CRO, and analytics support." },
-  { question: "Do you provide SEO services in Nepal?", answer: "Yes. SEO support includes keyword research, technical and on-page SEO, content strategy, internal linking, local SEO, Google Business Profile optimisation, and SEO page planning." },
-  { question: "Can I work directly with Rohan Neure?", answer: "Yes. GrowthLabs is founder-led, giving businesses direct access to Rohan Neure for strategy, keyword mapping, page planning, content direction, and growth execution." },
-  { question: "Do you help with Google Ads and Meta Ads?", answer: "Yes. GrowthLabs supports Google, Meta, and TikTok advertising, lead-generation campaigns, retargeting, creative direction, landing-page planning, and conversion tracking." },
-  { question: "Who should work with GrowthLabs?", answer: "GrowthLabs works with service businesses, hotels, restaurants, travel agencies, ecommerce brands, local businesses, startups, consultants, agencies, and growing companies that need a clearer connected marketing system." },
-  { question: "How do I start?", answer: "Start with a growth strategy conversation. GrowthLabs will review the business, website, current marketing, competitors, keyword opportunities, and goals before recommending next steps." },
+  { question: "What is GrowthLabs by Rohan Neure?", answer: "GrowthLabs by Rohan Neure is a founder-led digital growth partner based in Bhaktapur and serving businesses across Nepal. It connects SEO, paid advertising, social media, content, websites, landing pages, local search, analytics and conversion rate optimisation around measurable business goals." },
+  { question: "Is GrowthLabs a digital marketing agency in Nepal?", answer: "Yes. GrowthLabs provides connected digital marketing strategy and implementation for businesses in Nepal. The dedicated agency page explains the complete national service model, industries, process and agency-selection guidance." },
+  { question: "Can I work directly with Rohan Neure?", answer: "Yes. Rohan leads the strategy and stays involved in business analysis, keyword mapping, page planning, campaign direction, tracking and conversion priorities." },
+  { question: "Which service should I start with?", answer: "Start with the biggest constraint. That may be weak search visibility, expensive advertising, an unclear website, unreliable tracking or low conversion rates. The first review identifies the constraint before recommending a service mix." },
+  { question: "Does GrowthLabs work only with businesses in Kathmandu?", answer: "No. GrowthLabs is based at Sallaghari Shopping Complex in Bhaktapur, works across Kathmandu Valley and supports businesses throughout Nepal through online appointments and on-site support where appropriate." },
+  { question: "Do you offer both SEO and paid advertising?", answer: "Yes. SEO can build compounding visibility while paid advertising can capture or create demand more quickly. They can be used separately or together depending on the goal, budget, market and website readiness." },
+  { question: "How do I get started?", answer: "Share your website, target audience and biggest growth challenge through the contact page, WhatsApp or phone. The first conversation is used to clarify the most useful next step." },
 ];
 
 export const siteConfig = {
@@ -75,12 +77,12 @@ export const siteConfig = {
     { src: "/images/proof/search-console-growth-03.png", alt: "Google Search Console performance showing 358 clicks and 35,900 impressions", caption: "358 clicks · 35.9K impressions · sustained search visibility" },
     { src: "/images/proof/search-console-growth-04.png", alt: "Google Search Console performance showing 876 clicks and 178,000 impressions", caption: "876 clicks · 178K impressions · consistent organic reach" },
   ],
-  location: "Nepal",
+  location: "Sallaghari Shopping Complex, Bhaktapur 44800, Nepal",
   email: "contact@neurerohan.com.np",
   phone: "+9779746265996",
   phoneDisplay: "+977 974-626-5996",
   whatsapp: "https://wa.me/9779746265996",
-  availability: "Serving businesses in Kathmandu and across Nepal.",
+  availability: "Based in Bhaktapur, serving Kathmandu Valley and businesses across Nepal.",
   nav: [
     { label: "Home", href: "/" },
     { label: "Services", href: "/services" },
@@ -108,13 +110,13 @@ export const siteConfig = {
   interests: [] as string[],
   socials: [{ label: "LinkedIn", href: "https://www.linkedin.com/in/growthbyrohan/" }],
   cta: {
-    primary: { label: "Talk to Rohan", href: "/contact" },
+    primary: { label: "Get a growth review", href: "/contact" },
     secondary: { label: "Explore services", href: "/services" },
     contact: { label: "Start a conversation", href: "/contact" },
   },
   seo: {
-    title: "GrowthLabs by Rohan Neure - SEO & Digital Marketing Agency in Nepal",
-    description: "GrowthLabs by Rohan Neure is a founder-led digital marketing agency in Nepal helping businesses grow through SEO, paid ads, social media marketing, website design, landing pages, local SEO, content strategy, CRO, and full-funnel performance systems.",
+    title: "GrowthLabs by Rohan Neure | SEO, Ads, Websites & CRO",
+    description: "Founder-led digital growth in Nepal, connecting SEO, paid ads, websites, content, tracking and CRO to generate better enquiries, bookings and sales.",
     locale: "en_NP",
   },
   contentStatus: { needsReview: false, message: "Approved brand content supplied." },
