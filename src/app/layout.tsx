@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { siteConfig } from "@/content/site";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { globalSchema, StructuredData } from "@/components/structured-data";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -17,8 +18,5 @@ export const metadata: Metadata = {
 export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#f3f0e8" };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  const person = { "@context": "https://schema.org", "@type": "Person", name: siteConfig.fullName, url: siteConfig.domain, sameAs: siteConfig.socials.map((item) => item.href) };
-  const website = { "@context": "https://schema.org", "@type": "WebSite", name: siteConfig.brandName, url: siteConfig.domain };
-  const organization = { "@context": "https://schema.org", "@type": "ProfessionalService", name: siteConfig.brandName, url: siteConfig.domain, description: siteConfig.seo.description, email: siteConfig.email, telephone: siteConfig.phone, image: `${siteConfig.domain}${siteConfig.profileImage}`, areaServed: { "@type": "Country", name: "Nepal" }, founder: { "@type": "Person", name: siteConfig.fullName }, sameAs: siteConfig.socials.map((item) => item.href) };
-  return <html lang="en"><body><a href="#main-content" className="skip-link">Skip to content</a><SiteHeader /><main id="main-content">{children}</main><SiteFooter /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([person, website, organization]).replace(/</g, "\\u003c") }} /></body></html>;
+  return <html lang="en-NP"><body><a href="#main-content" className="skip-link">Skip to content</a><SiteHeader /><main id="main-content">{children}</main><SiteFooter /><StructuredData data={globalSchema} /></body></html>;
 }

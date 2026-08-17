@@ -17,30 +17,31 @@ export const seoProblems = [
   { title: "Thin or generic content", copy: "Repetition does not build trust. Useful SEO content must answer the real question, match the intent, and guide an appropriate next step." },
   { title: "Technical SEO problems", copy: "Slow pages, crawl errors, duplicate content, poor mobile usability, broken links, and weak indexing can hold back otherwise strong work." },
   { title: "No conversion planning", copy: "Ranking is incomplete if the visitor cannot understand the service, see credible proof, or find a clear path to call, email, or message." },
-  { title: "The same package for everyone", copy: "A hotel, travel agency, ecommerce store, and professional service business have different search demand, websites, and decision journeys." },
+  { title: "Authority without relevance—or relevance without authority", copy: "Links and mentions cannot compensate for weak pages, while useful pages may still struggle without relevant internal connections and genuine external authority." },
 ];
 
 export const seoProcess = [
-  { title: "Business & website review", copy: "Understand the services, audience, goals, location, current site, rankings, and primary search challenge." },
-  { title: "Keyword & competitor research", copy: "Study demand, commercial value, competing pages, content depth, search intent, and visible gaps." },
-  { title: "Clustering & page mapping", copy: "Assign keyword groups to the homepage, service, local, industry, landing, and supporting content pages." },
-  { title: "Technical review", copy: "Check crawling, indexing, speed, mobile usability, duplicate content, broken links, sitemaps, robots, and schema." },
-  { title: "Content & on-page execution", copy: "Improve existing pages and plan new ones with useful structure, metadata, internal links, FAQs, proof, and CTAs." },
-  { title: "Local visibility & authority", copy: "Strengthen Google Business Profile, service areas, local relevance, reviews, and authority-building content where appropriate." },
-  { title: "Tracking & improvement", copy: "Monitor rankings, traffic, conversions, content gaps, technical health, and competitor movement to plan the next action." },
+  { title: "Understand the business", copy: "Clarify the offer, audience, target market, commercial priorities, current website and definition of a qualified conversion." },
+  { title: "Audit demand and performance", copy: "Review queries, competitors, landing pages, technical behaviour, content, internal links, local signals and current conversion evidence." },
+  { title: "Map the opportunity", copy: "Assign valuable keyword groups to canonical pages and prioritise work by likely value, evidence, effort and dependency." },
+  { title: "Implement the right work", copy: "Improve the agreed pages, technical foundations, content briefs, internal links, local signals and measurement." },
+  { title: "Validate", copy: "Check that technical changes work as intended, content matches the mapped intent and tracking records the right actions." },
+  { title: "Measure and iterate", copy: "Review query mix, qualified traffic, conversions and lead quality, then invest in the next highest-value constraint." },
 ];
 
 export const seoIndustries = ["Service businesses", "Hotels & hospitality", "Travel agencies & tour companies", "Ecommerce brands", "Restaurants & local businesses", "Startups & growing brands"];
 
 export const expertFaqs: SeoFaq[] = [
-  { question: "Who is an SEO expert in Nepal?", answer: "An SEO expert helps businesses improve search visibility through keyword research, technical SEO, content strategy, on-page optimisation, local SEO, internal linking, and performance improvement. GrowthLabs provides founder-led SEO strategy through Rohan Neure." },
-  { question: "Does GrowthLabs provide SEO services in Nepal?", answer: "Yes. Services include audits, keyword research and clustering, technical and on-page SEO, local SEO, content strategy, internal linking, Google Business Profile optimisation, and conversion-focused page planning." },
-  { question: "What is the difference between an SEO expert and an SEO company?", answer: "An expert commonly provides direct specialist strategy, while a company can provide wider implementation and ongoing optimisation. GrowthLabs combines founder-led strategy with a structured execution system." },
-  { question: "How long does SEO take in Nepal?", answer: "The timeline depends on competition, website condition, keyword difficulty, content quality, technical health, and consistency. Some improvements can appear earlier, but durable organic growth is normally long-term work." },
-  { question: "Can SEO help generate leads?", answer: "Yes, when a site ranks for relevant searches and the landing pages clearly explain the offer, establish trust, and make the next action easy. GrowthLabs plans SEO and conversion together." },
-  { question: "Do you provide local SEO?", answer: "Yes. Local SEO can include Google Business Profile optimisation, local keyword mapping, service-area planning, review strategy, local pages, and map-visibility guidance." },
-  { question: "Do you provide SEO for travel agencies?", answer: "Yes. Travel SEO can include destinations, tour packages, itineraries, seasonal search planning, supporting articles, internal linking, and enquiry-focused landing pages." },
-  { question: "Is SEO better than paid ads?", answer: "They serve different roles. SEO builds long-term organic visibility; paid ads can capture or create demand faster. Many businesses benefit when both connect to strong landing pages and accurate tracking." },
+  { question: "Who is Rohan Neure?", answer: "Rohan Neure is the founder of GrowthLabs and a growth marketer specialising in SEO, paid advertising, website strategy, analytics, tracking and conversion rate optimisation. He works directly with businesses to connect search visibility to qualified action." },
+  { question: "What is the difference between an SEO expert and an SEO agency?", answer: "An expert-led engagement provides direct access to the specialist responsible for the analysis and strategy. An agency model can add broader implementation capacity and ongoing coordination. GrowthLabs combines direct founder access with a delivery model that can expand when the scope requires it." },
+  { question: "What SEO services do you provide?", answer: "Services can include SEO audits, keyword research and clustering, page mapping, technical SEO direction, on-page optimisation, content strategy, local SEO, Google Business Profile support, internal linking, organic landing-page CRO and performance analysis." },
+  { question: "Do you provide SEO services outside Kathmandu?", answer: "Yes. GrowthLabs is based in Bhaktapur, serves Kathmandu Valley and works online with businesses across Nepal and selected international markets." },
+  { question: "Can you guarantee a number-one Google ranking?", answer: "No responsible SEO specialist can guarantee a specific organic position. Search results depend on competition, website condition, relevance, authority, user context and search-engine changes. GrowthLabs controls the quality of research, implementation, measurement and improvement—not Google’s final decision." },
+  { question: "Can you work with my existing developer or content team?", answer: "Yes. Rohan can provide audits, keyword maps, technical recommendations, developer tickets, page briefs, quality review and prioritisation while your team handles agreed implementation." },
+  { question: "How is SEO success measured?", answer: "Measurement can include crawl and indexation health, visibility for valuable query groups, qualified organic visits, engagement on commercial pages, calls, enquiries, bookings or sales and lead quality. The scorecard should reflect the business model and available data." },
+  { question: "Do you offer local SEO and Google Business Profile optimisation?", answer: "Yes. Local work can include business-information consistency, category and service review, location relevance, review planning, local landing pages, Google Business Profile improvement and measurement of calls, directions and enquiries where data is available." },
+  { question: "Do you build backlinks?", answer: "GrowthLabs can identify authority and link opportunities as part of the SEO strategy. The approach prioritises relevant, legitimate signals created through useful assets, relationships, digital PR, partnerships and genuine business visibility. It does not rely on bulk low-quality links or guaranteed placements." },
+  { question: "How do we start?", answer: "Send the website, target market, important services and current SEO concern. Rohan will use the first conversation to identify whether the appropriate next step is an audit, roadmap, focused project or ongoing programme." },
 ];
 
 export const companyFaqs: SeoFaq[] = [

@@ -1,16 +1,25 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { Arrow } from "./icons";
+import { siteConfig } from "@/content/site";
 
-export function PageIntro({ eyebrow, title, children }: { eyebrow: string; title: string; children: ReactNode }) {
-  return <section className="shell grid gap-8 py-16 md:grid-cols-[1fr_3fr] md:py-28"><p className="eyebrow pt-2">{eyebrow}</p><div><h1 className="page-title">{title}</h1><div className="lede mt-8">{children}</div></div></section>;
+export type BreadcrumbItem = { label: string; href?: string };
+
+export function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
+  return <nav className="breadcrumbs" aria-label="Breadcrumb"><ol className="shell"><li><Link href="/">Home</Link></li>{items.map((item) => <li key={`${item.label}-${item.href ?? "current"}`}>{item.href ? <Link href={item.href}>{item.label}</Link> : <span aria-current="page">{item.label}</span>}</li>)}</ol></nav>;
 }
-export function SectionHeading({ eyebrow, title, copy }: { eyebrow: string; title: string; copy?: string }) {
-  return <div className="grid gap-6 md:grid-cols-[1fr_3fr]"><p className="eyebrow pt-2">{eyebrow}</p><div><h2 className="section-title">{title}</h2>{copy && <p className="lede mt-6">{copy}</p>}</div></div>;
+
+export function PageIntro({ eyebrow, title, children, breadcrumbs }: { eyebrow: string; title: string; children: ReactNode; breadcrumbs?: BreadcrumbItem[] }) {
+  return <>{breadcrumbs && <Breadcrumbs items={breadcrumbs} />}<section className="relative overflow-hidden border-b border-[var(--line)] bg-[var(--surface)]"><div aria-hidden="true" className="signal-grid absolute inset-y-0 right-0 hidden w-[18%] opacity-70 lg:block" /><div className="shell relative grid gap-10 py-16 md:grid-cols-[1fr_3fr] md:py-28"><div><p className="eyebrow pt-2">{eyebrow}</p><div className="growth-trace mt-8 hidden max-w-40 md:block" /></div><div><h1 className="page-title">{title}</h1><div className="lede mt-8 border-t border-[var(--line-strong)] pt-6">{children}</div></div></div></section></>;
+}
+export function SectionHeading({ eyebrow, title, copy, variant = "split" }: { eyebrow: string; title: string; copy?: string; variant?: "split" | "compact" | "centered" }) {
+  if (variant === "centered") return <div className="mx-auto max-w-4xl text-center"><p className="eyebrow">{eyebrow}</p><h2 className="section-title mx-auto mt-5">{title}</h2>{copy && <p className="lede mx-auto mt-6">{copy}</p>}</div>;
+  if (variant === "compact") return <div className="max-w-4xl"><p className="eyebrow">{eyebrow}</p><h2 className="section-title mt-5">{title}</h2>{copy && <p className="lede mt-6">{copy}</p>}</div>;
+  return <div className="grid gap-7 md:grid-cols-[minmax(10rem,1fr)_minmax(0,3fr)]"><div className="border-t border-[var(--line-strong)] pt-3"><p className="eyebrow">{eyebrow}</p></div><div><h2 className="section-title">{title}</h2>{copy && <p className="lede mt-6">{copy}</p>}</div></div>;
 }
 export function EmptyState({ title, copy, href, linkLabel }: { title: string; copy: string; href?: string; linkLabel?: string }) {
   return <div className="empty-state"><p className="eyebrow">Content pending</p><h2 className="mt-4 font-serif text-3xl tracking-[-.035em]">{title}</h2><p className="mt-3 max-w-xl leading-7 text-[var(--muted)]">{copy}</p>{href && linkLabel && <Link className="text-link mt-6" href={href}>{linkLabel}<Arrow /></Link>}</div>;
 }
 export function ContactCta() {
-  return <section className="section bg-[var(--accent)] text-white"><div className="shell grid gap-8 md:grid-cols-[1fr_3fr]"><p className="eyebrow !text-white/60">Next step</p><div><h2 className="section-title">Ready to build a better digital marketing system?</h2><p className="mt-6 max-w-2xl text-lg leading-8 text-white/75">Start with the business, the current marketing, and the most valuable opportunity to build next.</p><Link href="/contact" className="button mt-8 border-white text-white hover:bg-white hover:text-[var(--accent)]">Talk to Rohan <Arrow /></Link></div></div></section>;
+  return <section className="section signal-grid"><div className="shell grid gap-10 md:grid-cols-[1fr_3fr]"><p className="eyebrow">Next step / 01</p><div><h2 className="section-title">Ready to build a better digital marketing system?</h2><p className="mt-6 max-w-2xl text-lg leading-8 text-black/65">Start with the business, the current marketing and the most valuable opportunity to build next.</p><div className="mt-8 flex flex-col gap-3 sm:flex-row"><Link href="/contact" className="button button-primary">Talk to Rohan <Arrow /></Link><a className="button" href={siteConfig.whatsapp} target="_blank" rel="noopener noreferrer">WhatsApp <Arrow direction="up-right" /></a></div></div></div></section>;
 }

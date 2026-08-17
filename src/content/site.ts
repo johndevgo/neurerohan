@@ -38,7 +38,8 @@ export const process = [
   { title: "Research demand", copy: "Study keywords, search intent, competitor pages, ranking gaps, campaign opportunities, and customer decisions." },
   { title: "Build the growth map", copy: "Prioritise SEO pages, landing pages, supporting content, ads, social direction, tracking, and conversion improvements." },
   { title: "Execute the right channels", copy: "Apply the mix of SEO, advertising, websites, content, local search, social media, and CRO the business actually needs." },
-  { title: "Track, learn, improve", copy: "Review what works, identify weak points, refine campaigns and pages, and decide what should be built next." },
+  { title: "Validate and measure", copy: "Check that agreed changes work as intended, then review qualified traffic, campaign signals, page behaviour, conversions and lead quality." },
+  { title: "Set the next priority", copy: "Use the evidence to decide what to continue, change, stop or test—and which constraint deserves the next investment." },
 ];
 
 export const faqs = [
@@ -61,7 +62,7 @@ export const siteConfig = {
   positioning: "Marketing built to rank, convert, and grow.",
   shortBio: "Rohan Neure is a performance and growth marketer with 4+ years of experience building full-funnel systems across Google Ads, Meta Ads, TikTok Ads, SEO, CRO, analytics, tracking, automation, and landing-page optimisation.",
   about: ["GrowthLabs by Rohan Neure is built for businesses that need more than disconnected digital activity. The work starts with the business, the audience, search demand, and the full journey from visibility to enquiry.", "Rohan connects audience research, paid media, search intent, landing pages, tracking, reporting, conversion flow, creative testing, and performance analysis so businesses can understand what is working, what is wasting money, and where growth is actually coming from."],
-  profileImage: "/images/brand/rohan-neure-growth-marketer.png",
+  profileImage: "/images/brand/rohan-neure-profile.png",
   brandAvatar: "/images/brand/growthlabs-brand-avatar.png",
   servicesCover: "/images/brand/growthlabs-services-cover.png",
   proofImages: [
@@ -75,11 +76,18 @@ export const siteConfig = {
   phone: "+9779746265996",
   phoneDisplay: "+977 974-626-5996",
   whatsapp: "https://wa.me/9779746265996",
+  mapUrl: "https://maps.app.goo.gl/aL8fKQjg8Hb5oimAA",
+  openingHours: {
+    summary: "Open 24 hours Sunday to Friday · Closed Saturday",
+    openDays: "Sunday–Friday",
+    openTime: "24 hours",
+    closedDay: "Saturday",
+  },
   availability: "Based in Bhaktapur, serving Kathmandu Valley and businesses across Nepal.",
   nav: [
     { label: "Home", href: "/" },
     { label: "Services", href: "/services" },
-    { label: "Agency", href: "/digital-marketing-agency-in-nepal" },
+    { label: "Nepal agency", href: "/digital-marketing-agency-in-nepal" },
     { label: "About", href: "/about" },
     { label: "Contact", href: "/contact" },
   ] satisfies NavItem[],
@@ -101,7 +109,15 @@ export const siteConfig = {
     { title: "Practical growth", detail: "Focus reporting and recommendations on business movement, useful next steps, and consistent improvement." },
   ],
   interests: [] as string[],
-  socials: [{ label: "LinkedIn", href: "https://www.linkedin.com/in/growthbyrohan/" }],
+  socials: [
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/growthbyrohan/" },
+    { label: "Pinterest", href: "https://www.pinterest.com/neurerohan/" },
+    { label: "X", href: "https://x.com/rohanneure" },
+  ],
+  businessProfiles: [
+    { label: "Google Business Profile", href: "https://maps.app.goo.gl/aL8fKQjg8Hb5oimAA" },
+    { label: "Facebook", href: "https://www.facebook.com/growthbyrohan/" },
+  ],
   cta: {
     primary: { label: "Get a growth review", href: "/contact" },
     secondary: { label: "Explore services", href: "/services" },

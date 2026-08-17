@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Arrow } from "@/components/icons";
+import { PageStructuredData } from "@/components/structured-data";
 import { PageIntro, SectionHeading } from "@/components/ui";
 import { siteConfig } from "@/content/site";
 import { pageMetadata } from "@/lib/metadata";
@@ -62,49 +63,15 @@ const faqs = [
 ];
 
 export default function ContactPage() {
-  const schemas = [
-    {
-      "@context": "https://schema.org",
-      "@type": "ContactPage",
-      name: "Contact GrowthLabs by Rohan Neure",
-      url: `${siteConfig.domain}/contact`,
-      description: "Direct contact options for GrowthLabs by Rohan Neure.",
-      mainEntity: {
-        "@type": "Organization",
-        name: siteConfig.brandName,
-        url: siteConfig.domain,
-        email: siteConfig.email,
-        telephone: siteConfig.phone,
-        founder: { "@type": "Person", name: siteConfig.fullName },
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: "Sallaghari Shopping Complex",
-          addressLocality: "Bhaktapur",
-          postalCode: "44800",
-          addressCountry: "NP",
-        },
-        sameAs: siteConfig.socials.map((social) => social.href),
-      },
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: siteConfig.domain },
-        { "@type": "ListItem", position: 2, name: "Contact", item: `${siteConfig.domain}/contact` },
-      ],
-    },
-  ];
-
   return <>
-    <PageIntro eyebrow="Contact GrowthLabs" title="Let's find the right growth problem to solve.">
+    <PageIntro breadcrumbs={[{ label: "Contact" }]} eyebrow="Contact GrowthLabs" title="Let's find the right growth problem to solve.">
       <p>Share what your business does, what is currently working and where marketing feels stuck. The first step is clarity, not a generic package.</p>
-      <p className="mt-4">There is no contact form or account to create. Choose WhatsApp, phone, email or LinkedIn and speak directly with Rohan.</p>
-      <p className="mt-4">A website link, priority offer and clear description of the desired business action are enough to begin. You do not need to diagnose the channel or select a package first.</p>
-      <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+      <div className="mt-7 flex flex-col gap-3 sm:flex-row">
         <a className="button button-primary" href={siteConfig.whatsapp} target="_blank" rel="noopener noreferrer">Message on WhatsApp <Arrow direction="up-right" /></a>
         <a className="button" href={`mailto:${siteConfig.email}`}>Send your enquiry <Arrow /></a>
       </div>
+      <p className="mt-6">There is no contact form or account to create. Choose WhatsApp, phone, email or LinkedIn and speak directly with Rohan.</p>
+      <p className="mt-4">A website link, priority offer and clear description of the desired business action are enough to begin. You do not need to diagnose the channel or select a package first.</p>
     </PageIntro>
 
     <section className="section pt-0">
@@ -122,7 +89,7 @@ export default function ContactPage() {
       </div>
     </section>
 
-    <section className="section bg-[linear-gradient(135deg,#21170d,#4a2005)] text-[var(--paper)]">
+    <section className="section section-dark">
       <div className="shell">
         <SectionHeading eyebrow="Make the first conversation useful" title="Five details help GrowthLabs prepare." copy="A concise note is enough. You do not need a completed brief or a chosen package." />
         <div className="mt-14 grid gap-8 md:ml-[25%] md:grid-cols-2">
@@ -139,29 +106,39 @@ export default function ContactPage() {
       </div>
     </section>
 
-    <section className="section">
+    <section className="section signal-grid">
       <div className="shell">
-        <SectionHeading eyebrow="Bhaktapur · Kathmandu Valley · Nepal" title="Online appointments and appropriate on-site support." copy="GrowthLabs is based in Bhaktapur and serves Kathmandu Valley and businesses across Nepal. Confirm the meeting format and location before visiting." />
-        <address className="mt-10 grid gap-2 not-italic md:ml-[25%]">
-          <strong className="font-serif text-2xl">{siteConfig.brandName}</strong>
-          <span>Sallaghari Shopping Complex</span>
-          <span>Bhaktapur 44800</span>
-          <span>Nepal</span>
-          <a className="text-link mt-3 w-fit" href={`tel:${siteConfig.phone}`}>{siteConfig.phoneDisplay}</a>
-          <a className="text-link w-fit" href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
-        </address>
-        <p className="mt-6 text-sm text-[var(--muted)] md:ml-[25%]">A directions link will be added after the current Google Business Profile destination is verified.</p>
+        <SectionHeading eyebrow="Bhaktapur · Kathmandu Valley · Nepal" title="A real base, direct contact and clear availability." copy="GrowthLabs is based in Bhaktapur and serves Kathmandu Valley and businesses across Nepal. Online appointments are available; confirm the meeting format before visiting." />
+        <div className="mt-12 grid gap-8 border-y border-[var(--ink)] py-8 md:ml-[25%] md:grid-cols-2">
+          <address className="grid gap-2 not-italic">
+            <p className="eyebrow">Business location</p>
+            <strong className="mt-3 font-serif text-3xl leading-none tracking-[-.04em]">{siteConfig.brandName}</strong>
+            <span>Sallaghari Shopping Complex</span>
+            <span>Bhaktapur 44800, Nepal</span>
+            <a className="text-link mt-4 w-fit" href={siteConfig.mapUrl} target="_blank" rel="noopener noreferrer">View GrowthLabs on Google Maps <Arrow direction="up-right" /></a>
+          </address>
+          <div className="border-t border-[var(--ink)] pt-5 md:border-l md:border-t-0 md:pl-8 md:pt-0">
+            <p className="eyebrow">Opening hours</p>
+            <p className="mt-4 font-serif text-3xl leading-none tracking-[-.04em]">Open {siteConfig.openingHours.openTime}</p>
+            <p className="mt-3 text-black/65">{siteConfig.openingHours.openDays}</p>
+            <p className="mt-5 border-t border-black/25 pt-4 font-semibold">{siteConfig.openingHours.closedDay}: closed</p>
+            <div className="mt-6 grid gap-2">
+              <a className="text-link w-fit" href={`tel:${siteConfig.phone}`}>{siteConfig.phoneDisplay}</a>
+              <a className="text-link w-fit" href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <section className="section">
       <div className="shell">
         <SectionHeading eyebrow="A practical first step" title="Expect clarification before a proposal." />
-        <ol className="mt-14 md:ml-[25%]">
-          {nextSteps.map(([title, copy], index) => <li className="grid gap-3 border-t border-[var(--line)] py-6 sm:grid-cols-[4rem_1fr_2fr]" key={title}>
-            <span className="eyebrow">0{index + 1}</span>
-            <h3 className="font-serif text-2xl">{title}</h3>
-            <p className="leading-7 text-[var(--muted)]">{copy}</p>
+        <ol className="mt-14 border-b border-[var(--ink)] md:ml-[25%]">
+          {nextSteps.map(([title, copy], index) => <li className="grid gap-3 border-t border-[var(--ink)] py-6 sm:grid-cols-[4rem_1fr_2fr]" key={title}>
+            <span className="font-mono text-xs">0{index + 1}</span>
+            <h3 className="font-serif text-2xl leading-none tracking-[-.04em]">{title}</h3>
+            <p className="leading-7 text-black/65">{copy}</p>
           </li>)}
         </ol>
       </div>
@@ -186,22 +163,22 @@ export default function ContactPage() {
       </div>
     </section>
 
-    <section className="section bg-[var(--accent)] text-white">
+    <section className="section signal-grid">
       <div className="shell grid gap-8 md:grid-cols-[1fr_3fr]">
-        <p className="eyebrow !text-white/65">Start the conversation</p>
+        <p className="eyebrow">Start the conversation</p>
         <div>
           <h2 className="section-title">Share the context. Find the next right step.</h2>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-white/75">Start on WhatsApp for a quick conversation, or email the fuller business context for Rohan to review.</p>
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-black/65">Start on WhatsApp for a quick conversation, or email the fuller business context for Rohan to review.</p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <a className="button border-white text-white hover:bg-white hover:text-[var(--accent)]" href={siteConfig.whatsapp} target="_blank" rel="noopener noreferrer">Message on WhatsApp <Arrow direction="up-right" /></a>
-            <a className="button border-white/50 text-white hover:bg-white hover:text-[var(--accent)]" href={`mailto:${siteConfig.email}`}>Send your enquiry <Arrow /></a>
+            <a className="button button-primary" href={siteConfig.whatsapp} target="_blank" rel="noopener noreferrer">Message on WhatsApp <Arrow direction="up-right" /></a>
+            <a className="button" href={`mailto:${siteConfig.email}`}>Send your enquiry <Arrow /></a>
           </div>
-          <p className="mt-5 text-sm text-white/70">{siteConfig.phoneDisplay} · {siteConfig.email}</p>
-          <p className="mt-3 text-sm text-white/70">Direct channels are governed by their own services. Read the <Link className="underline underline-offset-4" href="/privacy">Privacy Policy</Link>.</p>
+          <p className="mt-5 font-mono text-[.72rem] uppercase leading-5 tracking-[.04em] text-black/65">{siteConfig.phoneDisplay} · {siteConfig.email}</p>
+          <p className="mt-3 text-sm text-black/60">Direct channels are governed by their own services. Read the <Link className="underline underline-offset-4" href="/privacy">Privacy Policy</Link>.</p>
         </div>
       </div>
     </section>
 
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas).replace(/</g, "\\u003c") }} />
+    <PageStructuredData path="/contact" />
   </>;
 }

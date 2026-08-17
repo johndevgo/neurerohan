@@ -1,3 +1,4 @@
+import { PageStructuredData } from "@/components/structured-data";
 import { PageIntro } from "@/components/ui";
 import { siteConfig } from "@/content/site";
 import { pageMetadata } from "@/lib/metadata";
@@ -23,11 +24,19 @@ const contents = [
 
 export default function PrivacyPage() {
   return <>
-    <PageIntro eyebrow="Privacy Policy" title="Privacy Policy">
+    <PageIntro breadcrumbs={[{ label: "Privacy Policy" }]} eyebrow="Privacy Policy" title="Privacy Policy">
       <p>Last updated: 14 August 2026</p>
       <p className="mt-5">GrowthLabs by Rohan Neure respects your privacy and aims to collect only the information reasonably needed to operate this website, respond to direct enquiries and provide agreed services.</p>
       <p className="mt-4">This policy explains what information may be processed through neurerohan.com.np and the contact channels linked from it, why that information may be used and the choices available to you.</p>
     </PageIntro>
+
+    <div className="section-dark border-b border-white/20">
+      <ul className="shell grid font-mono text-[.68rem] uppercase tracking-[.04em] sm:grid-cols-3">
+        <li className="border-b border-white/20 py-5 sm:border-b-0 sm:border-r sm:pr-6">No website contact form</li>
+        <li className="border-b border-white/20 py-5 sm:border-b-0 sm:border-r sm:px-6">No active analytics or advertising pixels</li>
+        <li className="py-5 sm:pl-6">Essential hosting and security logs may apply</li>
+      </ul>
+    </div>
 
     <section className="section pt-0">
       <div className="shell grid gap-12 lg:grid-cols-[15rem_minmax(0,46rem)] lg:justify-center">
@@ -99,7 +108,7 @@ export default function PrivacyPage() {
             <p className="mt-4">GrowthLabs may share limited information with service providers needed for website hosting, security, email, communication or agreed project delivery. Providers process information for their relevant service under their own terms, privacy notices and security practices, and some may process data outside Nepal.</p>
             <p className="mt-4">GrowthLabs may also disclose information where reasonably required to comply with law, protect rights or security, investigate misuse or respond to a valid legal request. GrowthLabs does not sell personal information.</p>
             <h3 className="mt-8 font-serif text-2xl text-[var(--ink)]">Third-party links and contact services</h3>
-            <p className="mt-3">This website links to WhatsApp and LinkedIn and may open the email or telephone application on your device. Once you use an independent service, its own terms and privacy policy apply. GrowthLabs does not control how that provider processes information on its platform.</p>
+            <p className="mt-3">This website links to WhatsApp, LinkedIn and Google Maps and may open the email or telephone application on your device. Once you use an independent service, its own terms and privacy policy apply. GrowthLabs does not control how that provider processes information on its platform.</p>
           </section>
 
           <section id="retention-and-security" className="scroll-mt-28">
@@ -139,5 +148,6 @@ export default function PrivacyPage() {
         </div>
       </div>
     </section>
+    <PageStructuredData path="/privacy" />
   </>;
 }
