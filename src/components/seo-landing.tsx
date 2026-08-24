@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Arrow } from "./icons";
 import { PageStructuredData } from "./structured-data";
+import { SearchEvidence } from "./search-evidence";
 import { PageIntro, SectionHeading } from "./ui";
 import {
   seoCapabilities,
@@ -175,6 +176,8 @@ export function SeoLanding({ faqs }: Props) {
         <div className="mt-10 border-y border-[var(--line-strong)] py-7 md:ml-[25%]"><p className="max-w-3xl text-xl leading-8">No single platform is absolute truth. Tools provide evidence; the useful work is deciding what that evidence means for this website, this market, and this business.</p></div>
       </div>
     </section>
+
+    <SearchEvidence compact ids={["australian-agency", "texas-hvac"]} title="Source evidence from two very different search markets." copy="An Australian agency and a Texas local-service website require different architecture, competition analysis and conversion paths. The captures make the visible Search Console layer inspectable while the surrounding context remains essential." />
 
     <section className="section bg-[var(--surface)]">
       <div className="shell">

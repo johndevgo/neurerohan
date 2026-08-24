@@ -518,7 +518,7 @@ export function pageSchema(path: string): JsonLdNode {
   const simple: Record<string, { type: string; name: string; description: string; label: string; about: unknown; dateModified?: string }> = {
     "/about": { type: "AboutPage", name: "About GrowthLabs & Rohan Neure | Founder-Led Growth", description: "Meet Rohan Neure and GrowthLabs, a founder-led digital marketing agency connecting SEO, paid ads, websites, analytics and CRO for measurable growth.", label: "About", about: [{ "@id": organizationId }, { "@id": personId }] },
     "/contact": { type: "ContactPage", name: "Contact GrowthLabs by Rohan Neure", description: "Contact GrowthLabs by Rohan Neure by phone, WhatsApp, email or LinkedIn to discuss SEO, paid ads, websites, social media, analytics or CRO.", label: "Contact", about: { "@id": organizationId } },
-    "/privacy": { type: "WebPage", name: "Privacy Policy | GrowthLabs by Rohan Neure", description: "Learn what information GrowthLabs may collect through the website and enquiries, why it is used, how it is protected and how to contact GrowthLabs.", label: "Privacy Policy", about: { "@type": "Thing", name: "Privacy and website data handling" }, dateModified: "2026-08-14" },
+    "/privacy": { type: "WebPage", name: "Privacy Policy | GrowthLabs by Rohan Neure", description: "Learn what information GrowthLabs may collect through the website and enquiries, why it is used, how it is protected and how to contact GrowthLabs.", label: "Privacy Policy", about: { "@type": "Thing", name: "Privacy and website data handling" }, dateModified: "2026-08-24" },
   };
   const config = simple[path];
   if (!config) throw new Error(`No page schema configured for ${path}`);

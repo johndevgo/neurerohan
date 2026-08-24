@@ -66,10 +66,10 @@ export const siteConfig = {
   brandAvatar: "/images/brand/growthlabs-brand-avatar.png",
   servicesCover: "/images/brand/growthlabs-services-cover.png",
   proofImages: [
-    { src: "/images/proof/search-console-growth-01.png", alt: "Google Search Console performance showing 714 clicks and 38,000 impressions over three months", caption: "714 clicks · 38K impressions · three-month upward search trend" },
-    { src: "/images/proof/search-console-growth-02.png", alt: "Google Search Console performance showing 87 clicks and 52,000 impressions with recent impression growth", caption: "52K impressions · emerging visibility trend" },
-    { src: "/images/proof/search-console-growth-03.png", alt: "Google Search Console performance showing 358 clicks and 35,900 impressions", caption: "358 clicks · 35.9K impressions · sustained search visibility" },
-    { src: "/images/proof/search-console-growth-04.png", alt: "Google Search Console performance showing 876 clicks and 178,000 impressions", caption: "876 clicks · 178K impressions · consistent organic reach" },
+    { id: "australian-agency", src: "/images/proof/Australian Marketing Agency.png", width: 2296, height: 948, alt: "Google Search Console performance report for an Australian marketing agency showing 1.1K clicks and 229K impressions over three months", caption: "Australian marketing agency · 1.1K clicks · 229K impressions" },
+    { id: "dubai-tours", src: "/images/proof/Dubai and Sharjah Tours.png", width: 2227, height: 1040, alt: "Google Search Console performance report for a Dubai and Sharjah tours website showing 87 clicks and 52K impressions in the selected custom period", caption: "Dubai & Sharjah tours · 87 clicks · 52K impressions" },
+    { id: "dubai-water-adventure", src: "/images/proof/Dubai Water-Adventure Rental.png", width: 2287, height: 966, alt: "Google Search Console performance report for a Dubai water-adventure rental website showing 460 clicks and 47.4K impressions over three months", caption: "Dubai water-adventure rental · 460 clicks · 47.4K impressions" },
+    { id: "texas-hvac", src: "/images/proof/USA - Texas HVAC.png", width: 2275, height: 940, alt: "Google Search Console performance report for a Texas HVAC website showing 714 clicks and 38K impressions over three months", caption: "Texas HVAC · 714 clicks · 38K impressions" },
   ],
   location: "Sallaghari Shopping Complex, Bhaktapur 44800, Nepal",
   email: "contact@neurerohan.com.np",
@@ -119,7 +119,7 @@ export const siteConfig = {
     { label: "Facebook", href: "https://www.facebook.com/growthbyrohan/" },
   ],
   cta: {
-    primary: { label: "Get a growth review", href: "/contact" },
+    primary: { label: "Get a growth review", shortLabel: "Get review", href: "/contact" },
     secondary: { label: "Explore services", href: "/services" },
     contact: { label: "Start a conversation", href: "/contact" },
   },

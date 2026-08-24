@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import type { NavItem } from "@/content/site";
 import { siteConfig } from "@/content/site";
-import { MenuIcon } from "./icons";
+import { Arrow, MenuIcon } from "./icons";
 
 export function MobileNav({ items }: { items: readonly NavItem[] }) {
   const [open, setOpen] = useState(false);
@@ -32,7 +32,8 @@ export function MobileNav({ items }: { items: readonly NavItem[] }) {
   }, [open]);
 
   return (
-    <div className="lg:hidden">
+    <div className="flex items-center gap-1.5 lg:hidden">
+      <Link className="header-mobile-cta" href={siteConfig.cta.primary.href} aria-label={siteConfig.cta.primary.label}>{siteConfig.cta.primary.shortLabel} <Arrow direction="up-right" /></Link>
       <button ref={buttonRef} className="flex min-h-12 min-w-12 items-center justify-center border border-[var(--ink)] bg-[var(--sun)]" aria-expanded={open} aria-controls="mobile-menu" aria-label={open ? "Close menu" : "Open menu"} onClick={() => setOpen((value) => !value)}><MenuIcon open={open} /></button>
       {open && <div ref={panelRef} id="mobile-menu" className="fixed inset-x-0 top-[var(--header)] z-50 flex h-[calc(100dvh-var(--header))] flex-col overflow-y-auto overscroll-contain bg-[var(--ink)] p-5 pb-8 text-[var(--paper)]" aria-label="Mobile navigation">
         <nav className="mt-5 flex flex-col">

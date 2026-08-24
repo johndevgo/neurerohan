@@ -1,15 +1,17 @@
 import Link from "next/link";
 import { siteConfig } from "@/content/site";
+import { BrandLockup } from "./brand-lockup";
+import { MeasurementSettingsButton } from "./measurement-consent";
 
-export function SiteFooter() {
+export function SiteFooter({ measurementEnabled = false }: { measurementEnabled?: boolean }) {
   return <footer className="border-t border-[var(--ink)] bg-[var(--ink)] text-[var(--paper)]">
     <div className="shell border-b border-white/20 py-14 md:py-20"><p className="eyebrow !text-[var(--sun)]">Ready when the growth problem is real</p><a className="mt-5 block max-w-[14ch] font-serif text-[clamp(3rem,7vw,7.5rem)] leading-[.88] tracking-[-.07em] hover:text-[var(--sun)]" href={`mailto:${siteConfig.email}`}>Let’s find the constraint. ↗</a></div>
     <div className="shell grid gap-12 py-12 md:grid-cols-[1.35fr_.8fr_.9fr_.95fr] md:py-16">
-      <div><div className="wordmark !items-start"><span className="wordmark-mark !border-white !text-[var(--ink)]">G/L</span><span className="wordmark-copy"><strong>GrowthLabs</strong><small className="!text-white/50">by {siteConfig.fullName}</small></span></div><p className="mt-5 max-w-sm text-sm leading-6 text-white/58">{siteConfig.positioning} Founder-led from Bhaktapur for businesses across Nepal.</p></div>
+      <div><BrandLockup size="footer" tone="dark" /><p className="mt-5 max-w-sm text-sm leading-6 text-white/58">{siteConfig.positioning} Founder-led from Bhaktapur for businesses across Nepal.</p></div>
       <div><p className="eyebrow !text-white/65">Navigate</p><div className="mt-4 grid gap-2">{siteConfig.nav.map((item) => <Link className="w-fit text-sm hover:text-[var(--sun)]" key={item.href} href={item.href}>{item.label}</Link>)}<Link className="w-fit text-sm hover:text-[var(--sun)]" href="/privacy">Privacy</Link></div></div>
       <div><p className="eyebrow !text-white/65">Specialisms</p><div className="mt-4 grid gap-2"><Link className="w-fit text-sm hover:text-[var(--sun)]" href="/seo-expert-in-nepal">SEO expert in Nepal</Link><Link className="w-fit text-sm hover:text-[var(--sun)]" href="/advertising-agency-in-nepal">Performance advertising</Link><Link className="w-fit text-sm hover:text-[var(--sun)]" href="/social-media-marketing-agency-in-nepal">Social media marketing</Link><Link className="w-fit text-sm hover:text-[var(--sun)]" href="/web-design-company-in-nepal">Web design in Nepal</Link></div></div>
       <div><p className="eyebrow !text-white/65">Business information</p><address className="mt-4 grid gap-2 text-sm not-italic text-white/70"><span>{siteConfig.location}</span><a className="hover:text-[var(--sun)]" href={`tel:${siteConfig.phone}`}>{siteConfig.phoneDisplay}</a><a className="break-all hover:text-[var(--sun)]" href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a><span>{siteConfig.openingHours.summary}</span><a className="w-fit border-b border-white/30 hover:text-[var(--sun)]" href={siteConfig.mapUrl} target="_blank" rel="noopener noreferrer">View Google Business Profile ↗</a></address><div className="mt-5 flex flex-wrap gap-3">{siteConfig.socials.map((item) => <a className="text-xs font-bold hover:text-[var(--sun)]" href={item.href} key={item.href} target="_blank" rel="noopener noreferrer">{item.label} ↗</a>)}</div></div>
     </div>
-    <div className="shell flex flex-col gap-2 border-t border-white/15 py-5 font-mono text-[.72rem] uppercase tracking-[.06em] text-white/65 sm:flex-row sm:justify-between"><p>© {new Date().getFullYear()} {siteConfig.brandName}. All rights reserved.</p><p>Marketing built to rank / convert / grow.</p></div>
+    <div className="shell flex flex-col gap-2 border-t border-white/15 py-5 font-mono text-[.72rem] uppercase tracking-[.06em] text-white/65 sm:flex-row sm:items-center sm:justify-between"><p>© {new Date().getFullYear()} {siteConfig.brandName}. All rights reserved.</p><div className="flex flex-wrap items-center gap-x-5 gap-y-2">{measurementEnabled && <MeasurementSettingsButton />}<p>Marketing built to rank / convert / grow.</p></div></div>
   </footer>;
 }

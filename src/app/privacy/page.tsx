@@ -25,7 +25,7 @@ const contents = [
 export default function PrivacyPage() {
   return <>
     <PageIntro breadcrumbs={[{ label: "Privacy Policy" }]} eyebrow="Privacy Policy" title="Privacy Policy">
-      <p>Last updated: 14 August 2026</p>
+      <p>Last updated: 24 August 2026</p>
       <p className="mt-5">GrowthLabs by Rohan Neure respects your privacy and aims to collect only the information reasonably needed to operate this website, respond to direct enquiries and provide agreed services.</p>
       <p className="mt-4">This policy explains what information may be processed through neurerohan.com.np and the contact channels linked from it, why that information may be used and the choices available to you.</p>
     </PageIntro>
@@ -33,7 +33,7 @@ export default function PrivacyPage() {
     <div className="section-dark border-b border-white/20">
       <ul className="shell grid font-mono text-[.68rem] uppercase tracking-[.04em] sm:grid-cols-3">
         <li className="border-b border-white/20 py-5 sm:border-b-0 sm:border-r sm:pr-6">No website contact form</li>
-        <li className="border-b border-white/20 py-5 sm:border-b-0 sm:border-r sm:px-6">No active analytics or advertising pixels</li>
+        <li className="border-b border-white/20 py-5 sm:border-b-0 sm:border-r sm:px-6">Consent-aware measurement through Google Tag Manager</li>
         <li className="py-5 sm:pl-6">Essential hosting and security logs may apply</li>
       </ul>
     </div>
@@ -78,7 +78,7 @@ export default function PrivacyPage() {
           <section id="technical-information" className="scroll-mt-28">
             <h2 className="font-serif text-3xl text-[var(--ink)]">3. Technical and usage information</h2>
             <p className="mt-4">The website host, delivery network and security systems may process standard technical information needed to deliver and protect the site. This may include an IP address, browser or device type, requested URL, access time, referrer, and error or security logs.</p>
-            <p className="mt-4">GrowthLabs does not currently operate user accounts, accept uploads or collect message content through this website. Technical logs are controlled in part by the hosting and infrastructure providers used to keep the site available and secure.</p>
+            <p className="mt-4">When Google Tag Manager is enabled, loading its container may also transmit standard request information such as an IP address, browser or device details, requested page, referrer and access time to Google. GrowthLabs does not currently operate user accounts, accept uploads or collect message content through this website. Technical logs are controlled in part by the providers used to keep the site available, secure and measurable.</p>
           </section>
 
           <section id="how-information-is-used" className="scroll-mt-28">
@@ -98,8 +98,10 @@ export default function PrivacyPage() {
 
           <section id="cookies-and-analytics" className="scroll-mt-28">
             <h2 className="font-serif text-3xl text-[var(--ink)]">5. Cookies, analytics and advertising measurement</h2>
-            <p className="mt-4">At the date shown above, GrowthLabs does not intentionally load analytics, advertising pixels, behavioural tracking tools or marketing cookies on this website. No cookie-consent banner is shown because those optional technologies are not active.</p>
-            <p className="mt-4">The hosting or security provider may still use essential technical mechanisms needed to deliver and protect the site. If analytics, advertising measurement, preferences or another cookie-dependent feature is added later, this policy and any required consent controls will be updated before that feature is enabled.</p>
+            <p className="mt-4">GrowthLabs uses Google Tag Manager to manage approved website-measurement tags. Google Tag Manager is a delivery system rather than a reporting service by itself; the technologies and data processing depend on the tags published inside the container.</p>
+            <p className="mt-4">For visitors using JavaScript, optional analytics and advertising storage is denied by default until the visitor selects “Allow measurement”. Selecting “Use essential only” keeps that optional storage denied. The choice is stored in the visitor’s browser using local storage and can be changed at any time through “Measurement choices” in the website footer.</p>
+            <p className="mt-4">If JavaScript is disabled, the standard Google Tag Manager fallback may still request the container. Tags published in the container must therefore remain configured to respect applicable consent requirements. GrowthLabs will review the published tag inventory and update this notice when measurement providers or purposes materially change.</p>
+            <p className="mt-4">Google and any other approved measurement provider may process limited technical or usage information outside Nepal under its own terms and privacy documentation. Essential hosting and security mechanisms may operate independently of the measurement choice.</p>
             <p className="mt-4">Message content, passwords and sensitive personal information will not knowingly be sent to analytics or advertising platforms.</p>
           </section>
 

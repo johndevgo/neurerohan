@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BrandLockup } from "@/components/brand-lockup";
 import { Arrow } from "@/components/icons";
 import { PageStructuredData } from "@/components/structured-data";
 import { PageIntro, SectionHeading } from "@/components/ui";
@@ -112,7 +113,7 @@ export default function ContactPage() {
         <div className="mt-12 grid gap-8 border-y border-[var(--ink)] py-8 md:ml-[25%] md:grid-cols-2">
           <address className="grid gap-2 not-italic">
             <p className="eyebrow">Business location</p>
-            <strong className="mt-3 font-serif text-3xl leading-none tracking-[-.04em]">{siteConfig.brandName}</strong>
+            <BrandLockup className="mt-3" size="card" />
             <span>Sallaghari Shopping Complex</span>
             <span>Bhaktapur 44800, Nepal</span>
             <a className="text-link mt-4 w-fit" href={siteConfig.mapUrl} target="_blank" rel="noopener noreferrer">View GrowthLabs on Google Maps <Arrow direction="up-right" /></a>

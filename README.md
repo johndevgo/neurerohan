@@ -30,7 +30,15 @@ Projects support index and detail routes for future case studies. Adding a proje
 
 ## Environment variables
 
-Phase 1 requires no environment variables. Copy `.env.example` only when adding an approved integration. No analytics or message-delivery service is currently loaded.
+The website has one optional public environment variable:
+
+```bash
+NEXT_PUBLIC_GTM_ID=GTM-XXXXXXX
+```
+
+Copy `.env.example` to `.env.local` for local testing. Leave the variable blank to emit no Google Tag Manager script, fallback iframe, consent panel or measurement-settings control. In Vercel, add the supplied container ID to the Production environment and only to Preview if preview traffic should be measured. The repository does not contain the live ID or any private credentials.
+
+The contact experience uses direct email, phone, WhatsApp and LinkedIn links, so no form-delivery environment variable or backend is required.
 
 ## Deployment
 
@@ -39,12 +47,13 @@ The application can be deployed to Vercel or another Node.js host supporting Nex
 1. Push the repository to the production Git provider.
 2. Import it into the hosting provider and select the Next.js preset.
 3. Use `npm run build`; keep the default `.next` output.
-4. Add `neurerohan.com.np` as the production domain.
-5. Configure the domain's DNS records exactly as provided by the host.
-6. Redirect `www.neurerohan.com.np` permanently (308) to `https://neurerohan.com.np`.
-7. Confirm HTTPS is active before public launch.
-8. Verify canonical URLs, `/robots.txt`, and `/sitemap.xml` on production.
-9. Verify the published email, phone, WhatsApp, and LinkedIn links on production.
+4. Add `NEXT_PUBLIC_GTM_ID` in the production environment if measurement should be active, then redeploy.
+5. Add `neurerohan.com.np` as the production domain.
+6. Configure the domain's DNS records exactly as provided by the host.
+7. Redirect `www.neurerohan.com.np` permanently (308) to `https://neurerohan.com.np`.
+8. Confirm HTTPS is active before public launch.
+9. Verify canonical URLs, `/robots.txt`, and `/sitemap.xml` on production.
+10. Verify the published email, phone, WhatsApp, LinkedIn, consent and measurement-settings controls on production.
 
 DNS and hosting account changes are intentionally outside this repository and have not been made.
 

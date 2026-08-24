@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Arrow } from "./icons";
 import { PageIntro, SectionHeading } from "./ui";
 import { PageStructuredData } from "./structured-data";
+import { SearchEvidence } from "./search-evidence";
 import type { CommercialLanding } from "@/content/landing-pages";
 import { siteConfig } from "@/content/site";
 
@@ -117,6 +118,14 @@ export function CommercialLandingPage({ page }: { page: CommercialLanding }) {
     <section className="section section-dark" id="capabilities"><div className="shell"><SectionHeading eyebrow={page.labels?.capabilitiesEyebrow ?? "Capabilities"} title={page.labels?.capabilitiesTitle ?? "The right parts, working together."} /><CapabilityRows page={page} /><div className="mt-12"><Link className="button border-white text-white hover:bg-[var(--sun)] hover:text-[var(--ink)]" href={primary.href}>{primary.label} <Arrow /></Link></div></div></section>
 
     <section className="section signal-field"><div className="shell"><SectionHeading eyebrow={page.labels?.outcomesEyebrow ?? "What the work creates"} title={page.labels?.outcomesTitle ?? "A clearer foundation for growth."} /><div className="mt-12 grid border-b border-[var(--ink)] md:ml-[25%] sm:grid-cols-2">{page.outcomes.map((item, index) => <p className="flex min-h-32 items-end border-t border-[var(--ink)] py-5 pr-8 font-serif text-2xl leading-none tracking-[-.04em] sm:odd:border-r sm:odd:pl-0 sm:even:pl-6" key={item}><span className="mr-4 font-mono text-[.6rem] font-normal tracking-normal">0{index + 1}</span>{item}</p>)}</div></div></section>
+
+    {page.slug === "seo-for-travel-agency" && <SearchEvidence
+      compact
+      ids={["dubai-tours", "dubai-water-adventure"]}
+      eyebrow="Travel-search evidence / source captures"
+      title="Two tourism websites. Two distinct demand patterns."
+      copy="The supplied Search Console captures make the visible organic-search layer inspectable for a tours website and a water-adventure rental website. They support a conversation about travel SEO execution—not a promise about rankings, enquiries or revenue."
+    />}
 
     <EditorialSections sections={beforeProcess} />
     <ProcessSection page={page} />
