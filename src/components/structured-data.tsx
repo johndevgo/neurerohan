@@ -21,7 +21,7 @@ export const globalSchema: JsonLdNode = {
       url: root,
       name: siteConfig.brandName,
       alternateName: siteConfig.name,
-      description: "Founder-led digital marketing agency in Nepal connecting SEO, paid ads, websites, content, local search, tracking and CRO for measurable growth.",
+      description: "Founder-led digital marketing agency in Nepal connecting SEO, Google Ads, Meta Ads, landing pages, tracking and CRO around qualified business growth.",
       inLanguage: "en-NP",
       publisher: { "@id": organizationId },
       about: { "@id": organizationId },
@@ -33,7 +33,7 @@ export const globalSchema: JsonLdNode = {
       name: siteConfig.brandName,
       alternateName: [siteConfig.name, "GrowthLabs by Rohan Neure - SEO & Digital Marketing Agency in Nepal"],
       url: root,
-      description: "GrowthLabs by Rohan Neure is a founder-led digital marketing agency based in Bhaktapur and serving businesses across Nepal through SEO, paid advertising, social media, website strategy, local SEO, content, analytics and conversion rate optimisation.",
+      description: "GrowthLabs by Rohan Neure is a founder-led digital marketing agency based in Bhaktapur and serving businesses across Nepal through SEO, Google Ads, Meta Ads, social media, website strategy, local SEO, content, analytics and conversion rate optimisation.",
       slogan: siteConfig.positioning,
       foundingDate: "2020-11-08",
       founder: { "@id": personId },
@@ -120,8 +120,8 @@ export const globalSchema: JsonLdNode = {
       "@id": personId,
       name: siteConfig.fullName,
       url: `${siteConfig.domain}/about`,
-      jobTitle: "Founder, Growth Marketer, SEO and Paid Advertising Specialist",
-      description: "Founder of GrowthLabs and a performance and growth marketer specialising in SEO, paid advertising, conversion optimisation, analytics, tracking and website strategy.",
+      jobTitle: "Founder, Growth Marketer, SEO, Google Ads and Meta Ads Specialist",
+      description: "Founder of GrowthLabs and a performance and growth marketer specialising in SEO, Google Ads, Meta Ads, conversion optimisation, analytics, tracking and landing-page strategy.",
       image: {
         "@type": "ImageObject",
         "@id": personImageId,
@@ -174,17 +174,17 @@ type ServiceSchemaConfig = {
 const serviceSchemas: Record<string, ServiceSchemaConfig> = {
   "/digital-marketing-agency-in-nepal": {
     path: "/digital-marketing-agency-in-nepal",
-    pageName: "Digital Marketing Agency in Nepal | GrowthLabs",
+    pageName: "Digital Marketing Agency in Nepal | SEO, Google & Meta",
     breadcrumbName: "Digital Marketing Agency in Nepal",
-    description: "GrowthLabs is a founder-led digital marketing agency in Nepal connecting SEO, paid ads, social media, websites, content, local search, tracking and CRO.",
+    description: "GrowthLabs is a founder-led digital marketing agency in Nepal connecting SEO, Google Ads, Meta Ads, social media, websites, local search, tracking and CRO.",
     serviceName: "Digital marketing services in Nepal",
     serviceType: "Digital marketing strategy and implementation",
     audience: "Businesses in Nepal seeking connected digital growth",
-    categories: ["Digital marketing", "SEO", "Paid advertising", "Websites", "CRO"],
+    categories: ["Digital marketing", "SEO", "Google Ads", "Meta Ads", "Websites", "CRO"],
     offers: [
       { name: "Digital marketing strategy", url: `${siteConfig.domain}/services#digital-marketing-strategy`, serviceType: "Digital marketing strategy and growth planning" },
       { name: "SEO services", url: `${siteConfig.domain}/seo-company-in-nepal`, serviceType: "Search engine optimisation" },
-      { name: "Paid advertising", url: `${siteConfig.domain}/advertising-agency-in-nepal`, serviceType: "Google Ads, Meta Ads and TikTok Ads management" },
+      { name: "Google Ads, Meta Ads and paid media", url: `${siteConfig.domain}/advertising-agency-in-nepal`, serviceType: "Google Ads, Meta Ads and TikTok Ads management" },
       { name: "Social media marketing", url: `${siteConfig.domain}/social-media-marketing-agency-in-nepal`, serviceType: "Social strategy, content and paid distribution" },
       { name: "Website strategy", url: `${siteConfig.domain}/web-design-company-in-nepal`, serviceType: "Conversion-focused website and landing-page strategy" },
       { name: "Local SEO", url: `${siteConfig.domain}/services#local-seo`, serviceType: "Local SEO and Google Business Profile optimisation" },
@@ -253,9 +253,9 @@ const serviceSchemas: Record<string, ServiceSchemaConfig> = {
   },
   "/social-media-marketing-agency-in-nepal": {
     path: "/social-media-marketing-agency-in-nepal",
-    pageName: "Social Media Marketing Agency in Nepal | GrowthLabs",
+    pageName: "Social Media & Meta Ads Agency in Nepal | GrowthLabs",
     breadcrumbName: "Social Media Marketing Agency in Nepal",
-    description: "Build a social media system around audience insight, useful content, performance creative, paid distribution, retargeting, tracking and conversion.",
+    description: "Build an organic and Meta Ads system around audience insight, useful content, performance creative, retargeting, tracking and conversion.",
     serviceName: "Social media marketing services in Nepal",
     serviceType: "Social media strategy, content and paid distribution",
     audience: "Businesses in Nepal seeking organic and paid social media support",
@@ -312,7 +312,7 @@ const serviceSchemas: Record<string, ServiceSchemaConfig> = {
     pageName: "Advertising Agency in Nepal | Google, Meta & TikTok Ads",
     breadcrumbName: "Advertising Agency in Nepal",
     description: "Connect Google, Meta and TikTok advertising with stronger offers, performance creative, landing pages, tracking, retargeting and CRO.",
-    serviceName: "Performance advertising services in Nepal",
+    serviceName: "Google Ads and Meta Ads services in Nepal",
     serviceType: "Google Ads, Meta Ads and TikTok Ads strategy and management",
     audience: "Businesses in Nepal seeking measurable digital advertising",
     categories: ["Performance advertising", "Google Ads", "Meta Ads", "TikTok Ads", "Retargeting"],
@@ -330,7 +330,7 @@ const serviceSchemas: Record<string, ServiceSchemaConfig> = {
     path: "/digital-marketing-agency-in-kathmandu",
     pageName: "Digital Marketing Agency in Kathmandu | GrowthLabs",
     breadcrumbName: "Digital Marketing Agency in Kathmandu",
-    description: "Founder-led digital marketing for Kathmandu businesses connecting SEO, paid ads, social media, websites, local search, tracking and CRO.",
+    description: "Founder-led digital marketing for Kathmandu businesses connecting SEO, Google Ads, Meta Ads, social media, websites, local search, tracking and CRO.",
     serviceName: "Digital marketing services for Kathmandu Valley businesses",
     serviceType: "Digital marketing strategy and implementation for Kathmandu Valley",
     audience: "Businesses serving customers in Kathmandu and Kathmandu Valley",
@@ -433,7 +433,7 @@ function servicePageSchema(config: ServiceSchemaConfig): JsonLdNode {
 const servicesOffers: OfferSpec[] = [
   { name: "Digital Marketing Strategy", anchor: "digital-marketing-strategy", serviceType: "Digital marketing strategy and channel planning" },
   { name: "SEO Services", serviceType: "Search engine optimisation" },
-  { name: "Paid Advertising", serviceType: "Google Ads, Meta Ads and TikTok Ads management" },
+  { name: "Google Ads, Meta Ads & Paid Media", serviceType: "Google Ads, Meta Ads and TikTok Ads management" },
   { name: "Social Media Marketing", serviceType: "Social media strategy, content and paid distribution" },
   { name: "Website Design and Strategy", serviceType: "SEO-friendly, conversion-focused website strategy and design" },
   { name: "Landing Page Strategy", serviceType: "Landing-page strategy and conversion optimisation" },
@@ -450,7 +450,7 @@ function servicesSchema(): JsonLdNode {
   const catalogId = `${url}#offer-catalog`;
   const routeMap: Record<string, string> = {
     "SEO Services": `${siteConfig.domain}/seo-company-in-nepal`,
-    "Paid Advertising": `${siteConfig.domain}/advertising-agency-in-nepal`,
+    "Google Ads, Meta Ads & Paid Media": `${siteConfig.domain}/advertising-agency-in-nepal`,
     "Social Media Marketing": `${siteConfig.domain}/social-media-marketing-agency-in-nepal`,
     "Website Design and Strategy": `${siteConfig.domain}/web-design-company-in-nepal`,
     "Landing Page Strategy": `${siteConfig.domain}/web-design-company-in-nepal#landing-pages`,
@@ -466,8 +466,8 @@ function servicesSchema(): JsonLdNode {
         "@type": "CollectionPage",
         "@id": `${url}#webpage`,
         url,
-        name: "GrowthLabs Services | SEO, Ads, Social, Websites & CRO",
-        description: "Explore GrowthLabs services across strategy, SEO, paid ads, social media, websites, content, local SEO, CRO, analytics and tracking.",
+        name: "GrowthLabs Services | SEO, Google Ads, Meta Ads & CRO",
+        description: "Explore GrowthLabs services across SEO, Google Ads, Meta Ads, social media, websites, local SEO, CRO, analytics and tracking.",
         isPartOf: { "@id": websiteId },
         publisher: { "@id": organizationId },
         inLanguage: "en-NP",
@@ -547,8 +547,8 @@ export function pageSchema(path: string): JsonLdNode {
   if (serviceSchemas[path]) return servicePageSchema(serviceSchemas[path]);
 
   const simple: Record<string, { type: string; name: string; description: string; label: string; about: unknown; dateModified?: string }> = {
-    "/about": { type: "AboutPage", name: "About GrowthLabs & Rohan Neure | Founder-Led Growth", description: "Meet Rohan Neure and GrowthLabs, a founder-led digital marketing agency connecting SEO, paid ads, websites, analytics and CRO for measurable growth.", label: "About", about: [{ "@id": organizationId }, { "@id": personId }] },
-    "/contact": { type: "ContactPage", name: "Contact GrowthLabs by Rohan Neure", description: "Contact GrowthLabs by Rohan Neure by phone, WhatsApp, email or LinkedIn to discuss SEO, paid ads, websites, social media, analytics or CRO.", label: "Contact", about: { "@id": organizationId } },
+    "/about": { type: "AboutPage", name: "About Rohan Neure | SEO, Google Ads & Meta Ads", description: "Meet Rohan Neure, founder of GrowthLabs and a growth marketer working across SEO, Google Ads, Meta Ads, landing pages, analytics and CRO.", label: "About", about: [{ "@id": organizationId }, { "@id": personId }] },
+    "/contact": { type: "ContactPage", name: "Contact GrowthLabs by Rohan Neure", description: "Contact GrowthLabs by Rohan Neure by phone, WhatsApp or email to discuss SEO, Google Ads, Meta Ads, websites, analytics or CRO.", label: "Contact", about: { "@id": organizationId } },
     "/privacy": { type: "WebPage", name: "Privacy Policy | GrowthLabs by Rohan Neure", description: "Learn what information GrowthLabs may collect through the website and enquiries, why it is used, how it is protected and how to contact GrowthLabs.", label: "Privacy Policy", about: { "@type": "Thing", name: "Privacy and website data handling" }, dateModified: "2026-08-24" },
   };
   const config = simple[path];

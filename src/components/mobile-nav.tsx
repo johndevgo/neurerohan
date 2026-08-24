@@ -33,13 +33,13 @@ export function MobileNav({ items }: { items: readonly NavItem[] }) {
 
   return (
     <div className="flex items-center gap-1.5 lg:hidden">
-      <Link className="header-mobile-cta" href={siteConfig.cta.primary.href} aria-label={siteConfig.cta.primary.label}>{siteConfig.cta.primary.shortLabel} <Arrow direction="up-right" /></Link>
+      <Link className="header-mobile-cta" href={siteConfig.cta.primary.href} aria-label={siteConfig.cta.primary.label} data-cta-intent="growth-review" data-cta-location="mobile-header" data-cta-channel="contact">{siteConfig.cta.primary.shortLabel} <Arrow /></Link>
       <button ref={buttonRef} className="flex min-h-12 min-w-12 items-center justify-center border border-[var(--ink)] bg-[var(--sun)]" aria-expanded={open} aria-controls="mobile-menu" aria-label={open ? "Close menu" : "Open menu"} onClick={() => setOpen((value) => !value)}><MenuIcon open={open} /></button>
       {open && <div ref={panelRef} id="mobile-menu" className="fixed inset-x-0 top-[var(--header)] z-50 flex h-[calc(100dvh-var(--header))] flex-col overflow-y-auto overscroll-contain bg-[var(--ink)] p-5 pb-8 text-[var(--paper)]" aria-label="Mobile navigation">
         <nav className="mt-5 flex flex-col">
           {items.map((item, index) => <Link key={item.href} href={item.href} onClick={() => setOpen(false)} aria-current={pathname === item.href ? "page" : undefined} className="border-b border-white/20 py-4 font-serif text-3xl tracking-[-.045em]"><span className="mr-4 align-top font-mono text-[.72rem] font-normal tracking-normal text-white/65">0{index + 1}</span>{item.label}</Link>)}
         </nav>
-        <div className="mt-auto grid grid-cols-2 gap-2 pt-8"><a className="border border-white/30 p-3 text-center text-xs font-bold" href={siteConfig.whatsapp} target="_blank" rel="noopener noreferrer">WhatsApp</a><a className="border border-white/30 p-3 text-center text-xs font-bold" href={`tel:${siteConfig.phone}`}>Call Rohan</a></div><p className="mt-5 font-mono text-[.72rem] uppercase tracking-[.08em] text-white/65">Bhaktapur · Kathmandu Valley · Nepal</p>
+        <div className="mt-auto grid grid-cols-2 gap-2 pt-8"><a className="border border-white/30 p-3 text-center text-xs font-bold" href={siteConfig.cta.whatsapp.href} target="_blank" rel="noopener noreferrer" data-cta-intent="growth-review" data-cta-location="mobile-menu" data-cta-channel="whatsapp">Send brief</a><a className="border border-white/30 p-3 text-center text-xs font-bold" href={siteConfig.cta.phone.href} data-cta-intent="growth-review" data-cta-location="mobile-menu" data-cta-channel="phone">Call Rohan</a></div><p className="mt-5 font-mono text-[.72rem] uppercase tracking-[.08em] text-white/65">SEO · Google Ads · Meta Ads · CRO</p>
       </div>}
     </div>
   );

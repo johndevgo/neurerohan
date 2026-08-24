@@ -13,6 +13,8 @@ type EvidenceItem = {
   readonly alt: string;
   readonly caption: string;
   readonly source: "Google Search Console" | "Google Ads";
+  readonly stats?: readonly { readonly label: string; readonly value: string }[];
+  readonly interpretation?: string;
 };
 
 type EvidenceGalleryProps = {
@@ -46,6 +48,10 @@ function EvidenceGallery({ compact = false, copy, dark = false, disclaimer, eyeb
             />
           </a>
           <figcaption className={`proof-caption ${captionTone}`}><span>{String(index + 1).padStart(2, "0")} / {proof.source} / {proof.caption}</span><a href={proof.src} target="_blank" rel="noopener noreferrer">View source ↗</a></figcaption>
+          {proof.stats && <dl className={`proof-metrics ${dark ? "proof-metrics-dark" : ""}`}>
+            {proof.stats.map((stat) => <div key={`${proof.id}-${stat.label}`}><dt>{stat.label}</dt><dd>{stat.value}</dd></div>)}
+          </dl>}
+          {proof.interpretation && <p className={`proof-interpretation ${dark ? "proof-interpretation-dark" : ""}`}><strong>Why this is shown:</strong> {proof.interpretation}</p>}
         </figure>)}
       </div>
       <p className={`mt-7 max-w-5xl border-t pt-5 text-sm leading-6 ${dark ? "border-white/25 text-white/55" : "border-[var(--line-strong)] text-[var(--muted)]"}`}>{disclaimer}</p>

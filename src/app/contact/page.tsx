@@ -9,35 +9,33 @@ import { pageMetadata } from "@/lib/metadata";
 
 export const metadata = pageMetadata(
   "Contact GrowthLabs by Rohan Neure",
-  "Contact GrowthLabs by Rohan Neure by phone, WhatsApp, email or LinkedIn to discuss SEO, paid ads, websites, social media, analytics or CRO.",
+  "Contact Rohan Neure directly by WhatsApp, email or phone to discuss SEO, Google Ads, Meta Ads, websites, analytics, tracking or CRO.",
   "/contact",
 );
 
 const channels = [
   {
     label: "WhatsApp",
-    value: "Message Rohan on WhatsApp",
-    href: siteConfig.whatsapp,
+    value: siteConfig.cta.whatsapp.label,
+    href: siteConfig.cta.whatsapp.href,
+    channel: "whatsapp",
     note: "Best for starting a quick conversation and sharing a website link.",
   },
   {
-    label: "Phone",
-    value: `Call ${siteConfig.phoneDisplay}`,
-    href: `tel:${siteConfig.phone}`,
-    note: "Call to discuss the current growth challenge. If the call is not answered, send a short WhatsApp message or email.",
-  },
-  {
     label: "Email",
-    value: siteConfig.email,
-    href: `mailto:${siteConfig.email}`,
+    value: siteConfig.cta.email.label,
+    href: siteConfig.cta.email.href,
+    channel: "email",
     note: "Best for detailed context, account summaries, project briefs and website links.",
   },
   {
-    label: "LinkedIn",
-    value: "Connect with Rohan",
-    href: siteConfig.socials[0].href,
-    note: "Connect professionally and follow Rohan's work.",
+    label: "Phone",
+    value: siteConfig.cta.phone.label,
+    href: siteConfig.cta.phone.href,
+    channel: "phone",
+    note: `Call ${siteConfig.phoneDisplay} to discuss the current growth challenge. If the call is not answered, send a short WhatsApp message or email.`,
   },
+  { label: "Professional profile", value: "View Rohan on LinkedIn", href: siteConfig.socials[0].href, channel: "linkedin", note: "Review Rohan's professional profile and connect after sharing the business context through a primary contact channel." },
 ];
 
 const helpfulDetails = [
@@ -66,23 +64,23 @@ const faqs = [
 
 export default function ContactPage() {
   return <>
-    <PageIntro breadcrumbs={[{ label: "Contact" }]} eyebrow="Contact GrowthLabs" title="Let's find the right growth problem to solve.">
-      <p>Share what your business does, what is currently working and where marketing feels stuck. The first step is clarity, not a generic package.</p>
+    <PageIntro breadcrumbs={[{ label: "Contact" }]} eyebrow="SEO · Google Ads · Meta Ads · Direct founder contact" title="Tell Rohan what you want marketing to change.">
+      <p>{siteConfig.cta.microcopy}</p>
       <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-        <a className="button button-primary" href={siteConfig.whatsapp} target="_blank" rel="noopener noreferrer">Message on WhatsApp <Arrow direction="up-right" /></a>
-        <a className="button" href={`mailto:${siteConfig.email}`}>Send your enquiry <Arrow /></a>
+        <a className="button button-primary" href={siteConfig.cta.whatsapp.href} target="_blank" rel="noopener noreferrer" data-cta-intent="growth-review" data-cta-location="contact-hero" data-cta-channel="whatsapp">{siteConfig.cta.whatsapp.label} <Arrow direction="up-right" /></a>
+        <a className="button" href={siteConfig.cta.email.href} data-cta-intent="growth-review" data-cta-location="contact-hero" data-cta-channel="email">{siteConfig.cta.email.label} <Arrow /></a>
       </div>
-      <p className="mt-6">There is no contact form or account to create. Choose WhatsApp, phone, email or LinkedIn and speak directly with Rohan.</p>
+      <p className="mt-6">{siteConfig.cta.reassurance}</p>
       <p className="mt-4">A website link, priority offer and clear description of the desired business action are enough to begin. You do not need to diagnose the channel or select a package first.</p>
     </PageIntro>
 
     <section className="section pt-0">
       <div className="shell">
-        <SectionHeading eyebrow="Choose the easiest channel" title="Contact Rohan directly." copy="Use the route that suits the amount of context you need to share. All options go directly to services you control." />
+        <SectionHeading eyebrow="Choose the easiest channel" title="Every enquiry reaches Rohan directly." copy="Use WhatsApp for a quick start, email for a fuller brief or phone for a direct conversation. LinkedIn remains available as a professional profile rather than the main enquiry route." />
         <div className="mt-14 grid gap-8 md:ml-[25%] sm:grid-cols-2">
           {channels.map((channel) => <article className="card" key={channel.label}>
             <p className="eyebrow">{channel.label}</p>
-            <a className="mt-4 block font-serif text-2xl tracking-[-.025em] hover:text-[var(--accent)]" href={channel.href} target={channel.href.startsWith("http") ? "_blank" : undefined} rel={channel.href.startsWith("http") ? "noopener noreferrer" : undefined}>
+            <a className="mt-4 block font-serif text-2xl tracking-[-.025em] hover:text-[var(--accent)]" href={channel.href} target={channel.href.startsWith("http") ? "_blank" : undefined} rel={channel.href.startsWith("http") ? "noopener noreferrer" : undefined} data-cta-intent="growth-review" data-cta-location="contact-channels" data-cta-channel={channel.channel}>
               {channel.value} {channel.href.startsWith("http") && <Arrow direction="up-right" />}
             </a>
             <p className="mt-4 text-sm leading-6 text-[var(--muted)]">{channel.note}</p>
@@ -173,12 +171,12 @@ export default function ContactPage() {
         <p className="eyebrow">Start the conversation</p>
         <div>
           <h2 className="section-title">Share the context. Find the next right step.</h2>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-black/65">Start on WhatsApp for a quick conversation, or email the fuller business context for Rohan to review.</p>
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-black/65">{siteConfig.cta.microcopy}</p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <a className="button button-primary" href={siteConfig.whatsapp} target="_blank" rel="noopener noreferrer">Message on WhatsApp <Arrow direction="up-right" /></a>
-            <a className="button" href={`mailto:${siteConfig.email}`}>Send your enquiry <Arrow /></a>
+            <a className="button button-primary" href={siteConfig.cta.whatsapp.href} target="_blank" rel="noopener noreferrer" data-cta-intent="growth-review" data-cta-location="contact-final" data-cta-channel="whatsapp">{siteConfig.cta.whatsapp.label} <Arrow direction="up-right" /></a>
+            <a className="button" href={siteConfig.cta.email.href} data-cta-intent="growth-review" data-cta-location="contact-final" data-cta-channel="email">{siteConfig.cta.email.label} <Arrow /></a>
           </div>
-          <p className="mt-5 font-mono text-[.72rem] uppercase leading-5 tracking-[.04em] text-black/65">{siteConfig.phoneDisplay} · {siteConfig.email}</p>
+          <p className="mt-5 font-mono text-[.72rem] uppercase leading-5 tracking-[.04em] text-black/65">{siteConfig.cta.reassurance} · {siteConfig.phoneDisplay}</p>
           <p className="mt-3 text-sm text-black/60">Direct channels are governed by their own services. Read the <Link className="underline underline-offset-4" href="/privacy">Privacy Policy</Link>.</p>
         </div>
       </div>

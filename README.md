@@ -1,6 +1,6 @@
 # GrowthLabs by Rohan Neure
 
-The public website for GrowthLabs by Rohan Neure, a founder-led digital marketing agency in Nepal. Built with Next.js App Router, TypeScript, Tailwind CSS, and minimal client-side JavaScript.
+The public website for GrowthLabs by Rohan Neure, a founder-led SEO, Google Ads, Meta Ads and conversion-focused digital marketing agency in Nepal. Built with Next.js App Router, TypeScript, Tailwind CSS, and minimal client-side JavaScript.
 
 ## Local development
 
