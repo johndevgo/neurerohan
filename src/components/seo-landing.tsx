@@ -116,6 +116,19 @@ export function SeoLanding({ faqs }: Props) {
       </div>
     </section>
 
+    <section className="section signal-grid">
+      <div className="shell">
+        <SectionHeading eyebrow="Verified professional context" title="Four-plus years across SEO, paid media, analytics and conversion." copy="Rohan's SEO work sits inside a broader growth-marketing practice. That context matters when search performance depends on the offer, landing page, tracking, advertising data or the way a lead is handled after the click." />
+        <ol className="mt-12 border-b border-[var(--ink)] md:ml-[25%]">
+          {siteConfig.experience.map((item) => <li className="grid gap-3 border-t border-[var(--ink)] py-6 sm:grid-cols-[10rem_1fr_2fr]" key={`${item.period}-${item.organization}`}>
+            <span className="font-mono text-[.68rem] uppercase leading-5 tracking-[.04em]">{item.period}</span>
+            <div><h3 className="font-serif text-xl leading-tight">{item.title}</h3>{item.organization && <p className="mt-1 text-sm font-semibold">{item.organization}</p>}</div>
+            {item.detail && <p className="leading-7 text-black/65">{item.detail}</p>}
+          </li>)}
+        </ol>
+      </div>
+    </section>
+
     <section className="section bg-[var(--surface)]">
       <div className="shell">
         <SectionHeading eyebrow="Why SEO struggles" title="SEO is a system. Weak links compound." copy="Publishing more is not the same as building search visibility. Strong SEO needs the right demand, pages, technical foundation, content, links, and conversion journey." />
@@ -214,6 +227,6 @@ export function SeoLanding({ faqs }: Props) {
       </div>
     </section>
 
-    <PageStructuredData path="/seo-expert-in-nepal" />
+    <PageStructuredData path="/seo-expert-in-nepal" faqs={faqs} />
   </>;
 }

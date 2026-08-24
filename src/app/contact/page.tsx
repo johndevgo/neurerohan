@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { BrandLockup } from "@/components/brand-lockup";
 import { Arrow } from "@/components/icons";
+import { GoogleBusinessMap } from "@/components/google-business-map";
 import { PageStructuredData } from "@/components/structured-data";
 import { PageIntro, SectionHeading } from "@/components/ui";
 import { siteConfig } from "@/content/site";
@@ -129,6 +130,9 @@ export default function ContactPage() {
             </div>
           </div>
         </div>
+        <div className="mt-8 md:ml-[25%]">
+          <GoogleBusinessMap note="GrowthLabs is based at Sallaghari Shopping Complex in Bhaktapur. Confirm the meeting format before visiting; online appointments and appropriate on-site support are available." />
+        </div>
       </div>
     </section>
 
@@ -180,6 +184,6 @@ export default function ContactPage() {
       </div>
     </section>
 
-    <PageStructuredData path="/contact" />
+    <PageStructuredData path="/contact" faqs={faqs.map(([question, answer]) => ({ question, answer }))} />
   </>;
 }

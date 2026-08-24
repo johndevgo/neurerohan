@@ -111,6 +111,7 @@ export default function PrivacyPage() {
             <p className="mt-4">GrowthLabs may also disclose information where reasonably required to comply with law, protect rights or security, investigate misuse or respond to a valid legal request. GrowthLabs does not sell personal information.</p>
             <h3 className="mt-8 font-serif text-2xl text-[var(--ink)]">Third-party links and contact services</h3>
             <p className="mt-3">This website links to WhatsApp, LinkedIn and Google Maps and may open the email or telephone application on your device. Once you use an independent service, its own terms and privacy policy apply. GrowthLabs does not control how that provider processes information on its platform.</p>
+            <p className="mt-4">The Contact page and the Kathmandu service page also contain a lazy-loaded Google Maps embed. When the map loads as it approaches the visible page, the browser connects directly to Google and may provide technical information such as the IP address, browser or device details and referring page. This map request is separate from the website measurement choice and is governed by Google&apos;s own terms and privacy notice.</p>
           </section>
 
           <section id="retention-and-security" className="scroll-mt-28">

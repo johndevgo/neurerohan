@@ -71,12 +71,18 @@ export const siteConfig = {
     { id: "dubai-water-adventure", src: "/images/proof/Dubai Water-Adventure Rental.png", width: 2287, height: 966, alt: "Google Search Console performance report for a Dubai water-adventure rental website showing 460 clicks and 47.4K impressions over three months", caption: "Dubai water-adventure rental · 460 clicks · 47.4K impressions" },
     { id: "texas-hvac", src: "/images/proof/USA - Texas HVAC.png", width: 2275, height: 940, alt: "Google Search Console performance report for a Texas HVAC website showing 714 clicks and 38K impressions over three months", caption: "Texas HVAC · 714 clicks · 38K impressions" },
   ],
+  paidProofImages: [
+    { id: "london-home-services-ads", src: "/images/proof/google-ads-london-home-services.png", width: 2362, height: 958, alt: "Google Ads campaign report for a London home-services business showing 1,274,660 impressions, 29,851 clicks and 474.79 reported conversions from February through May 2026", caption: "London home-services account · Feb–May 2026 · 29,851 clicks · 474.79 reported conversions" },
+    { id: "saas-google-ads", src: "/images/proof/google-ads-saas-account.png", width: 2358, height: 816, alt: "Google Ads campaign report for a SaaS business showing 855,529 impressions, 12,692 clicks, 929.99 reported conversions and £2.90 reported cost per conversion from July through September 2025", caption: "SaaS account · Jul–Sep 2025 · 12,692 clicks · 929.99 reported conversions · £2.90 reported cost/conv." },
+  ],
   location: "Sallaghari Shopping Complex, Bhaktapur 44800, Nepal",
   email: "contact@neurerohan.com.np",
   phone: "+9779746265996",
   phoneDisplay: "+977 974-626-5996",
   whatsapp: "https://wa.me/9779746265996",
   mapUrl: "https://maps.app.goo.gl/aL8fKQjg8Hb5oimAA",
+  mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3533.365310814682!2d85.4096929!3d27.675102000000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb195119fd4c11%3A0xbf2564721c0b2dc!2sGrowthLabs%20by%20Rohan%20Neure%20-%20SEO%20%26%20Digital%20Marketing%20Agency%20in%20Nepal!5e0!3m2!1sen!2snp!4v1787568330486!5m2!1sen!2snp",
+  mapCoordinates: { latitude: 27.675102, longitude: 85.4096929 },
   openingHours: {
     summary: "Open 24 hours Sunday to Friday · Closed Saturday",
     openDays: "Sunday–Friday",

@@ -1,11 +1,14 @@
 import { siteConfig } from "@/content/site";
 
 type JsonLdNode = Record<string, unknown>;
+export type FaqItem = { question: string; answer: string };
 
 const root = `${siteConfig.domain}/`;
 const organizationId = `${root}#organization`;
 const websiteId = `${root}#website`;
 const personId = `${root}#rohan-neure`;
+const logoId = `${root}#logo`;
+const personImageId = `${root}#rohan-neure-image`;
 
 const country = { "@type": "Country", name: "Nepal" };
 
@@ -21,6 +24,8 @@ export const globalSchema: JsonLdNode = {
       description: "Founder-led digital marketing agency in Nepal connecting SEO, paid ads, websites, content, local search, tracking and CRO for measurable growth.",
       inLanguage: "en-NP",
       publisher: { "@id": organizationId },
+      about: { "@id": organizationId },
+      creator: { "@id": personId },
     },
     {
       "@type": ["ProfessionalService", "LocalBusiness"],
@@ -32,6 +37,16 @@ export const globalSchema: JsonLdNode = {
       slogan: siteConfig.positioning,
       foundingDate: "2020-11-08",
       founder: { "@id": personId },
+      logo: {
+        "@type": "ImageObject",
+        "@id": logoId,
+        url: `${siteConfig.domain}${siteConfig.brandAvatar}`,
+        contentUrl: `${siteConfig.domain}${siteConfig.brandAvatar}`,
+        width: 1024,
+        height: 1024,
+        caption: `${siteConfig.brandName} brand avatar`,
+      },
+      image: { "@id": logoId },
       email: siteConfig.email,
       telephone: siteConfig.phone,
       address: {
@@ -42,7 +57,13 @@ export const globalSchema: JsonLdNode = {
         addressCountry: "NP",
       },
       hasMap: siteConfig.mapUrl,
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: siteConfig.mapCoordinates.latitude,
+        longitude: siteConfig.mapCoordinates.longitude,
+      },
       areaServed: [country, { "@type": "AdministrativeArea", name: "Kathmandu Valley" }],
+      hasOfferCatalog: { "@id": `${siteConfig.domain}/services#offer-catalog` },
       openingHoursSpecification: [
         {
           "@type": "OpeningHoursSpecification",
@@ -101,6 +122,14 @@ export const globalSchema: JsonLdNode = {
       url: `${siteConfig.domain}/about`,
       jobTitle: "Founder, Growth Marketer, SEO and Paid Advertising Specialist",
       description: "Founder of GrowthLabs and a performance and growth marketer specialising in SEO, paid advertising, conversion optimisation, analytics, tracking and website strategy.",
+      image: {
+        "@type": "ImageObject",
+        "@id": personImageId,
+        url: `${siteConfig.domain}${siteConfig.profileImage}`,
+        contentUrl: `${siteConfig.domain}${siteConfig.profileImage}`,
+        caption: `${siteConfig.fullName}, founder of GrowthLabs`,
+      },
+      mainEntityOfPage: { "@id": `${siteConfig.domain}/about#webpage` },
       worksFor: { "@id": organizationId },
       sameAs: siteConfig.socials.map((profile) => profile.href),
       knowsAbout: [
@@ -330,7 +359,7 @@ function breadcrumb(url: string, label: string, includeServices = true): JsonLdN
   return { "@type": "BreadcrumbList", "@id": `${url}#breadcrumb`, itemListElement: items };
 }
 
-function offer(url: string, spec: OfferSpec): JsonLdNode {
+function offer(url: string, spec: OfferSpec, providerId = organizationId, areaServed: JsonLdNode | JsonLdNode[] = country): JsonLdNode {
   const offerUrl = spec.url ?? (spec.anchor ? `${url}#${spec.anchor}` : url);
   return {
     "@type": "Offer",
@@ -343,8 +372,8 @@ function offer(url: string, spec: OfferSpec): JsonLdNode {
       name: spec.name,
       serviceType: spec.serviceType,
       url: offerUrl,
-      provider: { "@id": organizationId },
-      areaServed: country,
+      provider: { "@id": providerId },
+      areaServed,
     },
   };
 }
@@ -354,6 +383,8 @@ function servicePageSchema(config: ServiceSchemaConfig): JsonLdNode {
   const webpageId = `${url}#webpage`;
   const serviceId = `${url}#service`;
   const catalogId = `${url}#offer-catalog`;
+  const providerId = config.provider === "person" ? personId : organizationId;
+  const areaServed = config.areaServed ?? country;
   return {
     "@context": "https://schema.org",
     "@graph": [
@@ -378,8 +409,8 @@ function servicePageSchema(config: ServiceSchemaConfig): JsonLdNode {
         name: config.serviceName,
         serviceType: config.serviceType,
         description: config.description,
-        provider: { "@id": config.provider === "person" ? personId : organizationId },
-        areaServed: config.areaServed ?? country,
+        provider: { "@id": providerId },
+        areaServed,
         audience: { "@type": "BusinessAudience", audienceType: config.audience },
         availableChannel: {
           "@type": "ServiceChannel",
@@ -392,7 +423,7 @@ function servicePageSchema(config: ServiceSchemaConfig): JsonLdNode {
           "@type": "OfferCatalog",
           "@id": catalogId,
           name: `${config.serviceName} deliverables`,
-          itemListElement: config.offers.map((item) => offer(url, item)),
+          itemListElement: config.offers.map((item) => offer(url, item, providerId, areaServed)),
         },
       },
     ],
@@ -435,7 +466,7 @@ function servicesSchema(): JsonLdNode {
         "@type": "CollectionPage",
         "@id": `${url}#webpage`,
         url,
-        name: "Digital Marketing Services in Nepal | GrowthLabs",
+        name: "GrowthLabs Services | SEO, Ads, Social, Websites & CRO",
         description: "Explore GrowthLabs services across strategy, SEO, paid ads, social media, websites, content, local SEO, CRO, analytics and tracking.",
         isPartOf: { "@id": websiteId },
         publisher: { "@id": organizationId },
@@ -465,7 +496,7 @@ function packagesSchema(): JsonLdNode {
         "@type": "CollectionPage",
         "@id": `${url}#webpage`,
         url,
-        name: "Social Media Marketing Packages & Pricing | GrowthLabs",
+        name: "Social Media Packages, Scope & Pricing Factors | GrowthLabs",
         description: "Compare Foundation, Growth and Performance social media scopes, the work included, pricing drivers and separately quoted advertising spend.",
         isPartOf: { "@id": websiteId },
         publisher: { "@id": organizationId },
@@ -549,6 +580,26 @@ export function StructuredData({ data }: { data: JsonLdNode }) {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }} />;
 }
 
-export function PageStructuredData({ path }: { path: string }) {
-  return <StructuredData data={pageSchema(path)} />;
+function faqSchema(path: string, faqs: readonly FaqItem[]): JsonLdNode {
+  const url = pageUrl(path);
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": `${url}#faq`,
+    url,
+    isPartOf: { "@id": `${url}#webpage` },
+    inLanguage: "en-NP",
+    mainEntity: faqs.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+}
+
+export function PageStructuredData({ faqs, path }: { faqs?: readonly FaqItem[]; path: string }) {
+  return <>
+    <StructuredData data={pageSchema(path)} />
+    {faqs && faqs.length > 0 && <StructuredData data={faqSchema(path, faqs)} />}
+  </>;
 }

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Arrow } from "@/components/icons";
-import { SearchEvidence } from "@/components/search-evidence";
+import { PerformanceEvidence } from "@/components/search-evidence";
 import { SectionHeading } from "@/components/ui";
 import { PageStructuredData } from "@/components/structured-data";
 import { faqs, industries, problems, process, services, siteConfig } from "@/content/site";
@@ -35,7 +35,7 @@ export default function HomePage() {
 
     <section className="section"><div className="shell"><SectionHeading eyebrow="One connected growth system" title="Stop losing customers between the click and the conversion." copy="Most businesses do not lack marketing activity. The problem is that each activity is planned and measured separately while the customer experiences one continuous journey. GrowthLabs finds the gaps and connects the work that matters." /><div className="mt-14 grid gap-8 md:ml-[25%] sm:grid-cols-2">{[["Get found by people with a relevant need", "Build organic and paid visibility around real demand, not vanity traffic."], ["Give every click a convincing next step", "Connect the promise in search, content or advertising to a page that explains, reassures and converts."], ["Improve the traffic you already have", "Remove friction from messages, offers, pages, calls to action and enquiry paths."], ["Know what is creating movement", "Use tracking and reporting to identify what deserves more investment—and what does not."]].map(([title, copy]) => <article className="card" key={title}><h3 className="font-serif text-2xl">{title}</h3><p className="mt-3 leading-7 text-[var(--muted)]">{copy}</p></article>)}</div></div></section>
 
-    <SearchEvidence sectionId="search-evidence" dark title="Proof should be inspectable—not decorative." copy="Four supplied Search Console captures show organic visibility across an Australian marketing agency, Dubai tourism businesses and a Texas HVAC website. The visible figures are presented as source evidence—not guaranteed outcomes or complete case studies." />
+    <PerformanceEvidence sectionId="search-evidence" dark searchIds={["australian-agency", "texas-hvac"]} paidIds={["saas-google-ads"]} title="Proof should be inspectable—not decorative." copy="Three source captures show monitored organic visibility and account-reported paid-campaign activity across agency, local-service and SaaS markets. The visible figures are evidence for a qualified conversation—not guaranteed outcomes or complete case studies." />
 
     <section className="section"><div className="shell"><SectionHeading eyebrow="Common growth constraints" title="Why digital marketing activity fails to become business." /><div className="mt-16 grid gap-x-8 gap-y-12 md:grid-cols-2">{problems.map((item, index) => <article className="card" key={item.title}><p className="eyebrow">0{index + 1}</p><h3 className="mt-5 font-serif text-3xl">{item.title}</h3><p className="mt-4 max-w-xl leading-7 text-[var(--muted)]">{item.copy}</p></article>)}</div></div></section>
 
@@ -55,6 +55,6 @@ export default function HomePage() {
 
     <section className="section"><div className="shell"><SectionHeading eyebrow="Before the first conversation" title="Frequently asked questions." /><div className="mt-14 md:ml-[25%]">{faqs.map((item, index) => <details className="group border-t border-[var(--line)] py-5" key={item.question} open={index === 0}><summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-6 font-serif text-xl"><span>{item.question}</span><span aria-hidden="true" className="text-[var(--accent)] group-open:rotate-45">+</span></summary><p className="prose-copy mt-4 pr-8">{item.answer}</p></details>)}</div></div></section>
     <section className="section signal-grid"><div className="shell grid gap-8 md:grid-cols-[1fr_3fr]"><p className="eyebrow">Start with the real constraint</p><div><h2 className="section-title">Find what is limiting growth. Build the right next step.</h2><p className="mt-6 max-w-2xl text-lg leading-8 text-black/65">Tell GrowthLabs what you sell, who you want to reach and where the current journey is underperforming. Rohan will identify the first search, campaign, website or conversion priority worth addressing.</p><div className="mt-8 flex flex-col gap-4 sm:flex-row"><Link className="button button-primary" href="/contact">Get a growth review <Arrow /></Link><a className="button" href={siteConfig.whatsapp} target="_blank" rel="noopener noreferrer">WhatsApp Rohan <Arrow direction="up-right" /></a></div><p className="mt-5 font-mono text-[.72rem] uppercase leading-5 tracking-[.04em] text-black/65">Prefer email? {siteConfig.email} · Prefer to call? {siteConfig.phoneDisplay}</p></div></div></section>
-    <PageStructuredData path="/" />
+    <PageStructuredData path="/" faqs={faqs} />
   </>;
 }

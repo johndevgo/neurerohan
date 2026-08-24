@@ -3,7 +3,7 @@ import { siteConfig } from "@/content/site";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { globalSchema, StructuredData } from "@/components/structured-data";
-import { getGoogleTagManagerId, GoogleTagManagerNoScript, GoogleTagManagerScript } from "@/components/google-tag-manager";
+import { GoogleTagManagerNoScript, GoogleTagManagerScript } from "@/components/google-tag-manager";
 import { MeasurementConsent } from "@/components/measurement-consent";
 import "./globals.css";
 
@@ -24,16 +24,15 @@ export const metadata: Metadata = {
 export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#f3f0e8" };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  const gtmId = getGoogleTagManagerId();
   return <html lang="en-NP">
-    <head>{gtmId && <GoogleTagManagerScript id={gtmId} />}</head>
+    <head><GoogleTagManagerScript /></head>
     <body>
-      {gtmId && <GoogleTagManagerNoScript id={gtmId} />}
+      <GoogleTagManagerNoScript />
       <a href="#main-content" className="skip-link">Skip to content</a>
       <SiteHeader />
       <main id="main-content">{children}</main>
-      <SiteFooter measurementEnabled={Boolean(gtmId)} />
-      {gtmId && <MeasurementConsent />}
+      <SiteFooter measurementEnabled />
+      <MeasurementConsent />
       <StructuredData data={globalSchema} />
     </body>
   </html>;

@@ -2,7 +2,8 @@ import Link from "next/link";
 import { Arrow } from "./icons";
 import { PageIntro, SectionHeading } from "./ui";
 import { PageStructuredData } from "./structured-data";
-import { SearchEvidence } from "./search-evidence";
+import { PaidMediaEvidence, SearchEvidence } from "./search-evidence";
+import { GoogleBusinessMap } from "./google-business-map";
 import type { CommercialLanding } from "@/content/landing-pages";
 import { siteConfig } from "@/content/site";
 
@@ -52,7 +53,7 @@ const capabilityAnchors: Record<string, Record<string, string>> = {
     "Retargeting": "retargeting",
     "Performance creative": "creative",
     "Landing pages and CRO": "landing-pages",
-    "Analytics and optimisation": "measurement",
+    "Tracking and attribution setup": "measurement",
   },
   "digital-marketing-agency-in-kathmandu": {
     "SEO and local search": "seo",
@@ -119,6 +120,13 @@ export function CommercialLandingPage({ page }: { page: CommercialLanding }) {
 
     <section className="section signal-field"><div className="shell"><SectionHeading eyebrow={page.labels?.outcomesEyebrow ?? "What the work creates"} title={page.labels?.outcomesTitle ?? "A clearer foundation for growth."} /><div className="mt-12 grid border-b border-[var(--ink)] md:ml-[25%] sm:grid-cols-2">{page.outcomes.map((item, index) => <p className="flex min-h-32 items-end border-t border-[var(--ink)] py-5 pr-8 font-serif text-2xl leading-none tracking-[-.04em] sm:odd:border-r sm:odd:pl-0 sm:even:pl-6" key={item}><span className="mr-4 font-mono text-[.6rem] font-normal tracking-normal">0{index + 1}</span>{item}</p>)}</div></div></section>
 
+    {page.slug === "advertising-agency-in-nepal" && <PaidMediaEvidence
+      compact
+      ids={["london-home-services-ads", "saas-google-ads"]}
+      title="Paid-media evidence with the account context left visible."
+      copy="The supplied Google Ads captures show account-reported campaign activity for a London home-services business and a SaaS business. Dates, clicks and configured conversion metrics remain visible in the source interface; the figures are not relabelled as customers, sales or revenue."
+    />}
+
     {page.slug === "seo-for-travel-agency" && <SearchEvidence
       compact
       ids={["dubai-tours", "dubai-water-adventure"]}
@@ -131,11 +139,20 @@ export function CommercialLandingPage({ page }: { page: CommercialLanding }) {
     <ProcessSection page={page} />
     <EditorialSections sections={afterProcess} startIndex={beforeProcess.length} />
 
+    {page.archetype === "location" && <section className="section bg-[var(--surface)]">
+      <div className="shell">
+        <SectionHeading eyebrow="Local presence / Bhaktapur" title="A real Bhaktapur base for work across Kathmandu Valley." copy="GrowthLabs operates from Sallaghari, Bhaktapur and supports businesses across Kathmandu Valley. Use the map to verify the business location, then confirm whether an online appointment or appropriate on-site meeting is the better fit." />
+        <div className="mt-12 md:ml-[25%]">
+          <GoogleBusinessMap note="Sallaghari Shopping Complex, Bhaktapur—serving businesses across Kathmandu, Lalitpur, Bhaktapur and the wider Kathmandu Valley." />
+        </div>
+      </div>
+    </section>}
+
     <section className="section"><div className="shell"><SectionHeading eyebrow="Related expertise" title="Continue with the most relevant path." /><div className="mt-10 grid gap-0 border-b border-[var(--line-strong)] md:ml-[25%] sm:grid-cols-2">{page.related.map((link) => <Link className="flex min-h-20 items-center justify-between border-t border-[var(--line-strong)] py-4 pr-5 font-bold hover:bg-[var(--sun)]" href={link.href} key={link.href}>{link.label} <Arrow /></Link>)}</div></div></section>
 
     <section className="section bg-[var(--surface)]"><div className="shell"><SectionHeading eyebrow={page.labels?.faqEyebrow ?? "FAQ"} title={page.labels?.faqTitle ?? "Useful answers before we talk."} /><div className="mt-14 border-b border-[var(--line-strong)] md:ml-[25%]">{page.faqs.map((item, index) => <details className="group border-t border-[var(--line-strong)] py-5" key={item.question}><summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-6 font-serif text-xl leading-tight tracking-[-.03em]"><span><span className="mr-4 align-top font-mono text-[.6rem] font-normal tracking-normal text-[var(--accent)]">0{index + 1}</span>{item.question}</span><span aria-hidden="true" className="text-[var(--accent)] transition-transform group-open:rotate-45">+</span></summary><p className="prose-copy mt-4 pl-10 pr-8">{item.answer}</p></details>)}</div></div></section>
 
     {page.finalCta && <section className="section signal-grid"><div className="shell grid gap-8 md:grid-cols-[1fr_3fr]"><p className="eyebrow">{page.finalCta.eyebrow}</p><div><h2 className="section-title">{page.finalCta.title}</h2><p className="mt-6 max-w-2xl text-lg leading-8 text-black/65">{page.finalCta.copy}</p><div className="mt-8 flex flex-col gap-3 sm:flex-row"><Link className="button button-primary" href={primary.href}>{primary.label} <Arrow /></Link>{finalSecondary.external ? <a className="button" href={finalSecondary.href} target={finalSecondary.href.startsWith("http") ? "_blank" : undefined} rel={finalSecondary.href.startsWith("http") ? "noopener noreferrer" : undefined}>{finalSecondary.label} <Arrow direction="up-right" /></a> : <Link className="button" href={finalSecondary.href}>{finalSecondary.label} <Arrow /></Link>}</div>{page.archetype === "location" && <address className="mt-8 grid gap-1 border-t border-black/35 pt-5 font-mono text-[.68rem] not-italic uppercase tracking-[.05em]"><strong>{siteConfig.brandName}</strong><span>{siteConfig.location}</span><span>{siteConfig.phoneDisplay} · {siteConfig.email}</span></address>}</div></div></section>}
-    <PageStructuredData path={path} />
+    <PageStructuredData path={path} faqs={page.faqs} />
   </>;
 }

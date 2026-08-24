@@ -11,12 +11,12 @@ Vercel's current Hobby terms limit use to personal or non-commercial projects. G
 1. Create a private GitHub repository and push this project after confirming no secret files are included.
 2. In Vercel choose **Add New → Project**, import the repository, and retain the detected Next.js settings.
 3. Use `npm run build`; no output-directory override is required.
-4. Add `NEXT_PUBLIC_GTM_ID` to the Production environment when measurement should be active. Leave it unset in Preview unless preview traffic should enter the live container.
+4. No environment variables are required for Phase 1. The public GTM container ID `GTM-59D6JGLP` is committed directly in the site shell.
 5. Test the generated preview before assigning the domain.
 6. Add `neurerohan.com.np` and `www.neurerohan.com.np` in Project → Settings → Domains.
 7. Set the non-www domain as primary and permanently redirect `www` to it.
 8. Vercel displays the exact required DNS values. Copy those current records into Cloudflare DNS; do not use a guessed IP address.
-9. After validation, verify HTTPS, canonical URLs, `/robots.txt`, `/sitemap.xml`, every contact link, consent behaviour and the published GTM container.
+9. After validation, verify HTTPS, canonical URLs, `/robots.txt`, `/sitemap.xml`, every contact link, Google Maps embeds, consent behaviour and the published GTM container.
 
 If Cloudflare proxies the DNS records, follow Vercel's current Cloudflare guidance. DNS-only mode can simplify initial certificate and domain troubleshooting.
 
