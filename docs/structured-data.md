@@ -20,6 +20,8 @@ Schema.org has no dedicated `DigitalMarketingAgency` or `SEOExpert` type. The ac
 - Social packages: `CollectionPage`, `BreadcrumbList`, three transparent `Offer` scopes and nested `Service` entities. No price is emitted because no approved rate has been supplied.
 - About: `AboutPage` and `BreadcrumbList` connected to the organization and person.
 - Contact: `ContactPage` and `BreadcrumbList` connected to the organization.
+- Insights index: `CollectionPage`, `BreadcrumbList` and `ItemList` for the ten real launch resources.
+- Insight articles: `WebPage`, `Article` and `BreadcrumbList`, connected to the global Rohan Neure author and GrowthLabs publisher entities with visible publication/review dates and primary sources.
 - Pages with visible authored questions and answers: matching `FAQPage`, `Question` and `Answer` entities. Google currently limits FAQ rich-result visibility, so this markup describes content without promising a search enhancement.
 - Privacy: `WebPage`, `BreadcrumbList` and a maintained modification date.
 

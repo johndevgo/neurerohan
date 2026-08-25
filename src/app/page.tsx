@@ -5,13 +5,19 @@ import { PerformanceEvidence } from "@/components/search-evidence";
 import { SectionHeading } from "@/components/ui";
 import { PageStructuredData } from "@/components/structured-data";
 import { faqs, industries, problems, process, services, siteConfig } from "@/content/site";
+import { insights } from "@/content/insights";
 
 const serviceLinks: Record<string, { label: string; href: string }> = {
   seo: { label: "Work directly with an SEO expert in Nepal", href: "/seo-expert-in-nepal" },
   "paid-advertising": { label: "Explore advertising support", href: "/advertising-agency-in-nepal" },
   "social-media": { label: "Explore social media marketing", href: "/social-media-marketing-agency-in-nepal" },
   websites: { label: "Explore web design in Nepal", href: "/web-design-company-in-nepal" },
+  "local-seo": { label: "Explore local SEO services", href: "/local-seo-services-in-nepal" },
 };
+
+const insightPreview = ["what-is-seo", "social-media-content-calendar", "google-business-profile-optimization"]
+  .map((slug) => insights.find((article) => article.slug === slug))
+  .filter((article): article is NonNullable<typeof article> => Boolean(article));
 
 const journey = [
   { title: "Be discovered", copy: "Search visibility, local presence, useful content, social distribution and paid campaigns introduce the business to the right audience." },
@@ -48,6 +54,8 @@ export default function HomePage() {
     <section className="section"><div className="shell"><SectionHeading eyebrow="Evidence before promises" title="Measure movement that matters to the business." copy="The scorecard may connect search visibility, qualified visits, campaign efficiency, landing-page behaviour, calls, WhatsApp actions, enquiries, bookings or sales with the pages and channels that influenced them. GrowthLabs does not promise a guaranteed ranking, lead volume or return." /><div className="mt-14 grid gap-8 md:ml-[25%] md:grid-cols-3">{[["Baselines before conclusions", "Understand the starting position before crediting a change."], ["Context with every result", "Record the period, scope, market conditions and intervention behind meaningful movement."], ["Decisions, not dashboard decoration", "Reporting should end with what to continue, change, stop or test."]].map(([title, copy]) => <article className="card" key={title}><h3 className="font-serif text-2xl">{title}</h3><p className="mt-3 leading-7 text-[var(--muted)]">{copy}</p></article>)}</div></div></section>
 
     <section className="section"><div className="shell"><SectionHeading eyebrow="Who GrowthLabs helps" title="Built for businesses with something real to grow." /><div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">{industries.map((industry) => <article className="card" key={industry.title}><h3 className="font-serif text-2xl">{industry.title}</h3><p className="mt-3 text-sm leading-6 text-[var(--muted)]">{industry.copy}</p>{industry.title.startsWith("Hotels") && <Link className="text-link mt-5" href="/hotel-digital-marketing-agency">Hotel digital marketing <Arrow /></Link>}{industry.title.startsWith("Travel") && <Link className="text-link mt-5" href="/seo-for-travel-agency">SEO for travel agencies <Arrow /></Link>}</article>)}</div></div></section>
+
+    <section className="section bg-[var(--surface)]"><div className="shell"><SectionHeading eyebrow="GrowthLabs insights" title="Useful answers before another marketing decision." copy="Source-backed guides turn search, platform and website questions into practical checklists, comparisons and operating tools. No empty article cards and no filler written merely to target a phrase." /><div className="mt-14 grid border-b border-[var(--line-strong)] md:ml-[25%] lg:grid-cols-3">{insightPreview.map((article, index) => <Link className="group flex min-h-80 flex-col border-t border-[var(--line-strong)] p-6 transition-colors hover:bg-[var(--sun)] lg:border-r lg:last:border-r-0" href={`/insights/${article.slug}`} key={article.slug}><p className="font-mono text-[.65rem] font-bold uppercase tracking-[.05em] text-[var(--accent)]">0{index + 1} / {article.category} / {article.readingTime}</p><h3 className="mt-9 font-serif text-3xl leading-none tracking-[-.05em]">{article.shortTitle}</h3><p className="mt-4 text-sm leading-6 text-[var(--muted)]">{article.description}</p><span className="mt-auto flex items-center gap-2 pt-8 text-sm font-bold">Read the guide <Arrow /></span></Link>)}</div><div className="mt-10 md:ml-[25%]"><Link className="button button-primary" href="/insights">Explore all insights <Arrow /></Link></div></div></section>
 
     <section className="section"><div className="shell"><SectionHeading eyebrow="Clarity before execution" title="Know what should be built next—and why." /><ol className="mt-14 md:ml-[25%]">{process.map((step, index) => <li className="grid gap-3 border-t border-[var(--line)] py-6 sm:grid-cols-[4rem_1fr_2fr]" key={step.title}><span className="eyebrow">0{index + 1}</span><h3 className="font-serif text-2xl">{step.title}</h3><p className="leading-7 text-[var(--muted)]">{step.copy}</p></li>)}</ol><div className="mt-10 md:ml-[25%]"><Link className="button button-primary" href={siteConfig.cta.primary.href} data-cta-intent="growth-review" data-cta-location="home-process" data-cta-channel="contact">{siteConfig.cta.primary.headerLabel} <Arrow /></Link></div></div></section>
 

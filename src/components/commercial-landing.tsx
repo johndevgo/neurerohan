@@ -55,6 +55,26 @@ const capabilityAnchors: Record<string, Record<string, string>> = {
     "Landing pages and CRO": "landing-pages",
     "Tracking and attribution setup": "measurement",
   },
+  "google-ads-agency-in-nepal": {
+    "Google Ads account audit": "account-audit",
+    "Keyword and search-term strategy": "keyword-strategy",
+    "Campaign architecture": "campaign-architecture",
+    "Ads and assets": "ads-assets",
+    "Landing-page alignment": "landing-pages",
+    "Conversion tracking and lead quality": "measurement",
+    "Bidding and budget control": "bidding-budget",
+    "Optimisation and reporting": "optimisation",
+  },
+  "local-seo-services-in-nepal": {
+    "Local visibility audit": "local-audit",
+    "Google Business Profile optimisation": "google-business-profile",
+    "Local keyword and page strategy": "local-pages",
+    "Business information and citations": "citations",
+    "Review and reputation workflow": "reviews",
+    "Local on-page and technical SEO": "local-on-page",
+    "Local authority and entity signals": "local-authority",
+    "Calls, directions and enquiry measurement": "measurement",
+  },
   "digital-marketing-agency-in-kathmandu": {
     "SEO and local search": "seo",
     "Google Ads": "google-ads",
@@ -78,6 +98,8 @@ const processPosition: Record<string, number> = {
   "web-design-company-in-nepal": 2,
   "seo-for-travel-agency": 2,
   "advertising-agency-in-nepal": 1,
+  "google-ads-agency-in-nepal": 2,
+  "local-seo-services-in-nepal": 2,
   "digital-marketing-agency-in-kathmandu": 2,
 };
 
@@ -127,6 +149,14 @@ export function CommercialLandingPage({ page }: { page: CommercialLanding }) {
       copy="The supplied Google Ads captures cover home services, SaaS and a medical programme. Their periods, clicks and configured conversion metrics remain visible and prominent. The third capture deliberately includes mixed comparison signals: paid-media expertise means diagnosing inefficiency, not presenting every large number as a win."
     />}
 
+    {page.slug === "google-ads-agency-in-nepal" && <PaidMediaEvidence
+      compact
+      ids={["london-home-services-ads", "saas-google-ads", "uk-medical-program-ads"]}
+      eyebrow="Google Ads evidence / supplied account captures"
+      title="Three Google Ads accounts, with the visible numbers and context left intact."
+      copy="The supplied captures show separate home-services, SaaS and medical-programme accounts across their stated reporting periods. They provide inspectable evidence of account scale, clicks, cost and configured conversion data. The medical capture includes mixed comparison signals, so it is presented as diagnostic context rather than a success claim."
+    />}
+
     {page.slug === "seo-for-travel-agency" && <SearchEvidence
       compact
       ids={["dubai-tours", "dubai-water-adventure"]}
@@ -141,9 +171,13 @@ export function CommercialLandingPage({ page }: { page: CommercialLanding }) {
 
     {page.archetype === "location" && <section className="section bg-[var(--surface)]">
       <div className="shell">
-        <SectionHeading eyebrow="Local presence / Bhaktapur" title="A real Bhaktapur base for work across Kathmandu Valley." copy="GrowthLabs operates from Sallaghari, Bhaktapur and supports businesses across Kathmandu Valley. Use the map to verify the business location, then confirm whether an online appointment or appropriate on-site meeting is the better fit." />
+        <SectionHeading
+          eyebrow="Local presence / Bhaktapur"
+          title={page.slug === "local-seo-services-in-nepal" ? "Verify the real business entity behind the local SEO work." : "A real Bhaktapur base for work across Kathmandu Valley."}
+          copy={page.slug === "local-seo-services-in-nepal" ? "GrowthLabs uses its real Sallaghari, Bhaktapur business context. The map verifies that listed location; it is not evidence of rankings and does not imply separate offices elsewhere in Nepal." : "GrowthLabs operates from Sallaghari, Bhaktapur and supports businesses across Kathmandu Valley. Use the map to verify the business location, then confirm whether an online appointment or appropriate on-site meeting is the better fit."}
+        />
         <div className="mt-12 md:ml-[25%]">
-          <GoogleBusinessMap note="Sallaghari Shopping Complex, Bhaktapur—serving businesses across Kathmandu, Lalitpur, Bhaktapur and the wider Kathmandu Valley." />
+          <GoogleBusinessMap note={page.slug === "local-seo-services-in-nepal" ? "GrowthLabs by Rohan Neure · Sallaghari Shopping Complex, Bhaktapur 44800, Nepal. One real listed location; no fictional branch claims." : "Sallaghari Shopping Complex, Bhaktapur—serving businesses across Kathmandu, Lalitpur, Bhaktapur and the wider Kathmandu Valley."} />
         </div>
       </div>
     </section>}

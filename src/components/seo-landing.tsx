@@ -82,7 +82,7 @@ export function SeoLanding({ faqs }: Props) {
       eyebrow="Rohan Neure / Direct SEO strategy"
       title="SEO expert in Nepal for visibility that supports real growth."
     >
-      <p>Work directly with Rohan Neure on the parts of SEO that determine whether visibility becomes business: search intent, technical foundations, page architecture, useful content, internal links, local relevance, and conversion paths.</p>
+      <p><strong>Rohan Neure is an SEO expert in Nepal providing direct specialist strategy, audits and implementation guidance.</strong> The work focuses on the parts of SEO that determine whether visibility becomes business: search intent, technical foundations, page architecture, useful content, internal links, local relevance and conversion paths.</p>
       <p className="mt-4">The objective is not rankings in isolation. It is to help the right people discover the business, understand why it fits, and take a measurable next step.</p>
       <div className="mt-8 flex flex-col gap-3 sm:flex-row">
         <Link className="button button-primary" href="/contact">Request an SEO review <Arrow /></Link>
@@ -147,7 +147,7 @@ export function SeoLanding({ faqs }: Props) {
       <div className="shell">
         <SectionHeading eyebrow="SEO services with direct specialist involvement" title="Scope follows the constraint." copy="The plan is shaped by search intent, opportunity, website condition, competition, content quality, local visibility, and business goals." />
         <div className="mt-16">{seoCapabilities.map((item, index) => <article id={capabilityIds[index]} className="scroll-mt-28 grid gap-5 border-t border-white/25 py-8 md:grid-cols-[5rem_minmax(13rem,1fr)_minmax(0,1.4fr)]" key={item.title}><p className="eyebrow !text-[var(--sun)]">0{index + 1}</p><div><h3 className="font-serif text-3xl">{item.title}</h3><p className="mt-4 leading-7 text-white/65">{item.summary}</p></div><ul className="grid self-start sm:grid-cols-2">{item.items.map((capability) => <li className="border-t border-white/15 py-3 text-sm text-white/75" key={capability}>{capability}</li>)}</ul></article>)}</div>
-        <Link className="button mt-10 border-white text-white" href="/contact">Request an SEO review <Arrow /></Link>
+        <div className="mt-10 flex flex-wrap gap-5"><Link className="button border-white text-white" href="/contact">Request an SEO review <Arrow /></Link><Link className="text-link !text-[var(--sun)]" href="/local-seo-services-in-nepal">Explore local SEO services <Arrow /></Link></div>
       </div>
     </section>
 
@@ -210,6 +210,18 @@ export function SeoLanding({ faqs }: Props) {
           <p>Competitive commercial growth usually takes sustained work across technical foundations, page quality, internal links, local relevance, useful content, and genuine authority. Search engines—not providers—decide final positions.</p>
           <p>The responsible next step is to understand the website size, current condition, competition, target markets, content needs, implementation responsibility, and measurement quality before estimating scope or timing.</p>
         </div>
+      </div>
+    </section>
+
+    <section className="section bg-[var(--surface)]">
+      <div className="shell">
+        <SectionHeading eyebrow="SEO learning centre" title="Understand the system before choosing the scope." copy="Use the GrowthLabs field guides to clarify the fundamentals, business value, content standard and local-search requirements behind the service." />
+        <div className="mt-12 grid border-b border-[var(--line-strong)] md:ml-[25%] sm:grid-cols-2">{[
+          ["What is SEO?", "/insights/what-is-seo"],
+          ["Advantages of SEO", "/insights/advantages-of-seo"],
+          ["SEO-friendly content", "/insights/seo-friendly-content"],
+          ["Google Business Profile checklist", "/insights/google-business-profile-optimization"],
+        ].map(([label, href]) => <Link className="flex min-h-20 items-center justify-between border-t border-[var(--line-strong)] py-4 pr-5 font-bold hover:bg-[var(--sun)] sm:odd:border-r sm:odd:pl-4" href={href} key={href}>{label} <Arrow /></Link>)}</div>
       </div>
     </section>
 

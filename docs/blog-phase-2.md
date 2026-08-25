@@ -4,9 +4,11 @@
 
 Add a durable, **backend-free** editorial system without changing the Phase 1 shell or design system. Articles will live as version-controlled MDX files in the repository. Publishing is a Git commit and deployment, so there is no database, authentication service, media backend, or public admin dashboard to operate.
 
+Phase 1 now includes a real `/insights` hub and ten source-backed, statically generated articles stored in `src/content/insights.ts`. Those launch URLs, metadata, internal links, Article schema, visible sources and downloadable CSV must be preserved when the content layer later moves to MDX.
+
 ## Public blog
 
-Add `/insights` and `/insights/[slug]` only after at least one approved article exists. The index will support pagination, category and tag filters, and search. Article pages will include author information, featured imagery, estimated reading time, related articles, accessible social-sharing actions, canonical controls, and Article/BlogPosting structured data. Drafts and scheduled articles must never appear in public queries, feeds, search results, related content, sitemap entries, or the RSS feed. Published articles will feed `/feed.xml` and the existing sitemap generator.
+Extend the existing `/insights` and `/insights/[slug]` routes with pagination, category and tag filters, and search when the library is large enough to need them. Future article pages can add featured imagery and accessible social-sharing actions while preserving the current author information, reading time, related articles, canonical controls, visible citations and Article structured data. Drafts and scheduled articles must never appear in public queries, feeds, search results, related content, sitemap entries, or the RSS feed. Published articles will feed `/feed.xml` and the existing sitemap generator.
 
 Suggested domain model:
 
@@ -71,8 +73,8 @@ Provide export commands for articles, taxonomies, authors, revisions, and media 
 
 ## Delivery sequence
 
-1. Finalise MDX frontmatter, content directories and author records.
-2. Add parsing, validation, draft filtering and reading-time utilities.
+1. Finalise MDX frontmatter, content directories and author records; migrate the ten typed launch articles without changing their URLs.
+2. Add parsing, validation, draft filtering and calculated reading-time utilities.
 3. Build accessible index, article, category and tag routes.
 4. Add related content, RSS, article schema and sitemap integration.
 5. Add local authoring templates and preview instructions.
