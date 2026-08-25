@@ -4,6 +4,8 @@ import { PageIntro, SectionHeading } from "./ui";
 import { PageStructuredData } from "./structured-data";
 import { PaidMediaEvidence, SearchEvidence } from "./search-evidence";
 import { GoogleBusinessMap } from "./google-business-map";
+import { agencyAssets } from "@/content/agency-assets";
+import type { AgencyAssetKey } from "@/content/agency-assets";
 import type { CommercialLanding } from "@/content/landing-pages";
 import { siteConfig } from "@/content/site";
 
@@ -84,6 +86,51 @@ const capabilityAnchors: Record<string, Record<string, string>> = {
     "Local SEO and Google Business Profile": "local-seo",
     "Analytics and CRO": "cro",
   },
+  "meta-ads-agency-in-nepal": {
+    "Meta Ads account audit": "account-audit",
+    "Audience and funnel strategy": "audience-strategy",
+    "Facebook and Instagram campaigns": "campaigns",
+    "Performance creative system": "creative-testing",
+    "Landing pages and Instant Forms": "destinations",
+    "Pixel, events and attribution context": "measurement",
+    "Lead-quality feedback": "lead-quality",
+    "Optimisation and reporting": "optimisation",
+  },
+  "conversion-rate-optimization-services": {
+    "Conversion and journey audit": "conversion-audit",
+    "Offer and message clarity": "message-clarity",
+    "Landing-page optimisation": "landing-pages",
+    "Form and contact-path optimisation": "forms",
+    "Mobile UX and accessibility": "mobile-ux",
+    "Analytics and event planning": "measurement",
+    "Research and evidence synthesis": "research",
+    "Experiment and implementation roadmap": "experimentation",
+  },
+  "seo-audit-services-in-nepal": {
+    "Discovery and baseline": "discovery",
+    "Crawling and indexation": "indexation",
+    "Technical SEO": "technical-seo",
+    "Keyword and page architecture": "keyword-mapping",
+    "On-page and entity relevance": "on-page-seo",
+    "Internal linking": "internal-linking",
+    "Local SEO and business entity": "local-seo",
+    "Measurement and implementation roadmap": "roadmap",
+  },
+};
+
+const commercialVisuals: Record<string, AgencyAssetKey> = {
+  "hotel-digital-marketing-agency": "contentStrategy",
+  "social-media-marketing-agency-in-nepal": "metaAds",
+  "web-design-company-in-nepal": "userExperience",
+  "seo-for-travel-agency": "seoServices",
+  "social-media-marketing-packages": "contentStrategy",
+  "advertising-agency-in-nepal": "googleAds",
+  "google-ads-agency-in-nepal": "googleAds",
+  "local-seo-services-in-nepal": "localSeo",
+  "digital-marketing-agency-in-kathmandu": "growthSystem",
+  "meta-ads-agency-in-nepal": "metaAds",
+  "conversion-rate-optimization-services": "conversion",
+  "seo-audit-services-in-nepal": "seoAudit",
 };
 
 const capabilitySecondaryAnchors: Record<string, Record<string, string>> = {
@@ -101,6 +148,9 @@ const processPosition: Record<string, number> = {
   "google-ads-agency-in-nepal": 2,
   "local-seo-services-in-nepal": 2,
   "digital-marketing-agency-in-kathmandu": 2,
+  "meta-ads-agency-in-nepal": 1,
+  "conversion-rate-optimization-services": 1,
+  "seo-audit-services-in-nepal": 1,
 };
 
 function CapabilityRows({ page }: { page: CommercialLanding }) {
@@ -108,7 +158,7 @@ function CapabilityRows({ page }: { page: CommercialLanding }) {
 }
 
 function EditorialSections({ sections, startIndex = 0 }: { sections: NonNullable<CommercialLanding["sections"]>; startIndex?: number }) {
-  return <>{sections.map((section, index) => <section className={`section ${((index + startIndex) % 3 === 1) ? "bg-[var(--surface)]" : ""}`} key={section.title}><div className="shell"><SectionHeading eyebrow={section.eyebrow} title={section.title} copy={section.copy} /><div className="mt-14 grid gap-x-8 gap-y-3 md:ml-[25%] md:grid-cols-2">{section.items.map((item, itemIndex) => <article className="grid grid-cols-[2.5rem_1fr] gap-4 border-t border-[var(--line-strong)] py-5" key={item.title}><span className="font-mono text-[.65rem] text-[var(--accent)]">{String(itemIndex + 1).padStart(2, "0")}</span><div><h3 className="font-serif text-xl leading-tight tracking-[-.035em]">{item.title}</h3><p className="mt-3 leading-7 text-[var(--muted)]">{item.copy}</p></div></article>)}</div></div></section>)}</>;
+  return <>{sections.map((section, index) => <section className={`section ${((index + startIndex) % 3 === 1) ? "bg-[var(--surface)]" : ""}`} key={section.title}><div className="shell"><SectionHeading eyebrow={section.eyebrow} title={section.title} copy={section.copy} /><div className="mt-12 md:ml-[25%]">{section.items.map((item, itemIndex) => <details className="editorial-disclosure group" open={itemIndex === 0} key={item.title}><summary className="grid grid-cols-[2.5rem_minmax(0,1fr)_2rem] items-center gap-4 px-3 py-3"><span className="font-mono text-[.65rem] text-[var(--accent)]">{String(itemIndex + 1).padStart(2, "0")}</span><h3 className="font-serif text-xl leading-tight tracking-[-.035em]">{item.title}</h3><span aria-hidden="true" className="text-right text-[var(--accent)] transition-transform group-open:rotate-45">+</span></summary><p className="max-w-3xl px-3 pb-6 pl-[3.25rem] leading-7 text-[var(--muted)]">{item.copy}</p></details>)}</div></div></section>)}</>;
 }
 
 function ProcessSection({ page }: { page: CommercialLanding }) {
@@ -126,9 +176,10 @@ export function CommercialLandingPage({ page }: { page: CommercialLanding }) {
   const packagePage = page.archetype === "packages";
   const currentLabel = page.breadcrumbLabel ?? page.metaTitle.split(" | ")[0];
   const finalSecondary = page.finalSecondaryCta ?? { label: siteConfig.cta.whatsapp.label, href: siteConfig.cta.whatsapp.href, external: true };
+  const visualKey = page.heroVisual ?? commercialVisuals[page.slug];
 
   return <>
-    <PageIntro breadcrumbs={[{ label: "Services", href: "/services" }, { label: currentLabel }]} eyebrow={page.eyebrow} title={page.title}><p>{page.intro}</p><div className="mt-8 flex flex-col gap-3 sm:flex-row"><Link className="button button-primary" href={primary.href} data-cta-intent={page.slug} data-cta-location="hero" data-cta-channel="contact">{primary.label} <Arrow /></Link><Link className="button" href={secondary.href} data-cta-intent={page.slug} data-cta-location="hero-secondary">{secondary.label} <Arrow /></Link></div>{page.microcopy && <p className="mt-4 font-mono text-[.7rem] uppercase leading-5 tracking-[.04em]">{page.microcopy}</p>}</PageIntro>
+    <PageIntro breadcrumbs={[{ label: "Services", href: "/services" }, { label: currentLabel }]} eyebrow={page.eyebrow} title={page.title} visual={visualKey ? agencyAssets[visualKey] : undefined}><p>{page.intro}</p><div className="mt-8 flex flex-col gap-3 sm:flex-row"><Link className="button button-primary" href={primary.href} data-cta-intent={page.slug} data-cta-location="hero" data-cta-channel="contact">{primary.label} <Arrow /></Link><Link className="button" href={secondary.href} data-cta-intent={page.slug} data-cta-location="hero-secondary">{secondary.label} <Arrow /></Link></div>{page.microcopy && <p className="mt-4 font-mono text-[.7rem] uppercase leading-5 tracking-[.04em]">{page.microcopy}</p>}</PageIntro>
 
     {page.trust && <div className="signal-band"><ul className={`shell grid py-1 font-mono text-[.72rem] font-bold uppercase tracking-[.05em] sm:grid-cols-2 ${page.trust.length > 5 ? "lg:grid-cols-6" : "lg:grid-cols-5"}`}>{page.trust.map((item, index) => <li className="flex items-center gap-3 border-black/25 py-4 pr-4 lg:border-r lg:last:border-0 lg:pl-4 lg:first:pl-0" key={item}><span>0{index + 1}</span>{item}</li>)}</ul></div>}
 

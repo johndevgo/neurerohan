@@ -20,14 +20,18 @@ Schema.org has no dedicated `DigitalMarketingAgency` or `SEOExpert` type. The ac
 - Social packages: `CollectionPage`, `BreadcrumbList`, three transparent `Offer` scopes and nested `Service` entities. No price is emitted because no approved rate has been supplied.
 - About: `AboutPage` and `BreadcrumbList` connected to the organization and person.
 - Contact: `ContactPage` and `BreadcrumbList` connected to the organization.
-- Insights index: `CollectionPage`, `BreadcrumbList` and `ItemList` for the ten real launch resources.
+- Insights index and case-study library: `CollectionPage`, `BreadcrumbList` and `ItemList` for the visible resources and supplied evidence captures.
 - Insight articles: `WebPage`, `Article` and `BreadcrumbList`, connected to the global Rohan Neure author and GrowthLabs publisher entities with visible publication/review dates and primary sources.
+- Glossary: `DefinedTermSet`, nested `DefinedTerm` entities, `WebPage`, and `BreadcrumbList`, matching the visible definitions.
+- Questions library: `FAQPage`, `WebPage`, and `BreadcrumbList`, matching the visible answers.
+- Downloadable resource pages: `CreativeWork`, `WebPage`, and `BreadcrumbList` describing the visible checklist or template and repository-hosted CSV.
+- Browser tools: `SoftwareApplication`, `WebPage`, `FAQPage`, and `BreadcrumbList`. The tools are free, execute locally in the browser, expose their assumptions, and make no performance guarantee.
 - Pages with visible authored questions and answers: matching `FAQPage`, `Question` and `Answer` entities. Google currently limits FAQ rich-result visibility, so this markup describes content without promising a search enhancement.
 - Privacy: `WebPage`, `BreadcrumbList` and a maintained modification date.
 
 ## Intentionally excluded
 
-- `Product`: GrowthLabs currently offers custom professional-service scopes, not fixed purchasable products with approved price and availability data.
+- `Product`: GrowthLabs currently offers custom professional-service scopes and free utilities, not fixed purchasable products with approved price and availability data. Free browser tools use the more accurate `SoftwareApplication` type.
 - `Review` and `AggregateRating`: no permissioned, attributable, visibly published client reviews and ratings were supplied. Search Console screenshots are performance evidence, not reviews.
 - invented price ranges, awards, client names, aggregate outcomes or guaranteed results.
 

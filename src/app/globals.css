@@ -228,6 +228,58 @@ img { display: block; }
 .proof-interpretation { border-top: 1px solid var(--line-strong); padding: .9rem 1rem 1rem; font-size: .78rem; line-height: 1.55; color: var(--muted); }
 .proof-interpretation-dark { border-color: rgba(255,255,255,.2); background: var(--ink-soft); color: rgba(255,255,255,.65); }
 
+.editorial-visual {
+  overflow: hidden;
+  border: 1px solid var(--ink);
+  background: var(--surface);
+  box-shadow: 8px 8px 0 var(--sun);
+}
+.editorial-visual img { transition: transform .35s ease; }
+.editorial-visual:hover img { transform: scale(1.018); }
+.editorial-visual figcaption {
+  border-top: 1px solid var(--ink);
+  padding: .8rem .9rem;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: .66rem;
+  line-height: 1.5;
+}
+.editorial-disclosure {
+  border-top: 1px solid var(--line-strong);
+}
+.editorial-disclosure:last-child { border-bottom: 1px solid var(--line-strong); }
+.editorial-disclosure summary {
+  min-height: 4.75rem;
+  cursor: pointer;
+  list-style: none;
+}
+.editorial-disclosure summary::-webkit-details-marker { display: none; }
+.editorial-disclosure summary:hover { background: color-mix(in srgb, var(--sun) 18%, transparent); }
+.editorial-disclosure[open] summary { background: color-mix(in srgb, var(--sun) 24%, transparent); }
+.article-deep-dive {
+  margin-top: 1.5rem;
+  max-width: 48rem;
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+}
+.article-deep-dive summary {
+  display: flex;
+  min-height: 3.25rem;
+  cursor: pointer;
+  list-style: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .75rem 1rem;
+  font-size: .76rem;
+  font-weight: 800;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.article-deep-dive summary::-webkit-details-marker { display: none; }
+.article-deep-dive[open] summary { border-bottom: 1px solid var(--line); background: var(--paper-deep); }
+.article-deep-dive > div { padding: 0 1rem 1.25rem; }
+
 .map-panel { border: 1px solid var(--ink); background: var(--surface); }
 .map-frame { position: relative; min-height: 20rem; overflow: hidden; background: var(--paper-deep); }
 .map-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; }

@@ -4,11 +4,11 @@
 
 Add a durable, **backend-free** editorial system without changing the Phase 1 shell or design system. Articles will live as version-controlled MDX files in the repository. Publishing is a Git commit and deployment, so there is no database, authentication service, media backend, or public admin dashboard to operate.
 
-Phase 1 now includes a real `/insights` hub and ten source-backed, statically generated articles stored in `src/content/insights.ts`. Those launch URLs, metadata, internal links, Article schema, visible sources and downloadable CSV must be preserved when the content layer later moves to MDX.
+Phase 1 now includes a real `/insights` hub, ten source-backed static articles, a questions library, glossary, evidence-led case-study hub, free tools, and downloadable resources. Those URLs, metadata, internal links, schema, visible sources, and files must be preserved when the content layer later moves to MDX.
 
 ## Public blog
 
-Extend the existing `/insights` and `/insights/[slug]` routes with pagination, category and tag filters, and search when the library is large enough to need them. Future article pages can add featured imagery and accessible social-sharing actions while preserving the current author information, reading time, related articles, canonical controls, visible citations and Article structured data. Drafts and scheduled articles must never appear in public queries, feeds, search results, related content, sitemap entries, or the RSS feed. Published articles will feed `/feed.xml` and the existing sitemap generator.
+Extend the existing `/insights` and `/insights/[slug]` routes with pagination, category and tag filters, and search when the library is large enough to need them. Keep questions, glossary terms, evidence records, resources, and tools as separate content types rather than forcing every item into an Article model. Future article pages can add featured imagery and accessible social-sharing actions while preserving the current author information, reading time, related articles, canonical controls, visible citations and Article structured data. Drafts and scheduled articles must never appear in public queries, feeds, search results, related content, sitemap entries, or the RSS feed. Published articles will feed `/feed.xml` and the existing sitemap generator.
 
 Suggested domain model:
 

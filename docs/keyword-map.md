@@ -37,8 +37,11 @@ This map converts the supplied keyword exports into one canonical URL per distin
 | --- | --- | --- |
 | `/google-ads-agency-in-nepal` | Platform-specific Google Ads management, audit, and optimization | Owns Google Search/PPC account structure, search terms, negatives, bidding, budgets, conversion actions, landing pages, and optimization. The advertising page remains the multi-platform umbrella. |
 | `/local-seo-services-in-nepal` | Local SEO, Google Maps, and Google Business Profile support | Owns profile eligibility and accuracy, categories, services, local relevance, reviews, business information, local pages, and contact measurement. The SEO-company page remains the complete organic programme. |
+| `/meta-ads-agency-in-nepal` | Meta Ads management for Facebook and Instagram | Owns paid-social campaign objectives, audience logic, creative systems, lead forms versus landing pages, tracking, follow-up, and lead quality. The advertising page remains the multi-platform umbrella. |
+| `/conversion-rate-optimization-services` | Conversion rate optimisation services | Owns research, journey diagnosis, offer and message clarity, UX friction, proof, forms, calls to action, measurement, and responsible testing. Web design remains the whole-site build decision. |
+| `/seo-audit-services-in-nepal` | Technical, on-page, content and local SEO audit | Owns bounded diagnosis and a prioritised implementation roadmap. SEO expert and SEO company pages own specialist and ongoing delivery decisions. |
 
-No separate Meta Ads money page is launched yet because the export does not establish a distinct commercial cluster and no Meta performance capture has been supplied.
+These three pages were added because the current offer, supplied keyword set, service boundaries, and page depth support a distinct buyer decision. The Meta Ads page does not present unsupported platform results; it explains the system and evidence requirements instead.
 
 ## Static Insights pages approved
 
@@ -57,6 +60,22 @@ These are real, crawlable editorial resources built without a database, CMS, log
 | `/insights/website-development-checklist` | website development/launch checklist | 210 | Original pre-launch and post-launch checklist supporting web design. |
 | `/insights/digital-marketing-process` | digital marketing process/strategy process | 100 | GrowthLabs methodology connecting diagnosis, demand, channels, implementation, measurement, and iteration. |
 
+## Knowledge, evidence, resources, and tools
+
+| Canonical URL | Role | Search boundary |
+| --- | --- | --- |
+| `/insights/questions` | Direct-answer library across SEO, paid media, CRO, measurement, and agency selection | Owns concise question intent and links to deeper explanations; it does not duplicate service-page sales sections. |
+| `/insights/glossary` | DefinedTermSet for important digital-marketing entities | Owns definitions and practical cautions, with contextual links to the relevant guide or service. |
+| `/insights/case-studies` | Evidence library for supplied Search Console and Google Ads captures | Presents dates, platform metrics, and limitations without inventing intervention, attribution, revenue, or client identity. |
+| `/resources` | Downloadable planning-resource hub | Owns templates and checklists rather than informational articles or service intent. |
+| `/resources/seo-audit-checklist` | SEO audit checklist | A usable CSV and implementation sequence supporting the audit service. |
+| `/resources/digital-marketing-brief-template` | Marketing brief template | A usable CSV for defining audience, offer, outcomes, evidence, responsibilities, and constraints. |
+| `/resources/website-launch-checklist` | Website launch checklist | A usable CSV covering content, accessibility, SEO, tracking, redirects, and post-launch checks. |
+| `/tools/seo-roi-calculator` | SEO ROI scenario calculator | Models assumptions transparently; it does not forecast traffic, rankings, or revenue. |
+| `/tools/google-ads-break-even-calculator` | Break-even ROAS, CPA, CPL, and CPC calculator | Owns paid-search unit-economics planning, not Google Ads management intent. |
+| `/tools/meta-ads-budget-planner` | Meta Ads budget scenario planner | Owns transparent budget arithmetic, not campaign-management intent. |
+| `/tools/utm-builder` | UTM campaign URL builder | Owns campaign-tagging utility intent, with no storage or account required. |
+
 ## Cannibalization rules
 
 - Homepage owns the brand; the national agency page owns broad Nepal marketing-company language.
@@ -70,11 +89,10 @@ These are real, crawlable editorial resources built without a database, CMS, log
 
 ## Deferred pending evidence or demand
 
-- Meta Ads agency: require a distinct keyword cluster, clear service boundary, and ideally anonymized Meta Ads evidence.
-- CRO services, landing-page design, analytics/conversion tracking, content-marketing agency, and technical SEO audit pages: require stronger supplied demand and distinct deliverables before separation.
+- Landing-page design, analytics/conversion tracking, content-marketing agency, and technical-SEO subservice pages remain deferred until the supplied demand and deliverables justify distinct canonical intents.
 - Bhaktapur agency page: the location is real, but a dedicated page should wait for local query evidence and additional unique local information.
 - Pricing pages for SEO, Google Ads, or digital marketing: require real ranges or examples from Rohan.
-- Case-study pages: require permission, role, intervention, baseline, dates, outcomes, and limitations. Dashboard captures alone remain performance evidence.
+- Individual client case-study URLs still require permission, role, intervention, baseline, dates, outcomes, and limitations. Dashboard captures remain clearly labelled evidence notes in the case-study library.
 
 ## Rejected from the supplied export
 

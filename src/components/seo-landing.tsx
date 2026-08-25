@@ -11,6 +11,7 @@ import {
   type SeoFaq,
 } from "@/content/seo";
 import { siteConfig } from "@/content/site";
+import { agencyAssets } from "@/content/agency-assets";
 
 type Props = { variant: "expert" | "company"; faqs: SeoFaq[] };
 
@@ -81,6 +82,7 @@ export function SeoLanding({ faqs }: Props) {
       breadcrumbs={[{ label: "Services", href: "/services" }, { label: "SEO Expert in Nepal" }]}
       eyebrow="Rohan Neure / Direct SEO strategy"
       title="SEO expert in Nepal for visibility that supports real growth."
+      visual={agencyAssets.seoServices}
     >
       <p><strong>Rohan Neure is an SEO expert in Nepal providing direct specialist strategy, audits and implementation guidance.</strong> The work focuses on the parts of SEO that determine whether visibility becomes business: search intent, technical foundations, page architecture, useful content, internal links, local relevance and conversion paths.</p>
       <p className="mt-4">The objective is not rankings in isolation. It is to help the right people discover the business, understand why it fits, and take a measurable next step.</p>

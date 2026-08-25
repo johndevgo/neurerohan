@@ -1,6 +1,8 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { Arrow } from "./icons";
+import type { AgencyAsset } from "@/content/agency-assets";
 import { siteConfig } from "@/content/site";
 
 export type BreadcrumbItem = { label: string; href?: string };
@@ -9,8 +11,8 @@ export function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
   return <nav className="breadcrumbs" aria-label="Breadcrumb"><ol className="shell"><li><Link href="/">Home</Link></li>{items.map((item) => <li key={`${item.label}-${item.href ?? "current"}`}>{item.href ? <Link href={item.href}>{item.label}</Link> : <span aria-current="page">{item.label}</span>}</li>)}</ol></nav>;
 }
 
-export function PageIntro({ eyebrow, title, children, breadcrumbs }: { eyebrow: string; title: string; children: ReactNode; breadcrumbs?: BreadcrumbItem[] }) {
-  return <>{breadcrumbs && <Breadcrumbs items={breadcrumbs} />}<section className="relative overflow-hidden border-b border-[var(--line)] bg-[var(--surface)]"><div aria-hidden="true" className="signal-grid absolute inset-y-0 right-0 hidden w-[18%] opacity-70 lg:block" /><div className="shell relative grid gap-10 py-16 md:grid-cols-[1fr_3fr] md:py-28"><div><p className="eyebrow pt-2">{eyebrow}</p><div className="growth-trace mt-8 hidden max-w-40 md:block" /></div><div><h1 className="page-title">{title}</h1><div className="lede mt-8 border-t border-[var(--line-strong)] pt-6">{children}</div></div></div></section></>;
+export function PageIntro({ eyebrow, title, children, breadcrumbs, visual }: { eyebrow: string; title: string; children: ReactNode; breadcrumbs?: BreadcrumbItem[]; visual?: AgencyAsset }) {
+  return <>{breadcrumbs && <Breadcrumbs items={breadcrumbs} />}<section className="relative overflow-hidden border-b border-[var(--line)] bg-[var(--surface)]"><div aria-hidden="true" className="signal-grid absolute inset-y-0 right-0 hidden w-[18%] opacity-70 lg:block" /><div className={`shell relative grid gap-10 py-16 md:py-24 ${visual ? "lg:grid-cols-[.55fr_1.7fr_.95fr] lg:items-start" : "md:grid-cols-[1fr_3fr] md:py-28"}`}><div><p className="eyebrow pt-2">{eyebrow}</p><div className="growth-trace mt-8 hidden max-w-40 md:block" /></div><div><h1 className="page-title">{title}</h1><div className="lede mt-8 border-t border-[var(--line-strong)] pt-6">{children}</div></div>{visual && <figure className="editorial-visual self-start lg:sticky lg:top-[calc(var(--header)+2rem)]"><div className="aspect-[4/5] overflow-hidden bg-[var(--paper-deep)]"><Image className="h-full w-full object-cover" src={visual.src} alt={visual.alt} width={visual.width} height={visual.height} sizes="(max-width: 1024px) 100vw, 28vw" style={{ objectPosition: visual.position ?? "center" }} /></div><figcaption>{visual.caption}</figcaption></figure>}</div></section></>;
 }
 export function SectionHeading({ eyebrow, title, copy, variant = "split" }: { eyebrow: string; title: string; copy?: string; variant?: "split" | "compact" | "centered" }) {
   if (variant === "centered") return <div className="mx-auto max-w-4xl text-center"><p className="eyebrow">{eyebrow}</p><h2 className="section-title mx-auto mt-5">{title}</h2>{copy && <p className="lede mx-auto mt-6">{copy}</p>}</div>;

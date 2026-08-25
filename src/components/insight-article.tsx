@@ -4,6 +4,7 @@ import { PageIntro, SectionHeading } from "./ui";
 import { StructuredData } from "./structured-data";
 import type { InsightArticle, InsightSection, InsightTable } from "@/content/insights";
 import { siteConfig } from "@/content/site";
+import { agencyAssets, insightVisuals } from "@/content/agency-assets";
 
 function displayDate(value: string) {
   return new Intl.DateTimeFormat("en-NP", { day: "numeric", month: "long", year: "numeric", timeZone: "Asia/Kathmandu" }).format(new Date(`${value}T12:00:00+05:45`));
@@ -20,13 +21,17 @@ function DataTable({ table }: { table: InsightTable }) {
 }
 
 function ArticleSection({ section, index }: { section: InsightSection; index: number }) {
+  const paragraphs = section.paragraphs ?? [];
+  const leadParagraph = paragraphs[0];
+  const deepParagraphs = paragraphs.slice(1);
   return <section aria-labelledby={`${section.id}-title`} className={`scroll-mt-28 border-t border-[var(--line)] py-12 md:py-16 ${index % 2 === 1 ? "bg-[var(--surface)]" : ""}`} id={section.id}>
     <div className="content grid gap-7 md:grid-cols-[10rem_minmax(0,1fr)]">
       <p className="eyebrow">Section / {String(index + 1).padStart(2, "0")}</p>
       <div>
         <h2 className="max-w-[22ch] font-serif text-[clamp(2.1rem,4.2vw,4.2rem)] leading-[.98] tracking-[-.055em]" id={`${section.id}-title`}>{section.title}</h2>
         {section.answer && <p className="mt-7 border-l-4 border-[var(--sun)] bg-[var(--paper-deep)] px-5 py-4 text-lg font-semibold leading-8">{section.answer}</p>}
-        {section.paragraphs?.map((paragraph) => <p className="mt-6 max-w-[48rem] text-[1.05rem] leading-8 text-[var(--muted)]" key={paragraph}>{paragraph}</p>)}
+        {leadParagraph && <p className="mt-6 max-w-[48rem] text-[1.05rem] leading-8 text-[var(--muted)]">{leadParagraph}</p>}
+        {deepParagraphs.length > 0 && <details className="article-deep-dive group"><summary><span>Read the deeper explanation</span><span aria-hidden="true" className="text-[var(--accent)] transition-transform group-open:rotate-45">+</span></summary><div>{deepParagraphs.map((paragraph) => <p className="mt-5 text-[1.02rem] leading-8 text-[var(--muted)]" key={paragraph}>{paragraph}</p>)}</div></details>}
         {section.bullets && <ul className="mt-7 max-w-[48rem] border-b border-[var(--line)]">{section.bullets.map((item) => <li className="grid grid-cols-[1.5rem_1fr] gap-3 border-t border-[var(--line)] py-4 leading-7" key={item}><span aria-hidden="true" className="font-mono text-[var(--accent)]">+</span><span>{item}</span></li>)}</ul>}
         {section.steps && <ol className="mt-8 max-w-[50rem] border-b border-[var(--line-strong)]">{section.steps.map((step, stepIndex) => <li className="grid gap-3 border-t border-[var(--line-strong)] py-5 sm:grid-cols-[3rem_minmax(0,1fr)]" key={step.title}><span className="font-mono text-xs text-[var(--accent)]">{String(stepIndex + 1).padStart(2, "0")}</span><div><h3 className="font-serif text-xl tracking-[-.035em]">{step.title}</h3><p className="mt-2 leading-7 text-[var(--muted)]">{step.copy}</p></div></li>)}</ol>}
         {section.table && <DataTable table={section.table} />}
@@ -99,8 +104,9 @@ function insightFaqSchema(article: InsightArticle) {
 }
 
 export function InsightArticlePage({ article }: { article: InsightArticle }) {
+  const visualKey = insightVisuals[article.category] ?? "growthSystem";
   return <>
-    <PageIntro breadcrumbs={[{ label: "Insights", href: "/insights" }, { label: article.shortTitle }]} eyebrow={`${article.category} / GrowthLabs field guide`} title={article.title}>
+    <PageIntro breadcrumbs={[{ label: "Insights", href: "/insights" }, { label: article.shortTitle }]} eyebrow={`${article.category} / GrowthLabs field guide`} title={article.title} visual={agencyAssets[visualKey]}>
       <p>{article.answer}</p>
       <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2 border-t border-[var(--line-strong)] pt-4 font-mono text-[.68rem] font-bold uppercase tracking-[.045em] text-[var(--muted)]"><span>By {siteConfig.fullName}</span><time dateTime={article.dateModified}>Reviewed {displayDate(article.dateModified)}</time><span>{article.readingTime}</span></div>
     </PageIntro>

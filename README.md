@@ -24,9 +24,9 @@ npm start
 
 ## Content
 
-Brand, founder, service, proof, industry, process, FAQ, contact, and social information is typed and centralized in `src/content/site.ts`. Commercial landing-page content lives in `src/content/landing-pages.ts`, and the ten launch Insights live in `src/content/insights.ts`. Update approved facts in those sources instead of scattering them across components.
+Brand, founder, service, proof, industry, process, FAQ, contact, and social information is typed and centralized in `src/content/site.ts`. Commercial landing-page content lives in `src/content/landing-pages.ts`; the ten launch articles live in `src/content/insights.ts`; questions, glossary terms, and downloadable resources live in `src/content/knowledge.ts`; tool definitions live in `src/content/tools.ts`; and reusable editorial imagery lives in `src/content/agency-assets.ts`. Update approved facts in those sources instead of scattering them across components.
 
-`/insights` and its ten static article routes require no CMS, database, authentication, or server-side publishing backend. The social-media calendar download is a repository-hosted CSV under `public/downloads`.
+`/insights`, its ten static articles, questions, glossary and evidence library require no CMS, database, authentication, or server-side publishing backend. The free calculators run entirely in the visitor's browser. The planning templates and social-media calendar are repository-hosted CSV files under `public/downloads`.
 
 Projects support index and detail routes for future case studies. Adding a project object automatically makes its `/work/[slug]` route buildable.
 
@@ -56,7 +56,7 @@ DNS and hosting account changes are intentionally outside this repository and ha
 
 - `src/app` — routes, route metadata, SEO endpoints, and global styles
 - `src/components` — reusable site shell and presentation primitives
-- `src/content` — typed brand, commercial-page, and launch-Insights source of truth
+- `src/content` — typed brand, commercial-page, Insights, knowledge, resource, tool, and editorial-asset sources of truth
 - `src/lib` — shared metadata helpers
 - `docs/blog-phase-2.md` — future publishing-system plan
 - `docs/keyword-map.md` — approved search architecture and editorial backlog

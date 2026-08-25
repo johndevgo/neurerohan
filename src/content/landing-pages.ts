@@ -1,3 +1,5 @@
+import type { AgencyAssetKey } from "@/content/agency-assets";
+
 export type CommercialLanding = {
   slug: string;
   eyebrow: string;
@@ -5,6 +7,7 @@ export type CommercialLanding = {
   metaTitle: string;
   description: string;
   breadcrumbLabel?: string;
+  heroVisual?: AgencyAssetKey;
   intro: string;
   promise: string;
   primaryCta?: { label: string; href: string };
@@ -655,6 +658,222 @@ export const commercialLandings: CommercialLanding[] = [
     ],
     finalCta: { eyebrow: "Local context, connected execution", title: "Find the next growth priority for your Kathmandu Valley business.", copy: "Tell GrowthLabs where customers discover you, what they need to understand and where enquiries are being lost. Rohan will recommend a practical path forward." },
     related: [{ label: "Digital marketing agency in Nepal", href: "/digital-marketing-agency-in-nepal" }, { label: "Digital marketing process guide", href: "/insights/digital-marketing-process" }, { label: "SEO company in Nepal", href: "/seo-company-in-nepal" }, { label: "Advertising agency in Nepal", href: "/advertising-agency-in-nepal" }, { label: "Contact GrowthLabs", href: "/contact" }, { label: "About GrowthLabs", href: "/about" }]
+  },
+  {
+    slug: "meta-ads-agency-in-nepal",
+    heroVisual: "metaAds",
+    eyebrow: "Facebook Ads · Instagram Ads · Creative testing · Measurement",
+    title: "Meta Ads agency in Nepal for campaigns built beyond the boost button.",
+    metaTitle: "Meta Ads Agency in Nepal | Facebook & Instagram Ads",
+    description: "Founder-led Meta Ads agency in Nepal for Facebook and Instagram campaign strategy, creative testing, lead generation, retargeting, tracking and CRO.",
+    breadcrumbLabel: "Meta Ads Agency in Nepal",
+    intro: "GrowthLabs is a founder-led Meta Ads agency in Nepal planning Facebook Ads and Instagram Ads around the audience, offer, creative, destination, tracking and lead-quality feedback. Campaigns are built to create a useful business signal—not merely cheap reach, reactions or platform-reported leads.",
+    promise: "Give every Meta campaign a defined audience, persuasive message, credible destination and measurable next action.",
+    primaryCta: { label: "Request a Meta Ads review", href: "/contact" },
+    secondaryCta: { label: "See Facebook lead-ad guidance", href: "/insights/facebook-lead-generation-ads" },
+    microcopy: "Share your offer, active Meta account, target market, creative capacity, landing page and the qualified action you need.",
+    trust: ["Facebook + Instagram", "Audience strategy", "Creative testing", "Lead quality", "Tracking + CRO"],
+    archetype: "service",
+    labels: { objective: "The Meta Ads objective", challengesEyebrow: "Why paid social stalls", challengesTitle: "Distribution cannot repair a weak offer or unclear journey.", capabilitiesEyebrow: "Meta advertising capabilities", capabilitiesTitle: "Connect audience, creative, offer and action.", outcomesEyebrow: "What better structure creates", outcomesTitle: "A campaign system designed to learn.", processEyebrow: "Meta Ads process", processTitle: "Build the learning system before scaling spend.", faqEyebrow: "Meta Ads questions", faqTitle: "Useful answers about Facebook and Instagram advertising." },
+    challenges: [
+      { title: "Boosted posts replace campaign strategy", copy: "A boost can distribute content, but it does not define the commercial job, customer stage, conversion architecture or learning plan behind the spend." },
+      { title: "Creative is treated as decoration", copy: "Paid social performance depends on the hook, message, proof, format, offer and next step. One polished asset cannot answer every audience context." },
+      { title: "Lead volume hides lead quality", copy: "Instant Forms can reduce friction, but weak qualification, slow response and missing CRM feedback make a low cost per lead commercially misleading." },
+      { title: "Tracking begins after launch", copy: "Pixel, Conversions API considerations, event definitions, consent, UTMs and lead-status feedback should be planned before campaign conclusions are drawn." },
+      { title: "Budget is scaled before the journey is ready", copy: "More distribution increases the cost of weak positioning, poor landing-page continuity, unclear proof and unreliable follow-up." },
+    ],
+    capabilities: [
+      { title: "Meta Ads account audit", copy: "Review account structure, objectives, audiences, exclusions, placements, creative, spend, destinations, events and configured conversion reporting.", items: ["Account review", "Campaign diagnosis", "Tracking checks", "Priority roadmap"] },
+      { title: "Audience and funnel strategy", copy: "Define prospecting, engagement, retargeting and customer contexts around what each group knows and what action is appropriate next.", items: ["Audience hypotheses", "Journey stages", "Exclusions", "Retargeting windows"] },
+      { title: "Facebook and Instagram campaigns", copy: "Select objectives and campaign structure according to the conversion route, available signal quality, budget and creative resources.", items: ["Sales campaigns", "Lead campaigns", "Traffic with purpose", "Retargeting"] },
+      { title: "Performance creative system", copy: "Develop testable hooks, messages, proof, offers, formats and calls to action rather than relying on cosmetic variations.", items: ["Creative briefs", "Hook matrix", "Format planning", "Testing sequence"] },
+      { title: "Landing pages and Instant Forms", copy: "Choose between an on-platform form and website journey according to qualification needs, friction, message depth, tracking and follow-up readiness.", items: ["Form design", "Landing-page continuity", "Qualification", "Thank-you journey"] },
+      { title: "Pixel, events and attribution context", copy: "Map the actions that matter, validate available signals and explain what platform attribution can and cannot establish.", items: ["Event planning", "UTM conventions", "Signal review", "Attribution limits"] },
+      { title: "Lead-quality feedback", copy: "Connect campaign reporting to contact rate, qualification, pipeline movement or purchase quality where the client systems permit.", items: ["Lead status", "Response speed", "Quality feedback", "Sales context"] },
+      { title: "Optimisation and reporting", copy: "Use audience, creative, placement, frequency, destination and conversion evidence to decide what to continue, change, stop or test.", items: ["Creative findings", "Budget control", "Journey diagnosis", "Decision reporting"] },
+    ],
+    outcomes: ["Clearer campaign roles", "More useful creative learning", "Better visibility into lead quality", "Paid social connected to conversion"],
+    leadSections: [{ eyebrow: "Campaign architecture", title: "Use the right destination for the decision.", copy: "Meta Ads can create discovery, consideration, leads or sales, but the objective and destination must match the amount of context a person needs.", items: [
+      { title: "Instant Forms", copy: "Useful when mobile completion speed matters and the form can qualify intent without pretending every submission is an opportunity." },
+      { title: "Landing pages", copy: "Useful when the offer needs explanation, comparison, proof, eligibility details or stronger analytics before a visitor acts." },
+      { title: "Messages and WhatsApp", copy: "Useful when conversation is a natural buying step and the business can respond quickly with a defined qualification process." },
+      { title: "Website sales", copy: "Useful when product, checkout, event and catalogue foundations are reliable enough to support optimisation and customer experience." },
+    ] }],
+    sections: [
+      { eyebrow: "Creative testing", title: "Test meaningful differences, not cosmetic noise.", copy: "A useful creative system changes one or more decision variables deliberately and records what the result teaches.", items: [
+        { title: "Hook and problem", copy: "Test how quickly the creative establishes relevance and whether the problem framing matches audience awareness." },
+        { title: "Offer and proof", copy: "Test what is being promised, why it is credible, what conditions apply and which objections need evidence." },
+        { title: "Format and delivery", copy: "Compare suitable short video, static, carousel, founder-led, product-led and demonstration formats without assuming one format always wins." },
+        { title: "Destination continuity", copy: "Keep the advertisement, form or landing page aligned so the next step fulfils the expectation created by the creative." },
+      ] },
+      { eyebrow: "Measurement", title: "Separate platform signals from business truth.", copy: "Meta reports delivery and attributed actions according to its systems and selected attribution settings. Business reporting should also examine lead validity, contactability, qualification, sales feedback, refunds or repeat value when available.", items: [
+        { title: "Platform layer", copy: "Reach, frequency, video behaviour, clicks, landing-page views and configured attributed conversions help diagnose delivery." },
+        { title: "Business layer", copy: "Contact rate, qualified leads, booked calls, purchases, margin and customer quality determine whether the activity supports the business." },
+      ] },
+      { eyebrow: "Scope and investment", title: "Fees and media spend have different jobs.", copy: "Management scope depends on markets, objectives, campaign count, creative system, tracking condition, destination work, reporting and lead-feedback access. Advertising spend is paid separately to Meta.", items: [
+        { title: "Focused audit or setup", copy: "Use a defined engagement to diagnose the account, rebuild structure, plan tracking or prepare a campaign and creative test system." },
+        { title: "Ongoing campaign management", copy: "Use continued support when the account needs active testing, budget decisions, creative iteration, reporting and journey improvement." },
+      ] },
+    ],
+    process: [
+      { title: "Diagnose", copy: "Review the offer, audience, account, creative, destination, tracking and lead quality." },
+      { title: "Define", copy: "Set the campaign job, qualified action, decision metrics and operational responsibilities." },
+      { title: "Build", copy: "Create structure, audiences, events, forms or landing-page continuity and a purposeful creative test plan." },
+      { title: "Launch", copy: "Control delivery, budgets, exclusions and early quality checks without reacting to noise." },
+      { title: "Learn", copy: "Use creative, audience, destination and business feedback to improve the next decision." },
+    ],
+    faqs: [
+      { question: "What does a Meta Ads agency in Nepal manage?", answer: "Scope can include Facebook and Instagram campaign strategy, account structure, audiences, retargeting, creative testing, Instant Forms, landing-page alignment, Pixel and event planning, reporting and lead-quality feedback." },
+      { question: "Are Facebook Ads and Meta Ads the same?", answer: "Meta Ads Manager is used to advertise across eligible Meta placements, including Facebook and Instagram. Placement availability and interfaces can change." },
+      { question: "Should I use an Instant Form or landing page?", answer: "Use the route that fits the decision. Instant Forms reduce mobile friction; landing pages can provide deeper explanation, proof, qualification and measurement. The best choice depends on the offer and follow-up system." },
+      { question: "Does GrowthLabs create Meta Ads creative?", answer: "Creative strategy, briefs, hooks, messages and testing direction can be included. Filming, editing, design, talent and production ownership are confirmed in scope." },
+      { question: "Is ad spend included in the fee?", answer: "No. Meta media spend is paid separately from strategy, setup, creative direction, campaign management, landing-page and tracking work." },
+      { question: "Can you guarantee leads or sales?", answer: "No responsible agency can guarantee lead volume, cost or sales. Results depend on the market, offer, creative, competition, budget, tracking, page experience and follow-up." },
+      { question: "Can you improve lead quality?", answer: "GrowthLabs can improve targeting hypotheses, message clarity, qualification, forms, landing pages, tracking and feedback loops. Final lead quality also depends on demand and sales handling." },
+      { question: "How do we start?", answer: "Share the offer, target market, active account, current creative, landing page or form, budget context and the business action you need Meta Ads to support." },
+    ],
+    finalCta: { eyebrow: "Paid social with a commercial job", title: "Turn Meta Ads into a clearer learning and conversion system.", copy: "Send the offer, account context and desired qualified action. GrowthLabs will identify the most important audience, creative, destination or measurement priority." },
+    related: [{ label: "Advertising agency in Nepal", href: "/advertising-agency-in-nepal" }, { label: "Facebook lead generation guide", href: "/insights/facebook-lead-generation-ads" }, { label: "Social media marketing agency", href: "/social-media-marketing-agency-in-nepal" }, { label: "Conversion rate optimisation", href: "/conversion-rate-optimization-services" }, { label: "Meta Ads budget planner", href: "/tools/meta-ads-budget-planner" }, { label: "Contact GrowthLabs", href: "/contact" }],
+  },
+  {
+    slug: "conversion-rate-optimization-services",
+    heroVisual: "conversion",
+    eyebrow: "CRO · Landing pages · User journeys · Experiment planning",
+    title: "Conversion rate optimisation services for clearer, lower-friction growth.",
+    metaTitle: "Conversion Rate Optimisation Services | GrowthLabs CRO",
+    description: "Conversion rate optimisation services for landing pages, websites and campaigns using journey analysis, analytics, research, messaging and structured testing.",
+    breadcrumbLabel: "Conversion Rate Optimisation",
+    intro: "GrowthLabs provides conversion rate optimisation services for businesses that already attract attention but lose too many qualified visitors between arrival and action. CRO connects customer intent, positioning, page structure, copy, proof, usability, analytics and experiment discipline.",
+    promise: "Improve the percentage and quality of visitors who understand the offer, trust the business and complete the right next action.",
+    primaryCta: { label: "Request a conversion review", href: "/contact" },
+    secondaryCta: { label: "Explore web design", href: "/web-design-company-in-nepal" },
+    microcopy: "Share the page, traffic sources, current conversion definition, analytics access and the decision visitors should complete.",
+    trust: ["Journey diagnosis", "Message clarity", "Mobile usability", "Analytics context", "Test prioritisation"],
+    archetype: "service",
+    challenges: [
+      { title: "Traffic grows but qualified action does not", copy: "More sessions amplify the cost of unclear positioning, weak proof, irrelevant acquisition or a difficult next step." },
+      { title: "The page answers internal questions", copy: "Organisational language often replaces the information, comparisons, objections and reassurance customers actually need." },
+      { title: "Every redesign is treated as an experiment", copy: "A visual change without a hypothesis, baseline, event definition or adequate data cannot explain why performance moved." },
+      { title: "Mobile visitors inherit desktop assumptions", copy: "Long forms, slow pages, buried calls to action, unstable layouts and awkward interaction create friction where many journeys begin." },
+      { title: "Conversion rate hides conversion quality", copy: "A higher form-completion rate is not automatically better if submissions are irrelevant, uncontactable or commercially weak." },
+    ],
+    capabilities: [
+      { title: "Conversion and journey audit", copy: "Review acquisition context, landing pages, navigation, messages, proof, forms, calls to action, mobile experience and available behavioural data.", items: ["Journey mapping", "Friction review", "Analytics review", "Priority findings"] },
+      { title: "Offer and message clarity", copy: "Clarify who the page is for, what problem it solves, how the offer works, why it is credible and what should happen next.", items: ["Positioning", "Value proposition", "Objection handling", "CTA hierarchy"] },
+      { title: "Landing-page optimisation", copy: "Align advertisement or search intent with page structure, message continuity, proof, qualification and the conversion route.", items: ["Message match", "Page hierarchy", "Proof placement", "Lead journey"] },
+      { title: "Form and contact-path optimisation", copy: "Balance necessary qualification with completion effort across forms, calls, WhatsApp, booking and sales handoff.", items: ["Field review", "Error handling", "Contact options", "Thank-you states"] },
+      { title: "Mobile UX and accessibility", copy: "Identify responsive, interaction, readability, focus, contrast and touch-target friction that can affect comprehension and completion.", items: ["Responsive review", "Keyboard access", "Touch targets", "Content priority"] },
+      { title: "Analytics and event planning", copy: "Define meaningful page and funnel events, validate implementation and separate diagnostic behaviour from final business outcomes.", items: ["Event map", "Funnel steps", "Source context", "Data limitations"] },
+      { title: "Research and evidence synthesis", copy: "Combine page evidence, search intent, customer questions, sales feedback, analytics and usability findings instead of guessing from taste.", items: ["Intent evidence", "Customer language", "Sales feedback", "Behaviour patterns"] },
+      { title: "Experiment and implementation roadmap", copy: "Prioritise changes by expected impact, evidence strength, effort, risk and the volume needed to learn responsibly.", items: ["Hypotheses", "Prioritisation", "Implementation briefs", "Learning record"] },
+    ],
+    outcomes: ["Clearer messages and page hierarchy", "Less friction on mobile and forms", "Better-defined conversion measurement", "A prioritised improvement roadmap"],
+    sections: [
+      { eyebrow: "CRO without theatre", title: "Not every business needs an A/B testing platform first.", copy: "Low-traffic websites can still improve through research, heuristic review, analytics validation, customer evidence and careful implementation. Statistical experiments become useful when traffic, risk and decision value justify them.", items: [
+        { title: "Evidence-led improvements", copy: "Fix clear usability, accessibility, message-continuity and tracking problems when multiple evidence sources support the change." },
+        { title: "Controlled experiments", copy: "Use an A/B test when a meaningful uncertainty remains, the implementation is testable and enough eligible traffic can support a decision." },
+        { title: "Qualitative learning", copy: "Use customer questions, sales calls, search intent and usability observations to understand why visitors hesitate or misunderstand." },
+        { title: "Commercial validation", copy: "Check whether additional conversions remain qualified, profitable and operationally useful rather than stopping at the interface metric." },
+      ] },
+      { eyebrow: "Measurement model", title: "Define conversion before trying to improve it.", copy: "A conversion should represent a meaningful step in the business journey. Supporting events diagnose progress but should not be reported as equivalent to a qualified enquiry or sale.", items: [
+        { title: "Primary conversion", copy: "The commercially meaningful action, such as a qualified enquiry, confirmed booking, purchase or approved application." },
+        { title: "Supporting signals", copy: "Actions such as engaged product views, form starts, pricing interactions or booking-engine starts that help explain movement." },
+        { title: "Quality and value", copy: "Qualification, contactability, margin, refund, pipeline or repeat-value data that tests whether conversion growth is useful." },
+      ] },
+      { eyebrow: "Scope and investment", title: "CRO scope follows the journey, traffic and implementation risk.", copy: "A focused landing-page review differs from an ecommerce funnel programme or a multi-channel lead-generation system. The proposal defines pages, data access, research, implementation ownership and measurement boundaries.", items: [
+        { title: "Focused conversion review", copy: "A prioritised diagnosis for a key page or short journey, with evidence, recommendations and implementation guidance." },
+        { title: "Ongoing optimisation", copy: "Continued research, analytics, implementation, testing and learning across agreed journeys when traffic and business value justify it." },
+      ] },
+    ],
+    process: [
+      { title: "Define", copy: "Agree the audience, traffic context, qualified conversion, value and operational constraints." },
+      { title: "Observe", copy: "Review pages, messages, analytics, events, search intent, customer questions and sales feedback." },
+      { title: "Prioritise", copy: "Rank friction and hypotheses by evidence, impact, effort, risk and ability to learn." },
+      { title: "Implement or test", copy: "Make supported improvements or run a controlled experiment when conditions justify it." },
+      { title: "Validate", copy: "Assess conversion quality and business effect, document learning and choose the next constraint." },
+    ],
+    faqs: [
+      { question: "What is conversion rate optimisation?", answer: "Conversion rate optimisation, or CRO, is the structured improvement of a website, landing page or journey so more qualified visitors understand the offer and complete a meaningful action." },
+      { question: "Does CRO only mean A/B testing?", answer: "No. CRO can include research, analytics, message and UX review, accessibility, customer evidence, implementation and controlled experiments. A/B testing is one method, not the definition." },
+      { question: "What pages should be optimised first?", answer: "Start with pages that receive meaningful qualified traffic, influence revenue or leads, show clear friction or support expensive acquisition. The priority depends on evidence and business value." },
+      { question: "Can CRO improve lead quality?", answer: "It can improve qualification, message clarity, proof, form design and expectation setting. Lead quality must still be validated through sales or CRM feedback." },
+      { question: "How much traffic is needed for CRO?", answer: "Useful research and clear fixes do not require a particular traffic threshold. Controlled experiments need enough eligible traffic and conversions for the chosen statistical approach and risk." },
+      { question: "Do you implement CRO recommendations?", answer: "Implementation can be included or prepared as clear briefs for the client's design and development team. Ownership is agreed before scope begins." },
+      { question: "Can you guarantee a conversion-rate uplift?", answer: "No. Responsible CRO reduces uncertainty and improves decision quality, but cannot guarantee a percentage uplift independent of traffic, market, offer and implementation." },
+      { question: "How do we start?", answer: "Share the priority page, traffic sources, current conversion definition, available data and the commercial result that needs improvement." },
+    ],
+    finalCta: { eyebrow: "Make existing attention work harder", title: "Find the friction between qualified traffic and qualified action.", copy: "Send the page, traffic context and conversion goal. GrowthLabs will identify the clearest research, message, UX, tracking or implementation priority." },
+    related: [{ label: "Web design company in Nepal", href: "/web-design-company-in-nepal" }, { label: "Google Ads agency in Nepal", href: "/google-ads-agency-in-nepal" }, { label: "Meta Ads agency in Nepal", href: "/meta-ads-agency-in-nepal" }, { label: "Why web design matters", href: "/insights/why-web-design-matters" }, { label: "Marketing calculators", href: "/tools" }, { label: "Request a conversion review", href: "/contact" }],
+  },
+  {
+    slug: "seo-audit-services-in-nepal",
+    heroVisual: "seoAudit",
+    eyebrow: "Technical SEO · Content architecture · Local search · Prioritisation",
+    title: "SEO audit services in Nepal that turn findings into an implementation plan.",
+    metaTitle: "SEO Audit Services in Nepal | Technical & Content Audit",
+    description: "SEO audit services in Nepal covering crawling, indexing, technical SEO, content, internal links, local search, analytics and a prioritised implementation roadmap.",
+    breadcrumbLabel: "SEO Audit Services in Nepal",
+    intro: "GrowthLabs provides SEO audit services in Nepal for websites that need a clear diagnosis before another redesign, migration, content programme or monthly SEO engagement. The audit connects technical SEO, search intent, page architecture, content quality, internal links, local signals, conversion paths and measurement.",
+    promise: "Replace an overwhelming issue list with an evidence-led sequence of SEO actions your team can implement.",
+    primaryCta: { label: "Request an SEO audit", href: "/contact" },
+    secondaryCta: { label: "Use the free SEO checklist", href: "/resources/seo-audit-checklist" },
+    microcopy: "Share the domain, target markets, known changes, CMS, priority services and access available for Search Console and analytics.",
+    trust: ["Crawl + index review", "Keyword-to-page map", "Content quality", "Internal links", "Prioritised roadmap"],
+    archetype: "service",
+    challenges: [
+      { title: "Hundreds of findings, no priority", copy: "Automated crawlers can surface signals, but teams need to know which issues affect important pages, what evidence supports the concern and what should happen first." },
+      { title: "Technical fixes ignore search intent", copy: "A technically clean website can still underperform when commercial pages are missing, overlapping or poorly aligned to the way customers search and decide." },
+      { title: "Content recommendations become word counts", copy: "Content quality depends on usefulness, originality, entity clarity, evidence, structure and task completion—not an arbitrary length or keyword density." },
+      { title: "Migration history is overlooked", copy: "Redirects, URL changes, canonicals, indexation, internal links and lost page relationships can explain performance problems that a current snapshot misses." },
+      { title: "Implementation ownership is unclear", copy: "An audit creates no value when developers, writers, designers and business owners do not know which action they own or how completion will be checked." },
+    ],
+    capabilities: [
+      { title: "Discovery and baseline", copy: "Clarify business priorities, target markets, important pages, website history, known changes and the performance questions the audit must answer.", items: ["Business context", "Priority URLs", "Change history", "Baseline signals"] },
+      { title: "Crawling and indexation", copy: "Review discoverability, robots directives, sitemaps, canonical signals, status codes, duplicate paths and the relationship between submitted and indexed pages.", items: ["Robots review", "XML sitemap", "Canonicals", "Index coverage"] },
+      { title: "Technical SEO", copy: "Evaluate rendering, templates, metadata, structured data, internal architecture, mobile experience and performance issues in context.", items: ["Rendering", "Templates", "Structured data", "Core page experience"] },
+      { title: "Keyword and page architecture", copy: "Map commercial and informational intent to strong canonical destinations, identify missing coverage and reduce internal competition.", items: ["Intent clusters", "Page mapping", "Cannibalisation", "Content gaps"] },
+      { title: "On-page and entity relevance", copy: "Review titles, headings, answers, supporting concepts, evidence, images and page structure for usefulness and semantic completeness.", items: ["Primary relevance", "Entity coverage", "Answer quality", "Media context"] },
+      { title: "Internal linking", copy: "Assess how navigation, hubs, contextual links, breadcrumbs and anchor language distribute discovery and topical relationships.", items: ["Click depth", "Contextual links", "Anchor relevance", "Orphan pages"] },
+      { title: "Local SEO and business entity", copy: "Where relevant, review Google Business Profile connections, business information, location signals, local pages and conversion routes.", items: ["Business consistency", "Local intent", "GBP connections", "Local actions"] },
+      { title: "Measurement and implementation roadmap", copy: "Connect findings to measurable symptoms, owners, dependencies, validation steps and a practical priority sequence.", items: ["Impact tiers", "Owners", "Validation", "Roadmap"] },
+    ],
+    outcomes: ["A defensible SEO diagnosis", "A keyword-to-page architecture", "Priorities organised by impact and effort", "Clear implementation and validation ownership"],
+    sections: [
+      { eyebrow: "Audit deliverables", title: "Every finding should answer five implementation questions.", copy: "A usable audit is specific enough for action and clear enough for stakeholders to understand why the work matters.", items: [
+        { title: "What is happening?", copy: "Describe the observable issue, affected template or URLs and the evidence used to identify it." },
+        { title: "Why can it matter?", copy: "Connect the issue to crawling, indexing, relevance, user experience, conversion or measurement without exaggerating certainty." },
+        { title: "What should change?", copy: "Provide a technically and editorially clear recommendation, including examples or acceptance criteria where useful." },
+        { title: "Who owns it and what comes first?", copy: "Assign development, content, design, analytics or business ownership and place the work in a dependency-aware sequence." },
+        { title: "How will completion be validated?", copy: "Define the crawl, rendered-page, Search Console, analytics or manual checks that demonstrate implementation." },
+      ] },
+      { eyebrow: "Tools and human review", title: "Crawlers collect evidence; strategy interprets it.", copy: "The audit may use Search Console, analytics, crawling tools, rendered-page inspection, performance diagnostics and manual search analysis. Tool scores are inputs, not the final recommendation.", items: [
+        { title: "Automated evidence", copy: "Efficiently identify patterns across status codes, metadata, canonicals, links, directives, templates and performance diagnostics." },
+        { title: "Manual interpretation", copy: "Judge intent, page purpose, content usefulness, entity clarity, trust, conversion relevance and the business consequences of a finding." },
+      ] },
+      { eyebrow: "Scope and investment", title: "Audit depth follows website size, risk and the decision ahead.", copy: "A focused local-service site requires a different crawl, research and stakeholder process from an ecommerce catalogue, migration or multi-market website.", items: [
+        { title: "Focused audit", copy: "Suitable for a defined performance issue, important template, local-search problem, launch review or smaller website." },
+        { title: "Comprehensive audit and roadmap", copy: "Suitable when technical, architectural, content, local, authority and measurement systems must be reviewed together." },
+      ] },
+    ],
+    process: [
+      { title: "Frame", copy: "Define business priorities, website history, target markets, important pages and audit questions." },
+      { title: "Collect", copy: "Gather crawl, indexation, rendered-page, performance, content, link and analytics evidence." },
+      { title: "Interpret", copy: "Connect patterns to search intent, website architecture, customer journeys and measurable symptoms." },
+      { title: "Prioritise", copy: "Sequence work by expected impact, confidence, effort, risk, dependencies and business importance." },
+      { title: "Handoff and validate", copy: "Explain findings, assign ownership, support implementation and confirm whether changes were completed correctly." },
+    ],
+    faqs: [
+      { question: "What is included in an SEO audit?", answer: "Scope can include crawling, indexation, technical SEO, metadata, structured data, keyword-to-page mapping, content quality, internal links, local SEO, conversion paths, analytics and a prioritised implementation roadmap." },
+      { question: "Is an automated SEO report an audit?", answer: "It is an input. A complete audit interprets tool evidence against search intent, business priorities, templates, website history, customer journeys and implementation constraints." },
+      { question: "When should a business get an SEO audit?", answer: "Useful moments include before a redesign or migration, after an unexplained decline, before a major content investment, when pages compete with each other or when an existing SEO programme lacks direction." },
+      { question: "Do you need Search Console and analytics access?", answer: "Access is strongly useful because it provides query, page, indexation and behaviour context. A limited audit can still begin without it, but conclusions and priorities may be less complete." },
+      { question: "Will the audit fix the problems?", answer: "Implementation can be included separately or handed to the client's team with clear guidance. The audit scope states whether fixes, validation and ongoing support are included." },
+      { question: "How long does an SEO audit take?", answer: "Timing depends on website size, access, markets, templates, history, issue complexity and stakeholder review. GrowthLabs confirms timing after examining the domain and scope." },
+      { question: "Does an audit guarantee higher rankings?", answer: "No. An audit reduces uncertainty and prioritises improvements, but rankings depend on implementation, competition, relevance, authority, technical conditions and search-system changes." },
+      { question: "How do we start?", answer: "Send the domain, priority services, target locations, known website changes, current SEO concern and available platform access." },
+    ],
+    finalCta: { eyebrow: "Diagnosis before activity", title: "Find the SEO work that deserves implementation first.", copy: "Share the domain, target market and current concern. GrowthLabs will recommend the appropriate audit depth and the access needed to make it useful." },
+    related: [{ label: "SEO expert in Nepal", href: "/seo-expert-in-nepal" }, { label: "SEO company in Nepal", href: "/seo-company-in-nepal" }, { label: "Free SEO audit checklist", href: "/resources/seo-audit-checklist" }, { label: "What is SEO?", href: "/insights/what-is-seo" }, { label: "SEO ROI calculator", href: "/tools/seo-roi-calculator" }, { label: "Request an SEO audit", href: "/contact" }],
   }
 ];
 
