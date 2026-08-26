@@ -1,11 +1,14 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Arrow } from "./icons";
 import { PageIntro, SectionHeading } from "./ui";
 import { PageStructuredData } from "./structured-data";
 import { PaidMediaEvidence, SearchEvidence } from "./search-evidence";
 import { GoogleBusinessMap } from "./google-business-map";
+import { CredentialProof } from "./credential-proof";
 import { agencyAssets } from "@/content/agency-assets";
 import type { AgencyAssetKey } from "@/content/agency-assets";
+import { credentialKeysBySlug } from "@/content/credentials";
 import type { CommercialLanding } from "@/content/landing-pages";
 import { siteConfig } from "@/content/site";
 
@@ -166,6 +169,24 @@ const commercialVisuals: Record<string, AgencyAssetKey> = {
   "content-marketing-agency-in-nepal": "contentStrategy",
 };
 
+const commercialSecondaryVisuals: Partial<Record<string, AgencyAssetKey>> = {
+  "hotel-digital-marketing-agency": "analytics",
+  "social-media-marketing-agency-in-nepal": "contentStrategy",
+  "web-design-company-in-nepal": "userExperience",
+  "seo-for-travel-agency": "localSeo",
+  "social-media-marketing-packages": "metaAds",
+  "advertising-agency-in-nepal": "tiktokAds",
+  "google-ads-agency-in-nepal": "conversion",
+  "local-seo-services-in-nepal": "seoRanking",
+  "digital-marketing-agency-in-kathmandu": "analytics",
+  "meta-ads-agency-in-nepal": "contentStrategy",
+  "conversion-rate-optimization-services": "userExperience",
+  "seo-audit-services-in-nepal": "seoRanking",
+  "technical-seo-services-in-nepal": "seoAudit",
+  "analytics-conversion-tracking-services": "conversion",
+  "content-marketing-agency-in-nepal": "brandStrategy",
+};
+
 const capabilitySecondaryAnchors: Record<string, Record<string, string>> = {
   "digital-marketing-agency-in-kathmandu": {
     "SEO and local search": "local-seo",
@@ -205,6 +226,22 @@ function SourcesSection({ sources }: { sources: NonNullable<CommercialLanding["s
   return <section className="section bg-[var(--surface)]"><div className="shell"><SectionHeading eyebrow="Primary references" title="Platform facts linked to their original documentation." copy="These sources support the factual platform and search-system statements on this page. GrowthLabs interpretation, scope and recommendations remain clearly separate from platform documentation." /><div className="mt-12 border-b border-[var(--line-strong)] md:ml-[25%]">{sources.map((source, index) => <a className="grid gap-3 border-t border-[var(--line-strong)] p-5 transition-colors hover:bg-[var(--sun)] sm:grid-cols-[3rem_1fr_auto] sm:items-center" href={source.href} key={source.href} target="_blank" rel="noopener noreferrer"><span className="font-mono text-[.65rem] text-[var(--accent)]">{String(index + 1).padStart(2, "0")}</span><span><strong className="block">{source.label}</strong><span className="mt-1 block text-sm leading-6 text-[var(--muted)]">{source.publisher}{source.note ? ` · ${source.note}` : ""}</span></span><Arrow direction="up-right" /></a>)}</div></div></section>;
 }
 
+function VisualBreak({ assetKey, page }: { assetKey: AgencyAssetKey; page: CommercialLanding }) {
+  const asset = agencyAssets[assetKey];
+  return <section className="visual-break-section" aria-label={`${page.breadcrumbLabel ?? page.title} approach visual`}>
+    <div className="shell visual-break-grid">
+      <div className="visual-break-copy">
+        <p className="eyebrow">The system in context</p>
+        <h2 className="font-serif text-[clamp(2rem,3.6vw,4rem)] leading-[.96] tracking-[-.055em]">Strategy is easier to trust when the moving parts are visible.</h2>
+        <p>{asset.caption}</p>
+      </div>
+      <figure className="visual-break-media">
+        <Image className="h-full w-full object-contain" src={asset.src} alt={asset.alt} width={asset.width} height={asset.height} sizes="(max-width: 768px) 100vw, 58vw" />
+      </figure>
+    </div>
+  </section>;
+}
+
 export function CommercialLandingPage({ page }: { page: CommercialLanding }) {
   const path = `/${page.slug}`;
   const primary = page.primaryCta ?? { label: siteConfig.cta.primary.headerLabel, href: siteConfig.cta.primary.href };
@@ -217,6 +254,8 @@ export function CommercialLandingPage({ page }: { page: CommercialLanding }) {
   const currentLabel = page.breadcrumbLabel ?? page.metaTitle.split(" | ")[0];
   const finalSecondary = page.finalSecondaryCta ?? { label: siteConfig.cta.whatsapp.label, href: siteConfig.cta.whatsapp.href, external: true };
   const visualKey = page.heroVisual ?? commercialVisuals[page.slug];
+  const secondaryVisualKey = commercialSecondaryVisuals[page.slug];
+  const credentialIds = credentialKeysBySlug[page.slug];
 
   return <>
     <PageIntro breadcrumbs={[{ label: "Services", href: "/services" }, { label: currentLabel }]} eyebrow={page.eyebrow} title={page.title} visual={visualKey ? agencyAssets[visualKey] : undefined}><p>{page.intro}</p><div className="mt-8 flex flex-col gap-3 sm:flex-row"><Link className="button button-primary" href={primary.href} data-cta-intent={page.slug} data-cta-location="hero" data-cta-channel="contact">{primary.label} <Arrow /></Link><Link className="button" href={secondary.href} data-cta-intent={page.slug} data-cta-location="hero-secondary">{secondary.label} <Arrow /></Link></div>{page.microcopy && <p className="mt-4 font-mono text-[.7rem] uppercase leading-5 tracking-[.04em]">{page.microcopy}</p>}</PageIntro>
@@ -228,6 +267,8 @@ export function CommercialLandingPage({ page }: { page: CommercialLanding }) {
     {page.leadSections?.map((section) => <section className={`section ${packagePage ? "bg-[var(--surface)]" : ""}`} key={section.title}><div className="shell"><SectionHeading eyebrow={section.eyebrow} title={section.title} copy={section.copy} /><div className={`mt-14 grid gap-0 border-b border-[var(--line-strong)] md:ml-[25%] ${packagePage ? "md:grid-cols-3" : "md:grid-cols-2"}`}>{section.items.map((item, index) => <article id={packagePage ? item.title.toLowerCase() : undefined} className={`border-t border-[var(--line-strong)] p-6 ${packagePage ? "md:border-r md:last:border-r-0" : "md:odd:border-r"}`} key={item.title}><p className="font-mono text-[.65rem] text-[var(--accent)]">0{index + 1}</p><h3 className="mt-8 font-serif text-3xl leading-none tracking-[-.05em]">{item.title}</h3><p className="mt-5 leading-7 text-[var(--muted)]">{item.copy}</p></article>)}</div></div></section>)}
 
     <section className="section"><div className="shell"><SectionHeading eyebrow={page.labels?.challengesEyebrow ?? "What gets in the way"} title={page.labels?.challengesTitle ?? "Fix the system, not only the symptom."} /><div className="mt-14 grid gap-x-8 gap-y-10 md:ml-[25%] md:grid-cols-2">{page.challenges.map((item, index) => <article className="card grid grid-cols-[3rem_1fr] gap-4" key={item.title}><span className="font-mono text-[.65rem] text-[var(--accent)]">0{index + 1}</span><div><h3 className="font-serif text-2xl leading-none tracking-[-.04em]">{item.title}</h3><p className="mt-4 leading-7 text-[var(--muted)]">{item.copy}</p></div></article>)}</div></div></section>
+
+    {secondaryVisualKey && <VisualBreak assetKey={secondaryVisualKey} page={page} />}
 
     <section className="section section-dark" id="capabilities"><div className="shell"><SectionHeading eyebrow={page.labels?.capabilitiesEyebrow ?? "Capabilities"} title={page.labels?.capabilitiesTitle ?? "The right parts, working together."} /><CapabilityRows page={page} /><div className="mt-12"><Link className="button border-white text-white hover:bg-[var(--sun)] hover:text-[var(--ink)]" href={primary.href} data-cta-intent={page.slug} data-cta-location="capabilities" data-cta-channel="contact">{primary.label} <Arrow /></Link></div></div></section>
 
@@ -255,6 +296,46 @@ export function CommercialLandingPage({ page }: { page: CommercialLanding }) {
       title="Two tourism websites. Two distinct demand patterns."
       copy="The supplied Search Console captures make the visible organic-search layer inspectable for a tours website and a water-adventure rental website. They support a conversation about travel SEO execution—not a promise about rankings, enquiries or revenue."
     />}
+
+    {(page.slug === "seo-audit-services-in-nepal" || page.slug === "technical-seo-services-in-nepal") && <SearchEvidence
+      compact
+      ids={["texas-hvac", "australian-agency"]}
+      eyebrow="Technical and organic-search evidence"
+      title="Search Console captures from two different website and market contexts."
+      copy="The visible query and landing-page outcomes begin with technical accessibility, clear page ownership and intent-aligned content. These supplied captures show monitored search visibility; they do not isolate one technical change or promise the same result elsewhere."
+    />}
+
+    {page.slug === "local-seo-services-in-nepal" && <SearchEvidence
+      compact
+      ids={["texas-hvac"]}
+      eyebrow="Local-service search evidence"
+      title="714 clicks and 38K impressions in the supplied three-month Texas HVAC capture."
+      copy="The Search Console source view demonstrates organic visibility in a local-service market. Calls, booked work, map visibility and revenue require separate measurement, so the page preserves the exact visible search metrics without expanding them into an unsupported commercial claim."
+    />}
+
+    {page.slug === "analytics-conversion-tracking-services" && <PaidMediaEvidence
+      compact
+      ids={["london-home-services-ads", "saas-google-ads"]}
+      eyebrow="Measurement evidence / configured conversion reporting"
+      title="Reported campaign data only becomes useful when its definitions are understood."
+      copy="The supplied Google Ads captures show 474.79 and 929.99 reported conversions for two separate accounts and periods. Fractional totals can reflect attribution modelling or configured conversion counting; GrowthLabs audits what each action means before treating it as a qualified lead or sale."
+    />}
+
+    {page.slug === "content-marketing-agency-in-nepal" && <SearchEvidence
+      compact
+      ids={["australian-agency"]}
+      eyebrow="Content discovery evidence / Search Console"
+      title="1.1K clicks and 229K impressions in one supplied three-month agency capture."
+      copy="The capture makes organic discovery visible for an agency website. It supports the need for query-to-page ownership, useful topical coverage and measurement, while avoiding a claim that content alone caused every impression or click."
+    />}
+
+    {credentialIds && <CredentialProof ids={credentialIds} compact={credentialIds.length < 4} title={
+      page.slug.includes("seo") || page.slug === "content-marketing-agency-in-nepal" || page.slug === "technical-seo-services-in-nepal"
+        ? "Search expertise supported by supplied Semrush certification and relevant trust evidence."
+        : page.slug.includes("ads") || page.slug === "advertising-agency-in-nepal"
+          ? "Advertising expertise supported by supplied platform-partner credentials."
+          : "Relevant platform credentials for this GrowthLabs service."
+    } />}
 
     <EditorialSections sections={beforeProcess} />
     <ProcessSection page={page} />

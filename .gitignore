@@ -9,11 +9,3 @@ out/
 npm-debug.log*
 .DS_Store
 *.tsbuildinfo
-
-# Supplied proof/badge artwork is excluded until the visible claim and permission are verified.
-public/images/Agency/Certified Amazon Ads Partner.png
-public/images/Agency/Certified Google Ads Partner.jpg
-public/images/Agency/Certified HubSpot Agency Partner.png
-public/images/Agency/Certified Meta Ads Partner.jpg
-public/images/Agency/Google Reviews.jpg
-public/images/Agency/Semrush Certified Agency Partner.jpeg

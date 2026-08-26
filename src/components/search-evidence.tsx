@@ -30,7 +30,11 @@ type EvidenceGalleryProps = {
 
 function EvidenceGallery({ compact = false, copy, dark = false, disclaimer, eyebrow, items, sectionId, title }: EvidenceGalleryProps) {
   const captionTone = dark ? "!bg-[var(--ink-soft)] !text-white/70" : "";
-  const grid = compact ? "gap-4 md:grid-cols-2" : "gap-5 md:grid-cols-2";
+  const grid = items.length === 1
+    ? "gap-5 md:ml-[25%]"
+    : items.length === 3
+      ? "gap-4 md:grid-cols-2 lg:grid-cols-3"
+      : compact ? "gap-4 md:grid-cols-2" : "gap-5 md:grid-cols-2";
 
   return <section id={sectionId} className={`section scroll-mt-24 ${dark ? "section-dark" : "bg-[var(--surface)]"}`}>
     <div className="shell">

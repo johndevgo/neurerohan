@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Arrow } from "./icons";
 import { PageStructuredData } from "./structured-data";
 import { SearchEvidence } from "./search-evidence";
+import { CredentialProof } from "./credential-proof";
 import { PageIntro, SectionHeading } from "./ui";
 import {
   seoCapabilities,
@@ -193,6 +194,7 @@ export function SeoLanding({ faqs }: Props) {
     </section>
 
     <SearchEvidence compact ids={["australian-agency", "texas-hvac"]} title="Source evidence from two very different search markets." copy="An Australian agency and a Texas local-service website require different architecture, competition analysis and conversion paths. The captures make the visible Search Console layer inspectable while the surrounding context remains essential." />
+    <CredentialProof compact ids={["semrush", "googleReviews"]} title="Supplied SEO certification and public rating evidence." copy="The Semrush Certified Agency Partner artwork supports the competitive-research context described on this page. The Google Reviews artwork displays a 5.0 rating and links visitors to the GrowthLabs business profile." />
 
     <section className="section bg-[var(--surface)]">
       <div className="shell">

@@ -1,4 +1,5 @@
 import { siteConfig } from "@/content/site";
+import { organizationAwards } from "@/content/credentials";
 
 type JsonLdNode = Record<string, unknown>;
 export type FaqItem = { question: string; answer: string };
@@ -114,6 +115,7 @@ export const globalSchema: JsonLdNode = {
         "Conversion rate optimisation",
         "Analytics and conversion tracking",
       ],
+      award: [...organizationAwards],
     },
     {
       "@type": "Person",
@@ -379,10 +381,10 @@ const serviceSchemas: Record<string, ServiceSchemaConfig> = {
     categories: ["Meta Ads", "Facebook Ads", "Instagram Ads", "Paid social", "Lead generation", "Conversion tracking"],
     offers: [
       { name: "Meta Ads account and journey audit", anchor: "account-audit", serviceType: "Meta Ads account, offer and conversion-journey audit" },
-      { name: "Meta campaign architecture", anchor: "campaign-architecture", serviceType: "Facebook and Instagram campaign architecture" },
+      { name: "Meta campaign architecture", anchor: "campaigns", serviceType: "Facebook and Instagram campaign architecture" },
       { name: "Meta audience strategy", anchor: "audience-strategy", serviceType: "Meta Ads audience and retargeting strategy" },
-      { name: "Performance creative system", anchor: "creative-system", serviceType: "Paid-social creative strategy and testing" },
-      { name: "Lead form and landing-page strategy", anchor: "destination-strategy", serviceType: "Meta lead form and landing-page conversion strategy" },
+      { name: "Performance creative system", anchor: "creative-testing", serviceType: "Paid-social creative strategy and testing" },
+      { name: "Lead form and landing-page strategy", anchor: "destinations", serviceType: "Meta lead form and landing-page conversion strategy" },
       { name: "Meta conversion measurement", anchor: "measurement", serviceType: "Meta Pixel, Conversions API and analytics planning" },
       { name: "Lead-quality feedback", anchor: "lead-quality", serviceType: "Paid-social lead qualification and sales feedback loop" },
       { name: "Meta Ads optimisation and reporting", anchor: "optimisation", serviceType: "Meta Ads campaign optimisation and decision-led reporting" },
@@ -599,10 +601,10 @@ const servicesOffers: OfferSpec[] = [
   { name: "Social Media Marketing", serviceType: "Social media strategy, content and paid distribution" },
   { name: "Website Design and Strategy", serviceType: "SEO-friendly, conversion-focused website strategy and design" },
   { name: "Landing Page Strategy", serviceType: "Landing-page strategy and conversion optimisation" },
-  { name: "Content Marketing", anchor: "content-marketing", serviceType: "Commercial and supporting content strategy" },
+  { name: "Content Marketing", serviceType: "Commercial and supporting content strategy" },
   { name: "Local SEO", url: `${siteConfig.domain}/local-seo-services-in-nepal`, serviceType: "Local SEO and Google Business Profile optimisation" },
   { name: "Conversion Rate Optimisation", anchor: "cro", serviceType: "Conversion rate optimisation" },
-  { name: "Analytics and Tracking", anchor: "analytics", serviceType: "Analytics, tag management and conversion tracking" },
+  { name: "Analytics and Tracking", serviceType: "Analytics, tag management and conversion tracking" },
   { name: "Reporting and Performance Analysis", anchor: "reporting", serviceType: "Marketing reporting and performance analysis" },
   { name: "Marketing Automation", anchor: "automation", serviceType: "Basic marketing workflow and automation planning" },
 ];
