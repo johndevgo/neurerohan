@@ -41,7 +41,7 @@ export const marketingTools: MarketingTool[] = [
   {
     slug: "google-ads-break-even-calculator",
     kind: "google-ads-break-even",
-    title: "Google Ads break-even CPA and ROAS calculator",
+    title: "Google Ads break-even calculator for ROAS, CPA, CPL and CPC",
     shortTitle: "Google Ads break-even calculator",
     metaTitle: "Google Ads Break-Even CPA & ROAS Calculator",
     description: "Estimate break-even ROAS, maximum customer CPA, maximum lead CPL and maximum CPC from gross revenue, margin and conversion assumptions.",
