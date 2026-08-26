@@ -18,7 +18,7 @@ const selector = [
   { symptom: "Our social channels are active but disconnected from business.", path: "Audience strategy, content pillars, creative direction, organic and paid distribution, retargeting and conversion paths.", href: "/social-media-marketing-agency-in-nepal", label: "Explore social media marketing" },
   { symptom: "We get traffic, but too few people act.", path: "Conversion review, message clarity, page hierarchy, trust, form and CTA improvement, behaviour analysis and testing.", href: "/conversion-rate-optimization-services", label: "Explore CRO services" },
   { symptom: "We need an SEO diagnosis before another retainer.", path: "Crawl evidence, indexation, templates, content quality, internal links, authority signals, local visibility and a prioritised implementation roadmap.", href: "/seo-audit-services-in-nepal", label: "Explore SEO audit services" },
-  { symptom: "We cannot tell what is working.", path: "Measurement planning, GA4, Tag Manager, platform events, Search Console and reporting logic." },
+  { symptom: "We cannot tell what is working.", path: "Measurement planning, GA4, Tag Manager, platform events, Search Console and reporting logic.", href: "/analytics-conversion-tracking-services", label: "Explore analytics and tracking" },
   { symptom: "The channels feel disconnected.", path: "Customer-journey mapping, channel priorities, ownership, measurement and an integrated roadmap." },
 ];
 
@@ -28,6 +28,8 @@ const links: Record<string, { href: string; label: string }[]> = {
   "social-media": [{ href: "/social-media-marketing-agency-in-nepal", label: "Explore social media marketing" }, { href: "/social-media-marketing-packages", label: "Compare package scope" }],
   websites: [{ href: "/web-design-company-in-nepal", label: "Explore web design in Nepal" }],
   cro: [{ href: "/conversion-rate-optimization-services", label: "Explore CRO services" }],
+  content: [{ href: "/content-marketing-agency-in-nepal", label: "Explore content marketing" }],
+  analytics: [{ href: "/analytics-conversion-tracking-services", label: "Explore analytics and tracking" }],
 };
 
 const analytics = { title: "Analytics, Tracking & Performance Analysis", slug: "analytics", summary: "Define meaningful events, check whether platforms receive reliable signals, and turn reporting into decisions rather than dashboard decoration.", capabilities: ["Measurement planning", "GA4 and Tag Manager guidance", "Platform conversion events", "Search Console analysis", "Lead-source and landing-page review"], value: "Understand which pages, campaigns, queries and offers create movement—and where the journey breaks." };
@@ -59,6 +61,9 @@ const specialistPages = [
   ["Meta Ads agency in Nepal", "/meta-ads-agency-in-nepal", "Facebook and Instagram advertising connected to creative, destination, measurement and lead quality."],
   ["Conversion rate optimisation services", "/conversion-rate-optimization-services", "Research-led improvement across offer clarity, UX, proof, calls to action, forms and measurement."],
   ["SEO audit services in Nepal", "/seo-audit-services-in-nepal", "Technical, on-page, content, local and measurement evidence translated into a prioritised roadmap."],
+  ["Technical SEO services in Nepal", "/technical-seo-services-in-nepal", "Crawling, indexing, rendering, canonicals, architecture, migrations and implementation validation."],
+  ["Analytics and conversion tracking", "/analytics-conversion-tracking-services", "GA4, Tag Manager, advertising events, consent-aware QA and decision-led reporting."],
+  ["Content marketing agency in Nepal", "/content-marketing-agency-in-nepal", "Audience research, topic architecture, expert-led content, editorial systems and conversion paths."],
   ["Local SEO services in Nepal", "/local-seo-services-in-nepal", "Google Business Profile, Maps relevance, local pages, reviews and measurable contact journeys."],
   ["Social media agency in Nepal", "/social-media-marketing-agency-in-nepal", "Organic and paid social strategy connected to business action."],
   ["Social media package planning", "/social-media-marketing-packages", "Foundation, Growth and Performance scopes with transparent pricing logic."],

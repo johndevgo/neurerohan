@@ -16,7 +16,7 @@ Schema.org has no dedicated `DigitalMarketingAgency` or `SEOExpert` type. The ac
 
 - Home: `WebPage` about GrowthLabs and Rohan.
 - Services: `CollectionPage`, `BreadcrumbList`, `OfferCatalog`, `Offer` and nested `Service` entities.
-- Agency, SEO, advertising, social, website, hotel, travel and Kathmandu landing pages: `WebPage`, `BreadcrumbList`, primary `Service`, `BusinessAudience`, `ServiceChannel`, `OfferCatalog`, `Offer` and nested `Service` entities.
+- Agency, SEO, advertising, analytics, content, technical SEO, social, website, hotel, travel and Kathmandu landing pages: `WebPage`, `BreadcrumbList`, primary `Service`, `BusinessAudience`, `ServiceChannel`, `OfferCatalog`, `Offer` and nested `Service` entities.
 - Social packages: `CollectionPage`, `BreadcrumbList`, three transparent `Offer` scopes and nested `Service` entities. No price is emitted because no approved rate has been supplied.
 - About: `AboutPage` and `BreadcrumbList` connected to the organization and person.
 - Contact: `ContactPage` and `BreadcrumbList` connected to the organization.

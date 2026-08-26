@@ -116,6 +116,36 @@ const capabilityAnchors: Record<string, Record<string, string>> = {
     "Local SEO and business entity": "local-seo",
     "Measurement and implementation roadmap": "roadmap",
   },
+  "technical-seo-services-in-nepal": {
+    "Technical discovery and crawl model": "technical-discovery",
+    "Crawling and indexation analysis": "crawling-indexing",
+    "Rendering and JavaScript review": "rendering",
+    "Canonical and duplicate-URL control": "canonicals",
+    "Architecture and internal discovery": "architecture",
+    "Performance and mobile technical review": "performance",
+    "Structured data and metadata validation": "structured-data",
+    "Migration and implementation QA": "migration-qa",
+  },
+  "analytics-conversion-tracking-services": {
+    "Measurement strategy and event taxonomy": "measurement-strategy",
+    "GA4 architecture and review": "ga4",
+    "Google Tag Manager implementation": "tag-manager-implementation",
+    "Google Ads conversion measurement": "google-ads-conversions",
+    "Meta and paid-social signals": "meta-signals",
+    "Consent and data minimisation": "consent",
+    "Campaign taxonomy and UTM governance": "utm-governance",
+    "Validation and decision reporting": "validation-reporting",
+  },
+  "content-marketing-agency-in-nepal": {
+    "Audience and decision research": "audience-research",
+    "Keyword clustering and intent ownership": "keyword-clustering",
+    "Topic and entity architecture": "topic-architecture",
+    "SEO content briefs": "content-briefs",
+    "Expert-led content development": "expert-content",
+    "Commercial content and conversion copy": "commercial-content",
+    "Editorial workflow and quality assurance": "editorial-workflow",
+    "Distribution and performance review": "distribution-measurement",
+  },
 };
 
 const commercialVisuals: Record<string, AgencyAssetKey> = {
@@ -131,6 +161,9 @@ const commercialVisuals: Record<string, AgencyAssetKey> = {
   "meta-ads-agency-in-nepal": "metaAds",
   "conversion-rate-optimization-services": "conversion",
   "seo-audit-services-in-nepal": "seoAudit",
+  "technical-seo-services-in-nepal": "technicalSeo",
+  "analytics-conversion-tracking-services": "analytics",
+  "content-marketing-agency-in-nepal": "contentStrategy",
 };
 
 const capabilitySecondaryAnchors: Record<string, Record<string, string>> = {
@@ -151,6 +184,9 @@ const processPosition: Record<string, number> = {
   "meta-ads-agency-in-nepal": 1,
   "conversion-rate-optimization-services": 1,
   "seo-audit-services-in-nepal": 1,
+  "technical-seo-services-in-nepal": 1,
+  "analytics-conversion-tracking-services": 1,
+  "content-marketing-agency-in-nepal": 2,
 };
 
 function CapabilityRows({ page }: { page: CommercialLanding }) {
@@ -163,6 +199,10 @@ function EditorialSections({ sections, startIndex = 0 }: { sections: NonNullable
 
 function ProcessSection({ page }: { page: CommercialLanding }) {
   return <section className="section signal-grid"><div className="shell"><SectionHeading eyebrow={page.labels?.processEyebrow ?? "Process"} title={page.labels?.processTitle ?? "Research first. Then focused execution."} /><ol className="mt-14 border-b border-[var(--ink)] md:ml-[25%]">{page.process.map((step, index) => <li className="grid gap-3 border-t border-[var(--ink)] py-6 sm:grid-cols-[4rem_1fr_2fr]" key={step.title}><span className="font-mono text-xs">0{index + 1}</span><h3 className="font-serif text-2xl leading-none tracking-[-.04em]">{step.title}</h3><p className="leading-7 text-black/65">{step.copy}</p></li>)}</ol></div></section>;
+}
+
+function SourcesSection({ sources }: { sources: NonNullable<CommercialLanding["sources"]> }) {
+  return <section className="section bg-[var(--surface)]"><div className="shell"><SectionHeading eyebrow="Primary references" title="Platform facts linked to their original documentation." copy="These sources support the factual platform and search-system statements on this page. GrowthLabs interpretation, scope and recommendations remain clearly separate from platform documentation." /><div className="mt-12 border-b border-[var(--line-strong)] md:ml-[25%]">{sources.map((source, index) => <a className="grid gap-3 border-t border-[var(--line-strong)] p-5 transition-colors hover:bg-[var(--sun)] sm:grid-cols-[3rem_1fr_auto] sm:items-center" href={source.href} key={source.href} target="_blank" rel="noopener noreferrer"><span className="font-mono text-[.65rem] text-[var(--accent)]">{String(index + 1).padStart(2, "0")}</span><span><strong className="block">{source.label}</strong><span className="mt-1 block text-sm leading-6 text-[var(--muted)]">{source.publisher}{source.note ? ` · ${source.note}` : ""}</span></span><Arrow direction="up-right" /></a>)}</div></div></section>;
 }
 
 export function CommercialLandingPage({ page }: { page: CommercialLanding }) {
@@ -218,6 +258,7 @@ export function CommercialLandingPage({ page }: { page: CommercialLanding }) {
 
     <EditorialSections sections={beforeProcess} />
     <ProcessSection page={page} />
+    {page.sources?.length ? <SourcesSection sources={page.sources} /> : null}
     <EditorialSections sections={afterProcess} startIndex={beforeProcess.length} />
 
     {page.archetype === "location" && <section className="section bg-[var(--surface)]">

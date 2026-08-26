@@ -40,6 +40,9 @@ This map converts the supplied keyword exports into one canonical URL per distin
 | `/meta-ads-agency-in-nepal` | Meta Ads management for Facebook and Instagram | Owns paid-social campaign objectives, audience logic, creative systems, lead forms versus landing pages, tracking, follow-up, and lead quality. The advertising page remains the multi-platform umbrella. |
 | `/conversion-rate-optimization-services` | Conversion rate optimisation services | Owns research, journey diagnosis, offer and message clarity, UX friction, proof, forms, calls to action, measurement, and responsible testing. Web design remains the whole-site build decision. |
 | `/seo-audit-services-in-nepal` | Technical, on-page, content and local SEO audit | Owns bounded diagnosis and a prioritised implementation roadmap. SEO expert and SEO company pages own specialist and ongoing delivery decisions. |
+| `/technical-seo-services-in-nepal` | Technical SEO implementation and diagnosis | Owns crawling, indexation, rendering, canonical control, architecture, migrations, structured data and implementation validation. The broader audit page still owns complete SEO diagnosis. |
+| `/analytics-conversion-tracking-services` | Analytics, tag management and conversion tracking | Owns GA4, Google Tag Manager, advertising conversion actions, consent-aware implementation, event QA and decision reporting. Platform service pages own campaign management. |
+| `/content-marketing-agency-in-nepal` | Search-led and commercial content marketing | Owns audience research, intent and entity architecture, expert-informed briefs, editorial workflow, distribution and content measurement. SEO company owns the wider organic programme. |
 
 These three pages were added because the current offer, supplied keyword set, service boundaries, and page depth support a distinct buyer decision. The Meta Ads page does not present unsupported platform results; it explains the system and evidence requirements instead.
 
@@ -89,7 +92,7 @@ These are real, crawlable editorial resources built without a database, CMS, log
 
 ## Deferred pending evidence or demand
 
-- Landing-page design, analytics/conversion tracking, content-marketing agency, and technical-SEO subservice pages remain deferred until the supplied demand and deliverables justify distinct canonical intents.
+- Landing-page design remains consolidated into the web-design and CRO pages because a separate URL would substantially duplicate their buyer journey. Standalone analytics, content-marketing and technical-SEO pages are approved only because each now has a distinct service boundary, source-backed depth and implementation scope.
 - Bhaktapur agency page: the location is real, but a dedicated page should wait for local query evidence and additional unique local information.
 - Pricing pages for SEO, Google Ads, or digital marketing: require real ranges or examples from Rohan.
 - Individual client case-study URLs still require permission, role, intervention, baseline, dates, outcomes, and limitations. Dashboard captures remain clearly labelled evidence notes in the case-study library.
