@@ -25,14 +25,14 @@ const contents = [
 export default function PrivacyPage() {
   return <>
     <PageIntro breadcrumbs={[{ label: "Privacy Policy" }]} eyebrow="Privacy Policy" title="Privacy Policy">
-      <p>Last updated: 24 August 2026</p>
+      <p>Last updated: 29 August 2026</p>
       <p className="mt-5">GrowthLabs by Rohan Neure respects your privacy and aims to collect only the information reasonably needed to operate this website, respond to direct enquiries and provide agreed services.</p>
       <p className="mt-4">This policy explains what information may be processed through neurerohan.com.np and the contact channels linked from it, why that information may be used and the choices available to you.</p>
     </PageIntro>
 
     <div className="section-dark border-b border-white/20">
       <ul className="shell grid font-mono text-[.68rem] uppercase tracking-[.04em] sm:grid-cols-3">
-        <li className="border-b border-white/20 py-5 sm:border-b-0 sm:border-r sm:pr-6">No website contact form</li>
+        <li className="border-b border-white/20 py-5 sm:border-b-0 sm:border-r sm:pr-6">Consent-based website enquiry form</li>
         <li className="border-b border-white/20 py-5 sm:border-b-0 sm:border-r sm:px-6">Consent-aware measurement through Google Tag Manager</li>
         <li className="py-5 sm:pl-6">Essential hosting and security logs may apply</li>
       </ul>
@@ -63,12 +63,12 @@ export default function PrivacyPage() {
 
           <section id="information-you-provide" className="scroll-mt-28">
             <h2 className="font-serif text-3xl text-[var(--ink)]">2. Information you choose to provide</h2>
-            <p className="mt-4">This website does not use a contact form. When you contact GrowthLabs by email, phone, WhatsApp, LinkedIn or another confirmed channel, you may choose to provide:</p>
+            <p className="mt-4">When you use the website enquiry form or contact GrowthLabs by email, phone, WhatsApp, LinkedIn or another confirmed channel, you may choose to provide:</p>
             <ul className="mt-4 list-disc space-y-2 pl-5">
               <li>Your name, email address or phone number</li>
               <li>Your company or business name</li>
               <li>A website or profile URL</li>
-              <li>Your preferred contact method</li>
+              <li>The service you are interested in and your website or profile URL</li>
               <li>Information about your business, marketing, project or enquiry</li>
               <li>Other information you voluntarily include in the conversation</li>
             </ul>
@@ -78,7 +78,7 @@ export default function PrivacyPage() {
           <section id="technical-information" className="scroll-mt-28">
             <h2 className="font-serif text-3xl text-[var(--ink)]">3. Technical and usage information</h2>
             <p className="mt-4">The website host, delivery network and security systems may process standard technical information needed to deliver and protect the site. This may include an IP address, browser or device type, requested URL, access time, referrer, and error or security logs.</p>
-            <p className="mt-4">When Google Tag Manager is enabled, loading its container may also transmit standard request information such as an IP address, browser or device details, requested page, referrer and access time to Google. GrowthLabs does not currently operate user accounts, accept uploads or collect message content through this website. Technical logs are controlled in part by the providers used to keep the site available, secure and measurable.</p>
+            <p className="mt-4">When Google Tag Manager is enabled, loading its container may also transmit standard request information such as an IP address, browser or device details, requested page, referrer and access time to Google. GrowthLabs does not operate user accounts or accept uploads. Enquiry-form details are transmitted to the website server and email-delivery provider so the message can reach Rohan. Technical logs are controlled in part by the providers used to keep the site available, secure and measurable.</p>
           </section>
 
           <section id="how-information-is-used" className="scroll-mt-28">
@@ -107,7 +107,7 @@ export default function PrivacyPage() {
 
           <section id="sharing-and-third-parties" className="scroll-mt-28">
             <h2 className="font-serif text-3xl text-[var(--ink)]">6. When information may be shared</h2>
-            <p className="mt-4">GrowthLabs may share limited information with service providers needed for website hosting, security, email, communication or agreed project delivery. Providers process information for their relevant service under their own terms, privacy notices and security practices, and some may process data outside Nepal.</p>
+            <p className="mt-4">GrowthLabs may share limited information with service providers needed for website hosting, security, form delivery, email, communication or agreed project delivery. The website form uses Resend as the transactional email-delivery provider when configured. Providers process information for their relevant service under their own terms, privacy notices and security practices, and some may process data outside Nepal.</p>
             <p className="mt-4">GrowthLabs may also disclose information where reasonably required to comply with law, protect rights or security, investigate misuse or respond to a valid legal request. GrowthLabs does not sell personal information.</p>
             <h3 className="mt-8 font-serif text-2xl text-[var(--ink)]">Third-party links and contact services</h3>
             <p className="mt-3">This website links to WhatsApp, LinkedIn and Google Maps and may open the email or telephone application on your device. Once you use an independent service, its own terms and privacy policy apply. GrowthLabs does not control how that provider processes information on its platform.</p>
@@ -136,7 +136,7 @@ export default function PrivacyPage() {
           <section id="children-and-changes" className="scroll-mt-28">
             <h2 className="font-serif text-3xl text-[var(--ink)]">9. Children’s privacy and policy changes</h2>
             <p className="mt-4">This website and GrowthLabs services are intended for businesses and are not directed to children. Do not knowingly submit personal information about a child. If you believe a child has provided information, contact GrowthLabs so the situation can be reviewed.</p>
-            <p className="mt-4">This policy may be updated when the website, contact methods, tracking tools, providers or legal requirements change. The latest version will appear here with a revised last-updated date. Material changes should be published before new forms, analytics, advertising trackers, user accounts or other data-processing features go live.</p>
+            <p className="mt-4">This policy may be updated when the website, contact methods, tracking tools, providers or legal requirements change. The latest version will appear here with a revised last-updated date. Material changes should be published before new analytics, advertising trackers, user accounts or other data-processing features go live.</p>
           </section>
 
           <section id="privacy-contact" className="scroll-mt-28 border-t border-[var(--line)] pt-10">

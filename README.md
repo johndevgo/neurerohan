@@ -32,9 +32,17 @@ Projects support index and detail routes for future case studies. Adding a proje
 
 ## Environment variables
 
-Phase 1 requires no environment variables. The public Google Tag Manager container ID `GTM-59D6JGLP` is intentionally committed in the site shell so production and preview deployments emit the same standard head script and body fallback. A GTM container ID is a public identifier, not a secret; private credentials must never be placed in client code or `NEXT_PUBLIC_*` variables.
+The public Google Tag Manager container ID `GTM-59D6JGLP` is intentionally committed in the site shell. A GTM container ID is public; private credentials must never be placed in client code or `NEXT_PUBLIC_*` variables.
 
-The contact experience uses direct email, phone, WhatsApp and LinkedIn links, so no form-delivery environment variable or backend is required.
+The contact form uses a small Vercel route and Resend. It requires no database or separate backend host. Copy `.env.example` to `.env.local` and configure these server-only values:
+
+- `RESEND_API_KEY` — private API key from Resend
+- `CONTACT_TO_EMAIL` — inbox that receives enquiries
+- `CONTACT_FROM_EMAIL` — verified sender, for example `GrowthLabs Website <enquiries@send.neurerohan.com.np>`
+
+If these values are absent, the form reports that delivery is not configured and directs the visitor to email or WhatsApp; it never displays a false success message.
+
+Resend setup: create an account, add `send.neurerohan.com.np`, copy its SPF and DKIM records into Cloudflare as DNS-only records, verify the domain, create a sending API key, and add the three variables in Vercel Project Settings → Environment Variables. Redeploy after saving them. Direct email, phone, WhatsApp and LinkedIn links remain available independently.
 
 ## Deployment
 
@@ -49,6 +57,7 @@ The application can be deployed to Vercel or another Node.js host supporting Nex
 7. Confirm HTTPS is active before public launch.
 8. Verify canonical URLs, `/robots.txt`, and `/sitemap.xml` on production.
 9. Verify the published email, phone, WhatsApp, LinkedIn, Google Maps embeds, GTM container, consent and measurement-settings controls on production.
+10. Submit one production contact-form test and confirm it reaches `CONTACT_TO_EMAIL`; reply should address the visitor because the form sets their email as Reply-To.
 
 DNS and hosting account changes are intentionally outside this repository and have not been made.
 

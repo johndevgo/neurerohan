@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { BrandLockup } from "@/components/brand-lockup";
+import { ContactForm } from "@/components/contact-form";
 import { Arrow } from "@/components/icons";
 import { GoogleBusinessMap } from "@/components/google-business-map";
 import { PageStructuredData } from "@/components/structured-data";
@@ -74,9 +75,11 @@ export default function ContactPage() {
       <p className="mt-4">A website link, priority offer and clear description of the desired business action are enough to begin. You do not need to diagnose the channel or select a package first.</p>
     </PageIntro>
 
+    <section className="section contact-form-section pt-0"><div className="shell"><ContactForm /></div></section>
+
     <section className="section pt-0">
       <div className="shell">
-        <SectionHeading eyebrow="Choose the easiest channel" title="Every enquiry reaches Rohan directly." copy="Use WhatsApp for a quick start, email for a fuller brief or phone for a direct conversation. LinkedIn remains available as a professional profile rather than the main enquiry route." />
+        <SectionHeading eyebrow="Choose the easiest channel" title="Every enquiry reaches Rohan directly." copy="Use the secure website form for a structured brief, WhatsApp for a quick start, email for more context or phone for a direct conversation. LinkedIn remains a professional profile rather than the main enquiry route." />
         <div className="mt-14 grid gap-8 md:ml-[25%] sm:grid-cols-2">
           {channels.map((channel) => <article className="card" key={channel.label}>
             <p className="eyebrow">{channel.label}</p>

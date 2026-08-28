@@ -142,7 +142,7 @@ export const siteConfig = {
     email: { label: "Email your growth brief", href: "mailto:contact@neurerohan.com.np?subject=GrowthLabs%20growth%20review&body=Website%20or%20profile%3A%0AOffer%3A%0ATarget%20market%3A%0ACurrent%20channels%3A%0ABiggest%20constraint%3A%0AResult%20to%20improve%3A" },
     phone: { label: "Call Rohan directly", href: "tel:+9779746265996" },
     microcopy: "Send your website, main offer, target market, current channels and the result you want to improve. Your enquiry goes directly to Rohan, who will recommend the clearest next step.",
-    reassurance: "No form. No booking link. Message, email or call Rohan directly.",
+    reassurance: "No booking maze. Use the secure enquiry form, WhatsApp, email or call Rohan directly.",
   },
   seo: {
     title: "GrowthLabs by Rohan Neure | SEO, Google Ads & Meta Ads",

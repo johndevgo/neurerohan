@@ -34,8 +34,9 @@ export function MobileNav({ items }: { items: readonly NavItem[] }) {
   return (
     <div className="flex items-center gap-1.5 lg:hidden">
       <Link className="header-mobile-cta" href={siteConfig.cta.primary.href} aria-label={siteConfig.cta.primary.label} data-cta-intent="growth-review" data-cta-location="mobile-header" data-cta-channel="contact">{siteConfig.cta.primary.shortLabel} <Arrow /></Link>
-      <button ref={buttonRef} className="mobile-menu-button flex min-h-12 min-w-12 items-center justify-center" aria-expanded={open} aria-controls="mobile-menu" aria-label={open ? "Close menu" : "Open menu"} onClick={() => setOpen((value) => !value)}><MenuIcon open={open} /></button>
+      <button ref={buttonRef} className={`mobile-menu-button relative z-[70] flex min-h-12 min-w-12 items-center justify-center ${open ? "mobile-menu-button-open" : ""}`} aria-expanded={open} aria-controls="mobile-menu" aria-label={open ? "Close menu" : "Open menu"} onClick={() => setOpen((value) => !value)}><MenuIcon open={open} /></button>
       {open && <div ref={panelRef} id="mobile-menu" className="fixed inset-x-0 top-[var(--header)] z-50 flex h-[calc(100dvh-var(--header))] flex-col overflow-y-auto overscroll-contain bg-[var(--ink)] p-5 pb-8 text-[var(--paper)]" aria-label="Mobile navigation">
+        <button className="mb-2 ml-auto min-h-11 rounded-full border border-white/35 px-4 text-xs font-bold" type="button" onClick={() => { setOpen(false); buttonRef.current?.focus(); }}>Close menu <span aria-hidden="true">×</span></button>
         <nav className="mt-5 flex flex-col">
           {items.map((item, index) => <Link key={item.href} href={item.href} onClick={() => setOpen(false)} aria-current={pathname === item.href ? "page" : undefined} className="border-b border-white/20 py-4 font-serif text-3xl tracking-[-.045em]"><span className="mr-4 align-top font-mono text-[.72rem] font-normal tracking-normal text-white/65">0{index + 1}</span>{item.label}</Link>)}
         </nav>
