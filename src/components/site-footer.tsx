@@ -4,7 +4,7 @@ import { BrandLockup } from "./brand-lockup";
 import { MeasurementSettingsButton } from "./measurement-consent";
 
 export function SiteFooter({ measurementEnabled = false }: { measurementEnabled?: boolean }) {
-  return <footer className="border-t border-[var(--ink)] bg-[var(--ink)] text-[var(--paper)]">
+  return <footer className="site-footer border-t border-[var(--ink)] bg-[var(--ink)] text-[var(--paper)]">
     <div className="shell border-b border-white/20 py-14 md:py-20"><p className="eyebrow !text-[var(--sun)]">SEO · Google Ads · Meta Ads · CRO</p><Link className="mt-5 block max-w-[15ch] font-serif text-[clamp(3rem,7vw,7.5rem)] leading-[.88] tracking-[-.07em] hover:text-[var(--sun)]" href={siteConfig.cta.contact.href} data-cta-intent="growth-review" data-cta-location="footer" data-cta-channel="contact">Send your growth brief. ↗</Link><p className="mt-7 max-w-2xl text-sm leading-6 text-white/60">{siteConfig.cta.reassurance}</p></div>
     <div className="shell grid gap-12 py-12 md:grid-cols-[1.35fr_.8fr_.9fr_.95fr] md:py-16">
       <div><BrandLockup size="footer" tone="dark" /><p className="mt-5 max-w-sm text-sm leading-6 text-white/58">Founder-led SEO, Google Ads, Meta Ads, landing pages and CRO from Bhaktapur for businesses across Nepal.</p></div>

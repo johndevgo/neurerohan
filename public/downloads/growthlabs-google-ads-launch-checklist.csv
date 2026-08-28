@@ -1,0 +1,9 @@
+Stage,Check,Why it matters,Evidence or URL,Owner,Priority,Status,Validation date,Notes
+Foundation,Customer outcome and value are defined,Automated optimisation needs a commercially meaningful signal,[link to definition],[owner],Critical,Not started,,
+Measurement,Primary conversion fires once with correct consent,A duplicate or weak event can distort bidding,[debug evidence],[owner],Critical,Not started,,
+Targeting,Locations languages schedules and exclusions are reviewed,Default settings can create irrelevant delivery,[campaign link],[owner],High,Not started,,
+Search,Keywords match intent and negative lists are reviewed,Search terms determine relevance and budget quality,[keyword plan],[owner],High,Not started,,
+Creative,Responsive search ad assets are accurate and policy-ready,Ads must continue the offer without unsupported claims,[ad preview],[owner],High,Not started,,
+Destination,Mobile landing page matches query and ad promise,Journey continuity affects qualification and conversion,[page URL],[owner],Critical,Not started,,
+Economics,Budget CPA ROAS and stop thresholds are documented,Teams need decision guardrails before spend begins,[model link],[owner],Critical,Not started,,
+Launch,Search terms spend conversions and lead quality have review owners,A launch needs monitoring and business feedback,[schedule],[owner],High,Not started,,

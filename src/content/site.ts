@@ -62,7 +62,13 @@ export const siteConfig = {
   positioning: "SEO, Google Ads and Meta Ads built to rank, convert, and grow.",
   shortBio: "Rohan Neure is a performance and growth marketer with 4+ years of experience building full-funnel systems across Google Ads, Meta Ads, TikTok Ads, SEO, CRO, analytics, tracking, automation, and landing-page optimisation.",
   about: ["GrowthLabs by Rohan Neure is built for businesses that need more than disconnected digital activity. The work starts with the business, the audience, search demand, and the full journey from visibility to enquiry.", "Rohan connects audience research, paid media, search intent, landing pages, tracking, reporting, conversion flow, creative testing, and performance analysis so businesses can understand what is working, what is wasting money, and where growth is actually coming from."],
-  profileImage: "/images/brand/rohan-neure-profile.png",
+  profileImage: "/images/brand/rohan-neure-standing-portrait.png",
+  portraits: {
+    standing: "/images/brand/rohan-neure-standing-portrait.png",
+    working: "/images/brand/rohan-neure-working-portrait.png",
+    window: "/images/brand/rohan-neure-window-portrait.png",
+    cutout: "/images/brand/rohan-neure-cutout-portrait.png",
+  },
   brandAvatar: "/images/brand/growthlabs-brand-avatar.png",
   servicesCover: "/images/brand/growthlabs-services-cover.png",
   proofImages: [
@@ -70,6 +76,8 @@ export const siteConfig = {
     { id: "dubai-tours", src: "/images/proof/Dubai and Sharjah Tours.png", width: 2227, height: 1040, alt: "Google Search Console performance report for a Dubai and Sharjah tours website showing 87 clicks and 52K impressions in the selected custom period", caption: "Dubai & Sharjah tours · Custom-period Search Console capture", stats: [{ value: "87", label: "clicks" }, { value: "52K", label: "impressions" }] },
     { id: "dubai-water-adventure", src: "/images/proof/Dubai Water-Adventure Rental.png", width: 2287, height: 966, alt: "Google Search Console performance report for a Dubai water-adventure rental website showing 460 clicks and 47.4K impressions over three months", caption: "Dubai water-adventure rental · Three-month Search Console capture", stats: [{ value: "460", label: "clicks" }, { value: "47.4K", label: "impressions" }] },
     { id: "texas-hvac", src: "/images/proof/USA - Texas HVAC.png", width: 2275, height: 940, alt: "Google Search Console performance report for a Texas HVAC website showing 714 clicks and 38K impressions over three months", caption: "Texas HVAC · Three-month Search Console capture", stats: [{ value: "714", label: "clicks" }, { value: "38K", label: "impressions" }] },
+    { id: "organic-growth-358", src: "/images/proof/search-console-growth-03.png", width: 2205, height: 1008, alt: "Google Search Console performance report showing 358 clicks, 35.9K impressions and a rising three-month visibility trend", caption: "Organic search property · Supplied custom-period Search Console capture", stats: [{ value: "358", label: "clicks" }, { value: "35.9K", label: "impressions" }] },
+    { id: "organic-growth-876", src: "/images/proof/search-console-growth-04.png", width: 2219, height: 1016, alt: "Google Search Console performance report showing 876 clicks and 178K impressions in the supplied custom period", caption: "Organic search property · Supplied custom-period Search Console capture", stats: [{ value: "876", label: "clicks" }, { value: "178K", label: "impressions" }] },
   ],
   paidProofImages: [
     { id: "london-home-services-ads", src: "/images/proof/google-ads-london-home-services.png", width: 2362, height: 958, alt: "Google Ads performance view showing 1.27 million impressions, 29,851 clicks and 474.79 reported conversions from February to May 2026", caption: "London home-services account · 1 Feb–31 May 2026", stats: [{ value: "1.27M", label: "impressions" }, { value: "29,851", label: "clicks" }, { value: "474.79", label: "reported conversions" }, { value: "£0.52", label: "average CPC" }] },

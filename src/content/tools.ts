@@ -1,6 +1,6 @@
 import type { AgencyAssetKey } from "@/content/agency-assets";
 
-export type ToolKind = "seo-roi" | "google-ads-break-even" | "meta-budget" | "utm-builder";
+export type ToolKind = "seo-roi" | "google-ads-break-even" | "meta-budget" | "utm-builder" | "conversion-rate" | "funnel-economics" | "campaign-metrics";
 
 export type MarketingTool = {
   slug: string;
@@ -90,5 +90,59 @@ export const marketingTools: MarketingTool[] = [
     related: [{ label: "Digital marketing questions", href: "/insights/questions" }, { label: "Digital marketing process", href: "/insights/digital-marketing-process" }, { label: "Conversion rate optimisation", href: "/conversion-rate-optimization-services" }],
   },
 ];
+
+marketingTools.push(
+  {
+    slug: "conversion-rate-calculator",
+    kind: "conversion-rate",
+    title: "Conversion rate calculator for leads, sales and landing pages",
+    shortTitle: "Conversion rate calculator",
+    metaTitle: "Free Conversion Rate Calculator | Leads & Sales",
+    description: "Calculate conversion rate, non-converting visits and the additional outcomes required to reach a scenario target without confusing the model with a forecast.",
+    eyebrow: "Free CRO tool / Conversion scenario",
+    visual: "conversion",
+    answer: "Conversion rate is completed outcomes divided by eligible visits or users, multiplied by 100. Keep the numerator, denominator, period and traffic definition consistent when comparing performance.",
+    formula: "Conversion rate = conversions ÷ visits × 100. Additional conversions at scenario rate = visits × scenario rate − current conversions.",
+    inputs: ["Eligible visits or users", "Completed qualified conversions", "Scenario conversion rate"],
+    cautions: ["Do not compare different traffic definitions or conversion events.", "A higher rate can accompany lower qualified volume or revenue.", "Bot, internal and consent-limited traffic can affect the denominator.", "A scenario output is arithmetic, not a prediction."],
+    steps: [{ title: "Define the action", copy: "Use a stable qualified lead, purchase, booking or another meaningful event." }, { title: "Choose the denominator", copy: "Use eligible sessions or users consistently across the comparison." }, { title: "Model a range", copy: "Compare conservative and upside rates without presenting them as expected results." }, { title: "Check quality", copy: "Reconcile volume with sales, revenue, margin and customer quality." }],
+    faqs: [{ question: "What is a good conversion rate?", answer: "There is no universal benchmark. Intent, offer, channel, device, market, event definition and business model change the useful range." }, { question: "Should I use users or sessions?", answer: "Either can be useful when its definition is documented and applied consistently. Do not silently switch denominators." }, { question: "Can conversion rate rise while performance worsens?", answer: "Yes. Traffic or conversion volume, lead quality, revenue or margin can decline while the percentage increases." }, { question: "Does this calculator predict conversions?", answer: "No. It shows the arithmetic of your inputs and a scenario rate." }],
+    related: [{ label: "CRO services", href: "/conversion-rate-optimization-services" }, { label: "CRO backlog", href: "/resources/cro-experiment-backlog" }, { label: "Marketing glossary", href: "/insights/glossary" }],
+  },
+  {
+    slug: "marketing-funnel-calculator",
+    kind: "funnel-economics",
+    title: "Marketing funnel calculator for leads, customers, revenue and CAC",
+    shortTitle: "Marketing funnel calculator",
+    metaTitle: "Marketing Funnel Calculator | Leads, Sales & CAC",
+    description: "Model visits, lead rate, close rate, customer volume, revenue and customer acquisition cost across a simple measurable funnel.",
+    eyebrow: "Free growth tool / Funnel economics",
+    visual: "growthSystem",
+    answer: "The calculator makes funnel assumptions explicit from visit to lead to customer. It is most useful when platform events are reconciled with CRM, sales and finance definitions.",
+    formula: "Leads = visits × lead rate. Customers = leads × close rate. Revenue = customers × average customer revenue. CAC = marketing cost ÷ customers.",
+    inputs: ["Monthly visits", "Visit-to-lead rate", "Lead-to-customer close rate", "Average revenue per customer", "Marketing cost"],
+    cautions: ["A linear funnel simplifies assisted and repeat journeys.", "Use qualified leads rather than every form or message.", "Revenue is not profit and CAC may exclude important costs.", "Attribution systems can assign the same customer differently."],
+    steps: [{ title: "Use one period", copy: "Keep visits, leads, customers and spend aligned to a comparable cohort or period." }, { title: "Define qualification", copy: "Document the point at which an enquiry becomes a useful lead." }, { title: "Use business records", copy: "Validate customer and revenue assumptions outside ad-platform reporting." }, { title: "Stress-test", copy: "Change one rate at a time to see which assumption drives the scenario." }],
+    faqs: [{ question: "What is funnel conversion rate?", answer: "It is the proportion moving between defined stages, such as visits to leads or qualified leads to customers." }, { question: "What is CAC?", answer: "Customer acquisition cost is included acquisition spend divided by acquired customers, with the cost scope stated clearly." }, { question: "Is revenue the same as return?", answer: "No. Profitability also depends on margin, fulfilment, overhead, refunds and customer lifetime behaviour." }, { question: "Why compare stage rates?", answer: "Stage rates help locate where a system loses qualified demand instead of blaming one channel for the entire journey." }],
+    related: [{ label: "Digital marketing services", href: "/services" }, { label: "Marketing brief", href: "/resources/digital-marketing-brief-template" }, { label: "Digital marketing process", href: "/insights/digital-marketing-process" }],
+  },
+  {
+    slug: "cpc-cpm-ctr-calculator",
+    kind: "campaign-metrics",
+    title: "CPC, CPM and CTR calculator for paid media reporting",
+    shortTitle: "CPC, CPM & CTR calculator",
+    metaTitle: "Free CPC, CPM & CTR Calculator for Paid Ads",
+    description: "Calculate cost per click, cost per thousand impressions and click-through rate from spend, impressions and clicks for Google, Meta and other paid media.",
+    eyebrow: "Free paid media tool / Delivery metrics",
+    visual: "analytics",
+    answer: "CPC, CPM and CTR describe media delivery and response. They help diagnose auction and creative behaviour but do not prove lead quality, sales or profitable growth.",
+    formula: "CPC = spend ÷ clicks. CPM = spend ÷ impressions × 1,000. CTR = clicks ÷ impressions × 100.",
+    inputs: ["Advertising spend", "Recorded impressions", "Recorded clicks", "Currency symbol"],
+    cautions: ["Platform definitions and invalid-traffic controls can differ.", "A cheap click can still be irrelevant.", "CTR comparisons require similar placements, audiences and objectives.", "Reconcile campaign metrics with qualified conversion economics."],
+    steps: [{ title: "Align the period", copy: "Export spend, impressions and clicks from the same dates and scope." }, { title: "Segment responsibly", copy: "Compare like-for-like campaigns, placements, devices and audiences." }, { title: "Read the relationship", copy: "Use CPM for delivery cost, CTR for response and CPC for their combined effect." }, { title: "Go deeper", copy: "Connect the delivery layer to conversion rate, CPA, value and margin." }],
+    faqs: [{ question: "What is CPC?", answer: "Cost per click is advertising spend divided by recorded clicks." }, { question: "What is CPM?", answer: "Cost per mille is advertising spend per one thousand recorded impressions." }, { question: "What is CTR?", answer: "Click-through rate is recorded clicks divided by recorded impressions, multiplied by 100." }, { question: "Which metric matters most?", answer: "None is sufficient alone. Use them to diagnose delivery, then make commercial decisions with qualified outcomes and economics." }],
+    related: [{ label: "Google Ads services", href: "/google-ads-agency-in-nepal" }, { label: "Meta Ads services", href: "/meta-ads-agency-in-nepal" }, { label: "Case-study evidence", href: "/insights/case-studies" }],
+  },
+);
 
 export const marketingToolBySlug = Object.fromEntries(marketingTools.map((tool) => [tool.slug, tool])) as Record<string, MarketingTool>;

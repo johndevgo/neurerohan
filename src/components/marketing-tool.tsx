@@ -61,6 +61,48 @@ function MetaBudgetCalculator() {
   return <ToolShell fields={<><Field label="Desired qualified outcomes" value={outcomes} onChange={setOutcomes} step="1" /><Field label="Target cost per outcome" value={cpa} onChange={setCpa} suffix={currency} /><Field label="Testing buffer" value={buffer} onChange={setBuffer} suffix="%" /><Field label="Campaign duration" value={days} onChange={setDays} suffix="days" step="1" /><label className="grid gap-2"><span className="font-mono text-[.68rem] font-bold uppercase tracking-[.045em] text-[var(--muted)]">Currency symbol</span><input className="min-h-12 border border-[var(--line-strong)] bg-white px-3" value={currency} maxLength={4} onChange={(event) => setCurrency(event.target.value)} /></label></>} results={<><Result label="Base outcome budget" value={`${currency}${fixed(output.base)}`} /><Result label="Testing and uncertainty allowance" value={`${currency}${fixed(output.planning - output.base)}`} /><Result label="Planning media budget" value={`${currency}${fixed(output.planning)}`} /><Result label="Daily planning budget" value={`${currency}${fixed(output.daily)}`} note="Media budget only. Delivery and result volume are not guaranteed." /></>} />;
 }
 
+function ConversionRateCalculator() {
+  const [visits, setVisits] = useState("5000");
+  const [conversions, setConversions] = useState("150");
+  const [targetRate, setTargetRate] = useState("4");
+  const output = useMemo(() => {
+    const visitCount = number(visits);
+    const conversionCount = number(conversions);
+    const currentRate = visitCount > 0 ? conversionCount / visitCount * 100 : 0;
+    const scenarioConversions = visitCount * number(targetRate) / 100;
+    return { currentRate, nonConverting: Math.max(0, visitCount - conversionCount), scenarioConversions, additional: Math.max(0, scenarioConversions - conversionCount) };
+  }, [visits, conversions, targetRate]);
+  return <ToolShell fields={<><Field label="Eligible visits or users" value={visits} onChange={setVisits} step="1" /><Field label="Qualified conversions" value={conversions} onChange={setConversions} step="1" /><Field label="Scenario conversion rate" value={targetRate} onChange={setTargetRate} suffix="%" /></>} results={<><Result label="Current conversion rate" value={`${fixed(output.currentRate)}%`} /><Result label="Visits without the defined conversion" value={fixed(output.nonConverting)} /><Result label="Conversions at scenario rate" value={fixed(output.scenarioConversions)} /><Result label="Additional conversions in scenario" value={fixed(output.additional)} note="Scenario arithmetic only—not a forecast or guarantee." /></>} />;
+}
+
+function FunnelEconomicsCalculator() {
+  const [visits, setVisits] = useState("10000");
+  const [leadRate, setLeadRate] = useState("3");
+  const [closeRate, setCloseRate] = useState("20");
+  const [revenue, setRevenue] = useState("800");
+  const [cost, setCost] = useState("3000");
+  const [currency, setCurrency] = useState("$");
+  const output = useMemo(() => {
+    const leads = number(visits) * number(leadRate) / 100;
+    const customers = leads * number(closeRate) / 100;
+    return { leads, customers, revenue: customers * number(revenue), cac: customers > 0 ? number(cost) / customers : 0 };
+  }, [visits, leadRate, closeRate, revenue, cost]);
+  return <ToolShell fields={<><Field label="Monthly visits" value={visits} onChange={setVisits} step="1" /><Field label="Visit-to-lead rate" value={leadRate} onChange={setLeadRate} suffix="%" /><Field label="Lead-to-customer close rate" value={closeRate} onChange={setCloseRate} suffix="%" /><Field label="Revenue per customer" value={revenue} onChange={setRevenue} suffix={currency} /><Field label="Included marketing cost" value={cost} onChange={setCost} suffix={currency} /><label className="grid gap-2"><span className="font-mono text-[.68rem] font-bold uppercase tracking-[.045em] text-[var(--muted)]">Currency symbol</span><input className="min-h-12 border border-[var(--line-strong)] bg-white px-3" value={currency} maxLength={4} onChange={(event) => setCurrency(event.target.value)} /></label></>} results={<><Result label="Modelled qualified leads" value={fixed(output.leads)} /><Result label="Modelled customers" value={fixed(output.customers)} /><Result label="Modelled gross revenue" value={`${currency}${fixed(output.revenue)}`} /><Result label="Customer acquisition cost" value={`${currency}${fixed(output.cac)}`} note="Simplified linear scenario. Revenue is not profit." /></>} />;
+}
+
+function CampaignMetricsCalculator() {
+  const [spend, setSpend] = useState("1000");
+  const [impressions, setImpressions] = useState("100000");
+  const [clicks, setClicks] = useState("2500");
+  const [currency, setCurrency] = useState("$");
+  const output = useMemo(() => ({
+    cpc: number(clicks) > 0 ? number(spend) / number(clicks) : 0,
+    cpm: number(impressions) > 0 ? number(spend) / number(impressions) * 1000 : 0,
+    ctr: number(impressions) > 0 ? number(clicks) / number(impressions) * 100 : 0,
+  }), [spend, impressions, clicks]);
+  return <ToolShell fields={<><Field label="Advertising spend" value={spend} onChange={setSpend} suffix={currency} /><Field label="Recorded impressions" value={impressions} onChange={setImpressions} step="1" /><Field label="Recorded clicks" value={clicks} onChange={setClicks} step="1" /><label className="grid gap-2"><span className="font-mono text-[.68rem] font-bold uppercase tracking-[.045em] text-[var(--muted)]">Currency symbol</span><input className="min-h-12 border border-[var(--line-strong)] bg-white px-3" value={currency} maxLength={4} onChange={(event) => setCurrency(event.target.value)} /></label></>} results={<><Result label="Cost per click (CPC)" value={`${currency}${fixed(output.cpc)}`} /><Result label="Cost per 1,000 impressions (CPM)" value={`${currency}${fixed(output.cpm)}`} /><Result label="Click-through rate (CTR)" value={`${fixed(output.ctr)}%`} /><Result label="Commercial interpretation" value="Go deeper" note="Connect these delivery metrics to qualified conversions, CPA, value and margin." /></>} />;
+}
+
 function UtmBuilder() {
   const [url, setUrl] = useState("https://example.com/landing-page");
   const [source, setSource] = useState("google");
@@ -90,5 +132,8 @@ export function MarketingToolCalculator({ kind }: { kind: ToolKind }) {
   if (kind === "seo-roi") return <SeoRoiCalculator />;
   if (kind === "google-ads-break-even") return <GoogleAdsCalculator />;
   if (kind === "meta-budget") return <MetaBudgetCalculator />;
+  if (kind === "conversion-rate") return <ConversionRateCalculator />;
+  if (kind === "funnel-economics") return <FunnelEconomicsCalculator />;
+  if (kind === "campaign-metrics") return <CampaignMetricsCalculator />;
   return <UtmBuilder />;
 }

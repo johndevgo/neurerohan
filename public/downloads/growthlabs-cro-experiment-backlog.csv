@@ -1,0 +1,2 @@
+ID,Page or journey,Audience,Evidence source,Observed friction,Hypothesis,Proposed change,Validation method,Primary metric,Guardrail metrics,Impact,Confidence,Effort,Risk,Owner,Status,Start date,End date,Outcome,Limitations,Learning,Next action
+CRO-001,[URL or step],[segment],[analytics/interview/usability/sales],[specific observation],[because statement],[one clear change],[A/B test/usability/sequential check],[qualified action],[quality/revenue/accessibility/performance],[1-5],[1-5],[1-5],[1-5],[name],Backlog,,,,,,

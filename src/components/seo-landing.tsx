@@ -104,7 +104,7 @@ export function SeoLanding({ faqs }: Props) {
     <section className="section">
       <div className="shell grid items-start gap-10 md:grid-cols-[minmax(16rem,1fr)_minmax(0,2fr)]">
         <div className="hero-portrait max-w-md">
-          <Image className="aspect-[4/5] w-full object-cover" src={siteConfig.profileImage} alt="Rohan Neure, SEO expert and founder of GrowthLabs" width={1254} height={1254} sizes="(max-width: 768px) 100vw, 34vw" priority />
+          <Image className="aspect-[4/5] w-full object-cover" src={siteConfig.portraits.working} alt="Rohan Neure, SEO expert and founder of GrowthLabs, working at a laptop" width={1122} height={1402} sizes="(max-width: 768px) 100vw, 34vw" priority />
         </div>
         <div>
           <p className="eyebrow">Strategy without unnecessary layers</p>

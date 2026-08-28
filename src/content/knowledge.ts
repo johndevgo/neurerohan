@@ -1,3 +1,6 @@
+import type { AgencyAssetKey } from "./agency-assets";
+import { extendedGlossaryTerms } from "./glossary-extended";
+
 export type KnowledgeQuestion = {
   question: string;
   answer: string;
@@ -66,7 +69,7 @@ export type GlossaryTerm = {
   href?: string;
 };
 
-export const glossaryTerms: GlossaryTerm[] = [
+const coreGlossaryTerms: GlossaryTerm[] = [
   { term: "Attribution", definition: "A rule or model used to assign credit for a conversion across marketing interactions.", practicalMeaning: "Attribution is an interpretation of available signals, not a perfect reconstruction of every influence." },
   { term: "Bounce rate", definition: "A behaviour metric whose definition depends on the analytics product and configuration.", practicalMeaning: "Do not diagnose a page from bounce rate alone; examine intent, engagement, events and the job of the page." },
   { term: "Call to action", abbreviation: "CTA", definition: "A prompt that tells a visitor what useful step to take next.", practicalMeaning: "A strong CTA is specific, visible and appropriate to the visitor's decision stage." },
@@ -99,12 +102,15 @@ export const glossaryTerms: GlossaryTerm[] = [
   { term: "UTM parameters", definition: "Standard query parameters used to label campaign traffic for analytics reporting.", practicalMeaning: "Use a consistent naming convention and never place personal or secret information in a campaign URL.", href: "/tools/utm-builder" },
 ];
 
+export const glossaryTerms: GlossaryTerm[] = [...coreGlossaryTerms, ...extendedGlossaryTerms]
+  .sort((a, b) => a.term.localeCompare(b.term));
+
 export type ResourceItem = {
   slug: string;
   title: string;
   shortTitle: string;
   description: string;
-  asset: "seoAudit" | "contentStrategy" | "userExperience";
+  asset: AgencyAssetKey;
   download: { href: string; label: string; format: string };
   purpose: string;
   includes: string[];
@@ -158,5 +164,78 @@ export const resources: ResourceItem[] = [
     related: [{ label: "Website development checklist guide", href: "/insights/website-development-checklist" }, { label: "Web design company in Nepal", href: "/web-design-company-in-nepal" }, { label: "Why web design matters", href: "/insights/why-web-design-matters" }],
   },
 ];
+
+resources.push(
+  {
+    slug: "keyword-mapping-template",
+    title: "Keyword mapping template for search intent and page planning",
+    shortTitle: "Keyword mapping template",
+    description: "Map keyword clusters, search intent, funnel stage, target URLs, entities, internal links and measurement priorities without creating a page for every wording variation.",
+    asset: "seoRanking",
+    download: { href: "/downloads/growthlabs-keyword-mapping-template.csv", label: "Download the keyword mapping template", format: "CSV" },
+    purpose: "Use this template to turn a large keyword export into a defensible site architecture. It keeps one primary intent attached to one useful canonical destination while preserving supporting queries and entities.",
+    includes: ["Primary and secondary keyword clusters", "Intent and funnel-stage classification", "Current and proposed URL mapping", "SERP and competitor evidence", "Required entities and supporting questions", "Internal-link sources", "Priority, owner and measurement fields"],
+    howToUse: [{ title: "Cluster by intent", copy: "Group phrases that should be satisfied by the same useful page, not merely words that look similar." }, { title: "Inspect the result type", copy: "Record whether the search results favour services, guides, tools, comparisons, local listings or another format." }, { title: "Assign one destination", copy: "Choose the strongest canonical URL and flag overlaps that may need consolidation or differentiation." }, { title: "Plan supporting signals", copy: "Add entities, questions, proof, internal links and the commercial action the page should support." }],
+    guidance: [{ title: "Volume is not intent", copy: "Search volume can help prioritise demand, but it does not show whether a query fits the offer, geography or likely customer journey." }, { title: "Avoid doorway architecture", copy: "Do not publish near-duplicate pages for every modifier. Create separate URLs only when the user need, evidence and page value are materially distinct." }],
+    faqs: [{ question: "How many keywords should one page target?", answer: "There is no fixed number. One page can naturally cover many related phrases when they share intent and require the same answer." }, { question: "What is keyword cannibalisation?", answer: "It is an intent and URL-mapping problem where multiple pages send conflicting or overlapping signals for substantially the same need." }],
+    related: [{ label: "SEO glossary", href: "/insights/glossary" }, { label: "SEO services", href: "/seo-services-in-nepal" }, { label: "SEO ROI calculator", href: "/tools/seo-roi-calculator" }],
+  },
+  {
+    slug: "google-ads-launch-checklist",
+    title: "Google Ads launch checklist for search campaigns and conversion tracking",
+    shortTitle: "Google Ads launch checklist",
+    description: "Review account access, campaign structure, search terms, bidding, budgets, assets, landing pages, consent and conversion tracking before launch.",
+    asset: "googleAds",
+    download: { href: "/downloads/growthlabs-google-ads-launch-checklist.csv", label: "Download the Google Ads launch checklist", format: "CSV" },
+    purpose: "Use the checklist to make campaign assumptions visible before budget enters the auction. It separates configuration completion from commercial readiness.",
+    includes: ["Account, billing and access", "Conversion actions and attribution", "Campaign and ad-group structure", "Keywords and negative keywords", "Ad assets and policy review", "Budget and bidding guardrails", "Landing-page QA", "Launch monitoring and change log"],
+    howToUse: [{ title: "Define the outcome", copy: "Name the qualified action, its value and the system that confirms it outside the ad platform." }, { title: "Check the journey", copy: "Test query, ad promise, landing page, conversion event and business follow-up as one path." }, { title: "Set guardrails", copy: "Record budgets, locations, schedules, exclusions and escalation thresholds before launch." }, { title: "Monitor deliberately", copy: "Review search terms, tracking and lead quality on a schedule suited to spend and data volume." }],
+    guidance: [{ title: "Do not optimise to a broken signal", copy: "A campaign can efficiently generate the wrong event. Validate consent, tag firing, duplicates and qualified outcomes before automated bidding relies on them." }, { title: "Keep the search-term context", copy: "Keywords are targeting controls; search terms are demand evidence. Review meaning and business fit before adding exclusions or expanding reach." }],
+    faqs: [{ question: "Does a completed checklist guarantee performance?", answer: "No. It reduces preventable launch errors but cannot guarantee auction costs, demand, lead quality, sales or profitability." }, { question: "Which conversion should be primary?", answer: "Use the commercially meaningful action the campaign can measure reliably, with secondary diagnostics kept separate." }],
+    related: [{ label: "Google Ads agency", href: "/google-ads-agency-in-nepal" }, { label: "Break-even calculator", href: "/tools/google-ads-break-even-calculator" }, { label: "Campaign evidence", href: "/insights/case-studies" }],
+  },
+  {
+    slug: "meta-ads-creative-testing-tracker",
+    title: "Meta Ads creative testing tracker for hypotheses, variants and outcomes",
+    shortTitle: "Meta Ads creative tracker",
+    description: "Plan Facebook and Instagram ad concepts, hooks, formats, audiences, destinations and qualified outcome metrics in one testing record.",
+    asset: "metaAds",
+    download: { href: "/downloads/growthlabs-meta-ads-creative-testing-tracker.csv", label: "Download the Meta Ads creative tracker", format: "CSV" },
+    purpose: "Use this tracker to learn why a creative was tested and what changed. It prevents a folder of disconnected ads from being mistaken for a testing system.",
+    includes: ["Hypothesis and audience", "Hook, angle and offer", "Format and placement", "Variant naming and destination", "Spend, reach, frequency and clicks", "Qualified conversion and CPA", "Decision and next iteration"],
+    howToUse: [{ title: "Write the hypothesis", copy: "State which message or creative variable should affect a defined audience response." }, { title: "Control the comparison", copy: "Change a limited set of variables and record important delivery differences." }, { title: "Judge qualified outcomes", copy: "Pair platform metrics with lead, sale or customer-quality evidence." }, { title: "Record the next move", copy: "Scale, iterate, pause or retest with a written reason and date." }],
+    guidance: [{ title: "Creative is a system", copy: "Hooks, proof, offer, format, destination and follow-up work together. A high click-through rate can still lead to weak commercial outcomes." }, { title: "Respect data limits", copy: "Small samples, uneven spend and audience overlap reduce confidence. Record uncertainty instead of forcing a winner." }],
+    faqs: [{ question: "What should a Meta Ads test measure?", answer: "Use delivery and engagement diagnostics, then make the decision with the deepest reliable qualified outcome available." }, { question: "How many variants should run?", answer: "Use only as many as the budget, audience and decision window can support without fragmenting evidence beyond interpretation." }],
+    related: [{ label: "Meta Ads services", href: "/meta-ads-agency-in-nepal" }, { label: "Meta budget planner", href: "/tools/meta-ads-budget-planner" }, { label: "Facebook lead ads guide", href: "/insights/facebook-lead-generation-ads" }],
+  },
+  {
+    slug: "local-seo-gbp-checklist",
+    title: "Local SEO and Google Business Profile optimisation checklist",
+    shortTitle: "Local SEO and GBP checklist",
+    description: "Review Google Business Profile accuracy, categories, services, reviews, local pages, citations, tracking and conversion paths for local search.",
+    asset: "localSeo",
+    download: { href: "/downloads/growthlabs-local-seo-gbp-checklist.csv", label: "Download the local SEO checklist", format: "CSV" },
+    purpose: "Use this resource to align a real business entity, its website and its Google Business Profile. It is designed for accurate local visibility, not category stuffing or fabricated locations.",
+    includes: ["Business eligibility and ownership", "Name, address, phone and hours", "Primary and secondary categories", "Services, products and attributes", "Photos, posts and questions", "Reviews and response process", "Local landing pages and citations", "Calls, directions and website measurement"],
+    howToUse: [{ title: "Confirm the entity", copy: "Document the legal or trading name, real address or service area, phone, website and customer-facing hours." }, { title: "Choose accurate categories", copy: "Select the closest supported primary category and relevant secondary categories without forcing unrelated services." }, { title: "Connect the website", copy: "Keep contact details, service information and local context consistent and useful on the linked pages." }, { title: "Maintain the profile", copy: "Assign ownership for reviews, updates, images, closures and measurement." }],
+    guidance: [{ title: "Accuracy precedes optimisation", copy: "Google Business Profile represents a real-world entity. False locations, names, reviews or service claims create user, policy and reputation risk." }, { title: "Measure actions with context", copy: "Calls, direction requests and website visits are useful indicators, but reconcile them with qualified enquiries and customers." }],
+    faqs: [{ question: "Is Google Business Profile free?", answer: "Eligible businesses can create and manage a profile without paying Google, although professional support and advertising are separate." }, { question: "Does adding keywords to the business name help?", answer: "The name should reflect the real-world business name under platform rules, not an invented keyword string." }],
+    related: [{ label: "Local SEO services", href: "/local-seo-services-in-nepal" }, { label: "GBP optimisation guide", href: "/insights/google-business-profile-optimization" }, { label: "Contact GrowthLabs", href: "/contact" }],
+  },
+  {
+    slug: "cro-experiment-backlog",
+    title: "CRO experiment backlog for evidence-led website improvements",
+    shortTitle: "CRO experiment backlog",
+    description: "Organise conversion research, hypotheses, page changes, evidence, effort, risk, metrics and learning without treating every redesign as an experiment.",
+    asset: "conversion",
+    download: { href: "/downloads/growthlabs-cro-experiment-backlog.csv", label: "Download the CRO backlog", format: "CSV" },
+    purpose: "Use this backlog to connect observed friction with a proposed change and a validation method. It supports A/B tests where volume permits and safer before-and-after checks elsewhere.",
+    includes: ["Page and audience segment", "Evidence source and observed friction", "Hypothesis and proposed change", "Primary and guardrail metrics", "Impact, confidence, effort and risk", "Owner, status and dates", "Outcome, learning and follow-up"],
+    howToUse: [{ title: "Capture evidence", copy: "Link analytics, interviews, recordings, usability findings or sales feedback to a specific journey problem." }, { title: "Write a causal hypothesis", copy: "Describe why a defined change may affect a meaningful behaviour for a defined audience." }, { title: "Choose validation", copy: "Use an experiment only when traffic, implementation and decision conditions support it." }, { title: "Preserve learning", copy: "Record the result, limitations and next action even when the change did not win." }],
+    guidance: [{ title: "Conversion rate needs a denominator", copy: "Keep the audience, event definition, period and traffic mix visible. A percentage can change while qualified volume or profitability declines." }, { title: "Protect guardrails", copy: "Monitor lead quality, revenue, accessibility, performance and user trust so one local metric does not damage the wider journey." }],
+    faqs: [{ question: "Is every website change an A/B test?", answer: "No. A valid controlled experiment requires a testable hypothesis, appropriate allocation, stable measurement and enough evidence for the decision." }, { question: "What if traffic is low?", answer: "Use qualitative research, usability checks, message testing and carefully documented sequential evidence without pretending it has experimental certainty." }],
+    related: [{ label: "CRO services", href: "/conversion-rate-optimization-services" }, { label: "Conversion calculator", href: "/tools/conversion-rate-calculator" }, { label: "Website checklist", href: "/resources/website-launch-checklist" }],
+  },
+);
 
 export const resourceBySlug = Object.fromEntries(resources.map((resource) => [resource.slug, resource])) as Record<string, ResourceItem>;
