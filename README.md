@@ -37,12 +37,11 @@ The public Google Tag Manager container ID `GTM-59D6JGLP` is intentionally commi
 The contact form uses a small Vercel route and Resend. It requires no database or separate backend host. Copy `.env.example` to `.env.local` and configure these server-only values:
 
 - `RESEND_API_KEY` — private API key from Resend
-- `CONTACT_TO_EMAIL` — inbox that receives enquiries
-- `CONTACT_FROM_EMAIL` — verified sender, for example `GrowthLabs Website <enquiries@send.neurerohan.com.np>`
+- `CONTACT_TO_EMAIL` — optional inbox override; defaults to `contact@neurerohan.com.np`
 
-If these values are absent, the form reports that delivery is not configured and directs the visitor to email or WhatsApp; it never displays a false success message.
+If `RESEND_API_KEY` is absent, the form reports that delivery is not configured and directs the visitor to email or WhatsApp; it never displays a false success message.
 
-Resend setup: create an account, add `send.neurerohan.com.np`, copy its SPF and DKIM records into Cloudflare as DNS-only records, verify the domain, create a sending API key, and add the three variables in Vercel Project Settings → Environment Variables. Redeploy after saving them. Direct email, phone, WhatsApp and LinkedIn links remain available independently.
+Resend setup: add and verify `neurerohan.com.np`, copy its SPF and DKIM records into Cloudflare as DNS-only records, create a sending API key, and add `RESEND_API_KEY` in Vercel Project Settings → Environment Variables for Production. The website sends from `website@neurerohan.com.np` and delivers to the Zoho inbox at `contact@neurerohan.com.np`; that sending address does not need to be a Zoho mailbox. Redeploy after saving the variable. Direct email, phone, WhatsApp and LinkedIn links remain available independently.
 
 ## Deployment
 

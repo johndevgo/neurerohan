@@ -47,15 +47,20 @@ export async function POST(request: NextRequest) {
   if (name.length < 2 || !emailPattern.test(email) || phone.length < 7 || !service || enquiry.length < 20 || !privacyAccepted) return NextResponse.json({ message: "Please complete every required field with valid information." }, { status: 400 });
 
   const apiKey = process.env.RESEND_API_KEY;
-  const recipient = process.env.CONTACT_TO_EMAIL;
-  const sender = process.env.CONTACT_FROM_EMAIL;
-  if (!apiKey || !recipient || !sender) return NextResponse.json({ message: "Online form delivery is being configured. Please email or WhatsApp Rohan directly." }, { status: 503 });
+  const recipient = process.env.CONTACT_TO_EMAIL?.trim() || "contact@neurerohan.com.np";
+  const sender = "GrowthLabs Website <website@neurerohan.com.np>";
+  if (!apiKey) return NextResponse.json({ message: "Online form delivery is being configured. Please email or WhatsApp Rohan directly." }, { status: 503 });
 
   const subject = `GrowthLabs enquiry: ${service} — ${name}`;
   const text = [`New GrowthLabs website enquiry`, ``, `Name: ${name}`, `Email: ${email}`, `Phone: ${phone}`, `Service: ${service}`, `Website: ${websiteUrl || "Not supplied"}`, ``, `Message:`, enquiry].join("\n");
   const html = `<h1>New GrowthLabs website enquiry</h1><table cellpadding="8" cellspacing="0" border="1" style="border-collapse:collapse"><tr><th align="left">Name</th><td>${escapeHtml(name)}</td></tr><tr><th align="left">Email</th><td>${escapeHtml(email)}</td></tr><tr><th align="left">Phone</th><td>${escapeHtml(phone)}</td></tr><tr><th align="left">Service</th><td>${escapeHtml(service)}</td></tr><tr><th align="left">Website</th><td>${escapeHtml(websiteUrl || "Not supplied")}</td></tr></table><h2>Message</h2><p style="white-space:pre-wrap">${escapeHtml(enquiry)}</p>`;
 
   const response = await fetch("https://api.resend.com/emails", { method: "POST", headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json", "Idempotency-Key": randomUUID() }, body: JSON.stringify({ from: sender, to: [recipient], reply_to: email, subject, text, html }) });
-  if (!response.ok) { console.error("Contact delivery failed", response.status, await response.text()); return NextResponse.json({ message: "The email provider could not deliver this enquiry. Please email or WhatsApp Rohan directly." }, { status: 502 }); }
+  if (!response.ok) {
+    const providerMessage = await response.text();
+    console.error("Contact delivery failed", response.status, providerMessage);
+    const configurationError = response.status === 401 || response.status === 403;
+    return NextResponse.json({ message: configurationError ? "Email delivery is connected but the sender domain or API key needs correction. Please email or WhatsApp Rohan directly." : "The email provider could not deliver this enquiry. Please email or WhatsApp Rohan directly." }, { status: 502 });
+  }
   return NextResponse.json({ message: "Your enquiry was sent." });
 }
