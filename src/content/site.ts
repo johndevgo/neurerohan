@@ -7,7 +7,7 @@ export const services: Service[] = [
   { title: "Digital Marketing Strategy", slug: "strategy", summary: "Connect market research, customer intent, channel priorities, website needs, and measurement into one practical growth roadmap.", capabilities: ["Business and competitor analysis", "Channel strategy", "Funnel and conversion planning", "Tracking structure"], value: "Know what to build first, why it matters, and how each channel supports the next." },
   { title: "SEO Services", slug: "seo", summary: "Build long-term search visibility around valuable keywords, the right pages, strong technical foundations, and content that matches intent.", capabilities: ["Keyword research and clustering", "Technical and on-page SEO", "Content and internal linking", "Local SEO"], value: "Attract people searching for services and solutions your business provides." },
   { title: "Google Ads, Meta Ads & Paid Media", slug: "paid-advertising", summary: "Connect Google Ads, Meta Ads, and TikTok campaigns with clear offers, persuasive creative, focused landing pages, and accurate tracking.", capabilities: ["Google Ads", "Meta Ads", "TikTok Ads", "Retargeting and conversion tracking"], value: "Turn paid reach and clicks into a measurable path toward qualified action." },
-  { title: "Social Media Marketing", slug: "social-media", summary: "Plan content around audience psychology, useful content pillars, campaign moments, proof, and conversion paths—not posting for activity’s sake.", capabilities: ["Content pillars", "Short-form video direction", "Campaign planning", "Organic and paid social support"], value: "Build attention, trust, desire, and demand around the business." },
+  { title: "Social Media Marketing", slug: "social-media", summary: "Plan content around audience psychology, useful content pillars, campaign moments, proof, and conversion paths, not posting for activity’s sake.", capabilities: ["Content pillars", "Short-form video direction", "Campaign planning", "Organic and paid social support"], value: "Build attention, trust, desire, and demand around the business." },
   { title: "Website & Landing Page Strategy", slug: "websites", summary: "Plan SEO-friendly, conversion-focused websites that explain the offer, build trust, and guide visitors toward action.", capabilities: ["Website structure", "Service-page planning", "Landing-page strategy", "CTA and trust planning"], value: "Turn the website into the place where marketing converts instead of where it stops." },
   { title: "Content Marketing", slug: "content", summary: "Create topic clusters, briefs, and commercial support content that answer customer questions and strengthen priority pages.", capabilities: ["SEO blog strategy", "Content briefs", "Topic clusters", "Conversion-focused content"], value: "Build authority and move readers toward informed action." },
   { title: "Local SEO", slug: "local-seo", summary: "Improve visibility for nearby customers through local keyword mapping, Google Business Profile planning, reviews, and location pages.", capabilities: ["Google Business Profile", "Local keyword mapping", "Review strategy", "Service-area pages"], value: "Make local businesses easier to find and easier to choose." },
@@ -16,7 +16,7 @@ export const services: Service[] = [
 
 export const problems = [
   { title: "Your website gets visits, but too few enquiries", copy: "Visitors leave when the offer is difficult to understand, the proof is weak, the page feels generic or the next step creates friction. Clear positioning, purposeful structure and stronger conversion paths help more of the right visitors act." },
-  { title: "Your SEO earns impressions, but not buying intent", copy: "Traffic alone is not growth. Keyword clustering, technical SEO, commercial page planning, internal links and intent-led content should attract people who are more likely to need the service—not simply increase a graph." },
+  { title: "Your SEO earns impressions, but not buying intent", copy: "Traffic alone is not growth. Keyword clustering, technical SEO, commercial page planning, internal links and intent-led content should attract people who are more likely to need the service, not simply increase a graph." },
   { title: "Your advertisements buy clicks, but the journey breaks", copy: "Audience targeting cannot rescue a weak offer or landing page. Campaign intent, creative, message, page experience, follow-up and conversion tracking need to tell one coherent story." },
   { title: "Your channels compete for attention and budget", copy: "SEO, social, paid media and the website should have different jobs within the same journey. Without priorities, every channel looks urgent and none receives the focus it needs." },
   { title: "Your reporting describes activity, not decisions", copy: "A useful report explains which queries, campaigns, pages and offers create qualified action, where people drop away and what should be improved next." },
@@ -39,7 +39,7 @@ export const process = [
   { title: "Build the growth map", copy: "Prioritise SEO pages, landing pages, supporting content, ads, social direction, tracking, and conversion improvements." },
   { title: "Execute the right channels", copy: "Apply the mix of SEO, advertising, websites, content, local search, social media, and CRO the business actually needs." },
   { title: "Validate and measure", copy: "Check that agreed changes work as intended, then review qualified traffic, campaign signals, page behaviour, conversions and lead quality." },
-  { title: "Set the next priority", copy: "Use the evidence to decide what to continue, change, stop or test—and which constraint deserves the next investment." },
+  { title: "Set the next priority", copy: "Use the evidence to decide what to continue, change, stop or test, and which constraint deserves the next investment." },
 ];
 
 export const faqs = [
@@ -82,7 +82,7 @@ export const siteConfig = {
   paidProofImages: [
     { id: "london-home-services-ads", src: "/images/proof/google-ads-london-home-services.png", width: 2362, height: 958, alt: "Google Ads performance view showing 1.27 million impressions, 29,851 clicks and 474.79 reported conversions from February to May 2026", caption: "London home-services account · 1 Feb–31 May 2026", stats: [{ value: "1.27M", label: "impressions" }, { value: "29,851", label: "clicks" }, { value: "474.79", label: "reported conversions" }, { value: "£0.52", label: "average CPC" }] },
     { id: "saas-google-ads", src: "/images/proof/google-ads-saas-account.png", width: 2358, height: 816, alt: "Google Ads performance view showing 855,529 impressions, 12,692 clicks, 929.99 reported conversions and £2.90 reported cost per conversion from July to September 2025", caption: "SaaS account · 1 Jul–30 Sep 2025", stats: [{ value: "855K", label: "impressions" }, { value: "12,692", label: "clicks" }, { value: "929.99", label: "reported conversions" }, { value: "£2.90", label: "reported cost / conv." }] },
-    { id: "uk-medical-program-ads", src: "/images/proof/google-ads-uk-medical-program.png", width: 2360, height: 940, alt: "Google Ads performance view for a UK medical programme showing 1.17 million impressions, 24,590 clicks and 543.27 reported conversions from March to June 2026", caption: "UK medical-programme account · 1 Mar–30 Jun 2026", stats: [{ value: "1.17M", label: "impressions" }, { value: "24,590", label: "clicks" }, { value: "543.27", label: "reported conversions" }, { value: "£25.90", label: "reported cost / conv." }], interpretation: "The comparison indicators are mixed: CTR increased, while clicks and reported conversions fell and cost per reported conversion rose. This capture is presented as evidence of account scale and diagnostic discipline—not as a before-and-after win." },
+    { id: "uk-medical-program-ads", src: "/images/proof/google-ads-uk-medical-program.png", width: 2360, height: 940, alt: "Google Ads performance view for a UK medical programme showing 1.17 million impressions, 24,590 clicks and 543.27 reported conversions from March to June 2026", caption: "UK medical-programme account · 1 Mar–30 Jun 2026", stats: [{ value: "1.17M", label: "impressions" }, { value: "24,590", label: "clicks" }, { value: "543.27", label: "reported conversions" }, { value: "£25.90", label: "reported cost / conv." }], interpretation: "The comparison indicators are mixed: CTR increased, while clicks and reported conversions fell and cost per reported conversion rose. This capture is presented as evidence of account scale and diagnostic discipline, not as a before-and-after win." },
   ],
   location: "Sallaghari Shopping Complex, Bhaktapur 44800, Nepal",
   email: "contact@neurerohan.com.np",
@@ -110,12 +110,12 @@ export const siteConfig = {
   expertise: services,
   projects: [] as Project[],
   experience: [
-    { period: "Jan 2025 — Present", title: "Growth Marketer · SEO & Paid Ads Specialist", organization: "InTech Nexus", detail: "Paid media, SEO, CRO, analytics, tracking, reporting, landing pages, creative strategy, and automation." },
-    { period: "Nov 2021 — Dec 2024", title: "SEO & Ads Executive", organization: "Business Outstanders", detail: "Progressed from SEO Executive into SEO and paid advertising, website optimisation, creative direction, research, analysis, and reporting." },
+    { period: "Jan 2025 to Present", title: "Growth Marketer · SEO & Paid Ads Specialist", organization: "InTech Nexus", detail: "Paid media, SEO, CRO, analytics, tracking, reporting, landing pages, creative strategy, and automation." },
+    { period: "Nov 2021: Dec 2024", title: "SEO & Ads Executive", organization: "Business Outstanders", detail: "Progressed from SEO Executive into SEO and paid advertising, website optimisation, creative direction, research, analysis, and reporting." },
   ] as Milestone[],
   education: [
-    { period: "2023 — Present", title: "BSc CSIT", organization: "Tribhuvan University" },
-    { period: "2021 — 2023", title: "Computer Science", organization: "Xavier International College, Kathmandu" },
+    { period: "2023 to Present", title: "BSc CSIT", organization: "Tribhuvan University" },
+    { period: "2021: 2023", title: "Computer Science", organization: "Xavier International College, Kathmandu" },
   ] as Milestone[],
   achievements: [] as { metric: string; label: string; detail: string }[],
   values: [

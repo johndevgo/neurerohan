@@ -13,7 +13,7 @@ export const agencyAssets = {
     width: 1536,
     height: 1024,
     alt: "Yellow GrowthLabs visual showing search, analytics, growth and targeting objects",
-    caption: "Search demand, paid acquisition, measurement and conversion—designed as one connected growth system.",
+    caption: "Search demand, paid acquisition, measurement and conversion, designed as one connected growth system.",
     position: "center",
   },
   seoServices: {

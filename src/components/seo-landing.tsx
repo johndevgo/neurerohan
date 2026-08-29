@@ -17,7 +17,7 @@ import { agencyAssets } from "@/content/agency-assets";
 type Props = { variant: "expert" | "company"; faqs: SeoFaq[] };
 
 const systemRequirements = [
-  ["Search demand", "Identify the problems, services, locations, industries, and questions people actually search for—then separate raw volume from commercial relevance."],
+  ["Search demand", "Identify the problems, services, locations, industries, and questions people actually search for, then separate raw volume from commercial relevance."],
   ["Search intent", "Understand whether the searcher wants to learn, compare, find a provider, solve a local need, or take action."],
   ["Website architecture", "Give every valuable keyword cluster one clear canonical destination instead of making pages compete with one another."],
   ["Technical accessibility", "Make important pages crawlable, indexable, fast enough, mobile-friendly, and technically understandable."],
@@ -49,7 +49,7 @@ const reviewDeliverables = [
 ] as const;
 
 const hiringQuestions = [
-  "Which queries and pages are commercially important—and why?",
+  "Which queries and pages are commercially important, and why?",
   "How will keywords be mapped to avoid cannibalisation?",
   "Which technical issues genuinely limit performance?",
   "How will content support commercial and local pages?",
@@ -141,7 +141,7 @@ export function SeoLanding({ faqs }: Props) {
 
     <section className="section">
       <div className="shell">
-        <SectionHeading eyebrow="What good SEO must solve" title="A demand, website, and conversion system." copy="Give every useful search a credible destination—and make the journey after the click just as deliberate as the work before it." />
+        <SectionHeading eyebrow="What good SEO must solve" title="A demand, website, and conversion system." copy="Give every useful search a credible destination, and make the journey after the click just as deliberate as the work before it." />
         <ol className="mt-14 grid border-l border-t border-[var(--line-strong)] sm:grid-cols-2 lg:grid-cols-4">{systemRequirements.map(([title, copy], index) => <li className="min-h-72 border-b border-r border-[var(--line-strong)] p-6" key={title}><p className="eyebrow">0{index + 1}</p><h3 className="mt-14 font-serif text-2xl">{title}</h3><p className="mt-4 text-sm leading-6 text-[var(--muted)]">{copy}</p></li>)}</ol>
       </div>
     </section>
@@ -181,14 +181,14 @@ export function SeoLanding({ faqs }: Props) {
 
     <section className="section section-dark">
       <div className="shell">
-        <SectionHeading eyebrow="Different journeys, different search systems" title="SEO shaped around the business model." copy="The architecture and conversion event should reflect how customers research, compare, and buy—not force every business into the same template." />
+        <SectionHeading eyebrow="Different journeys, different search systems" title="SEO shaped around the business model." copy="The architecture and conversion event should reflect how customers research, compare, and buy, not force every business into the same template." />
         <div className="mt-14 grid gap-px bg-white/20 md:grid-cols-2 lg:grid-cols-3">{businessModels.map((item, index) => <article className="bg-[var(--ink)] p-7" key={item.title}><p className="eyebrow !text-[var(--sun)]">Model / 0{index + 1}</p><h3 className="mt-8 font-serif text-2xl">{item.title}</h3><p className="mt-4 text-sm leading-6 text-white/65">{item.copy}</p>{item.href && <Link className="text-link mt-6 !text-white" href={item.href}>Explore this system <Arrow /></Link>}</article>)}</div>
       </div>
     </section>
 
     <section className="section">
       <div className="shell">
-        <SectionHeading eyebrow="Tools support decisions" title="Evidence from the right sources—interpreted in context." copy="Depending on access and scope, analysis may use Google Search Console, GA4, Google Tag Manager, Google Business Profile, PageSpeed Insights, crawl tools, Ahrefs, Semrush, Screaming Frog, Microsoft Clarity, or Hotjar." />
+        <SectionHeading eyebrow="Tools support decisions" title="Evidence from the right sources, interpreted in context." copy="Depending on access and scope, analysis may use Google Search Console, GA4, Google Tag Manager, Google Business Profile, PageSpeed Insights, crawl tools, Ahrefs, Semrush, Screaming Frog, Microsoft Clarity, or Hotjar." />
         <div className="mt-10 border-y border-[var(--line-strong)] py-7 md:ml-[25%]"><p className="max-w-3xl text-xl leading-8">No single platform is absolute truth. Tools provide evidence; the useful work is deciding what that evidence means for this website, this market, and this business.</p></div>
       </div>
     </section>
@@ -198,7 +198,7 @@ export function SeoLanding({ faqs }: Props) {
 
     <section className="section bg-[var(--surface)]">
       <div className="shell">
-        <SectionHeading eyebrow="Reduce the risk" title="What to ask before hiring an SEO expert in Nepal." copy="Look for reasoning you can inspect—not a promise you cannot verify." />
+        <SectionHeading eyebrow="Reduce the risk" title="What to ask before hiring an SEO expert in Nepal." copy="Look for reasoning you can inspect, not a promise you cannot verify." />
         <div className="mt-14 grid gap-12 md:ml-[25%] md:grid-cols-2">
           <article><h3 className="font-serif text-3xl">Ask this</h3><ul className="mt-5">{hiringQuestions.map((item) => <li className="border-t border-[var(--line)] py-3" key={item}>{item}</li>)}</ul></article>
           <article><h3 className="font-serif text-3xl">Treat this as a warning</h3><ul className="mt-5">{warningSigns.map((item) => <li className="border-t border-[var(--line)] py-3" key={item}>{item}</li>)}</ul></article>
@@ -211,7 +211,7 @@ export function SeoLanding({ faqs }: Props) {
         <SectionHeading eyebrow="Responsible expectations" title="How long SEO takes depends on what is holding the site back." />
         <div className="mt-10 max-w-3xl space-y-5 text-lg leading-8 text-[var(--muted)] md:ml-[25%]">
           <p>Focused corrections can create useful signals and learning relatively quickly, especially when a strong page is being held back by a clear technical, intent, or conversion problem.</p>
-          <p>Competitive commercial growth usually takes sustained work across technical foundations, page quality, internal links, local relevance, useful content, and genuine authority. Search engines—not providers—decide final positions.</p>
+          <p>Competitive commercial growth usually takes sustained work across technical foundations, page quality, internal links, local relevance, useful content, and genuine authority. Search engines, not providers, decide final positions.</p>
           <p>The responsible next step is to understand the website size, current condition, competition, target markets, content needs, implementation responsibility, and measurement quality before estimating scope or timing.</p>
         </div>
       </div>

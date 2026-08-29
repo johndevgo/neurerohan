@@ -3,7 +3,7 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { siteConfig } from "@/content/site";
 
-export const alt = `${siteConfig.brandName} — digital marketing agency in Nepal`;
+export const alt = `${siteConfig.brandName}: digital marketing agency in Nepal`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 export const runtime = "nodejs";

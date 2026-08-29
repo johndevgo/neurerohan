@@ -294,7 +294,7 @@ export function CommercialLandingPage({ page }: { page: CommercialLanding }) {
       ids={["dubai-tours", "dubai-water-adventure"]}
       eyebrow="Travel-search evidence / source captures"
       title="Two tourism websites. Two distinct demand patterns."
-      copy="The supplied Search Console captures make the visible organic-search layer inspectable for a tours website and a water-adventure rental website. They support a conversation about travel SEO execution—not a promise about rankings, enquiries or revenue."
+      copy="The supplied Search Console captures make the visible organic-search layer inspectable for a tours website and a water-adventure rental website. They support a conversation about travel SEO execution, not a promise about rankings, enquiries or revenue."
     />}
 
     {(page.slug === "seo-audit-services-in-nepal" || page.slug === "technical-seo-services-in-nepal") && <SearchEvidence
@@ -350,7 +350,7 @@ export function CommercialLandingPage({ page }: { page: CommercialLanding }) {
           copy={page.slug === "local-seo-services-in-nepal" ? "GrowthLabs uses its real Sallaghari, Bhaktapur business context. The map verifies that listed location; it is not evidence of rankings and does not imply separate offices elsewhere in Nepal." : "GrowthLabs operates from Sallaghari, Bhaktapur and supports businesses across Kathmandu Valley. Use the map to verify the business location, then confirm whether an online appointment or appropriate on-site meeting is the better fit."}
         />
         <div className="mt-12 md:ml-[25%]">
-          <GoogleBusinessMap note={page.slug === "local-seo-services-in-nepal" ? "GrowthLabs by Rohan Neure · Sallaghari Shopping Complex, Bhaktapur 44800, Nepal. One real listed location; no fictional branch claims." : "Sallaghari Shopping Complex, Bhaktapur—serving businesses across Kathmandu, Lalitpur, Bhaktapur and the wider Kathmandu Valley."} />
+          <GoogleBusinessMap note={page.slug === "local-seo-services-in-nepal" ? "GrowthLabs by Rohan Neure · Sallaghari Shopping Complex, Bhaktapur 44800, Nepal. One real listed location; no fictional branch claims." : "Sallaghari Shopping Complex, Bhaktapur, serving businesses across Kathmandu, Lalitpur, Bhaktapur and the wider Kathmandu Valley."} />
         </div>
       </div>
     </section>}

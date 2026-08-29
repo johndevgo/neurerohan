@@ -13,7 +13,7 @@ export function BrandLockup({ className = "", priority = false, size = "header",
   return <Link
     href="/"
     className={`wordmark wordmark-${size} wordmark-${tone} ${className}`.trim()}
-    aria-label={`${siteConfig.brandName} — home`}
+    aria-label={`${siteConfig.brandName}: home`}
   >
     <span className="wordmark-avatar" aria-hidden="true"><Image
       src={siteConfig.brandAvatar}

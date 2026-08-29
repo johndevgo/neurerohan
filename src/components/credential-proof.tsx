@@ -7,7 +7,7 @@ import { siteConfig } from "@/content/site";
 
 type Props = { ids: readonly CredentialKey[]; title?: string; copy?: string; compact?: boolean; sectionId?: string };
 
-export function CredentialProof({ ids, title = "Platform credentials you can inspect—not a decorative logo wall.", copy = "We have confirmed that the supplied partner and certification artwork is authorised for GrowthLabs. Each credential is shown in its original supplied form and placed beside the service it supports.", compact = false, sectionId }: Props) {
+export function CredentialProof({ ids, title = "Platform credentials you can inspect, not a decorative logo wall.", copy = "We have confirmed that the supplied partner and certification artwork is authorised for GrowthLabs. Each credential is shown in its original supplied form and placed beside the service it supports.", compact = false, sectionId }: Props) {
   const selected = ids.map((id) => credentials[id]);
   if (!selected.length) return null;
   return <section className="section credential-section bg-[var(--surface)]" id={sectionId}><div className="shell">

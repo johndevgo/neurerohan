@@ -10,7 +10,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.domain),
-  title: { default: siteConfig.seo.title, template: `%s — ${siteConfig.name}` },
+  title: { default: siteConfig.seo.title, template: `%s: ${siteConfig.name}` },
   description: siteConfig.seo.description,
   alternates: { canonical: "/" },
   openGraph: { title: siteConfig.seo.title, description: siteConfig.seo.description, url: siteConfig.domain, siteName: siteConfig.name, locale: siteConfig.seo.locale, type: "website" },

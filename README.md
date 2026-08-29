@@ -38,7 +38,9 @@ The contact form uses a small Vercel route and Resend. It requires no database o
 
 - `RESEND_API_KEY` — private API key from Resend
 - `CONTACT_TO_EMAIL` — optional inbox override; defaults to `contact@neurerohan.com.np`
-- `CONTACT_FROM_EMAIL` — sender on the exact verified Resend domain; defaults to `GrowthLabs Website <enquiries@send.neurerohan.com.np>`
+- `CONTACT_BACKUP_EMAIL` — optional second delivery inbox; defaults to `neurerohan@gmail.com`
+- `CONTACT_FROM_EMAIL` — contact-form sender on the exact verified Resend domain; defaults to `GrowthLabs Website <enquiries@send.neurerohan.com.np>`
+- `RESOURCE_FROM_EMAIL` — resource-library sender on the same verified subdomain; defaults to `GrowthLabs Resources <resources@send.neurerohan.com.np>`
 
 If `RESEND_API_KEY` is absent, the form reports that delivery is not configured and directs the visitor to email or WhatsApp; it never displays a false success message.
 
