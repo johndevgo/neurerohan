@@ -111,11 +111,11 @@ export const siteConfig = {
   projects: [] as Project[],
   experience: [
     { period: "Jan 2025 to Present", title: "Growth Marketer · SEO & Paid Ads Specialist", organization: "InTech Nexus", detail: "Paid media, SEO, CRO, analytics, tracking, reporting, landing pages, creative strategy, and automation." },
-    { period: "Nov 2021: Dec 2024", title: "SEO & Ads Executive", organization: "Business Outstanders", detail: "Progressed from SEO Executive into SEO and paid advertising, website optimisation, creative direction, research, analysis, and reporting." },
+    { period: "Nov 2021 to Dec 2024", title: "SEO & Ads Executive", organization: "Business Outstanders", detail: "Progressed from SEO Executive into SEO and paid advertising, website optimisation, creative direction, research, analysis, and reporting." },
   ] as Milestone[],
   education: [
     { period: "2023 to Present", title: "BSc CSIT", organization: "Tribhuvan University" },
-    { period: "2021: 2023", title: "Computer Science", organization: "Xavier International College, Kathmandu" },
+    { period: "2021 to 2023", title: "Computer Science", organization: "Xavier International College, Kathmandu" },
   ] as Milestone[],
   achievements: [] as { metric: string; label: string; detail: string }[],
   values: [
@@ -135,14 +135,14 @@ export const siteConfig = {
     { label: "Facebook", href: "https://www.facebook.com/growthbyrohan/" },
   ],
   cta: {
-    primary: { label: "Request a founder-led growth review", headerLabel: "Request a growth review", shortLabel: "Talk to us", href: "/contact" },
+    primary: { label: "Request your focused growth review", headerLabel: "Get a growth review", shortLabel: "Let's grow", href: "/contact" },
     secondary: { label: "Explore services", href: "/services" },
     contact: { label: "Send your growth brief", href: "/contact" },
     whatsapp: { label: "Send your brief on WhatsApp", href: "https://wa.me/9779746265996?text=Hi%20Rohan%2C%20I%27d%20like%20a%20founder-led%20growth%20review.%20My%20website%20or%20profile%20is%3A%20" },
     email: { label: "Email your growth brief", href: "mailto:contact@neurerohan.com.np?subject=GrowthLabs%20growth%20review&body=Website%20or%20profile%3A%0AOffer%3A%0ATarget%20market%3A%0ACurrent%20channels%3A%0ABiggest%20constraint%3A%0AResult%20to%20improve%3A" },
     phone: { label: "Call GrowthLabs directly", href: "tel:+9779746265996" },
-    microcopy: "Send your website, main offer, target market, current channels and the result you want to improve. We will review the context and recommend the clearest next step.",
-    reassurance: "No booking maze. Use the secure enquiry form, WhatsApp, email or call us directly.",
+    microcopy: "Send your website, main offer, target market, current channels and the result you need to improve. We will identify the most important constraint, explain where to focus first and show which activity can wait.",
+    reassurance: "No booking maze and no forced package. Use the secure form, WhatsApp, email or call us directly.",
   },
   seo: {
     title: "GrowthLabs by Rohan Neure | SEO, Google Ads & Meta Ads",
