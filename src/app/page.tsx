@@ -35,6 +35,33 @@ const founderBenefits = [
   ["Clearer reasoning", "You should know what is being done, why it matters, what evidence supports it and what should happen next."],
 ];
 
+const authorityPillars = [
+  {
+    index: "01",
+    title: "Search demand and organic discovery",
+    copy: "Connect technical SEO, crawlability, indexing, information architecture, keyword clusters, internal links, local search and useful content around the questions customers ask before they choose.",
+    links: [["SEO services", "/seo-expert-in-nepal"], ["SEO glossary", "/insights/glossary"], ["SEO audit checklist", "/resources/seo-audit-checklist"]],
+  },
+  {
+    index: "02",
+    title: "Paid acquisition and creative testing",
+    copy: "Plan Google Ads and Meta Ads around audience intent, campaign structure, search terms, negative keywords, bidding, creative angles, landing-page continuity and conversion tracking.",
+    links: [["Google Ads", "/google-ads-agency-in-nepal"], ["Meta Ads", "/meta-ads-agency-in-nepal"], ["Break-even calculator", "/tools/google-ads-break-even-calculator"]],
+  },
+  {
+    index: "03",
+    title: "Website experience and conversion",
+    copy: "Turn positioning, service pages, landing pages, calls to action, forms, mobile usability, accessibility, trust signals and conversion rate optimisation into one clearer route from interest to enquiry.",
+    links: [["Web design", "/web-design-company-in-nepal"], ["CRO services", "/conversion-rate-optimization-services"], ["Conversion calculator", "/tools/conversion-rate-calculator"]],
+  },
+  {
+    index: "04",
+    title: "Measurement and growth operations",
+    copy: "Use GA4, Google Tag Manager, Search Console, advertising platforms, CRM evidence, attribution context and reporting to separate activity from progress and decide what deserves the next investment.",
+    links: [["Analytics and tracking", "/analytics-conversion-tracking-services"], ["Free tools", "/tools"], ["Marketing resources", "/resources"]],
+  },
+] as const;
+
 export default function HomePage() {
   return <>
     <section className="home-hero relative overflow-hidden"><div aria-hidden="true" className="home-hero-orb" /><div className="shell relative grid gap-12 py-12 md:py-18 lg:grid-cols-[1.12fr_.88fr] lg:items-center"><div><p className="eyebrow">Founder-led SEO, Google Ads & Meta Ads · Bhaktapur, Nepal</p><h1 className="display mt-6 !max-w-[12ch]">Turn search and paid media into <span className="text-[var(--brand-green)]">qualified growth.</span></h1><p className="lede mt-7">GrowthLabs by Rohan Neure connects SEO, Google Ads, Meta Ads, landing pages, tracking and conversion rate optimisation around one goal: turning the right attention into qualified enquiries, bookings and sales.</p><div className="mt-8 flex flex-col gap-3 sm:flex-row"><Link className="button button-primary" href={siteConfig.cta.primary.href} data-cta-intent="growth-review" data-cta-location="home-hero" data-cta-channel="contact">{siteConfig.cta.primary.label} <Arrow /></Link><a className="button button-secondary" href="#performance-evidence" data-cta-intent="proof" data-cta-location="home-hero">See verified results <Arrow /></a></div><div className="hero-trust-row mt-8"><span>4+ years hands-on</span><span>SEO + Google Ads + Meta Ads</span><span>Direct founder access</span></div></div><figure className="home-founder-visual"><div className="home-founder-shape" /><Image className="relative z-10 h-auto w-full object-contain object-bottom" src={siteConfig.portraits.cutout} alt="Rohan Neure, founder of GrowthLabs in Nepal" width={1198} height={1313} sizes="(max-width: 1024px) 90vw, 43vw" priority /><figcaption><strong>Rohan Neure</strong><span>Founder · Growth marketer</span></figcaption></figure></div></section>
@@ -54,6 +81,8 @@ export default function HomePage() {
     <section className="section section-dark"><div className="shell grid items-center gap-12 lg:grid-cols-[.8fr_1.2fr]"><figure className="founder-photo"><Image className="aspect-[4/5] w-full object-cover object-top" src={siteConfig.portraits.working} alt="Rohan Neure working at a laptop" width={1122} height={1402} sizes="(max-width: 1024px) 100vw, 40vw" /></figure><div><p className="eyebrow !text-[var(--sun)]">GrowthLabs by Rohan Neure</p><h2 className="section-title mt-6">Strategy stays close to the work.</h2><p className="mt-6 max-w-2xl text-lg leading-8 text-white/70">You work directly with us to clarify the audience, offer, competitors, search demand, current marketing and business goal. That context shapes our priorities and execution.</p><blockquote className="mt-8 border-l-2 border-[var(--sun)] pl-5 font-serif text-2xl leading-tight tracking-[-.035em] text-white/90">“You should know what is being done, why it matters and what the evidence says to do next.”</blockquote><div className="mt-9 grid gap-6 sm:grid-cols-2">{founderBenefits.map(([title, copy]) => <article className="soft-feature" key={title}><h3 className="font-serif text-xl">{title}</h3><p className="mt-2 text-sm leading-6 text-white/60">{copy}</p></article>)}</div><Link className="button mt-9 border-white text-white hover:bg-[var(--sun)] hover:text-[var(--ink)]" href="/about">About our founder-led approach <Arrow /></Link></div></div></section>
 
     <section className="section"><div className="shell"><SectionHeading eyebrow="Evidence before promises" title="Measure movement that matters to the business." copy="The scorecard may connect search visibility, qualified visits, campaign efficiency, landing-page behaviour, calls, WhatsApp actions, enquiries, bookings or sales with the pages and channels that influenced them. GrowthLabs does not promise a guaranteed ranking, lead volume or return." /><div className="mt-14 grid gap-8 md:ml-[25%] md:grid-cols-3">{[["Baselines before conclusions", "Understand the starting position before crediting a change."], ["Context with every result", "Record the period, scope, market conditions and intervention behind meaningful movement."], ["Decisions, not dashboard decoration", "Reporting should end with what to continue, change, stop or test."]].map(([title, copy]) => <article className="card" key={title}><h3 className="font-serif text-2xl">{title}</h3><p className="mt-3 leading-7 text-[var(--muted)]">{copy}</p></article>)}</div></div></section>
+
+    <section className="section authority-section"><div className="shell"><SectionHeading eyebrow="GrowthLabs knowledge architecture" title="Build authority by connecting the complete growth system." copy="Topical authority is not created by publishing isolated pages or repeating one keyword. It comes from covering the decisions, entities, methods, tools and evidence around a subject, then connecting each answer to the next useful action." /><div className="authority-map mt-14 grid gap-4 md:grid-cols-2">{authorityPillars.map((pillar) => <article className="authority-card" key={pillar.index}><div className="authority-card-head"><span>{pillar.index}</span><span>Knowledge pillar</span></div><h3>{pillar.title}</h3><p>{pillar.copy}</p><div className="authority-links">{pillar.links.map(([label, href]) => <Link href={href} key={href}>{label}<Arrow /></Link>)}</div></article>)}</div><div className="authority-signal mt-4"><div><span>10</span><small>insight guides</small></div><div><span>8</span><small>free resources</small></div><div><span>7</span><small>interactive tools</small></div><div><span>15</span><small>focused service pages</small></div><p>One connected library across search, advertising, websites, conversion and measurement.</p></div></div></section>
 
     <section className="section"><div className="shell"><SectionHeading eyebrow="Who GrowthLabs helps" title="Built for businesses with something real to grow." /><div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">{industries.map((industry) => <article className="card" key={industry.title}><h3 className="font-serif text-2xl">{industry.title}</h3><p className="mt-3 text-sm leading-6 text-[var(--muted)]">{industry.copy}</p>{industry.title.startsWith("Hotels") && <Link className="text-link mt-5" href="/hotel-digital-marketing-agency">Hotel digital marketing <Arrow /></Link>}{industry.title.startsWith("Travel") && <Link className="text-link mt-5" href="/seo-for-travel-agency">SEO for travel agencies <Arrow /></Link>}</article>)}</div></div></section>
 
