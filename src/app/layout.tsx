@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/site-header";
 import { globalSchema, StructuredData } from "@/components/structured-data";
 import { GoogleTagManagerNoScript, GoogleTagManagerScript } from "@/components/google-tag-manager";
 import { MeasurementConsent } from "@/components/measurement-consent";
+import { ResourceLibraryPrompt } from "@/components/resource-library-prompt";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -31,6 +32,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <a href="#main-content" className="skip-link">Skip to content</a>
       <SiteHeader />
       <main id="main-content">{children}</main>
+      <ResourceLibraryPrompt />
       <SiteFooter measurementEnabled />
       <MeasurementConsent />
       <StructuredData data={globalSchema} />

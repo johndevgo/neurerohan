@@ -81,11 +81,11 @@ export function SeoLanding({ faqs }: Props) {
   return <>
     <PageIntro
       breadcrumbs={[{ label: "Services", href: "/services" }, { label: "SEO Expert in Nepal" }]}
-      eyebrow="Rohan Neure / Direct SEO strategy"
+      eyebrow="GrowthLabs / Direct founder-led SEO strategy"
       title="SEO expert in Nepal for visibility that supports real growth."
       visual={agencyAssets.seoServices}
     >
-      <p><strong>Rohan Neure is an SEO expert in Nepal providing direct specialist strategy, audits and implementation guidance.</strong> The work focuses on the parts of SEO that determine whether visibility becomes business: search intent, technical foundations, page architecture, useful content, internal links, local relevance and conversion paths.</p>
+      <p><strong>We provide direct specialist SEO strategy, audits and implementation guidance in Nepal.</strong> Our work focuses on the parts of SEO that determine whether visibility becomes business: search intent, technical foundations, page architecture, useful content, internal links, local relevance and conversion paths.</p>
       <p className="mt-4">The objective is not rankings in isolation. It is to help the right people discover the business, understand why it fits, and take a measurable next step.</p>
       <div className="mt-8 flex flex-col gap-3 sm:flex-row">
         <Link className="button button-primary" href="/contact">Request an SEO review <Arrow /></Link>
@@ -95,7 +95,7 @@ export function SeoLanding({ faqs }: Props) {
     </PageIntro>
 
     <div className="signal-band"><div className="shell grid grid-cols-2 gap-px py-0 md:grid-cols-4">{[
-      "Direct access to Rohan",
+      "Direct access to our founder-led team",
       "Technical + content + local SEO",
       "Intent-led page mapping",
       "SEO connected to CRO",
@@ -110,18 +110,18 @@ export function SeoLanding({ faqs }: Props) {
           <p className="eyebrow">Strategy without unnecessary layers</p>
           <h2 className="section-title mt-5">Work with the person who maps the opportunity.</h2>
           <div className="mt-8 max-w-3xl space-y-5 text-lg leading-8 text-[var(--muted)]">
-            <p>SEO often loses momentum when the strategist understands the problem but the work passes through layers before it reaches the website. Here, Rohan stays involved in the analysis, keyword-to-page map, technical priorities, page direction, local visibility, and conversion journey.</p>
+            <p>SEO often loses momentum when the strategist understands the problem but the work passes through layers before it reaches the website. We stay involved in the analysis, keyword-to-page map, technical priorities, page direction, local visibility and conversion journey.</p>
             <p>Direct specialist input is useful when you need to diagnose a decline, plan a migration, decide which commercial pages to build, strengthen local visibility, or give an internal content and development team clear priorities.</p>
             <p>When the scope requires broader implementation, the engagement can continue through GrowthLabs without losing the strategic thread.</p>
           </div>
-          <Link className="text-link mt-8" href="/about">About Rohan and GrowthLabs <Arrow /></Link>
+          <Link className="text-link mt-8" href="/about">About our founder-led GrowthLabs model <Arrow /></Link>
         </div>
       </div>
     </section>
 
     <section className="section signal-grid">
       <div className="shell">
-        <SectionHeading eyebrow="Verified professional context" title="Four-plus years across SEO, paid media, analytics and conversion." copy="Rohan's SEO work sits inside a broader growth-marketing practice. That context matters when search performance depends on the offer, landing page, tracking, advertising data or the way a lead is handled after the click." />
+        <SectionHeading eyebrow="Verified professional context" title="Four-plus years across SEO, paid media, analytics and conversion." copy="Our SEO work sits inside a broader growth-marketing practice. That context matters when search performance depends on the offer, landing page, tracking, advertising data or the way a lead is handled after the click." />
         <ol className="mt-12 border-b border-[var(--ink)] md:ml-[25%]">
           {siteConfig.experience.map((item) => <li className="grid gap-3 border-t border-[var(--ink)] py-6 sm:grid-cols-[10rem_1fr_2fr]" key={`${item.period}-${item.organization}`}>
             <span className="font-mono text-[.68rem] uppercase leading-5 tracking-[.04em]">{item.period}</span>
@@ -175,7 +175,7 @@ export function SeoLanding({ faqs }: Props) {
           <article className="border-b border-r border-[var(--line-strong)] p-7"><p className="eyebrow">Direct SEO expert</p><h3 className="mt-5 font-serif text-3xl">Close access and focused direction.</h3><p className="mt-5 leading-7 text-[var(--muted)]">An individual expert is useful when you need a senior audit, keyword map, technical direction, commercial page plan, migration guidance, or a clear roadmap your team can implement.</p></article>
           <article className="border-b border-r border-[var(--line-strong)] p-7"><p className="eyebrow">SEO company</p><h3 className="mt-5 font-serif text-3xl">Broader implementation and continuity.</h3><p className="mt-5 leading-7 text-[var(--muted)]">A company model fits a wider programme that combines research, technical work, on-page implementation, content planning, local search, reporting, and ongoing coordination.</p></article>
         </div>
-        <div className="mt-8 md:ml-[25%]"><p className="prose-copy">GrowthLabs combines both: direct strategic access to Rohan, with implementation capacity that can expand when the agreed scope requires it.</p><Link className="text-link mt-6" href="/seo-company-in-nepal">Compare the SEO company model <Arrow /></Link></div>
+        <div className="mt-8 md:ml-[25%]"><p className="prose-copy">We combine direct strategic access with implementation capacity that can expand when the agreed scope requires it.</p><Link className="text-link mt-6" href="/seo-company-in-nepal">Compare the SEO company model <Arrow /></Link></div>
       </div>
     </section>
 

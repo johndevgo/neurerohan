@@ -38,10 +38,13 @@ The contact form uses a small Vercel route and Resend. It requires no database o
 
 - `RESEND_API_KEY` — private API key from Resend
 - `CONTACT_TO_EMAIL` — optional inbox override; defaults to `contact@neurerohan.com.np`
+- `CONTACT_FROM_EMAIL` — sender on the exact verified Resend domain; defaults to `GrowthLabs Website <enquiries@send.neurerohan.com.np>`
 
 If `RESEND_API_KEY` is absent, the form reports that delivery is not configured and directs the visitor to email or WhatsApp; it never displays a false success message.
 
-Resend setup: add and verify `neurerohan.com.np`, copy its SPF and DKIM records into Cloudflare as DNS-only records, create a sending API key, and add `RESEND_API_KEY` in Vercel Project Settings → Environment Variables for Production. The website sends from `website@neurerohan.com.np` and delivers to the Zoho inbox at `contact@neurerohan.com.np`; that sending address does not need to be a Zoho mailbox. Redeploy after saving the variable. Direct email, phone, WhatsApp and LinkedIn links remain available independently.
+Resend setup: add and verify `send.neurerohan.com.np`, copy its SPF and DKIM records into Cloudflare as DNS-only records, create a sending-only API key restricted to that domain, and add `RESEND_API_KEY` in Vercel Project Settings → Environment Variables for Production. The website sends from `enquiries@send.neurerohan.com.np` and delivers to the Zoho inbox at `contact@neurerohan.com.np`; the sending address does not need to be a Zoho mailbox. Receiving in Resend is optional and may remain disabled. Redeploy after saving the variable. Direct email, phone, WhatsApp and LinkedIn links remain available independently.
+
+The resources, tools and glossary routes also include a dismissible library prompt. It never gates a file or tool. When requested, `/api/resource-library` sends one organised email containing every current tool, template and reference hub, sends an internal request notice to `CONTACT_TO_EMAIL`, and does not create a mailing-list subscription. Both form routes validate input on the client and server, use same-origin checks, honeypots, submission-time checks, request limits and server-only credentials.
 
 ## Deployment
 

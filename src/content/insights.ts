@@ -167,7 +167,7 @@ export const insights: InsightArticle[] = [
       { label: "Google Search Essentials", publisher: "Google Search Central", href: "https://developers.google.com/search/docs/essentials", usedFor: "Eligibility, people-first content and spam guidance" },
       { label: "How Search works", publisher: "Google Search Central", href: "https://developers.google.com/search/docs/fundamentals/how-search-works", usedFor: "Crawling, indexing and serving distinctions" },
     ],
-    cta: { title: "Need the definition applied to your website?", copy: "Send your site and the organic-search constraint. Rohan will identify the clearest technical, page or content priority.", label: "Request an SEO review", href: "/contact" },
+    cta: { title: "Need the definition applied to your website?", copy: "Send your site and the organic-search constraint. We will identify the clearest technical, page or content priority.", label: "Request an SEO review", href: "/contact" },
   },
   {
     slug: "social-media-content-calendar",
@@ -385,7 +385,7 @@ export const insights: InsightArticle[] = [
       { label: "Guidelines for representing your business on Google", publisher: "Google Business Profile Help", href: "https://support.google.com/business/answer/3038177?hl=en", usedFor: "Eligibility, business names, addresses and service-area practices" },
       { label: "Edit your Business Profile", publisher: "Google Business Profile Help", href: "https://support.google.com/business/answer/3039617?hl=en", usedFor: "Keeping profile information current" },
     ],
-    cta: { title: "Want a founder-led local visibility review?", copy: "Send the Business Profile and website. Rohan will review accuracy, local relevance, customer evidence and conversion paths.", label: "Request a local SEO review", href: "/contact" },
+    cta: { title: "Want a founder-led local visibility review?", copy: "Send the Business Profile and website. We will review accuracy, local relevance, customer evidence and conversion paths.", label: "Request a local SEO review", href: "/contact" },
   },
   {
     slug: "seo-vs-social-media-marketing",
@@ -719,7 +719,7 @@ export const insights: InsightArticle[] = [
       { label: "Google Search Essentials", publisher: "Google Search Central", href: "https://developers.google.com/search/docs/essentials", usedFor: "Eligibility, best practices and spam boundaries" },
       { label: "Search Console performance report", publisher: "Google Search Console Help", href: "https://support.google.com/webmasters/answer/7576553?hl=en", usedFor: "Search-performance measurement context" },
     ],
-    cta: { title: "Want to know whether SEO fits the business case?", copy: "Send the website, offer and target market. Rohan will assess demand, page readiness, competition and measurement before recommending scope.", label: "Request an SEO opportunity review", href: "/contact" },
+    cta: { title: "Want to know whether SEO fits the business case?", copy: "Send the website, offer and target market. We will assess demand, page readiness, competition and measurement before recommending scope.", label: "Request an SEO opportunity review", href: "/contact" },
   },
   {
     slug: "website-development-checklist",
@@ -999,7 +999,7 @@ export const insights: InsightArticle[] = [
       { label: "GA4 recommended events", publisher: "Google Analytics Help", href: "https://support.google.com/analytics/answer/9267735?hl=en", usedFor: "Prescribed event-name and parameter context" },
       { label: "Creating helpful, reliable, people-first content", publisher: "Google Search Central", href: "https://developers.google.com/search/docs/fundamentals/creating-helpful-content", usedFor: "Audience-first content and quality evaluation" },
     ],
-    cta: { title: "Need one connected growth process instead of channel activity?", copy: "Send the offer, audience, current channels and biggest constraint. Rohan will identify the clearest next operating priority.", label: "Request a founder-led growth review", href: "/contact" },
+    cta: { title: "Need one connected growth process instead of channel activity?", copy: "Send the offer, audience, current channels and biggest constraint. We will identify the clearest next operating priority.", label: "Request a founder-led growth review", href: "/contact" },
   },
   {
     slug: "facebook-lead-generation-ads",
@@ -1271,7 +1271,7 @@ export const insights: InsightArticle[] = [
       { label: "SEO Starter Guide", publisher: "Google Search Central", href: "https://developers.google.com/search/docs/fundamentals/seo-starter-guide", usedFor: "Titles, descriptions, site organisation, links and keyword-stuffing warning" },
       { label: "Article structured data", publisher: "Google Search Central", href: "https://developers.google.com/search/docs/appearance/structured-data/article", usedFor: "Article markup and visible author/date context" },
     ],
-    cta: { title: "Need an intent-led content system, not a pile of posts?", copy: "Send the target service, audience and current content. Rohan will identify the page cluster, evidence and conversion path worth building next.", label: "Request an SEO content review", href: "/contact" },
+    cta: { title: "Need an intent-led content system, not a pile of posts?", copy: "Send the target service, audience and current content. We will identify the page cluster, evidence and conversion path worth building next.", label: "Request an SEO content review", href: "/contact" },
   },
 ];
 

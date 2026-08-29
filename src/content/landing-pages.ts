@@ -591,7 +591,7 @@ export const commercialLandings: CommercialLanding[] = [
     title: "Digital marketing agency in Kathmandu for connected, measurable growth.",
     metaTitle: "Digital Marketing Agency in Kathmandu | GrowthLabs",
     description: "Founder-led digital marketing for Kathmandu businesses connecting SEO, paid ads, social media, websites, local search, tracking and CRO.",
-    intro: "GrowthLabs supports businesses across Kathmandu Valley with SEO, paid advertising, social media, website and landing-page strategy, local search, analytics, tracking and conversion rate optimisation. Work directly with Rohan Neure to identify where visibility, traffic, trust or conversion is breaking.",
+    intro: "We support businesses across Kathmandu Valley with SEO, paid advertising, social media, website and landing-page strategy, local search, analytics, tracking and conversion rate optimisation. Work directly with our founder-led team to identify where visibility, traffic, trust or conversion is breaking.",
     promise: "Combine local market context with a full-funnel view—and keep strategy connected to execution.",
     primaryCta: { label: "Request a local growth review", href: "/contact" },
     secondaryCta: { label: "Explore the Nepal agency", href: "/digital-marketing-agency-in-nepal" },
@@ -627,7 +627,7 @@ export const commercialLandings: CommercialLanding[] = [
         { title: "Professional services", copy: "Expertise, proof, process and a low-friction enquiry route help potential clients evaluate risk and fit." },
         { title: "Ecommerce and restaurants", copy: "Discovery, local or category visibility, clear offers, social proof, paid acquisition and conversion economics need different measurement." },
       ] },
-      { eyebrow: "Direct founder access", title: "Strategy stays connected to execution.", copy: "Rohan Neure remains involved in understanding the business, mapping priorities and reviewing performance so search, campaigns, content, websites, tracking and conversion decisions support one commercial goal.", items: [
+      { eyebrow: "Direct founder access", title: "Strategy stays connected to execution.", copy: "We stay involved in understanding the business, mapping priorities and reviewing performance so search, campaigns, content, websites, tracking and conversion decisions support one commercial goal.", items: [
         { title: "Visible reasoning", copy: "When a recommendation changes, you should understand what evidence caused it and which outcome the new priority is expected to influence." },
         { title: "Right-sized scope", copy: "The engagement may start with a review, focused project or broader programme according to the actual constraint." },
       ] },
@@ -649,15 +649,15 @@ export const commercialLandings: CommercialLanding[] = [
     ],
     faqs: [
       { question: "Is GrowthLabs located in Kathmandu?", answer: "GrowthLabs is based at Sallaghari Shopping Complex in Bhaktapur and serves Kathmandu, Lalitpur, Bhaktapur and businesses across Kathmandu Valley. It does not claim a separate Kathmandu office." },
-      { question: "Does GrowthLabs offer in-person meetings?", answer: "Online appointments and on-site services are available where appropriate. Confirm the meeting format and location directly with Rohan." },
+      { question: "Does GrowthLabs offer in-person meetings?", answer: "Online appointments and on-site services are available where appropriate. Confirm the meeting format and location directly with us." },
       { question: "What digital marketing services do you provide?", answer: "Services include strategy, SEO, Google Ads, Meta Ads, TikTok Ads, social media, website and landing-page strategy, content, local SEO, Google Business Profile optimisation, analytics, tracking and CRO." },
       { question: "Do you work with businesses outside Kathmandu?", answer: "Yes. GrowthLabs serves businesses across Nepal and selected international markets through remote collaboration, in addition to Kathmandu Valley service." },
       { question: "Can you help a local business appear in Google Maps?", answer: "GrowthLabs can review Google Business Profile, categories, services, business information, local keyword relevance, reviews, photos, website connections and conversion paths. Visibility cannot be guaranteed." },
       { question: "How much does digital marketing cost in Kathmandu?", answer: "Cost depends on the goal, channels, website condition, competition, creative and content needs, advertising scope, tracking and implementation responsibility. GrowthLabs provides a custom scope after review." },
-      { question: "Will I work directly with Rohan?", answer: "Yes. GrowthLabs is founder-led, and Rohan remains involved in discovery, prioritisation and strategic review." },
+      { question: "Will I work directly with the founder-led team?", answer: "Yes. We remain involved in discovery, prioritisation and strategic review." },
       { question: "How do we start?", answer: "Share the website, service area, current marketing, main challenge and desired business result. GrowthLabs will identify the most useful first review." },
     ],
-    finalCta: { eyebrow: "Local context, connected execution", title: "Find the next growth priority for your Kathmandu Valley business.", copy: "Tell GrowthLabs where customers discover you, what they need to understand and where enquiries are being lost. Rohan will recommend a practical path forward." },
+    finalCta: { eyebrow: "Local context, connected execution", title: "Find the next growth priority for your Kathmandu Valley business.", copy: "Tell us where customers discover you, what they need to understand and where enquiries are being lost. We will recommend a practical path forward." },
     related: [{ label: "Digital marketing agency in Nepal", href: "/digital-marketing-agency-in-nepal" }, { label: "Digital marketing process guide", href: "/insights/digital-marketing-process" }, { label: "SEO company in Nepal", href: "/seo-company-in-nepal" }, { label: "Advertising agency in Nepal", href: "/advertising-agency-in-nepal" }, { label: "Contact GrowthLabs", href: "/contact" }, { label: "About GrowthLabs", href: "/about" }]
   },
   {

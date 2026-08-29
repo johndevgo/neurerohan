@@ -45,7 +45,7 @@ export const process = [
 export const faqs = [
   { question: "What is GrowthLabs by Rohan Neure?", answer: "GrowthLabs by Rohan Neure is a founder-led digital growth partner based in Bhaktapur and serving businesses across Nepal. It connects SEO, paid advertising, social media, content, websites, landing pages, local search, analytics and conversion rate optimisation around measurable business goals." },
   { question: "Is GrowthLabs a digital marketing agency in Nepal?", answer: "Yes. GrowthLabs provides connected digital marketing strategy and implementation for businesses in Nepal. The dedicated agency page explains the complete national service model, industries, process and agency-selection guidance." },
-  { question: "Can I work directly with Rohan Neure?", answer: "Yes. Rohan leads the strategy and stays involved in business analysis, keyword mapping, page planning, campaign direction, tracking and conversion priorities." },
+  { question: "Will I work directly with the GrowthLabs founder-led team?", answer: "Yes. We stay involved in business analysis, keyword mapping, page planning, campaign direction, tracking and conversion priorities." },
   { question: "Which service should I start with?", answer: "Start with the biggest constraint. That may be weak search visibility, expensive advertising, an unclear website, unreliable tracking or low conversion rates. The first review identifies the constraint before recommending a service mix." },
   { question: "Does GrowthLabs work only with businesses in Kathmandu?", answer: "No. GrowthLabs is based at Sallaghari Shopping Complex in Bhaktapur, works across Kathmandu Valley and supports businesses throughout Nepal through online appointments and on-site support where appropriate." },
   { question: "Do you offer both SEO and paid advertising?", answer: "Yes. SEO can build compounding visibility while paid advertising can capture or create demand more quickly. They can be used separately or together depending on the goal, budget, market and website readiness." },
@@ -60,8 +60,8 @@ export const siteConfig = {
   initials: "GL",
   title: "Growth Marketer | SEO, Google Ads, Meta & TikTok Ads",
   positioning: "SEO, Google Ads and Meta Ads built to rank, convert, and grow.",
-  shortBio: "Rohan Neure is a performance and growth marketer with 4+ years of experience building full-funnel systems across Google Ads, Meta Ads, TikTok Ads, SEO, CRO, analytics, tracking, automation, and landing-page optimisation.",
-  about: ["GrowthLabs by Rohan Neure is built for businesses that need more than disconnected digital activity. The work starts with the business, the audience, search demand, and the full journey from visibility to enquiry.", "Rohan connects audience research, paid media, search intent, landing pages, tracking, reporting, conversion flow, creative testing, and performance analysis so businesses can understand what is working, what is wasting money, and where growth is actually coming from."],
+  shortBio: "We are a founder-led performance and growth-marketing team with 4+ years of experience building full-funnel systems across Google Ads, Meta Ads, TikTok Ads, SEO, CRO, analytics, tracking, automation and landing-page optimisation.",
+  about: ["We built GrowthLabs for businesses that need more than disconnected digital activity. Our work starts with the business, the audience, search demand and the full journey from visibility to enquiry.", "We connect audience research, paid media, search intent, landing pages, tracking, reporting, conversion flow, creative testing and performance analysis so you can understand what is working, what is wasting money and where growth is actually coming from."],
   profileImage: "/images/brand/rohan-neure-standing-portrait.png",
   portraits: {
     standing: "/images/brand/rohan-neure-standing-portrait.png",
@@ -135,14 +135,14 @@ export const siteConfig = {
     { label: "Facebook", href: "https://www.facebook.com/growthbyrohan/" },
   ],
   cta: {
-    primary: { label: "Request a founder-led growth review", headerLabel: "Request a growth review", shortLabel: "Talk to Rohan", href: "/contact" },
+    primary: { label: "Request a founder-led growth review", headerLabel: "Request a growth review", shortLabel: "Talk to us", href: "/contact" },
     secondary: { label: "Explore services", href: "/services" },
     contact: { label: "Send your growth brief", href: "/contact" },
     whatsapp: { label: "Send your brief on WhatsApp", href: "https://wa.me/9779746265996?text=Hi%20Rohan%2C%20I%27d%20like%20a%20founder-led%20growth%20review.%20My%20website%20or%20profile%20is%3A%20" },
     email: { label: "Email your growth brief", href: "mailto:contact@neurerohan.com.np?subject=GrowthLabs%20growth%20review&body=Website%20or%20profile%3A%0AOffer%3A%0ATarget%20market%3A%0ACurrent%20channels%3A%0ABiggest%20constraint%3A%0AResult%20to%20improve%3A" },
-    phone: { label: "Call Rohan directly", href: "tel:+9779746265996" },
-    microcopy: "Send your website, main offer, target market, current channels and the result you want to improve. Your enquiry goes directly to Rohan, who will recommend the clearest next step.",
-    reassurance: "No booking maze. Use the secure enquiry form, WhatsApp, email or call Rohan directly.",
+    phone: { label: "Call GrowthLabs directly", href: "tel:+9779746265996" },
+    microcopy: "Send your website, main offer, target market, current channels and the result you want to improve. We will review the context and recommend the clearest next step.",
+    reassurance: "No booking maze. Use the secure enquiry form, WhatsApp, email or call us directly.",
   },
   seo: {
     title: "GrowthLabs by Rohan Neure | SEO, Google Ads & Meta Ads",

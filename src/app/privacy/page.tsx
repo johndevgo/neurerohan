@@ -27,6 +27,7 @@ export default function PrivacyPage() {
     <PageIntro breadcrumbs={[{ label: "Privacy Policy" }]} eyebrow="Privacy Policy" title="Privacy Policy">
       <p>Last updated: 29 August 2026</p>
       <p className="mt-5">GrowthLabs by Rohan Neure respects your privacy and aims to collect only the information reasonably needed to operate this website, respond to direct enquiries and provide agreed services.</p>
+      <p className="mt-5">If you request the free resource library by email, we use the supplied name, email address and source page only to deliver that one requested email and record the delivery request. The form does not subscribe you to an ongoing mailing list.</p>
       <p className="mt-4">This policy explains what information may be processed through neurerohan.com.np and the contact channels linked from it, why that information may be used and the choices available to you.</p>
     </PageIntro>
 
@@ -78,7 +79,7 @@ export default function PrivacyPage() {
           <section id="technical-information" className="scroll-mt-28">
             <h2 className="font-serif text-3xl text-[var(--ink)]">3. Technical and usage information</h2>
             <p className="mt-4">The website host, delivery network and security systems may process standard technical information needed to deliver and protect the site. This may include an IP address, browser or device type, requested URL, access time, referrer, and error or security logs.</p>
-            <p className="mt-4">When Google Tag Manager is enabled, loading its container may also transmit standard request information such as an IP address, browser or device details, requested page, referrer and access time to Google. GrowthLabs does not operate user accounts or accept uploads. Enquiry-form details are transmitted to the website server and email-delivery provider so the message can reach Rohan. Technical logs are controlled in part by the providers used to keep the site available, secure and measurable.</p>
+            <p className="mt-4">When Google Tag Manager is enabled, loading its container may also transmit standard request information such as an IP address, browser or device details, requested page, referrer and access time to Google. GrowthLabs does not operate user accounts or accept uploads. Enquiry-form details are transmitted to the website server and email-delivery provider so our team can respond. Technical logs are controlled in part by the providers used to keep the site available, secure and measurable.</p>
           </section>
 
           <section id="how-information-is-used" className="scroll-mt-28">

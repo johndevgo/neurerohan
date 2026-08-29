@@ -24,7 +24,7 @@ const selector = [
 ];
 
 const links: Record<string, { href: string; label: string }[]> = {
-  seo: [{ href: "/seo-expert-in-nepal", label: "Work directly with Rohan Neure" }, { href: "/seo-company-in-nepal", label: "Compare the SEO company model" }, { href: "/seo-audit-services-in-nepal", label: "Request an SEO audit" }, { href: "/local-seo-services-in-nepal", label: "Explore local SEO services" }],
+  seo: [{ href: "/seo-expert-in-nepal", label: "Work directly with our SEO team" }, { href: "/seo-company-in-nepal", label: "Compare the SEO company model" }, { href: "/seo-audit-services-in-nepal", label: "Request an SEO audit" }, { href: "/local-seo-services-in-nepal", label: "Explore local SEO services" }],
   "paid-advertising": [{ href: "/google-ads-agency-in-nepal", label: "Explore Google Ads services" }, { href: "/meta-ads-agency-in-nepal", label: "Explore Meta Ads services" }, { href: "/advertising-agency-in-nepal", label: "Compare multi-platform advertising" }],
   "social-media": [{ href: "/social-media-marketing-agency-in-nepal", label: "Explore social media marketing" }, { href: "/social-media-marketing-packages", label: "Compare package scope" }],
   websites: [{ href: "/web-design-company-in-nepal", label: "Explore web design in Nepal" }],
@@ -56,7 +56,7 @@ const specialistPages = [
   ["Digital marketing agency in Nepal", "/digital-marketing-agency-in-nepal", "The complete national agency model and connected service system."],
   ["Digital marketing agency in Kathmandu", "/digital-marketing-agency-in-kathmandu", "Local context for Kathmandu Valley businesses, from the real Bhaktapur base."],
   ["SEO company in Nepal", "/seo-company-in-nepal", "Ongoing organisation-led SEO across technical, content, local search and CRO."],
-  ["SEO expert in Nepal", "/seo-expert-in-nepal", "Direct specialist SEO strategy, review and implementation guidance from Rohan."],
+  ["SEO expert in Nepal", "/seo-expert-in-nepal", "Direct specialist SEO strategy, review and implementation guidance from our founder-led team."],
   ["Advertising agency in Nepal", "/advertising-agency-in-nepal", "Google, Meta and TikTok advertising connected to pages, tracking and follow-up."],
   ["Google Ads agency in Nepal", "/google-ads-agency-in-nepal", "Google Search and campaign management connected to landing pages, conversion actions and lead quality."],
   ["Meta Ads agency in Nepal", "/meta-ads-agency-in-nepal", "Facebook and Instagram advertising connected to creative, destination, measurement and lead quality."],

@@ -15,7 +15,7 @@ export const metadata = pageMetadata(
 );
 
 const helpfulDetails = [
-  ["Your website or primary profile", "A URL gives Rohan useful context before the first conversation."],
+  ["Your website or primary profile", "A URL gives us useful context before the first conversation."],
   ["The offer you want to grow", "Name the service, product, property or priority page that matters most."],
   ["The market you serve", "Include the locations, customer groups or source markets you want to reach."],
   ["What you have already tried", "Summarise relevant SEO, advertising, social media or website work."],
@@ -23,7 +23,7 @@ const helpfulDetails = [
 ];
 
 const nextSteps = [
-  ["Context review", "Rohan reviews the business context, website and stated challenge before recommending a service."],
+  ["Context review", "We review the business context, website and stated challenge before recommending a service."],
   ["Clarifying conversation", "The first conversation explores the audience, offer, current system, constraints and desired result."],
   ["Right-sized next step", "If GrowthLabs is a fit, the next step may be an audit, strategy, focused project or ongoing programme."],
   ["Transparent scope", "Any proposal should show deliverables, responsibilities, timing, fees, exclusions and measurement."],
@@ -31,7 +31,7 @@ const nextSteps = [
 
 const faqs = [
   ["Can I contact GrowthLabs on WhatsApp?", `Yes. Use ${siteConfig.phoneDisplay} or the WhatsApp button on this page.`],
-  ["Can I arrange an online appointment?", "Yes. Online appointments are available. Confirm the time and platform directly with Rohan."],
+  ["Can I arrange an online appointment?", "Yes. Online appointments are available. Confirm the time and platform directly with us."],
   ["Can I visit the Bhaktapur location?", "On-site services may be arranged, but confirm the meeting and access details before visiting Sallaghari Shopping Complex."],
   ["What should I send for an SEO review?", "Send the website, target services or products, markets, current Search Console or analytics status if known, and the organic result you want to improve."],
   ["What should I send for an advertising review?", "Send the offer, audience, landing page, active platforms, approximate media budget, current tracking and your definition of a qualified lead or sale."],
@@ -41,9 +41,9 @@ const faqs = [
 export default function ContactPage() {
   return <>
     <Breadcrumbs items={[{ label: "Contact" }]} />
-    <section className="contact-hero"><div className="shell"><p className="contact-hero-kicker">Founder-led SEO, paid media & growth strategy</p><h1>Let’s talk about <em>your growth.</em></h1><p>Tell Rohan what you are building, where marketing is getting stuck and what a valuable result looks like. Expect a direct, practical reply—not a scripted sales sequence.</p></div></section>
+    <section className="contact-hero"><div className="shell"><p className="contact-hero-kicker">Founder-led SEO, paid media & growth strategy</p><h1>Let’s talk about <em>your growth.</em></h1><p>Tell us what you are building, where marketing is getting stuck and what a valuable result looks like. Expect a direct, practical reply—not a scripted sales sequence.</p></div></section>
 
-    <section className="section contact-form-section"><div className="shell contact-form-layout"><aside className="contact-details-card"><p className="eyebrow">Contact details</p><h2>Reach Rohan directly.</h2><p>Use the form or whichever channel feels easiest. Every serious enquiry is reviewed personally.</p><div className="contact-details-list"><a href={siteConfig.cta.phone.href}><span>Call / WhatsApp</span><strong>{siteConfig.phoneDisplay}</strong></a><a href={`mailto:${siteConfig.email}`}><span>Email</span><strong>{siteConfig.email}</strong></a><a href={siteConfig.mapUrl} target="_blank" rel="noopener noreferrer"><span>Location</span><strong>Bhaktapur, Nepal</strong></a><div><span>Availability</span><strong>Sunday–Friday · Direct founder response</strong></div></div><div className="contact-response-note"><strong>Clear replies, not pressure.</strong><p>If GrowthLabs is not the right fit, Rohan will say so and suggest the clearest next move where possible.</p></div></aside><ContactForm /></div></section>
+    <section className="section contact-form-section"><div className="shell contact-form-layout"><aside className="contact-details-card"><p className="eyebrow">Contact details</p><h2>Reach us directly.</h2><p>Use the form or whichever channel feels easiest. We personally review every serious enquiry.</p><div className="contact-details-list"><a href={siteConfig.cta.phone.href}><span>Call / WhatsApp</span><strong>{siteConfig.phoneDisplay}</strong></a><a href={`mailto:${siteConfig.email}`}><span>Email</span><strong>{siteConfig.email}</strong></a><a href={siteConfig.mapUrl} target="_blank" rel="noopener noreferrer"><span>Location</span><strong>Bhaktapur, Nepal</strong></a><div><span>Availability</span><strong>Sunday–Friday · Direct founder response</strong></div></div><div className="contact-response-note"><strong>Clear replies, not pressure.</strong><p>If we are not the right fit, we will say so and suggest the clearest next move where possible.</p></div></aside><ContactForm /></div></section>
 
     <section className="section section-dark">
       <div className="shell">
@@ -105,7 +105,7 @@ export default function ContactPage() {
 
     <section className="section">
       <div className="shell">
-        <SectionHeading eyebrow="Better qualification for both sides" title="GrowthLabs is a strong fit when you want connected improvement." copy="The best engagements involve a real offer, access to useful business context, willingness to improve the website or customer journey and interest in measurable outcomes rather than vanity activity. If a request requires a service GrowthLabs does not genuinely provide, Rohan will say so rather than force an unsuitable package." />
+        <SectionHeading eyebrow="Better qualification for both sides" title="GrowthLabs is a strong fit when you want connected improvement." copy="The best engagements involve a real offer, access to useful business context, willingness to improve the website or customer journey and interest in measurable outcomes rather than vanity activity. If a request requires a service we do not genuinely provide, we will say so rather than force an unsuitable package." />
         <div className="mt-8 md:ml-[25%]"><Link className="text-link" href="/services">Review the complete service system <Arrow /></Link></div>
       </div>
     </section>
