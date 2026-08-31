@@ -6,6 +6,7 @@ import { globalSchema, StructuredData } from "@/components/structured-data";
 import { GoogleTagManagerNoScript, GoogleTagManagerScript } from "@/components/google-tag-manager";
 import { MeasurementConsent } from "@/components/measurement-consent";
 import { ResourceLibraryPrompt } from "@/components/resource-library-prompt";
+import { PwaManager } from "@/components/pwa-manager";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -15,6 +16,9 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
   openGraph: { title: siteConfig.seo.title, description: siteConfig.seo.description, url: siteConfig.domain, siteName: siteConfig.name, locale: siteConfig.seo.locale, type: "website" },
   twitter: { card: "summary_large_image", title: siteConfig.seo.title, description: siteConfig.seo.description },
+  manifest: "/manifest.webmanifest",
+  applicationName: "GrowthLabs",
+  appleWebApp: { capable: true, statusBarStyle: "black-translucent", title: "GrowthLabs" },
   icons: {
     icon: [{ url: "/images/brand/growthlabs-favicon-48.png", type: "image/png", sizes: "48x48" }],
     shortcut: "/images/brand/growthlabs-favicon-48.png",
@@ -35,6 +39,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <ResourceLibraryPrompt />
       <SiteFooter measurementEnabled />
       <MeasurementConsent />
+      <PwaManager />
       <StructuredData data={globalSchema} />
     </body>
   </html>;
