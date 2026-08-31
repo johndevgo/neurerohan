@@ -10,7 +10,7 @@ export function SiteHeader() {
   return <header className="site-header sticky top-0 z-[100]">
     <div className="shell flex h-[var(--header)] items-center justify-between gap-2 lg:gap-6">
       <BrandLockup priority />
-      <div className="hidden items-center gap-7 lg:flex"><DesktopNav items={navigation} /><Link className="button button-primary min-h-11 px-4" href={siteConfig.cta.primary.href} data-cta-intent="growth-review" data-cta-location="header" data-cta-channel="contact">{siteConfig.cta.primary.headerLabel} <Arrow /></Link></div>
+      <div className="desktop-header-controls hidden items-center gap-7 lg:flex"><DesktopNav items={navigation} /><Link className="button button-primary min-h-11 px-4" href={siteConfig.cta.primary.href} data-cta-intent="growth-review" data-cta-location="header" data-cta-channel="contact">{siteConfig.cta.primary.headerLabel} <Arrow /></Link></div>
       <MobileNav items={siteConfig.nav} />
     </div>
   </header>;

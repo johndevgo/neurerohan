@@ -1,3 +1,5 @@
+import { authorityInsights } from "./insights-authority";
+
 export type InsightTable = {
   caption: string;
   headers: string[];
@@ -1273,6 +1275,7 @@ export const insights: InsightArticle[] = [
     ],
     cta: { title: "Need an intent-led content system, not a pile of posts?", copy: "Send the target service, audience and current content. We will identify the page cluster, evidence and conversion path worth building next.", label: "Request an SEO content review", href: "/contact" },
   },
+  ...authorityInsights,
 ];
 
 export const insightBySlug: Record<string, InsightArticle> = Object.fromEntries(
