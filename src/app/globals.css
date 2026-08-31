@@ -314,13 +314,12 @@ a.credential-card:hover { background: color-mix(in srgb, var(--sun) 16%, var(--p
     border: 1px solid rgba(255, 255, 255, .88);
     border-radius: 1.55rem;
     color: #173729;
-    background:
-      radial-gradient(circle at 6% 92%, rgba(110, 194, 143, .24), transparent 17rem),
-      radial-gradient(circle at 94% 8%, rgba(241, 158, 99, .22), transparent 17rem),
-      linear-gradient(145deg, rgba(251, 255, 250, .92), rgba(248, 245, 239, .78));
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1), 0 34px 90px rgba(21, 47, 31, .2), 0 0 0 1px rgba(43, 103, 65, .05);
-    -webkit-backdrop-filter: blur(44px) saturate(185%);
-    backdrop-filter: blur(44px) saturate(185%);
+    background-color: #f8f8f3;
+    background-image:
+      radial-gradient(circle at 6% 92%, rgba(110, 194, 143, .25), transparent 17rem),
+      radial-gradient(circle at 94% 8%, rgba(241, 158, 99, .23), transparent 17rem),
+      linear-gradient(145deg, #fbfefa, #f8f5ef);
+    box-shadow: inset 0 1px 0 #fff, 0 34px 90px rgba(21, 47, 31, .26), 0 0 0 1px rgba(43, 103, 65, .08);
     animation: mega-menu-enter 160ms ease-out both;
   }
 
@@ -339,7 +338,7 @@ a.credential-card:hover { background: color-mix(in srgb, var(--sun) 16%, var(--p
     justify-content: center;
     padding: clamp(1.5rem, 2.5vw, 2.5rem);
     border-right: 1px solid rgba(38, 92, 58, .1);
-    background: linear-gradient(155deg, rgba(224, 244, 227, .64), rgba(255, 237, 206, .24));
+    background: linear-gradient(155deg, #e8f5eb, #fff5df);
   }
 
   .mega-menu-eyebrow {

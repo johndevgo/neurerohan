@@ -1,4 +1,6 @@
 import { authorityInsights } from "./insights-authority";
+import { growthInsights } from "./insights-growth";
+import { scaleInsights } from "./insights-scale";
 
 export type InsightTable = {
   caption: string;
@@ -1276,6 +1278,8 @@ export const insights: InsightArticle[] = [
     cta: { title: "Need an intent-led content system, not a pile of posts?", copy: "Send the target service, audience and current content. We will identify the page cluster, evidence and conversion path worth building next.", label: "Request an SEO content review", href: "/contact" },
   },
   ...authorityInsights,
+  ...growthInsights,
+  ...scaleInsights,
 ];
 
 export const insightBySlug: Record<string, InsightArticle> = Object.fromEntries(

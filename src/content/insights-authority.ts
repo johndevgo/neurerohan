@@ -282,7 +282,7 @@ export const authorityInsights: InsightArticle[] = [
     ],
     related: [
       { label: "Local SEO services in Nepal", href: "/local-seo-services-in-nepal", copy: "Connect profile, website, reviews and measurement." },
-      { label: "Google Business Profile optimisation", href: "/insights/google-business-profile-optimisation", copy: "Work through the profile in practical detail." },
+      { label: "Google Business Profile optimisation", href: "/insights/google-business-profile-optimization", copy: "Work through the profile in practical detail." },
       { label: "Local SEO checklist", href: "/resources/local-seo-gbp-checklist", copy: "Download a repeatable local search review." },
     ],
     sources: [

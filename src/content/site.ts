@@ -110,12 +110,12 @@ export const siteConfig = {
   expertise: services,
   projects: [] as Project[],
   experience: [
-    { period: "Jan 2025 to Present", title: "Growth Marketer · SEO & Paid Ads Specialist", organization: "InTech Nexus", detail: "Paid media, SEO, CRO, analytics, tracking, reporting, landing pages, creative strategy, and automation." },
-    { period: "Nov 2021 to Dec 2024", title: "SEO & Ads Executive", organization: "Business Outstanders", detail: "Progressed from SEO Executive into SEO and paid advertising, website optimisation, creative direction, research, analysis, and reporting." },
+    { period: "Jan 2025 to Present", title: "Growth Marketer · SEO & Paid Ads Specialist", detail: "Paid media, SEO, CRO, analytics, tracking, reporting, landing pages, creative strategy, and automation." },
+    { period: "Nov 2021 to Dec 2024", title: "SEO & Ads Executive", detail: "Progressed from SEO execution into SEO and paid advertising, website optimisation, creative direction, research, analysis, and reporting." },
   ] as Milestone[],
   education: [
-    { period: "2023 to Present", title: "BSc CSIT", organization: "Tribhuvan University" },
-    { period: "2021 to 2023", title: "Computer Science", organization: "Xavier International College, Kathmandu" },
+    { period: "2023 to Present", title: "BSc CSIT" },
+    { period: "2021 to 2023", title: "Computer Science" },
   ] as Milestone[],
   achievements: [] as { metric: string; label: string; detail: string }[],
   values: [
