@@ -78,6 +78,27 @@ const menuLayout = await command("Runtime.evaluate", {
 });
 
 await command("Runtime.evaluate", { expression: "document.querySelector('.mobile-menu-button')?.click()" });
+await command("Runtime.evaluate", {
+  expression: `new Promise(async resolve => {
+    for (let y = 0; y < document.documentElement.scrollHeight; y += 700) {
+      window.scrollTo(0, y);
+      await new Promise(done => setTimeout(done, 90));
+    }
+    window.scrollTo(0, document.documentElement.scrollHeight);
+    setTimeout(resolve, 2200);
+  })`,
+  awaitPromise: true,
+});
+const imageCoverage = await command("Runtime.evaluate", {
+  expression: `Promise.all([...document.images]
+    .filter(image => image.complete && image.naturalWidth > 0 && !image.currentSrc.startsWith('data:'))
+    .map(async image => {
+      const url = image.currentSrc || image.src;
+      return { url, cached: Boolean(await caches.match(url)) };
+    }))`,
+  awaitPromise: true,
+  returnByValue: true,
+});
 await command("Page.reload");
 await pause(1500);
 await command("Runtime.evaluate", { expression: "navigator.serviceWorker.ready", awaitPromise: true });
@@ -98,6 +119,11 @@ console.log(JSON.stringify({
   manifestErrors: manifest.errors,
   installabilityErrors: installability.installabilityErrors,
   serviceWorker: worker.result.value,
+  imageCacheCoverage: {
+    loaded: imageCoverage.result.value.length,
+    cached: imageCoverage.result.value.filter((image) => image.cached).length,
+    missing: imageCoverage.result.value.filter((image) => !image.cached).map((image) => image.url),
+  },
   menuLayout: menuLayout.result.value,
   offlineReadiness: offlineReadiness.result.value,
   screenshot: ".qa/mobile-menu-pwa.png",

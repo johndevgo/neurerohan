@@ -8,6 +8,18 @@ export function PwaManager() {
   useEffect(() => {
     if (!("serviceWorker" in navigator)) return;
     let registration: ServiceWorkerRegistration | undefined;
+    const sendImage = (image: HTMLImageElement) => {
+      if (!image.complete || image.naturalWidth === 0) return;
+      const url = image.currentSrc || image.src;
+      if (url) registration?.active?.postMessage({ type: "CACHE_IMAGES", urls: [url] });
+    };
+    const warmRenderedImages = () => {
+      const urls = Array.from(document.images)
+        .filter((image) => image.complete && image.naturalWidth > 0)
+        .map((image) => image.currentSrc || image.src)
+        .filter(Boolean);
+      if (urls.length) registration?.active?.postMessage({ type: "CACHE_IMAGES", urls });
+    };
     const register = async () => {
       try {
         registration = await navigator.serviceWorker.register("/sw.js", { scope: "/", updateViaCache: "none" });
@@ -18,7 +30,10 @@ export function PwaManager() {
           });
         };
         watch(registration.installing);
+        if (registration.waiting && navigator.serviceWorker.controller) setUpdateReady(registration.waiting);
         registration.addEventListener("updatefound", () => watch(registration?.installing ?? null));
+        await navigator.serviceWorker.ready;
+        warmRenderedImages();
       } catch {
         // The core site remains fully usable if service workers are unavailable.
       }
@@ -28,9 +43,14 @@ export function PwaManager() {
     else window.addEventListener("load", onLoad, { once: true });
     const onVisible = () => { if (document.visibilityState === "visible") void registration?.update(); };
     document.addEventListener("visibilitychange", onVisible);
+    const onResourceLoad = (event: Event) => {
+      if (event.target instanceof HTMLImageElement) sendImage(event.target);
+    };
+    document.addEventListener("load", onResourceLoad, true);
     return () => {
       window.removeEventListener("load", onLoad);
       document.removeEventListener("visibilitychange", onVisible);
+      document.removeEventListener("load", onResourceLoad, true);
     };
   }, []);
 
