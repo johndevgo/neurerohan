@@ -1,5 +1,14 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
+import { createRequire } from "node:module";
+import { runInNewContext } from "node:vm";
+
+const require = createRequire(import.meta.url);
+const ts = require("typescript");
+const positioningSource = await readFile(new URL("../src/content/service-positioning.ts", import.meta.url), "utf8");
+const editorialModule = { exports: {} };
+runInNewContext(ts.transpileModule(positioningSource, { compilerOptions: { module: ts.ModuleKind.CommonJS } }).outputText, { exports: editorialModule.exports });
+const { servicePositioning } = editorialModule.exports;
 
 const base = new URL(process.argv[2] ?? "http://localhost:3000");
 const canonical = "https://neurerohan.com.np";
@@ -26,7 +35,7 @@ for (const path of routes) {
   const main = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i)?.[1] ?? "";
   assert.ok(main, `${path}: main landmark`);
   assert.equal([...main.matchAll(/<h1\b/g)].length, 1, `${path}: exactly one H1`);
-  const title = text(html.match(/<title>([\s\S]*?)<\/title>/i)?.[1] ?? "");
+  const title = decode(text(html.match(/<title>([\s\S]*?)<\/title>/i)?.[1] ?? ""));
   assert.ok(title && !titles.has(title), `${path}: unique title`);
   titles.add(title);
   const meta = [...html.matchAll(/<meta\b[^>]*>/gi)].map(([tag]) => tag);
@@ -50,7 +59,19 @@ for (const path of routes) {
     }
   }
   const faq = nodes.find((node) => node["@type"] === "FAQPage");
+  if (faq) assert.equal(new Set(faq.mainEntity.map((item) => item.name.toLowerCase())).size, faq.mainEntity.length, `${path}: no repeated FAQ questions`);
   if (faq) for (const question of faq.mainEntity) assert.ok(decode(text(main)).includes(question.name), `${path}: visible FAQ ${question.name}`);
+  const positioning = servicePositioning[path.slice(1)];
+  if (positioning) {
+    const h1 = text(main.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i)?.[1] ?? "").toLowerCase();
+    assert.ok(h1.includes(positioning.keyword.toLowerCase()), `${path}: primary intent in H1`);
+    const body = decode(text(main)).toLowerCase();
+    for (const topic of positioning.topics) assert.ok(body.includes(topic.toLowerCase()), `${path}: topic coverage ${topic}`);
+    for (const anchor of ["service-overview", "capabilities", "service-process", "service-faq", "service-enquiry"]) assert.ok(main.includes(`id="${anchor}"`), `${path}: decision navigation ${anchor}`);
+    assert.ok(main.includes(`href="/contact?service=${positioning.formService}"`), `${path}: contextual contact handoff`);
+    const pageNode = nodes.find((node) => node["@type"] === "WebPage" || node["@type"] === "CollectionPage");
+    assert.equal(pageNode.name, title, `${path}: metadata and page schema use the same title`);
+  }
   for (const [tag] of main.matchAll(/<img\b[^>]*>/gi)) {
     assert.ok(/\balt="/.test(tag), `${path}: image alt attribute`);
     assert.ok(attribute(tag, "width") && attribute(tag, "height"), `${path}: stable image dimensions`);

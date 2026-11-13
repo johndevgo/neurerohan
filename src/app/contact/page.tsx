@@ -39,15 +39,15 @@ const faqs = [
 ];
 
 export default function ContactPage() {
-  return <>
+  return <div className="core-page">
     <Breadcrumbs items={[{ label: "Contact" }]} />
-    <section className="contact-hero"><div className="shell"><p className="contact-hero-kicker">Founder-led SEO, paid media & growth strategy</p><h1>Let’s talk about <em>your growth.</em></h1><p>Tell us what you are building, where marketing is getting stuck and what a valuable result looks like. Expect a direct, practical reply, not a scripted sales sequence.</p></div></section>
+    <section className="contact-hero"><div className="shell"><p className="contact-hero-kicker">Founder-led SEO, paid media & growth strategy</p><h1>Let’s plan <em>your next move.</em></h1><p>Tell us what you sell, who you want to reach and what needs to improve. We will review your brief and help you choose a useful next step across SEO, Google Ads, Meta Ads, websites and CRO.</p><a className="button button-primary contact-hero-action" href="#enquiry-form">Send your project brief <Arrow /></a></div></section>
 
-    <section className="section contact-form-section"><div className="shell contact-form-layout"><aside className="contact-details-card"><p className="eyebrow">Contact details</p><h2>Reach us directly.</h2><p>Use the form or whichever channel feels easiest. We personally review every serious enquiry.</p><div className="contact-details-list"><a href={siteConfig.cta.phone.href}><span>Call / WhatsApp</span><strong>{siteConfig.phoneDisplay}</strong></a><a href={`mailto:${siteConfig.email}`}><span>Email</span><strong>{siteConfig.email}</strong></a><a href={siteConfig.mapUrl} target="_blank" rel="noopener noreferrer"><span>Location</span><strong>Bhaktapur, Nepal</strong></a><div><span>Availability</span><strong>Sunday–Friday · Direct founder response</strong></div></div><div className="contact-response-note"><strong>Clear replies, not pressure.</strong><p>If we are not the right fit, we will say so and suggest the clearest next move where possible.</p></div></aside><ContactForm /></div></section>
+    <section className="section contact-form-section"><div className="shell contact-form-layout"><aside className="contact-details-card"><p className="eyebrow">Contact details</p><h2>Reach us directly.</h2><p>Use the form or whichever channel feels easiest. We personally review every serious enquiry.</p><div className="contact-details-list"><a href={siteConfig.cta.phone.href}><span>Call / WhatsApp</span><strong>{siteConfig.phoneDisplay}</strong></a><a href={`mailto:${siteConfig.email}`}><span>Email</span><strong>{siteConfig.email}</strong></a><a href={siteConfig.mapUrl} target="_blank" rel="noopener noreferrer"><span>Location</span><strong>Bhaktapur, Nepal</strong></a><div><span>Availability</span><strong>Sunday–Friday · Direct founder response</strong></div></div><div className="contact-response-note"><strong>A practical reply from the people doing the work.</strong><p>Share your website and priority. We will explain the relevant service, what we need to review and how the engagement could work.</p></div></aside><ContactForm /></div></section>
 
     <section className="section section-dark">
       <div className="shell">
-        <SectionHeading eyebrow="Make the first conversation useful" title="Five details help GrowthLabs prepare." copy="A concise note is enough. You do not need a completed brief or a chosen package." />
+        <SectionHeading eyebrow="Make the first conversation useful" title="Help us prepare a useful SEO or marketing review." copy="A concise note is enough. You do not need a completed brief or a chosen package." />
         <div className="mt-14 grid gap-8 md:ml-[25%] md:grid-cols-2">
           {helpfulDetails.map(([title, copy], index) => <article className="border-t border-white/25 pt-5" key={title}>
             <p className="eyebrow !text-[var(--sun)]">0{index + 1}</p>
@@ -92,7 +92,7 @@ export default function ContactPage() {
 
     <section className="section">
       <div className="shell">
-        <SectionHeading eyebrow="A practical first step" title="Expect clarification before a proposal." />
+        <SectionHeading eyebrow="A practical first step" title="From your first brief to a clearly defined proposal." />
         <ol className="mt-14 border-b border-[var(--ink)] md:ml-[25%]">
           {nextSteps.map(([title, copy], index) => <li className="grid gap-3 border-t border-[var(--ink)] py-6 sm:grid-cols-[4rem_1fr_2fr]" key={title}>
             <span className="font-mono text-xs">0{index + 1}</span>
@@ -105,7 +105,7 @@ export default function ContactPage() {
 
     <section className="section">
       <div className="shell">
-        <SectionHeading eyebrow="Better qualification for both sides" title="GrowthLabs is a strong fit when you want connected improvement." copy="The best engagements involve a real offer, access to useful business context, willingness to improve the website or customer journey and interest in measurable outcomes rather than vanity activity. If a request requires a service we do not genuinely provide, we will say so rather than force an unsuitable package." />
+        <SectionHeading eyebrow="Better qualification for both sides" title="GrowthLabs is a strong fit when you want connected improvement." copy="Bring a clear business offer and a willingness to improve the complete customer journey. We can begin with an SEO audit, campaign review, landing-page project or tracking diagnosis, then agree the deliverables, ownership and measurement before work starts." />
         <div className="mt-8 flex flex-wrap gap-5 md:ml-[25%]"><Link className="text-link" href="/services">Compare our digital marketing services <Arrow /></Link><Link className="text-link" href="/seo-services-in-nepal">Explore the complete SEO service scope <Arrow /></Link><Link className="text-link" href="/google-ads-agency-in-nepal">Review our Google Ads results <Arrow /></Link></div>
       </div>
     </section>
@@ -139,5 +139,5 @@ export default function ContactPage() {
     </section>
 
     <PageStructuredData path="/contact" faqs={faqs.map(([question, answer]) => ({ question, answer }))} />
-  </>;
+  </div>;
 }

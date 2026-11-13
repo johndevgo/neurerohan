@@ -11,7 +11,7 @@ export function CredentialProof({ ids, title = "Platform expertise behind the wo
   const selected = ids.map((id) => credentials[id]);
   if (!selected.length) return null;
   return <section className="section credential-section bg-[var(--surface)]" id={sectionId}><div className="shell">
-    <SectionHeading eyebrow="Verified GrowthLabs credentials" title={title} copy={copy} />
+    <SectionHeading eyebrow="GrowthLabs platform credentials" title={title} copy={copy} />
     <div className={`credential-grid mt-12 md:ml-[25%] ${compact || selected.length < 4 ? "credential-grid-compact" : ""}`}>
       {selected.map((credential) => {
         const contents = <><div className="credential-image-wrap"><Image className="h-full w-full object-contain" src={credential.src} alt={credential.alt} width={credential.width} height={credential.height} sizes="(max-width: 768px) 92vw, (max-width: 1200px) 42vw, 24vw" /></div><div className="credential-copy"><p className="font-mono text-[.62rem] font-bold uppercase tracking-[.055em] text-[var(--accent)]">{credential.kind === "review" ? "Google business rating" : "Platform credential"}</p><h3 className="mt-2 font-serif text-xl leading-tight tracking-[-.035em]">{credential.name}</h3><p className="mt-3 text-xs leading-5 text-[var(--muted)]">{credential.caption}</p>{credential.kind === "review" && <span className="mt-4 inline-flex items-center gap-2 text-sm font-bold">View the Google Business Profile <Arrow direction="up-right" /></span>}</div></>;

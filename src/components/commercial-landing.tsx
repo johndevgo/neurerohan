@@ -1,9 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Arrow } from "./icons";
-import { PageIntro, SectionHeading } from "./ui";
+import { SectionHeading } from "./ui";
 import { PageStructuredData } from "./structured-data";
-import { PaidMediaEvidence, SearchEvidence } from "./search-evidence";
+import { CommercialHero } from "./commercial-hero";
+import { ServiceEvidence } from "./service-evidence";
+import { servicePositioning, type PositionedServiceSlug } from "@/content/service-positioning";
 import { GoogleBusinessMap } from "./google-business-map";
 import { CredentialProof } from "./credential-proof";
 import { agencyAssets } from "@/content/agency-assets";
@@ -233,7 +235,7 @@ function EditorialSections({ sections, startIndex = 0 }: { sections: NonNullable
 }
 
 function ProcessSection({ page }: { page: CommercialLanding }) {
-  return <section className="section signal-grid"><div className="shell"><SectionHeading eyebrow={page.labels?.processEyebrow ?? "Process"} title={page.labels?.processTitle ?? "Research first. Then focused execution."} /><ol className="mt-14 border-b border-[var(--ink)] md:ml-[25%]">{page.process.map((step, index) => <li className="grid gap-3 border-t border-[var(--ink)] py-6 sm:grid-cols-[4rem_1fr_2fr]" key={step.title}><span className="font-mono text-xs">0{index + 1}</span><h3 className="font-serif text-2xl leading-none tracking-[-.04em]">{step.title}</h3><p className="leading-7 text-black/65">{step.copy}</p></li>)}</ol></div></section>;
+  return <section id="service-process" className="section signal-grid"><div className="shell"><SectionHeading eyebrow={page.labels?.processEyebrow ?? "Process"} title={page.labels?.processTitle ?? "Research first. Then focused execution."} /><ol className="mt-14 border-b border-[var(--ink)] md:ml-[25%]">{page.process.map((step, index) => <li className="grid gap-3 border-t border-[var(--ink)] py-6 sm:grid-cols-[4rem_1fr_2fr]" key={step.title}><span className="font-mono text-xs">0{index + 1}</span><h3 className="font-serif text-2xl leading-none tracking-[-.04em]">{step.title}</h3><p className="leading-7 text-black/65">{step.copy}</p></li>)}</ol></div></section>;
 }
 
 function SourcesSection({ sources }: { sources: NonNullable<CommercialLanding["sources"]> }) {
@@ -246,7 +248,7 @@ function VisualBreak({ assetKey, page }: { assetKey: AgencyAssetKey; page: Comme
     <div className="shell visual-break-grid">
       <div className="visual-break-copy">
         <p className="eyebrow">The system in context</p>
-        <h2 className="font-serif text-[clamp(2rem,3.6vw,4rem)] leading-[.96] tracking-[-.055em]">Strategy is easier to trust when the moving parts are visible.</h2>
+        <h2 className="font-serif text-[clamp(2rem,3.6vw,4rem)] leading-[.96] tracking-[-.055em]">{servicePositioning[page.slug as PositionedServiceSlug].visualTitle}</h2>
         <p>{asset.caption}</p>
       </div>
       <figure className="visual-break-media">
@@ -259,28 +261,27 @@ function VisualBreak({ assetKey, page }: { assetKey: AgencyAssetKey; page: Comme
 export function CommercialLandingPage({ page }: { page: CommercialLanding }) {
   const path = `/${page.slug}`;
   const primary = page.primaryCta ?? { label: siteConfig.cta.primary.headerLabel, href: siteConfig.cta.primary.href };
-  const secondary = page.secondaryCta ?? { label: "Explore services", href: "/services" };
   const sections = page.sections ?? [];
   const splitAt = processPosition[page.slug] ?? sections.length;
   const beforeProcess = sections.slice(0, splitAt);
   const afterProcess = sections.slice(splitAt);
   const packagePage = page.archetype === "packages";
-  const currentLabel = page.breadcrumbLabel ?? page.metaTitle.split(" | ")[0];
+  const positioning = servicePositioning[page.slug as PositionedServiceSlug];
   const finalSecondary = page.finalSecondaryCta ?? { label: siteConfig.cta.whatsapp.label, href: siteConfig.cta.whatsapp.href, external: true };
   const visualKey = page.heroVisual ?? commercialVisuals[page.slug];
   const secondaryVisualKey = commercialSecondaryVisuals[page.slug];
   const credentialIds = credentialKeysBySlug[page.slug];
 
-  return <>
-    <PageIntro breadcrumbs={[{ label: "Services", href: "/services" }, { label: currentLabel }]} eyebrow={page.eyebrow} title={page.title} visual={visualKey ? agencyAssets[visualKey] : undefined}><p>{page.intro}</p><div className="mt-8 flex flex-col gap-3 sm:flex-row"><Link className="button button-primary" href={primary.href} data-cta-intent={page.slug} data-cta-location="hero" data-cta-channel="contact">{primary.label} <Arrow /></Link><Link className="button" href={secondary.href} data-cta-intent={page.slug} data-cta-location="hero-secondary">{secondary.label} <Arrow /></Link></div>{page.microcopy && <p className="mt-4 font-mono text-[.7rem] uppercase leading-5 tracking-[.04em]">{page.microcopy}</p>}</PageIntro>
+  return <div className="commercial-page" data-service={page.slug}>
+    <CommercialHero page={page} visual={visualKey ? agencyAssets[visualKey] : undefined} />
 
     {page.trust && <div className="signal-band"><ul className={`shell grid py-1 font-mono text-[.72rem] font-bold uppercase tracking-[.05em] sm:grid-cols-2 ${page.trust.length > 5 ? "lg:grid-cols-6" : "lg:grid-cols-5"}`}>{page.trust.map((item, index) => <li className="flex items-center gap-3 border-black/25 py-4 pr-4 lg:border-r lg:last:border-0 lg:pl-4 lg:first:pl-0" key={item}><span>0{index + 1}</span>{item}</li>)}</ul></div>}
 
-    {page.slug === "seo-services-in-nepal" && <SearchEvidence compact sectionId="seo-results" ids={["australian-agency", "texas-hvac", "dubai-water-adventure"]} eyebrow="Our SEO results / Google Search Console" title="Different markets. Clear organic-search results." copy="1.1K clicks and 229K impressions for an Australian agency. 714 clicks and 38K impressions for Texas HVAC. 460 clicks and 47.4K impressions for a Dubai water-adventure website. Each three-month capture shows its own organic-search performance, with the full source available below." />}
 
-    <section className="section commercial-decision"><div className="shell"><SectionHeading eyebrow={`${currentLabel} / Decision summary`} title="What this engagement is designed to change." copy={`A useful ${currentLabel.toLowerCase()} engagement connects the immediate business constraint to the capability, customer journey and measurable outcome that can address it.`} /><div className="decision-grid mt-12 md:ml-[16%]"><article><p className="eyebrow">Priority problem</p><h2>{page.challenges[0].title}</h2><p>{page.challenges[0].copy}</p></article><article><p className="eyebrow">Connected capability</p><h2>{page.capabilities[0].title}</h2><p>{page.capabilities[0].copy}</p></article><article><p className="eyebrow">Working outcome</p><h2>{page.outcomes[0]}</h2><p>{page.promise}</p></article></div><div className="decision-action md:ml-[16%]"><p><strong>Start with context, not a package.</strong> Share the current website, offer, audience and result that needs to improve.</p><Link className="button button-primary" href={primary.href}>{primary.label} <Arrow /></Link></div></div></section>
+    <section id="service-overview" className="section commercial-decision"><div className="shell"><SectionHeading eyebrow="Choose the right engagement" title={`${positioning.keyword.charAt(0).toUpperCase()}${positioning.keyword.slice(1)}: fit, scope and value.`} /><div className="decision-grid mt-10"><article><p className="eyebrow">Who we help</p><h3>Built around your business</h3><p>{positioning.audience}</p></article><article><p className="eyebrow">What you receive</p><h3>Work you can put into practice</h3><p>{positioning.scope}</p></article><article><p className="eyebrow">Why it matters</p><h3>A clearer route to the next customer</h3><p>{positioning.value}</p></article></div><div className="decision-action"><p><strong>Start with your website and priority.</strong> We will recommend the work, ownership and measurement that fit.</p><Link className="button button-primary" href={primary.href}>{primary.label} <Arrow /></Link></div></div></section>
+    <ServiceEvidence slug={page.slug} />
 
-    <section className="section"><div className="shell grid gap-8 md:grid-cols-[1fr_3fr]"><p className="eyebrow">{page.labels?.objective ?? "The objective"}</p><p className="max-w-4xl font-serif text-[clamp(2.7rem,5.5vw,6.4rem)] leading-[.93] tracking-[-.06em]">{page.promise}</p></div></section>
+    <section className="section commercial-objective"><div className="shell grid gap-8 md:grid-cols-[1fr_3fr]"><p className="eyebrow">{page.labels?.objective ?? "The objective"}</p><p className="max-w-4xl font-serif text-[clamp(2.7rem,5.5vw,6.4rem)] leading-[.93] tracking-[-.06em]">{page.promise}</p></div></section>
 
     {page.leadSections?.map((section) => <section className={`section ${packagePage ? "bg-[var(--surface)]" : ""}`} key={section.title}><div className="shell"><SectionHeading eyebrow={section.eyebrow} title={section.title} copy={section.copy} /><div className={`mt-14 grid gap-0 border-b border-[var(--line-strong)] md:ml-[25%] ${packagePage ? "md:grid-cols-3" : "md:grid-cols-2"}`}>{section.items.map((item, index) => <article id={packagePage ? item.title.toLowerCase() : undefined} className={`border-t border-[var(--line-strong)] p-6 ${packagePage ? "md:border-r md:last:border-r-0" : "md:odd:border-r"}`} key={item.title}><p className="font-mono text-[.65rem] text-[var(--accent)]">0{index + 1}</p><h3 className="mt-8 font-serif text-3xl leading-none tracking-[-.05em]">{item.title}</h3><p className="mt-5 leading-7 text-[var(--muted)]">{item.copy}</p></article>)}</div></div></section>)}
 
@@ -292,62 +293,7 @@ export function CommercialLandingPage({ page }: { page: CommercialLanding }) {
 
     <section className="section signal-field"><div className="shell"><SectionHeading eyebrow={page.labels?.outcomesEyebrow ?? "What the work creates"} title={page.labels?.outcomesTitle ?? "A clearer foundation for growth."} /><div className="mt-12 grid border-b border-[var(--ink)] md:ml-[25%] sm:grid-cols-2">{page.outcomes.map((item, index) => <p className="flex min-h-32 items-end border-t border-[var(--ink)] py-5 pr-8 font-serif text-2xl leading-none tracking-[-.04em] sm:odd:border-r sm:odd:pl-0 sm:even:pl-6" key={item}><span className="mr-4 font-mono text-[.6rem] font-normal tracking-normal">0{index + 1}</span>{item}</p>)}</div></div></section>
 
-    {page.slug === "advertising-agency-in-nepal" && <PaidMediaEvidence
-      compact
-      ids={["london-home-services-ads", "saas-google-ads", "uk-medical-program-ads"]}
-      title="Three Google Ads accounts. Visible scale, efficiency and optimisation context."
-      copy="Explore our Google Ads work across home services, SaaS and a medical programme. London home services recorded 29,851 clicks and 474.79 reported conversions; SaaS recorded 929.99 conversions at £2.90 each. Each capture shows its own period, spend and conversion metrics."
-    />}
-
-    {page.slug === "google-ads-agency-in-nepal" && <PaidMediaEvidence
-      compact
-      ids={["london-home-services-ads", "saas-google-ads", "uk-medical-program-ads"]}
-      eyebrow="Google Ads results / real account captures"
-      title="Three Google Ads accounts, with the visible numbers and context left intact."
-      copy="29,851 clicks for London home services. 929.99 reported conversions at £2.90 per conversion for SaaS. Review these accounts and a medical-programme campaign with reporting dates, costs and source metrics visible. We use this level of detail to guide the next optimisation decision."
-    />}
-
-    {page.slug === "seo-for-travel-agency" && <SearchEvidence
-      compact
-      ids={["dubai-tours", "dubai-water-adventure"]}
-      eyebrow="Travel-search evidence / source captures"
-      title="Two tourism websites. Two distinct demand patterns."
-      copy="Our Dubai water-adventure capture reports 460 organic clicks and 47.4K impressions across three months. The Dubai and Sharjah tours capture reports 87 clicks and 52K impressions across its custom period. Explore the source images alongside our destination, itinerary and enquiry-path approach."
-    />}
-
-    {(page.slug === "seo-audit-services-in-nepal" || page.slug === "technical-seo-services-in-nepal") && <SearchEvidence
-      compact
-      ids={["texas-hvac", "australian-agency"]}
-      eyebrow="Technical and organic-search evidence"
-      title="Search Console captures from two different website and market contexts."
-      copy="Our SEO portfolio includes 714 organic clicks and 38K impressions for Texas HVAC and 1.1K clicks with 229K impressions for an Australian agency, each in its own three-month period. Technical accessibility, page ownership, relevant content and measurement work together in our organic-search approach."
-    />}
-
-    {page.slug === "local-seo-services-in-nepal" && <SearchEvidence
-      compact
-      ids={["texas-hvac"]}
-      eyebrow="Local-service search evidence"
-      title="714 organic clicks. 38K impressions. A three-month local-service search view."
-      copy="Our Texas HVAC capture shows organic search activity in a competitive local-service market. We connect that search visibility with service-area relevance, strong service pages and accessible contact paths. The complete Search Console image shows the period, click trend and impressions."
-    />}
-
-    {page.slug === "analytics-conversion-tracking-services" && <PaidMediaEvidence
-      compact
-      ids={["london-home-services-ads", "saas-google-ads"]}
-      eyebrow="Measurement evidence / configured conversion reporting"
-      title="Reported campaign data only becomes useful when its definitions are understood."
-      copy="London home services reported 474.79 conversions; SaaS reported 929.99 in a separate account and period. We validate conversion definitions, attribution, event firing and duplicate controls, then connect campaign reporting with qualified-action feedback. Fractional totals can reflect attribution modelling."
-    />}
-
-    {page.slug === "content-marketing-agency-in-nepal" && <SearchEvidence
-      compact
-      ids={["australian-agency"]}
-      eyebrow="Content discovery evidence / Search Console"
-      title="1.1K organic clicks and 229K impressions for an Australian agency."
-      copy="This three-month Search Console capture shows the organic reach behind our agency-sector experience. We connect keyword-to-page ownership, useful topical coverage, descriptive internal links and conversion-focused content with the search performance we review."
-    />}
-
-    {credentialIds && <CredentialProof ids={credentialIds} compact={credentialIds.length < 4} title={
+    {credentialIds && <CredentialProof sectionId="service-credentials" ids={credentialIds} compact={credentialIds.length < 4} title={
       page.slug.includes("seo") || page.slug === "content-marketing-agency-in-nepal" || page.slug === "technical-seo-services-in-nepal"
         ? "Semrush-certified agency expertise. Clear SEO delivery."
         : page.slug.includes("ads") || page.slug === "advertising-agency-in-nepal"
@@ -376,9 +322,9 @@ export function CommercialLandingPage({ page }: { page: CommercialLanding }) {
 
     <section className="section"><div className="shell"><SectionHeading eyebrow="Related expertise" title="Continue with the most relevant path." /><div className="mt-10 grid gap-0 border-b border-[var(--line-strong)] md:ml-[25%] sm:grid-cols-2">{page.related.map((link) => <Link className="flex min-h-20 items-center justify-between border-t border-[var(--line-strong)] py-4 pr-5 font-bold hover:bg-[var(--sun)]" href={link.href} key={link.href}>{link.label} <Arrow /></Link>)}</div></div></section>
 
-    <section className="section bg-[var(--surface)]"><div className="shell"><SectionHeading eyebrow={page.labels?.faqEyebrow ?? "FAQ"} title={page.labels?.faqTitle ?? "Useful answers before we talk."} /><div className="mt-14 border-b border-[var(--line-strong)] md:ml-[25%]">{page.faqs.map((item, index) => <details className="group border-t border-[var(--line-strong)] py-5" key={item.question}><summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-6 font-serif text-xl leading-tight tracking-[-.03em]"><span><span className="mr-4 align-top font-mono text-[.6rem] font-normal tracking-normal text-[var(--accent)]">0{index + 1}</span>{item.question}</span><span aria-hidden="true" className="text-[var(--accent)] transition-transform group-open:rotate-45">+</span></summary><p className="prose-copy mt-4 pl-10 pr-8">{item.answer}</p></details>)}</div></div></section>
+    <section id="service-faq" className="section bg-[var(--surface)]"><div className="shell"><SectionHeading eyebrow={page.labels?.faqEyebrow ?? "FAQ"} title={page.labels?.faqTitle ?? "Useful answers before we talk."} /><div className="mt-14 border-b border-[var(--line-strong)] md:ml-[25%]">{page.faqs.map((item, index) => <details className="group border-t border-[var(--line-strong)] py-5" key={item.question}><summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-6 font-serif text-xl leading-tight tracking-[-.03em]"><span><span className="mr-4 align-top font-mono text-[.6rem] font-normal tracking-normal text-[var(--accent)]">0{index + 1}</span>{item.question}</span><span aria-hidden="true" className="text-[var(--accent)] transition-transform group-open:rotate-45">+</span></summary><p className="prose-copy mt-4 pl-10 pr-8">{item.answer}</p></details>)}</div></div></section>
 
-    {page.finalCta && <section className="section signal-grid"><div className="shell grid gap-8 md:grid-cols-[1fr_3fr]"><p className="eyebrow">{page.finalCta.eyebrow}</p><div><h2 className="section-title">{page.finalCta.title}</h2><p className="mt-6 max-w-2xl text-lg leading-8 text-black/65">{page.finalCta.copy}</p><div className="mt-8 flex flex-col gap-3 sm:flex-row"><Link className="button button-primary" href={primary.href} data-cta-intent={page.slug} data-cta-location="final" data-cta-channel="contact">{primary.label} <Arrow /></Link>{finalSecondary.external ? <a className="button" href={finalSecondary.href} target={finalSecondary.href.startsWith("http") ? "_blank" : undefined} rel={finalSecondary.href.startsWith("http") ? "noopener noreferrer" : undefined} data-cta-intent={page.slug} data-cta-location="final" data-cta-channel={finalSecondary.href.startsWith("https://wa.me") ? "whatsapp" : "email"}>{finalSecondary.label} <Arrow direction="up-right" /></a> : <Link className="button" href={finalSecondary.href} data-cta-intent={page.slug} data-cta-location="final-secondary">{finalSecondary.label} <Arrow /></Link>}</div><p className="mt-5 font-mono text-[.7rem] uppercase leading-5 tracking-[.04em] text-black/60">{siteConfig.cta.reassurance}</p>{page.archetype === "location" && <address className="mt-8 grid gap-1 border-t border-black/35 pt-5 font-mono text-[.68rem] not-italic uppercase tracking-[.05em]"><strong>{siteConfig.brandName}</strong><span>{siteConfig.location}</span><span>{siteConfig.phoneDisplay} · {siteConfig.email}</span></address>}</div></div></section>}
+    {page.finalCta && <section id="service-enquiry" className="section signal-grid"><div className="shell grid gap-8 md:grid-cols-[1fr_3fr]"><p className="eyebrow">{page.finalCta.eyebrow}</p><div><h2 className="section-title">{page.finalCta.title}</h2><p className="mt-6 max-w-2xl text-lg leading-8 text-black/65">{page.finalCta.copy}</p><div className="mt-8 flex flex-col gap-3 sm:flex-row"><Link className="button button-primary" href={primary.href} data-cta-intent={page.slug} data-cta-location="final" data-cta-channel="contact">{primary.label} <Arrow /></Link>{finalSecondary.external ? <a className="button" href={finalSecondary.href} target={finalSecondary.href.startsWith("http") ? "_blank" : undefined} rel={finalSecondary.href.startsWith("http") ? "noopener noreferrer" : undefined} data-cta-intent={page.slug} data-cta-location="final" data-cta-channel={finalSecondary.href.startsWith("https://wa.me") ? "whatsapp" : "email"}>{finalSecondary.label} <Arrow direction="up-right" /></a> : <Link className="button" href={finalSecondary.href} data-cta-intent={page.slug} data-cta-location="final-secondary">{finalSecondary.label} <Arrow /></Link>}</div><p className="mt-5 font-mono text-[.7rem] uppercase leading-5 tracking-[.04em] text-black/60">{siteConfig.cta.reassurance}</p>{page.archetype === "location" && <address className="mt-8 grid gap-1 border-t border-black/35 pt-5 font-mono text-[.68rem] not-italic uppercase tracking-[.05em]"><strong>{siteConfig.brandName}</strong><span>{siteConfig.location}</span><span>{siteConfig.phoneDisplay} · {siteConfig.email}</span></address>}</div></div></section>}
     <PageStructuredData path={path} faqs={page.faqs} />
-  </>;
+  </div>;
 }

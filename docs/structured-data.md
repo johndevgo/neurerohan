@@ -2,6 +2,8 @@
 
 The site uses one connected JSON-LD entity graph. Markup describes visible, supplied facts; it is not a place to add claims, prices, ratings or reviews that the page cannot substantiate.
 
+Commercial `WebPage` names and descriptions are resolved from the same typed page content used for metadata, preventing title/description drift. The core/service regression script checks primary topic coverage, duplicate FAQ questions, visible FAQ/schema parity, service offer anchors, internal destinations and canonical sitemap inclusion.
+
 ## Global graph
 
 Every public page includes:

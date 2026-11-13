@@ -3,6 +3,7 @@ import { readFile, writeFile, mkdir } from "node:fs/promises";
 
 const port = process.argv[2] ?? "9335";
 const base = process.argv[3] ?? "http://127.0.0.1:3180";
+const captureAll = process.argv.includes("--all");
 const tabs = await fetch(`http://127.0.0.1:${port}/json/list`).then((response) => response.json());
 const tab = tabs.find((item) => item.type === "page");
 assert.ok(tab, "Chrome page target");
@@ -29,7 +30,7 @@ async function evaluate(expression) {
   return result.result.value;
 }
 const pause = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-await mkdir(".qa", { recursive: true });
+await mkdir(".qa/core-page-review", { recursive: true });
 await command("Page.enable");
 await command("Runtime.enable");
 await command("Network.enable");
@@ -48,16 +49,23 @@ for (const width of [390, 768, 1440]) {
     const result = await evaluate(`document.fonts.ready.then(() => ({
       path: location.pathname, width: innerWidth, scrollWidth: document.documentElement.scrollWidth,
       h1: document.querySelector('main h1')?.textContent,
+      heroAction: (() => {const a=document.querySelector('.commercial-hero-actions .button-primary,.core-intro .button-primary,.home-hero .button-primary');return a ? {top:a.getBoundingClientRect().top,href:a.getAttribute('href')} : null;})(),
       deliveryWidth: document.querySelector('.service-depth-layout')?.getBoundingClientRect().width ?? null,
       brokenImages: [...document.images].filter(image => image.complete && !image.naturalWidth && !image.loading.includes('lazy')).map(image => image.src),
-      clippedDelivery: [...document.querySelectorAll('.service-depth p,.service-depth h3,.service-depth a,.visual-break-copy p,.visual-break-copy h2')].filter(node => node.scrollWidth > node.clientWidth + 2 || node.getBoundingClientRect().right > innerWidth + 1).map(node => node.textContent),
+      clippedDelivery: [...document.querySelectorAll('.service-depth p,.service-depth h3,.service-depth a,.visual-break-copy p,.visual-break-copy h2,.commercial-hero p,.commercial-hero h1,.core-intro h1,.commercial-hero-actions a,.service-wayfinder a')].filter(node => node.scrollWidth > node.clientWidth + 2 || node.getBoundingClientRect().right > innerWidth + 1).map(node => node.textContent),
     }))`);
     assert.equal(result.path, path, `${width}: expected route ${path}`);
     assert.ok(result.h1, `${path} at ${width}: heading rendered`);
     assert.ok(result.scrollWidth <= width + 1, `${path} at ${width}: overflow ${result.scrollWidth}`);
     assert.deepEqual(result.clippedDelivery, [], `${path} at ${width}: clipped delivery copy`);
     assert.deepEqual(result.brokenImages, [], `${path} at ${width}: broken eager images`);
-    checks.push({ path, width, overflow: false });
+    if (width === 390 && result.heroAction) assert.ok(result.heroAction.top < 900, `${path}: primary mobile CTA visible in opening viewport (${result.heroAction.top})`);
+    checks.push({ path, width, overflow: false, heroAction: result.heroAction });
+    if (captureAll) {
+      await pause(400);
+      const screen = await command("Page.captureScreenshot", { format: "png" });
+      await writeFile(`.qa/core-page-review/${path === "/" ? "home" : path.slice(1)}-${width}.png`, Buffer.from(screen.data, "base64"));
+    }
     if (path === "/seo-services-in-nepal") {
       await pause(600);
       const hero = await command("Page.captureScreenshot", { format: "png" });
@@ -111,7 +119,24 @@ await command("Input.dispatchKeyEvent", { type: "keyDown", key: "Escape", code: 
 await command("Input.dispatchKeyEvent", { type: "keyUp", key: "Escape", code: "Escape", windowsVirtualKeyCode: 27 });
 await pause(200);
 assert.equal(await evaluate("document.querySelector('.mobile-menu-button').getAttribute('aria-expanded')"), "false", "Escape closes mobile menu");
+await command("Page.navigate", { url: `${base}/contact?service=seo` });
+await pause(900);
+assert.equal(await evaluate("document.querySelector('input[data-service=seo]')?.checked"), true, "Service CTA preselects SEO");
+await evaluate("document.querySelector('input[data-service=paid-advertising]')?.click()");
+assert.equal(await evaluate("document.querySelectorAll('input[name=services]:checked').length"), 2, "Visitors can select an additional service");
+assert.equal(await evaluate("document.querySelector('input[data-service=seo]')?.checked"), true, "Original service remains selected");
+await command("Page.navigate", { url: `${base}/contact?service=analytics` });
+await pause(700);
+assert.equal(await evaluate("document.querySelector('input[data-service=analytics]')?.checked"), true, "Tracking enquiries preselect analytics");
+await evaluate("document.querySelector('#enquiry-form')?.scrollIntoView()");
+await pause(350);
+const formScreen = await command("Page.captureScreenshot", { format: "png" });
+await writeFile(".qa/core-page-review/contact-form-390.png", Buffer.from(formScreen.data, "base64"));
+assert.ok(await evaluate("(() => {const form=document.querySelector('#enquiry-form'), details=document.querySelector('.contact-details-card');return form.getBoundingClientRect().top < details.getBoundingClientRect().top;})()"), "Mobile form appears before the details card");
+await command("Page.navigate", { url: `${base}/about` });
+await pause(700);
+assert.ok(await evaluate("getComputedStyle(document.querySelector('img[alt*=\"Rohan Neure\"]')).filter.includes('grayscale(1)')"), "Portrait remains black and white");
 assert.deepEqual(exceptions, [], "No uncaught browser exceptions");
-await writeFile(".qa/seo-browser-report.json", JSON.stringify({ layouts: checks, desktopMenu: menu, mobileMenu: mobile, exceptions }, null, 2));
+await writeFile(".qa/seo-browser-report.json", JSON.stringify({ base, layouts: checks, desktopMenu: menu, mobileMenu: mobile, contactPrefill: true, multiService: true, portraitGrayscale: true, exceptions }, null, 2));
 console.log(`Verified ${checks.length} responsive layouts, proof-image ratios, new dropdown link and scrolled mobile menu. Screenshots in .qa/.`);
 socket.close();

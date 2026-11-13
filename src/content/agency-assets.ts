@@ -8,6 +8,14 @@ export type AgencyAsset = {
 };
 
 export const agencyAssets = {
+  founderPortrait: {
+    src: "/images/brand/rohan-neure-window-portrait.png",
+    width: 1122,
+    height: 1402,
+    alt: "Rohan Neure, GrowthLabs founder, standing beside a window",
+    caption: "Direct founder involvement in SEO, paid advertising and conversion strategy.",
+    position: "center",
+  },
   growthSystem: {
     src: "/images/Agency/digital-marketing-agency-in-nepal-growthlabs-rohan-neure-seo-ads-growth-system.webp",
     width: 1536,

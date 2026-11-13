@@ -1,6 +1,6 @@
 # Search architecture and keyword map
 
-Last reviewed: 2026-11-13
+Last reviewed: 2026-11-14
 
 This map converts the supplied keyword exports into one canonical URL per distinct intent. Search volume and difficulty are directional research inputs, not ranking forecasts. Closely related wording belongs on one useful page unless the audience, offer, location, or task is materially different.
 
@@ -15,6 +15,8 @@ This map converts the supplied keyword exports into one canonical URL per distin
 - No fixed keyword-density target. Google classifies unnatural repetition as keyword stuffing; density is reviewed only as a diagnostic for accidental omission or repetition.
 
 ## Existing commercial pages
+
+The November core/service revision keeps the existing 23-route scope. Each commercial page has a typed primary intent, supporting topic checklist, dedicated H1 and metadata, a buyer-fit/scope/value summary, scoped headings, useful FAQs and a contextual contact action. Research clusters are not expanded into additional URLs in this pass. Blogs, resource content and tools remain a separate editorial phase.
 
 | Canonical URL | Owned cluster | Supplied cluster volume | Avg. KD | Boundary |
 | --- | --- | ---: | ---: | --- |

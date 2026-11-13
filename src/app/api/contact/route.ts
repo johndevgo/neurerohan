@@ -12,7 +12,7 @@ function clean(value: unknown, maximum: number) {
 
 function cleanServices(value: unknown) {
   if (!Array.isArray(value)) return [];
-  return [...new Set(value.map((item) => clean(item, 120)).filter(Boolean))].slice(0, 9);
+  return [...new Set(value.map((item) => clean(item, 120)).filter(Boolean))].slice(0, 12);
 }
 
 function escapeHtml(value: string) {

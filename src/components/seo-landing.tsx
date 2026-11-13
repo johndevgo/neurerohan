@@ -79,15 +79,15 @@ const businessModels: ReadonlyArray<{ title: string; copy: string; href?: string
 ];
 
 export function SeoLanding({ faqs }: Props) {
-  return <>
-    <PageIntro
+  return <div className="core-page">
+    <PageIntro variant="core"
       breadcrumbs={[{ label: "Services", href: "/services" }, { label: "SEO Expert in Nepal" }]}
       eyebrow="GrowthLabs / Direct founder-led SEO strategy"
-      title="SEO expert in Nepal for visibility that supports real growth."
+      title="SEO expert in Nepal. Direct advice, practical implementation."
       visual={agencyAssets.seoServices}
     >
-      <p><strong>We provide direct specialist SEO strategy, audits and implementation guidance in Nepal.</strong> Our work focuses on the parts of SEO that determine whether visibility becomes business: search intent, technical foundations, page architecture, useful content, internal links, local relevance and conversion paths.</p>
-      <p className="mt-4">The objective is not rankings in isolation. It is to help the right people discover the business, understand why it fits, and take a measurable next step.</p>
+      <p><strong>Work directly with our founder-led SEO team in Nepal.</strong> We turn keyword research, technical audits, content planning and local-search opportunities into a practical roadmap your business can implement.</p>
+      <p className="mt-4">Use specialist input for a second opinion, a search decline, a migration or a clearer plan for your commercial pages.</p>
       <div className="mt-8 flex flex-col gap-3 sm:flex-row">
         <Link className="button button-primary" href="/contact">Request an SEO review <Arrow /></Link>
         <a className="button" href="#seo-services">Explore the SEO approach <Arrow /></a>
@@ -105,7 +105,7 @@ export function SeoLanding({ faqs }: Props) {
     <section className="section">
       <div className="shell grid items-start gap-10 md:grid-cols-[minmax(16rem,1fr)_minmax(0,2fr)]">
         <div className="hero-portrait max-w-md">
-          <Image className="aspect-[4/5] w-full object-cover" src={siteConfig.portraits.working} alt="Rohan Neure, SEO expert and founder of GrowthLabs, working at a laptop" width={1122} height={1402} sizes="(max-width: 768px) 100vw, 34vw" priority />
+          <Image className="aspect-[4/5] w-full object-cover" src={siteConfig.portraits.working} alt="Rohan Neure, SEO expert and founder of GrowthLabs, working at a laptop" width={1122} height={1402} sizes="(max-width: 768px) 100vw, 34vw" loading="lazy" />
         </div>
         <div>
           <p className="eyebrow">Strategy without unnecessary layers</p>
@@ -120,7 +120,6 @@ export function SeoLanding({ faqs }: Props) {
       </div>
     </section>
 
-    <ServiceDepth pageKey="seo-expert-in-nepal" />
     <section className="section signal-grid">
       <div className="shell">
         <SectionHeading eyebrow="Verified professional context" title="Four-plus years across SEO, paid media, analytics and conversion." copy="Our SEO work sits inside a broader growth-marketing practice. That context matters when search performance depends on the offer, landing page, tracking, advertising data or the way a lead is handled after the click." />
@@ -150,7 +149,7 @@ export function SeoLanding({ faqs }: Props) {
 
     <section id="seo-services" className="section section-dark scroll-mt-24">
       <div className="shell">
-        <SectionHeading eyebrow="SEO services with direct specialist involvement" title="Scope follows the constraint." copy="The plan is shaped by search intent, opportunity, website condition, competition, content quality, local visibility, and business goals." />
+        <SectionHeading eyebrow="SEO services with direct specialist involvement" title="Specialist SEO services from audit to page-level direction." copy="The plan is shaped by search intent, opportunity, website condition, competition, content quality, local visibility, and business goals." />
         <div className="mt-16">{seoCapabilities.map((item, index) => <article id={capabilityIds[index]} className="scroll-mt-28 grid gap-5 border-t border-white/25 py-8 md:grid-cols-[5rem_minmax(13rem,1fr)_minmax(0,1.4fr)]" key={item.title}><p className="eyebrow !text-[var(--sun)]">0{index + 1}</p><div><h3 className="font-serif text-3xl">{item.title}</h3><p className="mt-4 leading-7 text-white/65">{item.summary}</p></div><ul className="grid self-start sm:grid-cols-2">{item.items.map((capability) => <li className="border-t border-white/15 py-3 text-sm text-white/75" key={capability}>{capability}</li>)}</ul></article>)}</div>
         <div className="mt-10 flex flex-wrap gap-5"><Link className="button border-white text-white" href="/contact">Request an SEO review <Arrow /></Link><Link className="text-link !text-[var(--sun)]" href="/local-seo-services-in-nepal">Explore local SEO services <Arrow /></Link></div>
       </div>
@@ -195,7 +194,7 @@ export function SeoLanding({ faqs }: Props) {
       </div>
     </section>
 
-    <SearchEvidence compact ids={["australian-agency", "texas-hvac"]} title="Source evidence from two very different search markets." copy="1.1K organic clicks and 229K impressions for an Australian agency. 714 clicks and 38K impressions for Texas HVAC. Each three-month capture shows the search performance behind a different market, website and customer journey." />
+    <SearchEvidence compact ids={["australian-agency", "texas-hvac"]} title="SEO results across agency and local-service searches." copy="1.1K organic clicks and 229K impressions for an Australian agency. 714 clicks and 38K impressions for Texas HVAC. Each three-month capture shows the search performance behind a different market, website and customer journey." />
     <CredentialProof compact ids={["semrush", "googleReviews"]} title="Semrush-certified agency expertise and a 5.0 Google rating." copy="Our Semrush Certified Agency Partner expertise brings structure to keyword research, competitor analysis and implementation priorities. Review the credential and visit our Google Business Profile for feedback about working with us." />
 
     <section className="section bg-[var(--surface)]">
@@ -210,11 +209,11 @@ export function SeoLanding({ faqs }: Props) {
 
     <section className="section">
       <div className="shell">
-        <SectionHeading eyebrow="Responsible expectations" title="How long SEO takes depends on what is holding the site back." />
+        <SectionHeading eyebrow="Responsible expectations" title="How we plan and review your SEO progress." />
         <div className="mt-10 max-w-3xl space-y-5 text-lg leading-8 text-[var(--muted)] md:ml-[25%]">
           <p>Focused corrections can create useful signals and learning relatively quickly, especially when a strong page is being held back by a clear technical, intent, or conversion problem.</p>
-          <p>Competitive commercial growth usually takes sustained work across technical foundations, page quality, internal links, local relevance, useful content, and genuine authority. Search engines, not providers, decide final positions.</p>
-          <p>The responsible next step is to understand the website size, current condition, competition, target markets, content needs, implementation responsibility, and measurement quality before estimating scope or timing.</p>
+          <p>Competitive commercial growth usually takes sustained work across technical foundations, page quality, internal links, local relevance, useful content, and genuine authority. We track that work against relevant queries, priority landing pages and qualified actions.</p>
+          <p>Send the website and priority market. We will define the opening work, implementation responsibilities and review milestones around its starting condition.</p>
         </div>
       </div>
     </section>
@@ -238,13 +237,14 @@ export function SeoLanding({ faqs }: Props) {
       </div>
     </section>
 
+    <ServiceDepth pageKey="seo-expert-in-nepal" />
     <section className="section signal-grid">
       <div className="shell grid gap-8 md:grid-cols-[1fr_3fr]">
         <p className="eyebrow">Direct specialist input / Next step</p>
-        <div><h2 className="section-title">Find the SEO constraint that matters most.</h2><p className="mt-6 max-w-3xl text-lg leading-8 text-black/65">Share your website, target market, priority services, and the problem you are trying to solve. The first conversation is used to understand whether the right next step is an audit, roadmap, focused project, or ongoing SEO programme.</p><div className="mt-8 flex flex-col gap-3 sm:flex-row"><Link className="button button-primary" href="/contact" data-cta-intent="seo-review" data-cta-location="seo-expert-final" data-cta-channel="contact">Request an SEO review <Arrow /></Link><a className="button" href={siteConfig.cta.whatsapp.href} target="_blank" rel="noopener noreferrer" data-cta-intent="seo-review" data-cta-location="seo-expert-final" data-cta-channel="whatsapp">{siteConfig.cta.whatsapp.label} <Arrow direction="up-right" /></a></div><p className="mt-5 text-sm">Email <a className="underline" href={siteConfig.cta.email.href}>{siteConfig.email}</a> or call <a className="underline" href={siteConfig.cta.phone.href}>{siteConfig.phoneDisplay}</a>.</p></div>
+        <div><h2 className="section-title">Get a clear answer to your next SEO decision.</h2><p className="mt-6 max-w-3xl text-lg leading-8 text-black/65">Share your website, target market, priority services, and the problem you are trying to solve. The first conversation is used to understand whether the right next step is an audit, roadmap, focused project, or ongoing SEO programme.</p><div className="mt-8 flex flex-col gap-3 sm:flex-row"><Link className="button button-primary" href="/contact" data-cta-intent="seo-review" data-cta-location="seo-expert-final" data-cta-channel="contact">Request an SEO review <Arrow /></Link><a className="button" href={siteConfig.cta.whatsapp.href} target="_blank" rel="noopener noreferrer" data-cta-intent="seo-review" data-cta-location="seo-expert-final" data-cta-channel="whatsapp">{siteConfig.cta.whatsapp.label} <Arrow direction="up-right" /></a></div><p className="mt-5 text-sm">Email <a className="underline" href={siteConfig.cta.email.href}>{siteConfig.email}</a> or call <a className="underline" href={siteConfig.cta.phone.href}>{siteConfig.phoneDisplay}</a>.</p></div>
       </div>
     </section>
 
     <PageStructuredData path="/seo-expert-in-nepal" faqs={faqs} />
-  </>;
+  </div>;
 }

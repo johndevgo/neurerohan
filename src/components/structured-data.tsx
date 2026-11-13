@@ -1,6 +1,7 @@
 import { siteConfig } from "@/content/site";
 import { organizationAwards } from "@/content/credentials";
 import { agencyAssets } from "@/content/agency-assets";
+import { commercialLandingBySlug } from "@/content/landing-pages";
 
 type JsonLdNode = Record<string, unknown>;
 export type FaqItem = { question: string; answer: string };
@@ -242,7 +243,7 @@ const serviceSchemas: Record<string, ServiceSchemaConfig> = {
   },
   "/seo-company-in-nepal": {
     path: "/seo-company-in-nepal",
-    pageName: "SEO Company in Nepal | GrowthLabs SEO Services",
+    pageName: "SEO Company in Nepal | Managed SEO Programmes | GrowthLabs",
     breadcrumbName: "SEO Company in Nepal",
     description: "GrowthLabs is a founder-led SEO company in Nepal connecting technical SEO, content, local search, internal links, tracking and CRO for measurable growth.",
     serviceName: "SEO services in Nepal",
@@ -568,6 +569,8 @@ function offer(url: string, spec: OfferSpec, providerId = organizationId, areaSe
 }
 
 function servicePageSchema(config: ServiceSchemaConfig): JsonLdNode {
+  const editorial = commercialLandingBySlug[config.path.slice(1)];
+  if (editorial) config = { ...config, pageName: editorial.metaTitle, description: editorial.description };
   const url = pageUrl(config.path);
   const webpageId = `${url}#webpage`;
   const serviceId = `${url}#service`;
@@ -691,7 +694,7 @@ function packagesSchema(): JsonLdNode {
         "@type": "CollectionPage",
         "@id": `${url}#webpage`,
         url,
-        name: "Social Media Marketing Packages | Scope & Pricing",
+        name: "Social Media Marketing Packages in Nepal | GrowthLabs",
         description: "Compare Foundation, Growth and Performance social media scopes, the work included, pricing drivers and separately quoted advertising spend.",
         isPartOf: { "@id": websiteId },
         publisher: { "@id": organizationId },

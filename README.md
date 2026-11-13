@@ -30,6 +30,10 @@ Brand, founder, service, proof, industry, process, FAQ, contact, and social info
 
 After building and starting the site, run `node scripts/seo-content-qa.mjs http://localhost:3000` to verify the core/service routes, internal links, metadata, service anchors, image references, FAQ graphs and sitemap coverage. The script is read-only and does not submit enquiry forms.
 
+Commercial positioning, page titles, search topics, buyer summaries and contextual contact handoffs are maintained in `src/content/service-positioning.ts`. Detailed service delivery content remains in the existing landing-page sources. `src/components/commercial-hero.tsx` presents the service-specific opening and navigation; `src/components/service-evidence.tsx` selects relevant source captures without attributing Google Ads results to other platforms. Form service choices, including analytics and tracking, are maintained in `site.ts`.
+
+For responsive regression checks, run `node scripts/seo-browser-qa.mjs <Chrome-debug-port> http://localhost:3000 --all` against a separate headless Chrome profile. It checks all 23 core/service routes at 390, 768 and 1440 pixels, mobile CTA placement, proof-image ratios, menus, form preselection, multiple-service selection and portrait grayscale. Screenshots and reports are generated in the ignored `.qa/` folder; no enquiries are submitted.
+
 Projects support index and detail routes for future case studies. Adding a project object automatically makes its `/work/[slug]` route buildable.
 
 ## Environment variables

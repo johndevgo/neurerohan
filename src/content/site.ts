@@ -14,6 +14,9 @@ export const services: Service[] = [
   { title: "Conversion Rate Optimization", slug: "cro", summary: "Improve messaging, offers, page flow, forms, calls to action, and trust signals so more existing traffic becomes business.", capabilities: ["Conversion review", "CTA improvement", "Offer clarity", "Form and funnel guidance"], value: "Generate more enquiries, bookings, calls, or sales from current traffic." },
 ];
 
+export const contactServices = [...services, { title: "Analytics & Conversion Tracking", slug: "analytics" }];
+export const contactServiceLabels: Record<string, string> = { strategy: "Marketing strategy", "paid-advertising": "Google & Meta Ads", websites: "Websites & landing pages", analytics: "Analytics & tracking" };
+
 export const problems = [
   { title: "Your website gets visits, but too few enquiries", copy: "Visitors leave when the offer is difficult to understand, the proof is weak, the page feels generic or the next step creates friction. Clear positioning, purposeful structure and stronger conversion paths help more of the right visitors act." },
   { title: "Your SEO earns impressions, but not buying intent", copy: "Traffic alone is not growth. Keyword clustering, technical SEO, commercial page planning, internal links and intent-led content should attract people who are more likely to need the service, not simply increase a graph." },
@@ -135,14 +138,14 @@ export const siteConfig = {
     { label: "Facebook", href: "https://www.facebook.com/growthbyrohan/" },
   ],
   cta: {
-    primary: { label: "Request your focused growth review", headerLabel: "Get a growth review", shortLabel: "Let's grow", href: "/contact" },
+    primary: { label: "Discuss your growth plan", headerLabel: "Send your brief", shortLabel: "Talk to us", href: "/contact" },
     secondary: { label: "Explore services", href: "/services" },
     contact: { label: "Send your growth brief", href: "/contact" },
     whatsapp: { label: "Send your brief on WhatsApp", href: "https://wa.me/9779746265996?text=Hi%20Rohan%2C%20I%27d%20like%20a%20founder-led%20growth%20review.%20My%20website%20or%20profile%20is%3A%20" },
     email: { label: "Email your growth brief", href: "mailto:contact@neurerohan.com.np?subject=GrowthLabs%20growth%20review&body=Website%20or%20profile%3A%0AOffer%3A%0ATarget%20market%3A%0ACurrent%20channels%3A%0ABiggest%20constraint%3A%0AResult%20to%20improve%3A" },
     phone: { label: "Call GrowthLabs directly", href: "tel:+9779746265996" },
-    microcopy: "Send your website, main offer, target market, current channels and the result you need to improve. We will identify the most important constraint, explain where to focus first and show which activity can wait.",
-    reassurance: "No booking maze and no forced package. Use the secure form, WhatsApp, email or call us directly.",
+    microcopy: "Share your website, priority offer and target market. We will discuss the relevant search, campaign or conversion opportunities and recommend a starting scope with clear deliverables.",
+    reassurance: "Direct founder-led review. Send the form, message us on WhatsApp, email or call.",
   },
   seo: {
     title: "GrowthLabs by Rohan Neure | SEO, Google Ads & Meta Ads",
