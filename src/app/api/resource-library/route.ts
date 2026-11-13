@@ -1,5 +1,6 @@
 import { randomUUID } from "node:crypto";
 import { NextRequest, NextResponse } from "next/server";
+import { acceptsRequestOrigin, acceptsSubmissionTime } from "@/lib/request-origin";
 import { resources } from "@/content/knowledge";
 import { marketingTools } from "@/content/tools";
 import { siteConfig } from "@/content/site";
@@ -34,24 +35,20 @@ async function sendEmail(apiKey: string, payload: Record<string, unknown>) {
 }
 
 export async function POST(request: NextRequest) {
-  const origin = request.headers.get("origin");
-  if (origin) {
-    try { if (new URL(origin).host !== request.nextUrl.host) return NextResponse.json({ message: "This request was not accepted." }, { status: 403 }); }
-    catch { return NextResponse.json({ message: "This request was not accepted." }, { status: 403 }); }
-  }
+  if (!acceptsRequestOrigin(request.headers.get("origin"), request.headers.get("host"), request.nextUrl.host)) return NextResponse.json({ message: "This request was not accepted." }, { status: 403 });
   const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
   if (limited(ip)) return NextResponse.json({ message: "Please wait before requesting the library again." }, { status: 429 });
 
   let body: Record<string, unknown>;
   try { body = await request.json(); } catch { return NextResponse.json({ message: "The submitted form could not be read." }, { status: 400 }); }
+  if (!body || typeof body !== "object" || Array.isArray(body)) return NextResponse.json({ message: "The submitted form could not be read." }, { status: 400 });
   if (clean(body.company, 160)) return NextResponse.json({ message: "Your library is on its way." });
 
   const name = clean(body.name, 80);
   const email = clean(body.email, 160).toLowerCase();
   const sourcePath = clean(body.sourcePath, 240) || "/resources";
   const accepted = body.privacyAccepted === "yes";
-  const startedAt = Number(body.startedAt);
-  if (Date.now() - startedAt < 1_500) return NextResponse.json({ message: "Please review your email address before submitting." }, { status: 400 });
+  if (!acceptsSubmissionTime(body.startedAt, 1_500)) return NextResponse.json({ message: "Please review your email address before submitting." }, { status: 400 });
   if (!emailPattern.test(email) || !accepted) return NextResponse.json({ message: "Enter a valid email and confirm the one-email privacy notice." }, { status: 400 });
 
   const apiKey = process.env.RESEND_API_KEY?.trim();

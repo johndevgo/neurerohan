@@ -1,5 +1,6 @@
 import { randomUUID } from "node:crypto";
 import { NextRequest, NextResponse } from "next/server";
+import { acceptsRequestOrigin, acceptsSubmissionTime } from "@/lib/request-origin";
 
 export const runtime = "nodejs";
 
@@ -28,16 +29,13 @@ function limited(key: string) {
 }
 
 export async function POST(request: NextRequest) {
-  const origin = request.headers.get("origin");
-  if (origin) {
-    try { if (new URL(origin).host !== request.nextUrl.host) return NextResponse.json({ message: "This request was not accepted." }, { status: 403 }); }
-    catch { return NextResponse.json({ message: "This request was not accepted." }, { status: 403 }); }
-  }
+  if (!acceptsRequestOrigin(request.headers.get("origin"), request.headers.get("host"), request.nextUrl.host)) return NextResponse.json({ message: "This request was not accepted." }, { status: 403 });
   const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
   if (limited(ip)) return NextResponse.json({ message: "Too many enquiries were submitted. Please wait ten minutes or contact us directly." }, { status: 429 });
 
   let body: Record<string, unknown>;
   try { body = await request.json(); } catch { return NextResponse.json({ message: "The submitted form could not be read." }, { status: 400 }); }
+  if (!body || typeof body !== "object" || Array.isArray(body)) return NextResponse.json({ message: "The submitted form could not be read." }, { status: 400 });
   if (clean(body.companyWebsite, 200)) return NextResponse.json({ message: "Thank you." });
 
   const name = clean(body.name, 80);
@@ -47,8 +45,7 @@ export async function POST(request: NextRequest) {
   const websiteUrl = clean(body.websiteUrl, 300);
   const enquiry = clean(body.message, 4000);
   const privacyAccepted = body.privacyAccepted === "yes";
-  const startedAt = Number(body.startedAt);
-  if (Date.now() - startedAt < 2_000) return NextResponse.json({ message: "Please review the enquiry before sending it." }, { status: 400 });
+  if (!acceptsSubmissionTime(body.startedAt, 2_000)) return NextResponse.json({ message: "Please review the enquiry before sending it." }, { status: 400 });
   if (name.length < 2 || !emailPattern.test(email) || phone.length < 7 || services.length === 0 || enquiry.length < 20 || !privacyAccepted) return NextResponse.json({ message: "Please complete every required field and choose at least one service." }, { status: 400 });
 
   const apiKey = process.env.RESEND_API_KEY?.trim();

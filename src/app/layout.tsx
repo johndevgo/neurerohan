@@ -7,6 +7,7 @@ import { GoogleTagManagerNoScript, GoogleTagManagerScript } from "@/components/g
 import { MeasurementConsent } from "@/components/measurement-consent";
 import { ResourceLibraryPrompt } from "@/components/resource-library-prompt";
 import { PwaManager } from "@/components/pwa-manager";
+import { socialImage } from "@/lib/metadata";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -14,8 +15,8 @@ export const metadata: Metadata = {
   title: { default: siteConfig.seo.title, template: `%s: ${siteConfig.name}` },
   description: siteConfig.seo.description,
   alternates: { canonical: "/" },
-  openGraph: { title: siteConfig.seo.title, description: siteConfig.seo.description, url: siteConfig.domain, siteName: siteConfig.name, locale: siteConfig.seo.locale, type: "website" },
-  twitter: { card: "summary_large_image", title: siteConfig.seo.title, description: siteConfig.seo.description },
+  openGraph: { title: siteConfig.seo.title, description: siteConfig.seo.description, url: siteConfig.domain, siteName: siteConfig.name, locale: siteConfig.seo.locale, type: "website", images: [socialImage] },
+  twitter: { card: "summary_large_image", title: siteConfig.seo.title, description: siteConfig.seo.description, images: [socialImage] },
   manifest: "/manifest.webmanifest",
   applicationName: "GrowthLabs",
   appleWebApp: { capable: true, statusBarStyle: "black-translucent", title: "GrowthLabs" },

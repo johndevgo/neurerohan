@@ -85,3 +85,30 @@ DNS and hosting account changes are intentionally outside this repository and ha
 ## Browser support and accessibility
 
 The site uses semantic landmarks, a skip link, keyboard-visible focus, reduced-motion handling, accessible navigation, and an Escape-aware focus-contained mobile menu. Test with current evergreen browsers and assistive technology before launch after final content is loaded.
+
+## Site-wide editorial and tool QA
+
+The November library revision retains the core/service work and adds practical examples and implementation checklists to all 22 existing articles. It does not generate duplicate keyword pages or change the existing URL architecture. The library includes 8 downloadable template pages, 7 browser tools, 142 glossary terms and 28 questions.
+
+- `src/content/insight-practice.ts` owns each article's additional worked example, checklist and contextual links. Actual editorial revisions update the displayed review date; reading time is derived from the article text.
+- `src/content/knowledge-workflows.ts` owns the distinct resource field guides, tool calculations, interpretations and relevant contact handoffs.
+- `src/lib/marketing-calculations.ts` contains tested arithmetic. Lead-generation CPC includes both click-to-lead and lead-to-customer rates; direct purchases use a separate mode. A zero denominator produces an undefined ratio, not a false zero. Negative scenario changes remain visible.
+- Resource previews read the published CSV files at build time. Their columns and starter-row counts come from the actual downloads, without adding a browser fetch or gating access.
+- Knowledge layouts use a shared restrained-glass treatment, intact images, readable heading sizes and visible article explanations. Glossary definitions have stable linkable anchors and UK/US spelling-aware search.
+
+Run these checks after content or template changes:
+
+```sh
+npm run lint
+npm run typecheck
+node scripts/knowledge-unit-qa.mjs
+npm run build
+# In another terminal: npm run start
+node scripts/all-pages-qa.mjs http://localhost:3000
+node scripts/seo-content-qa.mjs http://localhost:3000
+node scripts/form-validation-qa.mjs http://localhost:3000
+```
+
+For responsive browser QA, use a dedicated headless Chrome profile with remote debugging, never a personal browsing profile. Then run `node scripts/library-browser-qa.mjs 9335 http://localhost:3000` and `node scripts/seo-browser-qa.mjs 9335 http://localhost:3000 --all` sequentially. Both scripts control one test tab. Reports and representative screenshots are saved under ignored `.qa/`. Tests do not send enquiry or library emails; production email delivery still requires a separately verified end-to-end test.
+
+Form-origin checks compare the browser's Origin with the incoming Host header rather than Next's internal hostname. Forwarded-host headers are not trusted. Both form endpoints reject malformed JSON shapes and missing, invalid or premature submission timestamps before reaching the email provider. The validation script sends only invalid payloads and does not send mail.

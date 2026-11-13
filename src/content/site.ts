@@ -156,3 +156,17 @@ export const siteConfig = {
 } as const;
 
 export type SiteConfig = typeof siteConfig;
+
+// Highlight values and periods are derived from the original evidence records.
+// A changed capture cannot silently leave stale headline figures in a component.
+export const resultHighlights = [
+  { id: "texas-hvac", metric: "clicks", supporting: "impressions", href: "/seo-services-in-nepal", action: "Explore our SEO services" },
+  { id: "saas-google-ads", metric: "reported cost / conv.", href: "/google-ads-agency-in-nepal", action: "Explore our Google Ads approach" },
+  { id: "london-home-services-ads", metric: "clicks", supporting: "average CPC", href: "/insights/google-ads-account-audit-guide", action: "Read our account audit guide" },
+].map((selection) => {
+  const evidence = [...siteConfig.proofImages, ...siteConfig.paidProofImages].find((item) => item.id === selection.id);
+  const metric = evidence?.stats.find((item) => item.label === selection.metric);
+  const supporting = evidence?.stats.find((item) => item.label === selection.supporting);
+  if (!evidence || !metric) throw new Error(`Missing selected evidence metric: ${selection.id}`);
+  return { ...selection, caption: evidence.caption, value: metric.value, label: metric.label, supporting: supporting ? `${supporting.value} ${supporting.label}` : undefined };
+});

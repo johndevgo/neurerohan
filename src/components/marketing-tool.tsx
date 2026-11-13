@@ -1,139 +1,132 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useId, useState } from "react";
 import type { ToolKind } from "@/content/tools";
+import { adsBreakEven, buildCampaignUrl, campaignMetrics, conversionRate, funnelEconomics, metaBudget, seoRoi } from "@/lib/marketing-calculations";
 
-const number = (value: string, fallback = 0) => Number.isFinite(Number(value)) ? Number(value) : fallback;
-const fixed = (value: number) => new Intl.NumberFormat("en-US", { maximumFractionDigits: 2 }).format(Number.isFinite(value) ? value : 0);
+type NumericKind = Exclude<ToolKind, "utm-builder">;
+type InputSpec = { key: string; label: string; value: string; unit?: "%" | "money" | "days"; max?: number; integer?: boolean; hint?: string };
+type Metric = { label: string; value: number | null; unit?: "%" | "money" | "×" };
+const percent = { unit: "%", max: 100 } as const;
+const specs: Record<NumericKind, { fields: InputSpec[]; note: string }> = {
+  "seo-roi": { fields: [
+    { key: "sessions", label: "Monthly organic sessions", value: "2000", integer: true },
+    { key: "currentRate", label: "Current session-to-lead rate", value: "2", ...percent },
+    { key: "scenarioRate", label: "Scenario session-to-lead rate", value: "2.5", ...percent },
+    { key: "closeRate", label: "Lead-to-customer close rate", value: "20", ...percent },
+    { key: "profit", label: "Gross profit per customer", value: "500", unit: "money" },
+    { key: "cost", label: "Monthly SEO investment", value: "1000", unit: "money" },
+  ], note: "Compares a conversion-rate change at the same traffic volume. Negative results show a lower scenario. Gross profit excludes SEO cost until the ROI calculation." },
+  "google-ads-break-even": { fields: [
+    { key: "revenue", label: "Revenue per customer", value: "500", unit: "money" },
+    { key: "margin", label: "Gross margin", value: "40", ...percent, hint: "Revenue remaining after direct costs, before advertising." },
+    { key: "closeRate", label: "Lead-to-customer close rate", value: "20", ...percent },
+    { key: "pageRate", label: "Click-to-lead conversion rate", value: "4", ...percent },
+  ], note: "Break-even uses gross profit before overhead and desired profit. Set a working acquisition target below this ceiling to leave room for both." },
+  "meta-budget": { fields: [
+    { key: "outcomes", label: "Desired qualified outcomes", value: "40", integer: true },
+    { key: "cpa", label: "Target cost per outcome", value: "25", unit: "money" },
+    { key: "buffer", label: "Testing allowance", value: "20", unit: "%" },
+    { key: "days", label: "Campaign duration", value: "30", unit: "days", integer: true },
+  ], note: "Media planning only. Include creative production and management fees separately. Outcome volume depends on the actual CPA achieved." },
+  "conversion-rate": { fields: [
+    { key: "visits", label: "Eligible sessions", value: "5000", integer: true },
+    { key: "conversions", label: "Sessions with a qualified conversion", value: "150", integer: true, hint: "Count each session once, even if it has several conversion events." },
+    { key: "targetRate", label: "Scenario session conversion rate", value: "4", ...percent },
+  ], note: "Uses converting sessions, not total event count. Keep the date range, traffic segment and qualified action the same. A negative difference means fewer converting sessions." },
+  "funnel-economics": { fields: [
+    { key: "visits", label: "Monthly visits", value: "10000", integer: true },
+    { key: "leadRate", label: "Visit-to-lead rate", value: "3", ...percent },
+    { key: "closeRate", label: "Lead-to-customer close rate", value: "20", ...percent },
+    { key: "revenue", label: "Revenue per customer", value: "800", unit: "money" },
+    { key: "cost", label: "Included acquisition cost", value: "3000", unit: "money", hint: "Include all marketing and sales costs for fully loaded CAC, or label the subset you use." },
+  ], note: "Customers are an expected scenario and can be fractional. Revenue is before costs. CAC covers only the acquisition costs you include." },
+  "campaign-metrics": { fields: [
+    { key: "spend", label: "Advertising spend", value: "1000", unit: "money" },
+    { key: "impressions", label: "Recorded impressions", value: "100000", integer: true },
+    { key: "clicks", label: "Recorded clicks", value: "2500", integer: true },
+  ], note: "Use the same account, period and click definition for every input. Delivery metrics describe traffic cost and response; use CPA and qualified outcomes to evaluate its value." },
+};
 
-function Field({ label, value, onChange, suffix, min = 0, step = "any" }: { label: string; value: string; onChange: (value: string) => void; suffix?: string; min?: number; step?: string }) {
-  return <label className="grid gap-2"><span className="font-mono text-[.68rem] font-bold uppercase tracking-[.045em] text-[var(--muted)]">{label}</span><span className="flex border border-[var(--line-strong)] bg-white focus-within:outline focus-within:outline-3 focus-within:outline-offset-2 focus-within:outline-[var(--accent)]"><input className="min-h-12 min-w-0 flex-1 bg-transparent px-3 outline-none" type="number" inputMode="decimal" value={value} min={min} step={step} onChange={(event) => onChange(event.target.value)} />{suffix && <span className="grid min-w-12 place-items-center border-l border-[var(--line)] bg-[var(--paper-deep)] px-3 font-mono text-xs">{suffix}</span>}</span></label>;
+function metrics(kind: NumericKind, n: Record<string, number>, model: "leads" | "purchases"): Metric[] {
+  if (kind === "seo-roi") {
+    const r = seoRoi(n.sessions, n.currentRate, n.scenarioRate, n.closeRate, n.profit, n.cost);
+    return [{ label: "Change in monthly leads", value: r.conversions }, { label: "Change in expected customers", value: r.customers }, { label: "Change in gross profit", value: r.grossProfit, unit: "money" }, { label: "ROI after SEO cost", value: r.roi, unit: "%" }];
+  }
+  if (kind === "google-ads-break-even") {
+    const r = adsBreakEven(n.revenue, n.margin, n.closeRate, n.pageRate, model);
+    return [{ label: "Break-even ROAS", value: r.roas, unit: "×" }, { label: "Maximum customer CPA", value: r.cpa, unit: "money" }, ...(model === "leads" ? [{ label: "Maximum qualified-lead CPL", value: r.cpl, unit: "money" as const }] : []), { label: "Maximum CPC", value: r.cpc, unit: "money" }];
+  }
+  if (kind === "meta-budget") {
+    const r = metaBudget(n.outcomes, n.cpa, n.buffer, n.days);
+    return [{ label: "Base outcome budget", value: r.base, unit: "money" }, { label: "Testing allowance", value: r.allowance, unit: "money" }, { label: "Planning media budget", value: r.planning, unit: "money" }, { label: "Daily planning budget", value: r.daily, unit: "money" }];
+  }
+  if (kind === "conversion-rate") {
+    const r = conversionRate(n.visits, n.conversions, n.targetRate);
+    return [{ label: "Session conversion rate", value: r.current, unit: "%" }, { label: "Sessions without a conversion", value: r.nonConverting }, { label: "Converting sessions at scenario rate", value: r.scenario }, { label: "Change in converting sessions", value: r.additional }];
+  }
+  if (kind === "funnel-economics") {
+    const r = funnelEconomics(n.visits, n.leadRate, n.closeRate, n.revenue, n.cost);
+    return [{ label: "Expected qualified leads", value: r.leads }, { label: "Expected customers", value: r.customers }, { label: "Expected gross revenue", value: r.revenue, unit: "money" }, { label: "Customer acquisition cost", value: r.cac, unit: "money" }];
+  }
+  const r = campaignMetrics(n.spend, n.impressions, n.clicks);
+  return [{ label: "Cost per click (CPC)", value: r.cpc, unit: "money" }, { label: "Cost per 1,000 impressions (CPM)", value: r.cpm, unit: "money" }, { label: "Click-through rate (CTR)", value: r.ctr, unit: "%" }];
 }
 
-function Result({ label, value, note }: { label: string; value: string; note?: string }) {
-  return <div className="border-t border-white/20 p-5"><dt className="font-mono text-[.65rem] uppercase tracking-[.045em] text-white/55">{label}</dt><dd className="mt-3 font-serif text-4xl leading-none tracking-[-.05em] text-[var(--sun)]">{value}</dd>{note && <p className="mt-3 text-xs leading-5 text-white/50">{note}</p>}</div>;
-}
-
-function SeoRoiCalculator() {
-  const [sessions, setSessions] = useState("2000");
-  const [currentRate, setCurrentRate] = useState("2");
-  const [scenarioRate, setScenarioRate] = useState("2.5");
-  const [closeRate, setCloseRate] = useState("20");
-  const [profit, setProfit] = useState("500");
-  const [cost, setCost] = useState("1000");
-  const [currency, setCurrency] = useState("$");
-  const output = useMemo(() => {
-    const incrementalConversions = number(sessions) * Math.max(0, number(scenarioRate) - number(currentRate)) / 100;
-    const customers = incrementalConversions * number(closeRate) / 100;
-    const grossProfit = customers * number(profit);
-    const investment = number(cost);
-    const roi = investment > 0 ? (grossProfit - investment) / investment * 100 : 0;
-    return { incrementalConversions, customers, grossProfit, roi };
-  }, [sessions, currentRate, scenarioRate, closeRate, profit, cost]);
-  return <ToolShell fields={<><Field label="Monthly organic sessions" value={sessions} onChange={setSessions} /><Field label="Current conversion rate" value={currentRate} onChange={setCurrentRate} suffix="%" /><Field label="Scenario conversion rate" value={scenarioRate} onChange={setScenarioRate} suffix="%" /><Field label="Lead-to-customer close rate" value={closeRate} onChange={setCloseRate} suffix="%" /><Field label="Gross profit per customer" value={profit} onChange={setProfit} suffix={currency} /><Field label="Monthly SEO investment" value={cost} onChange={setCost} suffix={currency} /><label className="grid gap-2"><span className="font-mono text-[.68rem] font-bold uppercase tracking-[.045em] text-[var(--muted)]">Currency symbol</span><input className="min-h-12 border border-[var(--line-strong)] bg-white px-3" value={currency} maxLength={4} onChange={(event) => setCurrency(event.target.value)} /></label></>} results={<><Result label="Incremental monthly conversions" value={fixed(output.incrementalConversions)} /><Result label="Estimated new customers" value={fixed(output.customers)} /><Result label="Estimated incremental gross profit" value={`${currency}${fixed(output.grossProfit)}`} /><Result label="Estimated ROI after SEO cost" value={`${fixed(output.roi)}%`} note="Arithmetic scenario only, not a ranking, traffic or revenue forecast." /></>} />;
-}
-
-function GoogleAdsCalculator() {
-  const [revenue, setRevenue] = useState("500");
-  const [margin, setMargin] = useState("40");
-  const [closeRate, setCloseRate] = useState("20");
-  const [pageRate, setPageRate] = useState("4");
-  const [currency, setCurrency] = useState("$");
-  const output = useMemo(() => {
-    const marginRate = number(margin) / 100;
-    const maxCpa = number(revenue) * marginRate;
-    return { breakEvenRoas: marginRate > 0 ? 1 / marginRate : 0, maxCpa, maxCpl: maxCpa * number(closeRate) / 100, maxCpc: maxCpa * number(pageRate) / 100 };
-  }, [revenue, margin, closeRate, pageRate]);
-  return <ToolShell fields={<><Field label="Gross revenue per customer" value={revenue} onChange={setRevenue} suffix={currency} /><Field label="Gross margin" value={margin} onChange={setMargin} suffix="%" /><Field label="Lead-to-customer close rate" value={closeRate} onChange={setCloseRate} suffix="%" /><Field label="Landing-page conversion rate" value={pageRate} onChange={setPageRate} suffix="%" /><label className="grid gap-2"><span className="font-mono text-[.68rem] font-bold uppercase tracking-[.045em] text-[var(--muted)]">Currency symbol</span><input className="min-h-12 border border-[var(--line-strong)] bg-white px-3" value={currency} maxLength={4} onChange={(event) => setCurrency(event.target.value)} /></label></>} results={<><Result label="Break-even ROAS" value={`${fixed(output.breakEvenRoas)}×`} /><Result label="Maximum customer CPA" value={`${currency}${fixed(output.maxCpa)}`} /><Result label="Maximum lead CPL" value={`${currency}${fixed(output.maxCpl)}`} /><Result label="Maximum CPC at stated page rate" value={`${currency}${fixed(output.maxCpc)}`} note="Mathematical break-even before overhead, desired profit and attribution uncertainty." /></>} />;
-}
-
-function MetaBudgetCalculator() {
-  const [outcomes, setOutcomes] = useState("40");
-  const [cpa, setCpa] = useState("25");
-  const [buffer, setBuffer] = useState("20");
-  const [days, setDays] = useState("30");
-  const [currency, setCurrency] = useState("$");
-  const output = useMemo(() => {
-    const base = number(outcomes) * number(cpa);
-    const planning = base * (1 + number(buffer) / 100);
-    return { base, planning, daily: number(days) > 0 ? planning / number(days) : 0 };
-  }, [outcomes, cpa, buffer, days]);
-  return <ToolShell fields={<><Field label="Desired qualified outcomes" value={outcomes} onChange={setOutcomes} step="1" /><Field label="Target cost per outcome" value={cpa} onChange={setCpa} suffix={currency} /><Field label="Testing buffer" value={buffer} onChange={setBuffer} suffix="%" /><Field label="Campaign duration" value={days} onChange={setDays} suffix="days" step="1" /><label className="grid gap-2"><span className="font-mono text-[.68rem] font-bold uppercase tracking-[.045em] text-[var(--muted)]">Currency symbol</span><input className="min-h-12 border border-[var(--line-strong)] bg-white px-3" value={currency} maxLength={4} onChange={(event) => setCurrency(event.target.value)} /></label></>} results={<><Result label="Base outcome budget" value={`${currency}${fixed(output.base)}`} /><Result label="Testing and uncertainty allowance" value={`${currency}${fixed(output.planning - output.base)}`} /><Result label="Planning media budget" value={`${currency}${fixed(output.planning)}`} /><Result label="Daily planning budget" value={`${currency}${fixed(output.daily)}`} note="Media budget only. Delivery and result volume are not guaranteed." /></>} />;
-}
-
-function ConversionRateCalculator() {
-  const [visits, setVisits] = useState("5000");
-  const [conversions, setConversions] = useState("150");
-  const [targetRate, setTargetRate] = useState("4");
-  const output = useMemo(() => {
-    const visitCount = number(visits);
-    const conversionCount = number(conversions);
-    const currentRate = visitCount > 0 ? conversionCount / visitCount * 100 : 0;
-    const scenarioConversions = visitCount * number(targetRate) / 100;
-    return { currentRate, nonConverting: Math.max(0, visitCount - conversionCount), scenarioConversions, additional: Math.max(0, scenarioConversions - conversionCount) };
-  }, [visits, conversions, targetRate]);
-  return <ToolShell fields={<><Field label="Eligible visits or users" value={visits} onChange={setVisits} step="1" /><Field label="Qualified conversions" value={conversions} onChange={setConversions} step="1" /><Field label="Scenario conversion rate" value={targetRate} onChange={setTargetRate} suffix="%" /></>} results={<><Result label="Current conversion rate" value={`${fixed(output.currentRate)}%`} /><Result label="Visits without the defined conversion" value={fixed(output.nonConverting)} /><Result label="Conversions at scenario rate" value={fixed(output.scenarioConversions)} /><Result label="Additional conversions in scenario" value={fixed(output.additional)} note="Scenario arithmetic only, not a forecast or guarantee." /></>} />;
-}
-
-function FunnelEconomicsCalculator() {
-  const [visits, setVisits] = useState("10000");
-  const [leadRate, setLeadRate] = useState("3");
-  const [closeRate, setCloseRate] = useState("20");
-  const [revenue, setRevenue] = useState("800");
-  const [cost, setCost] = useState("3000");
-  const [currency, setCurrency] = useState("$");
-  const output = useMemo(() => {
-    const leads = number(visits) * number(leadRate) / 100;
-    const customers = leads * number(closeRate) / 100;
-    return { leads, customers, revenue: customers * number(revenue), cac: customers > 0 ? number(cost) / customers : 0 };
-  }, [visits, leadRate, closeRate, revenue, cost]);
-  return <ToolShell fields={<><Field label="Monthly visits" value={visits} onChange={setVisits} step="1" /><Field label="Visit-to-lead rate" value={leadRate} onChange={setLeadRate} suffix="%" /><Field label="Lead-to-customer close rate" value={closeRate} onChange={setCloseRate} suffix="%" /><Field label="Revenue per customer" value={revenue} onChange={setRevenue} suffix={currency} /><Field label="Included marketing cost" value={cost} onChange={setCost} suffix={currency} /><label className="grid gap-2"><span className="font-mono text-[.68rem] font-bold uppercase tracking-[.045em] text-[var(--muted)]">Currency symbol</span><input className="min-h-12 border border-[var(--line-strong)] bg-white px-3" value={currency} maxLength={4} onChange={(event) => setCurrency(event.target.value)} /></label></>} results={<><Result label="Modelled qualified leads" value={fixed(output.leads)} /><Result label="Modelled customers" value={fixed(output.customers)} /><Result label="Modelled gross revenue" value={`${currency}${fixed(output.revenue)}`} /><Result label="Customer acquisition cost" value={`${currency}${fixed(output.cac)}`} note="Simplified linear scenario. Revenue is not profit." /></>} />;
-}
-
-function CampaignMetricsCalculator() {
-  const [spend, setSpend] = useState("1000");
-  const [impressions, setImpressions] = useState("100000");
-  const [clicks, setClicks] = useState("2500");
-  const [currency, setCurrency] = useState("$");
-  const output = useMemo(() => ({
-    cpc: number(clicks) > 0 ? number(spend) / number(clicks) : 0,
-    cpm: number(impressions) > 0 ? number(spend) / number(impressions) * 1000 : 0,
-    ctr: number(impressions) > 0 ? number(clicks) / number(impressions) * 100 : 0,
-  }), [spend, impressions, clicks]);
-  return <ToolShell fields={<><Field label="Advertising spend" value={spend} onChange={setSpend} suffix={currency} /><Field label="Recorded impressions" value={impressions} onChange={setImpressions} step="1" /><Field label="Recorded clicks" value={clicks} onChange={setClicks} step="1" /><label className="grid gap-2"><span className="font-mono text-[.68rem] font-bold uppercase tracking-[.045em] text-[var(--muted)]">Currency symbol</span><input className="min-h-12 border border-[var(--line-strong)] bg-white px-3" value={currency} maxLength={4} onChange={(event) => setCurrency(event.target.value)} /></label></>} results={<><Result label="Cost per click (CPC)" value={`${currency}${fixed(output.cpc)}`} /><Result label="Cost per 1,000 impressions (CPM)" value={`${currency}${fixed(output.cpm)}`} /><Result label="Click-through rate (CTR)" value={`${fixed(output.ctr)}%`} /><Result label="Commercial interpretation" value="Go deeper" note="Connect these delivery metrics to qualified conversions, CPA, value and margin." /></>} />;
+function NumericCalculator({ kind }: { kind: NumericKind }) {
+  const config = specs[kind];
+  const [values, setValues] = useState<Record<string, string>>(() => Object.fromEntries(config.fields.map((field) => [field.key, field.value])));
+  const [currency, setCurrency] = useState("USD");
+  const [model, setModel] = useState<"leads" | "purchases">("leads");
+  const id = useId();
+  const fields = config.fields.filter((field) => !(kind === "google-ads-break-even" && model === "purchases" && field.key === "closeRate"));
+  const errors: Record<string, string> = {};
+  for (const field of fields) {
+    const raw = values[field.key]?.trim();
+    const value = Number(raw);
+    if (!raw || !Number.isFinite(value)) errors[field.key] = "Enter a number.";
+    else if (value < 0 || (field.max !== undefined && value > field.max)) errors[field.key] = field.max ? `Use a value from 0 to ${field.max}.` : "Use zero or a positive number.";
+    else if (field.integer && !Number.isInteger(value)) errors[field.key] = "Use a whole number.";
+  }
+  if (kind === "conversion-rate" && !errors.visits && !errors.conversions && Number(values.conversions) > Number(values.visits)) errors.conversions = "Converting sessions cannot exceed eligible sessions.";
+  const valid = Object.keys(errors).length === 0;
+  const numbers = Object.fromEntries(Object.entries(values).map(([key, value]) => [key, Number(value)]));
+  const results = valid ? metrics(kind, numbers, model) : [];
+  const formatted = (metric: Metric) => {
+    if (metric.value === null || !Number.isFinite(metric.value)) return "Not defined";
+    const value = new Intl.NumberFormat("en-US", { maximumFractionDigits: 2 }).format(metric.value);
+    return metric.unit === "money" ? `${currency} ${value}` : `${value}${metric.unit ?? ""}`;
+  };
+  return <div className="tool-shell" data-tool={kind}>
+    <div className="tool-inputs">
+      <div className="tool-panel-heading"><p className="eyebrow">Your inputs</p><h3>Build your scenario</h3><p>Change a value to see the effect. Your inputs stay on this device.</p></div>
+      {kind === "google-ads-break-even" && <fieldset className="tool-model"><legend>What does the campaign generate?</legend>{([["leads", "Qualified leads"], ["purchases", "Direct purchases"]] as const).map(([value, label]) => <label key={value}><input type="radio" name={`${id}-model`} value={value} checked={model === value} onChange={() => setModel(value)} />{label}</label>)}</fieldset>}
+      <div className="tool-fields">{fields.map((field) => {
+        const label = kind === "google-ads-break-even" && field.key === "pageRate" && model === "purchases" ? "Click-to-purchase conversion rate" : field.label;
+        const error = errors[field.key];
+        return <label className="tool-field" key={field.key} htmlFor={`${id}-${field.key}`}><span>{label}</span><span className="tool-input-wrap"><input id={`${id}-${field.key}`} type="number" inputMode={field.integer ? "numeric" : "decimal"} min={0} max={field.max} step={field.integer ? 1 : "any"} required value={values[field.key]} aria-invalid={Boolean(error)} aria-describedby={error || field.hint ? `${id}-${field.key}-help` : undefined} onChange={(event) => setValues({ ...values, [field.key]: event.target.value })} />{field.unit && <span>{field.unit === "money" ? currency : field.unit}</span>}</span>{(error || field.hint) && <small className={error ? "tool-field-error" : ""} id={`${id}-${field.key}-help`}>{error ?? field.hint}</small>}</label>;
+      })}{config.fields.some((field) => field.unit === "money") && <label className="tool-field"><span>Currency</span><select value={currency} onChange={(event) => setCurrency(event.target.value)}>{["USD", "NPR", "GBP", "AUD", "EUR", "INR", "AED", "CAD"].map((value) => <option key={value}>{value}</option>)}</select><small>Label only. No exchange-rate conversion.</small></label>}</div>
+      <button className="tool-reset" type="button" onClick={() => { setValues(Object.fromEntries(config.fields.map((field) => [field.key, field.value]))); setModel("leads"); setCurrency("USD"); }}>Reset example values</button>
+    </div>
+    <div className="tool-results" aria-live="polite" aria-atomic="true"><div className="tool-panel-heading"><p className="eyebrow">Your result</p><h3>{valid ? "See what changes" : "Check your inputs"}</h3></div>{valid ? <dl>{results.map((metric) => <div className="tool-metric" key={metric.label}><dt>{metric.label}</dt><dd>{formatted(metric)}</dd>{metric.value === null && <p>Requires a non-zero denominator.</p>}</div>)}</dl> : <p className="tool-validation" role="status">Complete the highlighted fields to calculate a valid scenario.</p>}<p className="tool-result-note">{config.note}</p></div>
+  </div>;
 }
 
 function UtmBuilder() {
   const [url, setUrl] = useState("https://example.com/landing-page");
-  const [source, setSource] = useState("google");
-  const [medium, setMedium] = useState("cpc");
-  const [campaign, setCampaign] = useState("campaign-name");
-  const [term, setTerm] = useState("");
-  const [content, setContent] = useState("");
-  const [copied, setCopied] = useState(false);
-  const result = useMemo(() => {
-    try {
-      const destination = new URL(url);
-      if (!['http:', 'https:'].includes(destination.protocol)) return "";
-      [["utm_source", source], ["utm_medium", medium], ["utm_campaign", campaign], ["utm_term", term], ["utm_content", content]].forEach(([key, value]) => { if (value.trim()) destination.searchParams.set(key, value.trim()); });
-      return source.trim() && medium.trim() && campaign.trim() ? destination.toString() : "";
-    } catch { return ""; }
-  }, [url, source, medium, campaign, term, content]);
-  async function copy() { if (!result) return; await navigator.clipboard.writeText(result); setCopied(true); window.setTimeout(() => setCopied(false), 1800); }
-  const textField = (label: string, value: string, setter: (value: string) => void, required = false) => <label className="grid gap-2"><span className="font-mono text-[.68rem] font-bold uppercase tracking-[.045em] text-[var(--muted)]">{label}{required ? " *" : ""}</span><input className="min-h-12 border border-[var(--line-strong)] bg-white px-3" value={value} required={required} onChange={(event) => setter(event.target.value)} /></label>;
-  return <div className="tool-shell grid border border-[var(--ink)] lg:grid-cols-[1fr_1fr]"><div className="grid content-start gap-5 bg-[var(--surface)] p-5 md:p-8">{textField("Destination URL", url, setUrl, true)}{textField("Campaign source", source, setSource, true)}{textField("Campaign medium", medium, setMedium, true)}{textField("Campaign name", campaign, setCampaign, true)}{textField("Campaign term", term, setTerm)}{textField("Campaign content", content, setContent)}</div><div className="tool-results flex min-h-96 flex-col justify-between bg-[var(--ink)] p-5 text-[var(--paper)] md:p-8"><div><p className="eyebrow !text-[var(--sun)]">Generated campaign URL</p><output className="mt-6 block break-all border border-white/20 bg-white/5 p-4 font-mono text-sm leading-7" aria-live="polite">{result || "Enter a valid http(s) URL and complete source, medium and campaign."}</output></div><div className="mt-8"><button className="button border-white text-white hover:bg-[var(--sun)] hover:text-[var(--ink)]" type="button" disabled={!result} onClick={copy}>{copied ? "Copied" : "Copy campaign URL"}</button><p className="mt-4 text-xs leading-5 text-white/50">Generated locally in your browser. Do not include personal data or secrets.</p></div></div></div>;
-}
-
-function ToolShell({ fields, results }: { fields: React.ReactNode; results: React.ReactNode }) {
-  return <div className="tool-shell grid border border-[var(--ink)] lg:grid-cols-[1.05fr_.95fr]"><div className="grid content-start gap-5 bg-[var(--surface)] p-5 sm:grid-cols-2 md:p-8">{fields}</div><dl className="tool-results grid content-start bg-[var(--ink)] sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">{results}</dl></div>;
+  const [values, setValues] = useState({ utm_source: "google", utm_medium: "cpc", utm_campaign: "campaign-name", utm_term: "", utm_content: "" });
+  const [copyState, setCopyState] = useState<"idle" | "copied" | "failed">("idle");
+  const result = buildCampaignUrl(url, values);
+  const id = useId();
+  async function copy() {
+    if (!result) return;
+    try { await navigator.clipboard.writeText(result); setCopyState("copied"); }
+    catch { setCopyState("failed"); }
+  }
+  const labels: Record<string, string> = { utm_source: "Campaign source", utm_medium: "Campaign medium", utm_campaign: "Campaign name", utm_term: "Campaign term", utm_content: "Campaign content" };
+  return <div className="tool-shell" data-tool="utm-builder"><div className="tool-inputs"><div className="tool-panel-heading"><p className="eyebrow">Campaign details</p><h3>Build a consistent tracking link</h3><p>Keep names consistent across your campaign and analytics reports.</p></div><div className="tool-fields"><label className="tool-field tool-field-wide" htmlFor={`${id}-url`}><span>Destination URL (required)</span><input id={`${id}-url`} type="url" required value={url} onChange={(event) => { setUrl(event.target.value); setCopyState("idle"); }} /><small>Use a complete http or https address without login credentials.</small></label>{Object.entries(values).map(([key, value]) => <label className="tool-field" key={key} htmlFor={`${id}-${key}`}><span>{labels[key]}{["utm_source", "utm_medium", "utm_campaign"].includes(key) ? " (required)" : " (optional)"}</span><input id={`${id}-${key}`} required={["utm_source", "utm_medium", "utm_campaign"].includes(key)} value={value} onChange={(event) => { setValues({ ...values, [key]: event.target.value }); setCopyState("idle"); }} /></label>)}</div></div><div className="tool-results"><div className="tool-panel-heading"><p className="eyebrow">Ready to use</p><h3>Your campaign URL</h3></div><output className="tool-url" aria-live="polite">{result ?? "Enter a valid destination and complete source, medium and campaign."}</output><button className="button button-primary" disabled={!result} type="button" onClick={copy}>{copyState === "copied" ? "URL copied" : "Copy campaign URL"}</button><p role="status" className="tool-result-note">{copyState === "failed" ? "Clipboard access is unavailable. Select and copy the URL above manually." : "Built locally. Existing non-UTM parameters and the page anchor are preserved. Never add names, email addresses or other personal data to a campaign URL."}</p></div></div>;
 }
 
 export function MarketingToolCalculator({ kind }: { kind: ToolKind }) {
-  if (kind === "seo-roi") return <SeoRoiCalculator />;
-  if (kind === "google-ads-break-even") return <GoogleAdsCalculator />;
-  if (kind === "meta-budget") return <MetaBudgetCalculator />;
-  if (kind === "conversion-rate") return <ConversionRateCalculator />;
-  if (kind === "funnel-economics") return <FunnelEconomicsCalculator />;
-  if (kind === "campaign-metrics") return <CampaignMetricsCalculator />;
-  return <UtmBuilder />;
+  return kind === "utm-builder" ? <UtmBuilder /> : <NumericCalculator key={kind} kind={kind} />;
 }

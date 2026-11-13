@@ -1,6 +1,7 @@
 import { authorityInsights } from "./insights-authority";
 import { growthInsights } from "./insights-growth";
 import { scaleInsights } from "./insights-scale";
+import { insightPractice } from "./insight-practice";
 
 export type InsightTable = {
   caption: string;
@@ -57,7 +58,7 @@ export type InsightArticle = {
 const published = "2026-08-25";
 const reviewed = "2026-08-26";
 
-export const insights: InsightArticle[] = [
+const baseInsights: InsightArticle[] = [
   {
     slug: "what-is-seo",
     category: "SEO",
@@ -1281,6 +1282,14 @@ export const insights: InsightArticle[] = [
   ...growthInsights,
   ...scaleInsights,
 ];
+
+export const insights: InsightArticle[] = baseInsights.map((article) => {
+  const practice = insightPractice[article.slug];
+  const sections = practice ? [...article.sections, practice.example, practice.checklist] : article.sections;
+  const related = [...new Map([...(practice?.next ?? []), ...article.related].map((link) => [link.href, link])).values()];
+  const wordCount = [article.answer, ...article.summaryPoints, ...sections.flatMap((section) => [section.title, section.answer ?? "", ...(section.paragraphs ?? []), ...(section.bullets ?? []), ...(section.steps ?? []).flatMap((step) => [step.title, step.copy]), ...(section.table?.rows.flat() ?? []), section.callout ?? ""]), ...article.faqs.flatMap((faq) => [faq.question, faq.answer])].join(" ").split(/\s+/).length;
+  return { ...article, sections, related, dateModified: practice ? "2026-11-14" : article.dateModified, readingTime: `${Math.max(1, Math.ceil(wordCount / 200))} min read` };
+});
 
 export const insightBySlug: Record<string, InsightArticle> = Object.fromEntries(
   insights.map((article) => [article.slug, article]),

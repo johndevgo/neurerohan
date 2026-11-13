@@ -16,7 +16,15 @@ This map converts the supplied keyword exports into one canonical URL per distin
 
 ## Existing commercial pages
 
-The November core/service revision keeps the existing 23-route scope. Each commercial page has a typed primary intent, supporting topic checklist, dedicated H1 and metadata, a buyer-fit/scope/value summary, scoped headings, useful FAQs and a contextual contact action. Research clusters are not expanded into additional URLs in this pass. Blogs, resource content and tools remain a separate editorial phase.
+The November core/service revision covers 23 routes. Each commercial page has a typed primary intent, supporting topic checklist, dedicated H1 and metadata, a buyer-fit/scope/value summary, scoped headings, useful FAQs and a contextual contact action. The subsequent site-wide library revision enriches all 22 existing articles, 8 resource pages and 7 tools, plus the library hubs, glossary and questions. It keeps existing URL ownership instead of creating additional overlapping keyword pages.
+
+## Library intent and conversion paths
+
+- Articles answer a distinct informational task, add an applied example and checklist, then link to a relevant template, tool, related guide or implementation service. Planning figures are labelled as illustrative and never presented as client results.
+- Resources serve download-and-apply intent. Each page previews its actual CSV fields and explains ownership, evidence, usage and review. Downloads remain ungated; optional email delivery is separate.
+- Tools serve an immediate calculation or URL-building task. Inputs, formulas, worked outputs and interpretation stay together. Tool values are processed in the browser, with no claim of forecasting rankings or platform delivery.
+- The glossary serves definition and terminology comparison. Stable term anchors connect the visible definitions to DefinedTerm schema; search supports common optimisation/optimization spelling variants.
+- The question hub answers practical business follow-ups and links into the relevant deeper explanation. The results library keeps real account captures separate from hypothetical examples.
 
 | Canonical URL | Owned cluster | Supplied cluster volume | Avg. KD | Boundary |
 | --- | --- | ---: | ---: | --- |

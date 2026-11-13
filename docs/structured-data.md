@@ -25,9 +25,9 @@ Schema.org has no dedicated `DigitalMarketingAgency` or `SEOExpert` type. The ac
 - Contact: `ContactPage` and `BreadcrumbList` connected to the organization.
 - Insights index and case-study library: `CollectionPage`, `BreadcrumbList` and `ItemList` for the visible resources and supplied evidence captures.
 - Insight articles: `WebPage`, `Article` and `BreadcrumbList`, connected to the global Rohan Neure author and GrowthLabs publisher entities with visible publication/review dates and primary sources.
-- Glossary: `DefinedTermSet`, nested `DefinedTerm` entities, `WebPage`, and `BreadcrumbList`, matching the visible definitions.
+- Glossary: `DefinedTermSet`, nested `DefinedTerm` entities with stable URLs matching the visible term anchors, `WebPage`, and `BreadcrumbList`. Definitions and practical explanations remain visible and searchable.
 - Questions library: `FAQPage`, `WebPage`, and `BreadcrumbList`, matching the visible answers.
-- Downloadable resource pages: `CreativeWork`, `WebPage`, and `BreadcrumbList` describing the visible checklist or template and repository-hosted CSV.
+- Downloadable resource pages: `CreativeWork`, `WebPage`, and `BreadcrumbList` describing the visible checklist or template. The `MediaObject` encoding points to the actual repository-hosted CSV shown in the build-time preview.
 - Browser tools: `SoftwareApplication`, `WebPage`, `FAQPage`, and `BreadcrumbList`. The tools are free, execute locally in the browser, expose their assumptions, and make no performance guarantee.
 - Pages with visible authored questions and answers: matching `FAQPage`, `Question` and `Answer` entities. Google currently limits FAQ rich-result visibility, so this markup describes content without promising a search enhancement.
 - Privacy: `WebPage`, `BreadcrumbList` and a maintained modification date.
