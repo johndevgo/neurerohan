@@ -1,5 +1,6 @@
 import { siteConfig } from "@/content/site";
 import { organizationAwards } from "@/content/credentials";
+import { agencyAssets } from "@/content/agency-assets";
 
 type JsonLdNode = Record<string, unknown>;
 export type FaqItem = { question: string; answer: string };
@@ -169,11 +170,35 @@ type ServiceSchemaConfig = {
   audience: string;
   categories: string[];
   offers: OfferSpec[];
+  image?: { src: string; alt: string; width: number; height: number };
   provider?: "organization" | "person";
   areaServed?: JsonLdNode | JsonLdNode[];
 };
 
 const serviceSchemas: Record<string, ServiceSchemaConfig> = {
+  "/seo-services-in-nepal": {
+    path: "/seo-services-in-nepal",
+    pageName: "SEO Services in Nepal | Technical, Local & Content SEO | GrowthLabs",
+    breadcrumbName: "SEO Services in Nepal",
+    description: "GrowthLabs provides SEO services in Nepal across keyword research, technical SEO, on-page optimisation, content, local search, internal linking, authority, measurement and CRO.",
+    serviceName: "SEO services in Nepal",
+    image: agencyAssets.seoServices,
+    serviceType: "Search engine optimisation strategy and implementation",
+    audience: "Businesses in Nepal seeking SEO research, implementation and organic growth",
+    categories: ["Search engine optimisation", "Keyword research", "Technical SEO", "On-page SEO", "Content strategy", "Local SEO", "Internal linking", "Conversion optimisation"],
+    offers: [
+      { name: "SEO audit and opportunity roadmap", anchor: "seo-audit", serviceType: "SEO audit and prioritised implementation planning" },
+      { name: "Keyword research and intent mapping", anchor: "keyword-research", serviceType: "Keyword research, clustering and URL mapping" },
+      { name: "Technical SEO implementation", anchor: "technical-seo", serviceType: "Technical search engine optimisation" },
+      { name: "On-page SEO and conversion copy", anchor: "on-page-seo", serviceType: "On-page SEO and commercial copywriting" },
+      { name: "SEO content and topic clusters", anchor: "content-strategy", serviceType: "SEO content strategy and development" },
+      { name: "Local SEO and Google Business Profile", anchor: "local-seo", serviceType: "Local search engine optimisation" },
+      { name: "Internal linking and website architecture", anchor: "internal-linking", serviceType: "Internal linking and website architecture" },
+      { name: "Authority and link earning", anchor: "authority", serviceType: "Relevant authority and editorial link development" },
+      { name: "Ecommerce and industry SEO", anchor: "industry-seo", serviceType: "Ecommerce, travel and service-business SEO" },
+      { name: "SEO reporting and conversion improvement", anchor: "measurement", serviceType: "Organic-search analytics and conversion optimisation" },
+    ],
+  },
   "/digital-marketing-agency-in-nepal": {
     path: "/digital-marketing-agency-in-nepal",
     pageName: "Marketing Company in Nepal | GrowthLabs Digital Agency",
@@ -185,7 +210,7 @@ const serviceSchemas: Record<string, ServiceSchemaConfig> = {
     categories: ["Digital marketing", "SEO", "Google Ads", "Meta Ads", "Websites", "CRO"],
     offers: [
       { name: "Digital marketing strategy", url: `${siteConfig.domain}/services#digital-marketing-strategy`, serviceType: "Digital marketing strategy and growth planning" },
-      { name: "SEO services", url: `${siteConfig.domain}/seo-company-in-nepal`, serviceType: "Search engine optimisation" },
+      { name: "SEO services", url: `${siteConfig.domain}/seo-services-in-nepal`, serviceType: "Search engine optimisation" },
       { name: "Google Ads management", url: `${siteConfig.domain}/google-ads-agency-in-nepal`, serviceType: "Google Ads strategy and campaign management" },
       { name: "Meta Ads and paid media", url: `${siteConfig.domain}/advertising-agency-in-nepal`, serviceType: "Meta Ads and TikTok Ads management" },
       { name: "Social media marketing", url: `${siteConfig.domain}/social-media-marketing-agency-in-nepal`, serviceType: "Social strategy, content and paid distribution" },
@@ -549,6 +574,7 @@ function servicePageSchema(config: ServiceSchemaConfig): JsonLdNode {
   const catalogId = `${url}#offer-catalog`;
   const providerId = config.provider === "person" ? personId : organizationId;
   const areaServed = config.areaServed ?? country;
+  const imageId = `${url}#primary-image`;
   return {
     "@context": "https://schema.org",
     "@graph": [
@@ -564,6 +590,7 @@ function servicePageSchema(config: ServiceSchemaConfig): JsonLdNode {
         breadcrumb: { "@id": `${url}#breadcrumb` },
         mainEntity: { "@id": serviceId },
         about: { "@id": serviceId },
+        ...(config.image ? { primaryImageOfPage: { "@id": imageId } } : {}),
       },
       breadcrumb(url, config.breadcrumbName),
       {
@@ -574,6 +601,7 @@ function servicePageSchema(config: ServiceSchemaConfig): JsonLdNode {
         serviceType: config.serviceType,
         description: config.description,
         provider: { "@id": providerId },
+        ...(config.image ? { image: { "@id": imageId } } : {}),
         areaServed,
         audience: { "@type": "BusinessAudience", audienceType: config.audience },
         availableChannel: {
@@ -590,6 +618,7 @@ function servicePageSchema(config: ServiceSchemaConfig): JsonLdNode {
           itemListElement: config.offers.map((item) => offer(url, item, providerId, areaServed)),
         },
       },
+      ...(config.image ? [{ "@type": "ImageObject", "@id": imageId, contentUrl: `${siteConfig.domain}${config.image.src}`, caption: config.image.alt, width: config.image.width, height: config.image.height }] : []),
     ],
   };
 }
@@ -613,7 +642,7 @@ function servicesSchema(): JsonLdNode {
   const url = `${siteConfig.domain}/services`;
   const catalogId = `${url}#offer-catalog`;
   const routeMap: Record<string, string> = {
-    "SEO Services": `${siteConfig.domain}/seo-company-in-nepal`,
+    "SEO Services": `${siteConfig.domain}/seo-services-in-nepal`,
     "Google Ads, Meta Ads & Paid Media": `${siteConfig.domain}/advertising-agency-in-nepal`,
     "Social Media Marketing": `${siteConfig.domain}/social-media-marketing-agency-in-nepal`,
     "Website Design and Strategy": `${siteConfig.domain}/web-design-company-in-nepal`,

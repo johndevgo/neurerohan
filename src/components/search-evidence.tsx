@@ -48,7 +48,7 @@ function EvidenceGallery({ compact = false, copy, dark = false, disclaimer, eyeb
               alt={proof.alt}
               width={proof.width}
               height={proof.height}
-              sizes="(max-width: 767px) 100vw, 50vw"
+              sizes={items.length === 3 ? "(max-width: 767px) 92vw, (max-width: 1023px) 44vw, 29vw" : items.length === 1 ? "(max-width: 767px) 92vw, 68vw" : "(max-width: 767px) 92vw, 44vw"}
             />
           </a>
           <figcaption className={`proof-caption ${captionTone}`}><span>{String(index + 1).padStart(2, "0")} / {proof.source} / {proof.caption}</span><a href={proof.src} target="_blank" rel="noopener noreferrer">View source ↗</a></figcaption>
@@ -84,13 +84,13 @@ type SearchEvidenceProps = {
 };
 
 export function SearchEvidence({ compact, copy, dark, eyebrow = "Search evidence / source captures", ids, sectionId, title }: SearchEvidenceProps) {
-  return <EvidenceGallery compact={compact} copy={copy} dark={dark} eyebrow={eyebrow} items={searchItems(ids)} sectionId={sectionId} title={title} disclaimer="These anonymised Google Search Console captures show monitored organic visibility in the source interface. They are not promises of rankings, leads, revenue or sole attribution. A responsible review still checks the baseline, period, pages, market conditions and work completed." />;
+  return <EvidenceGallery compact={compact} copy={copy} dark={dark} eyebrow={eyebrow} items={searchItems(ids)} sectionId={sectionId} title={title} disclaimer="Google Search Console reports organic clicks and impressions. Each account retains its own reporting period and full source capture. Open any image to inspect the performance details." />;
 }
 
 type PaidMediaEvidenceProps = Omit<SearchEvidenceProps, "ids"> & { ids?: readonly PaidEvidenceId[] };
 
 export function PaidMediaEvidence({ compact, copy, dark, eyebrow = "Paid-media evidence / source captures", ids, sectionId, title }: PaidMediaEvidenceProps) {
-  return <EvidenceGallery compact={compact} copy={copy} dark={dark} eyebrow={eyebrow} items={paidItems(ids)} sectionId={sectionId} title={title} disclaimer="These anonymised Google Ads interface captures show account-reported campaign activity. ‘Conversions’ reflects configured account actions and attribution settings; the captures do not by themselves verify customers, revenue, profitability, sole attribution or future results." />;
+  return <EvidenceGallery compact={compact} copy={copy} dark={dark} eyebrow={eyebrow} items={paidItems(ids)} sectionId={sectionId} title={title} disclaimer="Google Ads figures are shown for each account's stated reporting period. Reported conversions retain the account's action definitions and attribution, including fractional totals. Open the source captures to inspect clicks, costs and conversions." />;
 }
 
 type PerformanceEvidenceProps = Omit<SearchEvidenceProps, "ids"> & {
@@ -99,5 +99,5 @@ type PerformanceEvidenceProps = Omit<SearchEvidenceProps, "ids"> & {
 };
 
 export function PerformanceEvidence({ compact, copy, dark, eyebrow = "Performance evidence / source captures", paidIds, searchIds, sectionId, title }: PerformanceEvidenceProps) {
-  return <EvidenceGallery compact={compact} copy={copy} dark={dark} eyebrow={eyebrow} items={[...searchItems(searchIds), ...paidItems(paidIds)]} sectionId={sectionId} title={title} disclaimer="These anonymised source captures show two measurable layers: organic visibility in Google Search Console and account-reported campaign activity in Google Ads. They do not independently verify customers, revenue, profitability or sole attribution, and they are not a forecast or guarantee. A responsible review checks each period, conversion definition, baseline and business context." />;
+  return <EvidenceGallery compact={compact} copy={copy} dark={dark} eyebrow={eyebrow} items={[...searchItems(searchIds), ...paidItems(paidIds)]} sectionId={sectionId} title={title} disclaimer="Organic results come from Google Search Console; paid campaign results come from Google Ads. Reporting periods and metric definitions remain attached to each account. Select a capture to see its complete source view." />;
 }

@@ -14,6 +14,7 @@ Schema.org has no dedicated `DigitalMarketingAgency` or `SEOExpert` type. The ac
 
 ## Page graphs
 
+- `/seo-services-in-nepal`: `WebPage`, `BreadcrumbList`, primary `Service`, `BusinessAudience`, `ServiceChannel`, `OfferCatalog` with ten visible service workstreams, and a `FAQPage` matching the twelve published questions. Catalogue URLs point to real capability anchors; pricing is proposal-based, so no price is invented.
 - Home: `WebPage` about GrowthLabs and Rohan.
 - Services: `CollectionPage`, `BreadcrumbList`, `OfferCatalog`, `Offer` and nested `Service` entities.
 - Agency, SEO, advertising, analytics, content, technical SEO, social, website, hotel, travel and Kathmandu landing pages: `WebPage`, `BreadcrumbList`, primary `Service`, `BusinessAudience`, `ServiceChannel`, `OfferCatalog`, `Offer` and nested `Service` entities.

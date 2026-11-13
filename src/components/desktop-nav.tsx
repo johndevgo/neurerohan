@@ -18,6 +18,7 @@ const menus: Record<MenuKey, { eyebrow: string; title: string; copy: string; all
     allHref: "/services",
     groups: [
       { title: "Search visibility", links: [
+        { label: "SEO services in Nepal", href: "/seo-services-in-nepal", copy: "Technical, on-page, content and local growth" },
         { label: "SEO expert in Nepal", href: "/seo-expert-in-nepal", copy: "Founder-led search strategy and execution" },
         { label: "SEO company in Nepal", href: "/seo-company-in-nepal", copy: "Full-scope organic growth systems" },
         { label: "Local SEO", href: "/local-seo-services-in-nepal", copy: "Maps, Business Profile and local demand" },

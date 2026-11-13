@@ -11,8 +11,21 @@ import type { AgencyAssetKey } from "@/content/agency-assets";
 import { credentialKeysBySlug } from "@/content/credentials";
 import type { CommercialLanding } from "@/content/landing-pages";
 import { siteConfig } from "@/content/site";
+import { ServiceDepth } from "./service-depth";
 
 const capabilityAnchors: Record<string, Record<string, string>> = {
+  "seo-services-in-nepal": {
+    "SEO audit and opportunity roadmap": "seo-audit",
+    "Keyword research and intent mapping": "keyword-research",
+    "Technical SEO implementation": "technical-seo",
+    "On-page SEO and conversion copy": "on-page-seo",
+    "SEO content and topic clusters": "content-strategy",
+    "Local SEO and Google Business Profile": "local-seo",
+    "Internal linking and website architecture": "internal-linking",
+    "Authority and link earning": "authority",
+    "Ecommerce and industry SEO": "industry-seo",
+    "SEO reporting and conversion improvement": "measurement",
+  },
   "hotel-digital-marketing-agency": {
     "Hotel SEO and destination demand": "hotel-seo",
     "Hotel website marketing": "website",
@@ -170,6 +183,7 @@ const commercialVisuals: Record<string, AgencyAssetKey> = {
 };
 
 const commercialSecondaryVisuals: Partial<Record<string, AgencyAssetKey>> = {
+  "seo-services-in-nepal": "technicalSeo",
   "hotel-digital-marketing-agency": "analytics",
   "social-media-marketing-agency-in-nepal": "contentStrategy",
   "web-design-company-in-nepal": "userExperience",
@@ -262,6 +276,8 @@ export function CommercialLandingPage({ page }: { page: CommercialLanding }) {
 
     {page.trust && <div className="signal-band"><ul className={`shell grid py-1 font-mono text-[.72rem] font-bold uppercase tracking-[.05em] sm:grid-cols-2 ${page.trust.length > 5 ? "lg:grid-cols-6" : "lg:grid-cols-5"}`}>{page.trust.map((item, index) => <li className="flex items-center gap-3 border-black/25 py-4 pr-4 lg:border-r lg:last:border-0 lg:pl-4 lg:first:pl-0" key={item}><span>0{index + 1}</span>{item}</li>)}</ul></div>}
 
+    {page.slug === "seo-services-in-nepal" && <SearchEvidence compact sectionId="seo-results" ids={["australian-agency", "texas-hvac", "dubai-water-adventure"]} eyebrow="Our SEO results / Google Search Console" title="Different markets. Clear organic-search results." copy="1.1K clicks and 229K impressions for an Australian agency. 714 clicks and 38K impressions for Texas HVAC. 460 clicks and 47.4K impressions for a Dubai water-adventure website. Each three-month capture shows its own organic-search performance, with the full source available below." />}
+
     <section className="section commercial-decision"><div className="shell"><SectionHeading eyebrow={`${currentLabel} / Decision summary`} title="What this engagement is designed to change." copy={`A useful ${currentLabel.toLowerCase()} engagement connects the immediate business constraint to the capability, customer journey and measurable outcome that can address it.`} /><div className="decision-grid mt-12 md:ml-[16%]"><article><p className="eyebrow">Priority problem</p><h2>{page.challenges[0].title}</h2><p>{page.challenges[0].copy}</p></article><article><p className="eyebrow">Connected capability</p><h2>{page.capabilities[0].title}</h2><p>{page.capabilities[0].copy}</p></article><article><p className="eyebrow">Working outcome</p><h2>{page.outcomes[0]}</h2><p>{page.promise}</p></article></div><div className="decision-action md:ml-[16%]"><p><strong>Start with context, not a package.</strong> Share the current website, offer, audience and result that needs to improve.</p><Link className="button button-primary" href={primary.href}>{primary.label} <Arrow /></Link></div></div></section>
 
     <section className="section"><div className="shell grid gap-8 md:grid-cols-[1fr_3fr]"><p className="eyebrow">{page.labels?.objective ?? "The objective"}</p><p className="max-w-4xl font-serif text-[clamp(2.7rem,5.5vw,6.4rem)] leading-[.93] tracking-[-.06em]">{page.promise}</p></div></section>
@@ -280,15 +296,15 @@ export function CommercialLandingPage({ page }: { page: CommercialLanding }) {
       compact
       ids={["london-home-services-ads", "saas-google-ads", "uk-medical-program-ads"]}
       title="Three Google Ads accounts. Visible scale, efficiency and optimisation context."
-      copy="The supplied Google Ads captures cover home services, SaaS and a medical programme. Their periods, clicks and configured conversion metrics remain visible and prominent. The third capture deliberately includes mixed comparison signals: paid-media expertise means diagnosing inefficiency, not presenting every large number as a win."
+      copy="Explore our Google Ads work across home services, SaaS and a medical programme. London home services recorded 29,851 clicks and 474.79 reported conversions; SaaS recorded 929.99 conversions at £2.90 each. Each capture shows its own period, spend and conversion metrics."
     />}
 
     {page.slug === "google-ads-agency-in-nepal" && <PaidMediaEvidence
       compact
       ids={["london-home-services-ads", "saas-google-ads", "uk-medical-program-ads"]}
-      eyebrow="Google Ads evidence / supplied account captures"
+      eyebrow="Google Ads results / real account captures"
       title="Three Google Ads accounts, with the visible numbers and context left intact."
-      copy="The supplied captures show separate home-services, SaaS and medical-programme accounts across their stated reporting periods. They provide inspectable evidence of account scale, clicks, cost and configured conversion data. The medical capture includes mixed comparison signals, so it is presented as diagnostic context rather than a success claim."
+      copy="29,851 clicks for London home services. 929.99 reported conversions at £2.90 per conversion for SaaS. Review these accounts and a medical-programme campaign with reporting dates, costs and source metrics visible. We use this level of detail to guide the next optimisation decision."
     />}
 
     {page.slug === "seo-for-travel-agency" && <SearchEvidence
@@ -296,7 +312,7 @@ export function CommercialLandingPage({ page }: { page: CommercialLanding }) {
       ids={["dubai-tours", "dubai-water-adventure"]}
       eyebrow="Travel-search evidence / source captures"
       title="Two tourism websites. Two distinct demand patterns."
-      copy="The supplied Search Console captures make the visible organic-search layer inspectable for a tours website and a water-adventure rental website. They support a conversation about travel SEO execution, not a promise about rankings, enquiries or revenue."
+      copy="Our Dubai water-adventure capture reports 460 organic clicks and 47.4K impressions across three months. The Dubai and Sharjah tours capture reports 87 clicks and 52K impressions across its custom period. Explore the source images alongside our destination, itinerary and enquiry-path approach."
     />}
 
     {(page.slug === "seo-audit-services-in-nepal" || page.slug === "technical-seo-services-in-nepal") && <SearchEvidence
@@ -304,15 +320,15 @@ export function CommercialLandingPage({ page }: { page: CommercialLanding }) {
       ids={["texas-hvac", "australian-agency"]}
       eyebrow="Technical and organic-search evidence"
       title="Search Console captures from two different website and market contexts."
-      copy="The visible query and landing-page outcomes begin with technical accessibility, clear page ownership and intent-aligned content. These supplied captures show monitored search visibility; they do not isolate one technical change or promise the same result elsewhere."
+      copy="Our SEO portfolio includes 714 organic clicks and 38K impressions for Texas HVAC and 1.1K clicks with 229K impressions for an Australian agency, each in its own three-month period. Technical accessibility, page ownership, relevant content and measurement work together in our organic-search approach."
     />}
 
     {page.slug === "local-seo-services-in-nepal" && <SearchEvidence
       compact
       ids={["texas-hvac"]}
       eyebrow="Local-service search evidence"
-      title="714 clicks and 38K impressions in the supplied three-month Texas HVAC capture."
-      copy="The Search Console source view demonstrates organic visibility in a local-service market. Calls, booked work, map visibility and revenue require separate measurement, so the page preserves the exact visible search metrics without expanding them into an unsupported commercial claim."
+      title="714 organic clicks. 38K impressions. A three-month local-service search view."
+      copy="Our Texas HVAC capture shows organic search activity in a competitive local-service market. We connect that search visibility with service-area relevance, strong service pages and accessible contact paths. The complete Search Console image shows the period, click trend and impressions."
     />}
 
     {page.slug === "analytics-conversion-tracking-services" && <PaidMediaEvidence
@@ -320,22 +336,22 @@ export function CommercialLandingPage({ page }: { page: CommercialLanding }) {
       ids={["london-home-services-ads", "saas-google-ads"]}
       eyebrow="Measurement evidence / configured conversion reporting"
       title="Reported campaign data only becomes useful when its definitions are understood."
-      copy="The supplied Google Ads captures show 474.79 and 929.99 reported conversions for two separate accounts and periods. Fractional totals can reflect attribution modelling or configured conversion counting; GrowthLabs audits what each action means before treating it as a qualified lead or sale."
+      copy="London home services reported 474.79 conversions; SaaS reported 929.99 in a separate account and period. We validate conversion definitions, attribution, event firing and duplicate controls, then connect campaign reporting with qualified-action feedback. Fractional totals can reflect attribution modelling."
     />}
 
     {page.slug === "content-marketing-agency-in-nepal" && <SearchEvidence
       compact
       ids={["australian-agency"]}
       eyebrow="Content discovery evidence / Search Console"
-      title="1.1K clicks and 229K impressions in one supplied three-month agency capture."
-      copy="The capture makes organic discovery visible for an agency website. It supports the need for query-to-page ownership, useful topical coverage and measurement, while avoiding a claim that content alone caused every impression or click."
+      title="1.1K organic clicks and 229K impressions for an Australian agency."
+      copy="This three-month Search Console capture shows the organic reach behind our agency-sector experience. We connect keyword-to-page ownership, useful topical coverage, descriptive internal links and conversion-focused content with the search performance we review."
     />}
 
     {credentialIds && <CredentialProof ids={credentialIds} compact={credentialIds.length < 4} title={
       page.slug.includes("seo") || page.slug === "content-marketing-agency-in-nepal" || page.slug === "technical-seo-services-in-nepal"
-        ? "Search expertise supported by supplied Semrush certification and relevant trust evidence."
+        ? "Semrush-certified agency expertise. Clear SEO delivery."
         : page.slug.includes("ads") || page.slug === "advertising-agency-in-nepal"
-          ? "Advertising expertise supported by supplied platform-partner credentials."
+          ? "Platform-partner expertise behind our advertising work."
           : "Relevant platform credentials for this GrowthLabs service."
     } />}
 
@@ -343,16 +359,17 @@ export function CommercialLandingPage({ page }: { page: CommercialLanding }) {
     <ProcessSection page={page} />
     {page.sources?.length ? <SourcesSection sources={page.sources} /> : null}
     <EditorialSections sections={afterProcess} startIndex={beforeProcess.length} />
+    <ServiceDepth pageKey={page.slug} />
 
     {page.archetype === "location" && <section className="section bg-[var(--surface)]">
       <div className="shell">
         <SectionHeading
           eyebrow="Local presence / Bhaktapur"
           title={page.slug === "local-seo-services-in-nepal" ? "Verify the real business entity behind the local SEO work." : "A real Bhaktapur base for work across Kathmandu Valley."}
-          copy={page.slug === "local-seo-services-in-nepal" ? "GrowthLabs uses its real Sallaghari, Bhaktapur business context. The map verifies that listed location; it is not evidence of rankings and does not imply separate offices elsewhere in Nepal." : "GrowthLabs operates from Sallaghari, Bhaktapur and supports businesses across Kathmandu Valley. Use the map to verify the business location, then confirm whether an online appointment or appropriate on-site meeting is the better fit."}
+          copy={page.slug === "local-seo-services-in-nepal" ? "Visit our Google Business Profile for GrowthLabs at Sallaghari Shopping Complex, Bhaktapur. We work with businesses across Kathmandu Valley and Nepal, combining local knowledge with a clear, measurable search and enquiry strategy." : "GrowthLabs operates from Sallaghari, Bhaktapur and supports businesses across Kathmandu Valley. Use the map to verify the business location, then confirm whether an online appointment or appropriate on-site meeting is the better fit."}
         />
         <div className="mt-12 md:ml-[25%]">
-          <GoogleBusinessMap note={page.slug === "local-seo-services-in-nepal" ? "GrowthLabs by Rohan Neure · Sallaghari Shopping Complex, Bhaktapur 44800, Nepal. One real listed location; no fictional branch claims." : "Sallaghari Shopping Complex, Bhaktapur, serving businesses across Kathmandu, Lalitpur, Bhaktapur and the wider Kathmandu Valley."} />
+          <GoogleBusinessMap note={page.slug === "local-seo-services-in-nepal" ? "GrowthLabs by Rohan Neure · Sallaghari Shopping Complex, Bhaktapur 44800, Nepal. Explore our location, business details and contact options." : "Sallaghari Shopping Complex, Bhaktapur, serving businesses across Kathmandu, Lalitpur, Bhaktapur and the wider Kathmandu Valley."} />
         </div>
       </div>
     </section>}

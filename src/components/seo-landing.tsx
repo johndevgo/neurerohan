@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Arrow } from "./icons";
 import { PageStructuredData } from "./structured-data";
+import { ServiceDepth } from "./service-depth";
 import { SearchEvidence } from "./search-evidence";
 import { CredentialProof } from "./credential-proof";
 import { PageIntro, SectionHeading } from "./ui";
@@ -119,6 +120,7 @@ export function SeoLanding({ faqs }: Props) {
       </div>
     </section>
 
+    <ServiceDepth pageKey="seo-expert-in-nepal" />
     <section className="section signal-grid">
       <div className="shell">
         <SectionHeading eyebrow="Verified professional context" title="Four-plus years across SEO, paid media, analytics and conversion." copy="Our SEO work sits inside a broader growth-marketing practice. That context matters when search performance depends on the offer, landing page, tracking, advertising data or the way a lead is handled after the click." />
@@ -193,8 +195,8 @@ export function SeoLanding({ faqs }: Props) {
       </div>
     </section>
 
-    <SearchEvidence compact ids={["australian-agency", "texas-hvac"]} title="Source evidence from two very different search markets." copy="An Australian agency and a Texas local-service website require different architecture, competition analysis and conversion paths. The captures make the visible Search Console layer inspectable while the surrounding context remains essential." />
-    <CredentialProof compact ids={["semrush", "googleReviews"]} title="Supplied SEO certification and public rating evidence." copy="The Semrush Certified Agency Partner artwork supports the competitive-research context described on this page. The Google Reviews artwork displays a 5.0 rating and links visitors to the GrowthLabs business profile." />
+    <SearchEvidence compact ids={["australian-agency", "texas-hvac"]} title="Source evidence from two very different search markets." copy="1.1K organic clicks and 229K impressions for an Australian agency. 714 clicks and 38K impressions for Texas HVAC. Each three-month capture shows the search performance behind a different market, website and customer journey." />
+    <CredentialProof compact ids={["semrush", "googleReviews"]} title="Semrush-certified agency expertise and a 5.0 Google rating." copy="Our Semrush Certified Agency Partner expertise brings structure to keyword research, competitor analysis and implementation priorities. Review the credential and visit our Google Business Profile for feedback about working with us." />
 
     <section className="section bg-[var(--surface)]">
       <div className="shell">

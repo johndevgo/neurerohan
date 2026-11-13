@@ -1,6 +1,6 @@
 # Search architecture and keyword map
 
-Last reviewed: 2026-08-26
+Last reviewed: 2026-11-13
 
 This map converts the supplied keyword exports into one canonical URL per distinct intent. Search volume and difficulty are directional research inputs, not ranking forecasts. Closely related wording belongs on one useful page unless the audience, offer, location, or task is materially different.
 
@@ -24,7 +24,8 @@ This map converts the supplied keyword exports into one canonical URL per distin
 | `/hotel-digital-marketing-agency` | hotel/hospitality digital marketing | 3,240 | 16.9 | Full acquisition and booking journey for hotels; do not split into thin hotel SEO variants. |
 | `/social-media-marketing-agency-in-nepal` | social media marketing agency/services in Nepal | 2,970 | 11.4 | Organic strategy, content operations, creative, community, and connected paid distribution. |
 | `/web-design-company-in-nepal` | web design/development company in Nepal | 2,750 | 24.9 | Whole-site strategy, SEO architecture, responsive UX, content, implementation scope, and CRO. |
-| `/seo-company-in-nepal` | SEO company/agency/services in Nepal | 2,460 | 12.9 | Managed implementation, recurring ownership, coordination, technical/content/local work, and reporting. |
+| `/seo-company-in-nepal` | SEO company/agency in Nepal | 2,460 original combined cluster; not separately reassigned | 12.9 original cluster | Provider evaluation, managed implementation, recurring ownership, coordination and reporting. Links to the service-scope page rather than duplicating its full deliverables. |
+| `/seo-services-in-nepal` | SEO services/service in Nepal; monthly SEO services | Shares the original SEO research cluster; no new volume asserted | Not separately assessed | Complete commercial service scope: audit, keyword research, technical, on-page, content, local search, internal links, authority, industry SEO, measurement and CRO. |
 | `/seo-for-travel-agency` | travel SEO / SEO for travel agencies and companies | 1,680 | 14.1 | Organic destination, package, itinerary, seasonal, and travel-content architecture. |
 | `/social-media-marketing-packages` | social media package/pricing | 740 | 17.2 | Scope, inclusions, comparison, and cost factors. Real prices must be supplied before publishing figures. |
 | `/advertising-agency-in-nepal` | advertising/ad agency in Nepal | 520 | 29.5 | Multi-platform umbrella for Google Ads, Meta Ads, TikTok Ads, creative, landing pages, and tracking. |
@@ -83,6 +84,7 @@ These are real, crawlable editorial resources built without a database, CMS, log
 
 - Homepage owns the brand; the national agency page owns broad Nepal marketing-company language.
 - SEO expert owns direct specialist intent; SEO company owns managed, coordinated implementation.
+- SEO services owns the complete deliverable and engagement-scope decision. It is linked from the header, service hub, homepage, relevant commercial pages and resources. Expert and company pages retain distinct hiring/delivery-model intent.
 - Advertising agency owns multi-platform paid acquisition; Google Ads owns the platform-specific Google/PPC decision.
 - Social agency owns organic content operations and connected distribution; packages owns scope and price-comparison intent.
 - Local SEO owns Maps/Business Profile optimization; Kathmandu owns local agency evaluation.

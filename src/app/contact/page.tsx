@@ -10,7 +10,7 @@ import { pageMetadata } from "@/lib/metadata";
 
 export const metadata = pageMetadata(
   "Contact GrowthLabs by Rohan Neure",
-  "Contact Rohan Neure directly by WhatsApp, email or phone to discuss SEO, Google Ads, Meta Ads, websites, analytics, tracking or CRO.",
+  "Talk to our GrowthLabs team about SEO, Google Ads, Meta Ads, websites and CRO. Send your brief by form, WhatsApp, email or phone from anywhere in Nepal.",
   "/contact",
 );
 
@@ -106,7 +106,7 @@ export default function ContactPage() {
     <section className="section">
       <div className="shell">
         <SectionHeading eyebrow="Better qualification for both sides" title="GrowthLabs is a strong fit when you want connected improvement." copy="The best engagements involve a real offer, access to useful business context, willingness to improve the website or customer journey and interest in measurable outcomes rather than vanity activity. If a request requires a service we do not genuinely provide, we will say so rather than force an unsuitable package." />
-        <div className="mt-8 md:ml-[25%]"><Link className="text-link" href="/services">Review the complete service system <Arrow /></Link></div>
+        <div className="mt-8 flex flex-wrap gap-5 md:ml-[25%]"><Link className="text-link" href="/services">Compare our digital marketing services <Arrow /></Link><Link className="text-link" href="/seo-services-in-nepal">Explore the complete SEO service scope <Arrow /></Link><Link className="text-link" href="/google-ads-agency-in-nepal">Review our Google Ads results <Arrow /></Link></div>
       </div>
     </section>
 

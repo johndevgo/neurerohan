@@ -24,9 +24,11 @@ npm start
 
 ## Content
 
-Brand, founder, service, proof, industry, process, FAQ, contact, and social information is typed and centralized in `src/content/site.ts`. Commercial landing-page content lives in `src/content/landing-pages.ts`; the ten launch articles live in `src/content/insights.ts`; questions, glossary terms, and downloadable resources live in `src/content/knowledge.ts`; tool definitions live in `src/content/tools.ts`; and reusable editorial imagery lives in `src/content/agency-assets.ts`. Update approved facts in those sources instead of scattering them across components.
+Brand, founder, service, proof, industry, process, FAQ, contact, and social information is typed and centralized in `src/content/site.ts`. Commercial landing-page content lives in `src/content/landing-pages.ts`, with the detailed `/seo-services-in-nepal` scope in `src/content/seo-services.ts`. Page-specific delivery guidance and contextual links for the core and commercial pages live in `src/content/service-depth.ts`. Articles live in `src/content/insights.ts` and its imported editorial collections; questions, glossary terms, and downloadable resources live in `src/content/knowledge.ts`; tool definitions live in `src/content/tools.ts`; and reusable editorial imagery lives in `src/content/agency-assets.ts`. Update approved facts in those sources instead of scattering them across components.
 
-`/insights`, its ten static articles, questions, glossary and evidence library require no CMS, database, authentication, or server-side publishing backend. The free calculators run entirely in the visitor's browser. The planning templates and social-media calendar are repository-hosted CSV files under `public/downloads`.
+`/insights`, its static articles, questions, glossary and evidence library require no CMS, database, authentication, or server-side publishing backend. The free calculators run entirely in the visitor's browser. The planning templates and social-media calendar are repository-hosted CSV files under `public/downloads`.
+
+After building and starting the site, run `node scripts/seo-content-qa.mjs http://localhost:3000` to verify the core/service routes, internal links, metadata, service anchors, image references, FAQ graphs and sitemap coverage. The script is read-only and does not submit enquiry forms.
 
 Projects support index and detail routes for future case studies. Adding a project object automatically makes its `/work/[slug]` route buildable.
 

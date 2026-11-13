@@ -12,15 +12,16 @@ export type Credential = {
 };
 
 export const credentials: Record<CredentialKey, Credential> = {
-  googleAds: { key: "googleAds", name: "Certified Google Ads Partner", src: "/images/Agency/Certified Google Ads Partner.jpg", width: 1200, height: 630, alt: "GrowthLabs Certified Google Ads Partner credential artwork", caption: "Certified Google Ads Partner credential supplied and confirmed for GrowthLabs.", kind: "platform" },
-  metaAds: { key: "metaAds", name: "Certified Meta Ads Partner", src: "/images/Agency/Certified Meta Ads Partner.jpg", width: 900, height: 550, alt: "GrowthLabs Certified Meta Ads Partner credential artwork", caption: "Certified Meta Ads Partner credential supplied and confirmed for GrowthLabs.", kind: "platform" },
-  semrush: { key: "semrush", name: "Semrush Certified Agency Partner", src: "/images/Agency/Semrush Certified Agency Partner.jpeg", width: 970, height: 459, alt: "GrowthLabs Semrush Certified Agency Partner credential artwork", caption: "Semrush Certified Agency Partner credential supplied and confirmed for GrowthLabs.", kind: "platform" },
-  hubspot: { key: "hubspot", name: "Certified HubSpot Agency Partner", src: "/images/Agency/Certified HubSpot Agency Partner.png", width: 840, height: 381, alt: "GrowthLabs Certified HubSpot Agency Partner credential artwork", caption: "Certified HubSpot Agency Partner credential supplied and confirmed for GrowthLabs.", kind: "platform" },
-  amazonAds: { key: "amazonAds", name: "Certified Amazon Ads Partner", src: "/images/Agency/Certified Amazon Ads Partner.png", width: 1200, height: 628, alt: "GrowthLabs Certified Amazon Ads Partner credential artwork", caption: "Certified Amazon Ads Partner credential supplied and confirmed for GrowthLabs.", kind: "platform" },
-  googleReviews: { key: "googleReviews", name: "5.0 Google Reviews rating", src: "/images/Agency/Google Reviews.jpg", width: 1121, height: 540, alt: "GrowthLabs Google Reviews artwork showing a 5.0 rating", caption: "GrowthLabs Google Reviews artwork displays a 5.0 rating; no review-count claim is added without a supplied count.", kind: "review" },
+  googleAds: { key: "googleAds", name: "Certified Google Ads Partner", src: "/images/Agency/Certified Google Ads Partner.jpg", width: 1200, height: 630, alt: "GrowthLabs Certified Google Ads Partner credential", caption: "Google Ads expertise for campaign structure, paid-search strategy and conversion-led optimisation.", kind: "platform" },
+  metaAds: { key: "metaAds", name: "Certified Meta Ads Partner", src: "/images/Agency/Certified Meta Ads Partner.jpg", width: 900, height: 550, alt: "GrowthLabs Certified Meta Ads Partner credential", caption: "Meta Ads expertise connecting audience strategy, creative testing and conversion campaigns.", kind: "platform" },
+  semrush: { key: "semrush", name: "Semrush Certified Agency Partner", src: "/images/Agency/Semrush Certified Agency Partner.jpeg", width: 970, height: 459, alt: "GrowthLabs Semrush Certified Agency Partner credential", caption: "SEO research, competitor analysis and search opportunities translated into an actionable growth plan.", kind: "platform" },
+  hubspot: { key: "hubspot", name: "Certified HubSpot Agency Partner", src: "/images/Agency/Certified HubSpot Agency Partner.png", width: 840, height: 381, alt: "GrowthLabs Certified HubSpot Agency Partner credential", caption: "Connected inbound marketing, content and customer journeys from first visit to follow-up.", kind: "platform" },
+  amazonAds: { key: "amazonAds", name: "Certified Amazon Ads Partner", src: "/images/Agency/Certified Amazon Ads Partner.png", width: 1200, height: 628, alt: "GrowthLabs Certified Amazon Ads Partner credential", caption: "Advertising expertise grounded in campaign planning, performance analysis and measurement.", kind: "platform" },
+  googleReviews: { key: "googleReviews", name: "5.0 Google Reviews rating", src: "/images/Agency/Google Reviews.jpg", width: 1121, height: 540, alt: "GrowthLabs Google Reviews rating of 5.0", caption: "Explore our Google Business Profile and read feedback about working with GrowthLabs.", kind: "review" },
 };
 
 export const credentialKeysBySlug: Partial<Record<string, readonly CredentialKey[]>> = {
+  "seo-services-in-nepal": ["semrush", "googleReviews"],
   "hotel-digital-marketing-agency": ["googleAds", "metaAds", "googleReviews"],
   "social-media-marketing-agency-in-nepal": ["metaAds", "googleReviews"],
   "web-design-company-in-nepal": ["hubspot", "semrush"],
